@@ -24,7 +24,8 @@ module Jekyll
 
       site.tags.keys.each do |tag|
         slug = Utils.slugify(tag.to_s, mode: "default")
-        site.pages << TagPage.new(site, site.source, File.join("tag", slug), tag)
+        # IMPORTANT: tag pages will be at /tag-<slug>/
+        site.pages << TagPage.new(site, site.source, "tag-#{slug}", tag)
       end
     end
   end
