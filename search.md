@@ -44,3 +44,5 @@ permalink: /search/
   q.addEventListener('input', () => render(q.value));
 })();
 </script>
+
+<p><a href="{{ '/' | relative_url }}">← Intro</a></p>
