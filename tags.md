@@ -19,3 +19,5 @@ permalink: /tags/
   </li>
 {% endfor %}
 </ul>
+
+<p><a href="{{ '/' | relative_url }}">← Intro</a></p>
