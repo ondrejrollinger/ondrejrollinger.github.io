@@ -1,0 +1,6 @@
+- name: Verify tag pages exist
+  run: |
+    echo "Listing generated tag pages:"
+    ls -la _site | head -200
+    find _site -maxdepth 2 -type d -name "tag-*" -print
+    find _site -maxdepth 3 -path "*/tag-*/index.html" -print
