@@ -33,11 +33,6 @@ I may use AI tools to assist with drafting and editing for clarity and consisten
 
 ---
 
-## Navigate
-- [Blog]({{ '/blog/' | relative_url }})
-- [Tags]({{ '/tags/' | relative_url }})
-- [Search]({{ '/search/' | relative_url }})
-
 ## Suggested starting points
 - Start with the latest posts in the [Blog]({{ '/blog/' | relative_url }})
 - Browse by topic in [Tags]({{ '/tags/' | relative_url }})
