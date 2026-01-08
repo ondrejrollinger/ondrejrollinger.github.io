@@ -19,4 +19,4 @@ Short, security-focused definitions for common terms used across the portfolio.
 - [Zeek]({{ '/glossary/zeek/' | relative_url }})
 - [Loki]({{ '/glossary/loki/' | relative_url }})
 
-<p><a href="{{ '/' | relative_url }}">← Intro</a></p>
+<p><a href="{{ '/' | relative_url }}">← Home</a></p>

@@ -45,4 +45,4 @@ permalink: /search/
 })();
 </script>
 
-<p><a href="{{ '/' | relative_url }}">← Intro</a></p>
+<p><a href="{{ '/' | relative_url }}">← Home</a></p>
