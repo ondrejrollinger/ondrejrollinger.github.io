@@ -6,7 +6,7 @@ permalink: /search/
 
 # Search
 
-Search across the portfolio.
+Search across posts and notes to quickly find tools, playbooks, investigations, and key concepts.
 
 <input id="q" type="search" placeholder="Search..." autofocus />
 <div id="results"></div>
