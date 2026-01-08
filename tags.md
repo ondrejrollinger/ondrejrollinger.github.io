@@ -6,6 +6,8 @@ permalink: /tags/
 
 # Tags
 
+Labels for organizing posts across the portfolio.
+
 {% assign tags_sorted = site.tags | sort %}
 <ul>
 {% for t in tags_sorted %}
