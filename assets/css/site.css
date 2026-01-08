@@ -4,39 +4,107 @@
 }
 
 .sidebar {
-  min-width: 220px;
-  padding: 1.5rem;
-  border-right: 1px solid #444;
+  min-width: 240px;
+  padding: 1.25rem 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.18);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
+/* NAV container */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
+/* Links */
 .sidebar-nav a {
   text-decoration: none;
+  display: block;
+  padding: 0.40rem 0.55rem;
+  border-left: 2px solid transparent;
+  border-radius: 2px;
+  opacity: 0.92;
+}
+
+/* Hover/focus: terminal highlight */
+.sidebar-nav a:hover,
+.sidebar-nav a:focus {
+  outline: none;
+  border-left-color: rgba(120, 255, 120, 0.95);
+  background: rgba(120, 255, 120, 0.08);
+  opacity: 1;
+}
+
+/* Optional active state if you add li.active in HTML */
+.sidebar-nav li.active a {
+  border-left-color: rgba(120, 255, 120, 1);
+  background: rgba(120, 255, 120, 0.12);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.sidebar-nav li.active a::before {
+  content: "› ";
+}
+
+/* Optional section separators / headers if you add them later */
+.sidebar-section {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(120, 255, 120, 0.25);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
 }
 
 .content {
   flex: 1;
   padding: 1.5rem;
+  max-width: 1100px;
 }
 
+/* Mobile */
 @media (max-width: 700px) {
   .layout {
     flex-direction: column;
   }
 
   .sidebar {
+    position: static;
+    height: auto;
     border-right: none;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   }
 
   .sidebar-nav {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.6rem;
+  }
+
+  .sidebar-nav a {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .sidebar-nav a:hover,
+  .sidebar-nav a:focus {
+    border-left: none;
+    border-bottom-color: rgba(120, 255, 120, 0.95);
+  }
+
+  .sidebar-nav li.active a {
+    border-left: none;
+    border-bottom-color: rgba(120, 255, 120, 1);
+  }
+
+  .sidebar-nav li.active a::before {
+    content: "";
   }
 }
