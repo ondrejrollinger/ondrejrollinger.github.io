@@ -1,7 +1,31 @@
-<nav class="sidebar-nav" aria-label="Site">
-  <a href="{{ '/' | relative_url }}">Home</a>
-  <a href="{{ '/blog/' | relative_url }}">Blog</a>
-  <a href="{{ '/glossary/' | relative_url }}">Glossary</a>
-  <a href="{{ '/tags/' | relative_url }}">Tags</a>
-  <a href="{{ '/search/' | relative_url }}">Search</a>
+<nav class="sidebar-nav" aria-label="Primary navigation">
+  <div class="sidebar-header">
+    <div class="sidebar-prompt">user@lab:~$</div>
+    <a class="sidebar-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <div class="sidebar-subtitle">{{ site.description }}</div>
+  </div>
+
+  <div class="sidebar-section">NAV</div>
+
+  <ul class="sidebar-links">
+    <li class="{% if page.url == '/' %}active{% endif %}">
+      <a href="{{ '/' | relative_url }}">Home</a>
+    </li>
+
+    <li class="{% if page.url contains '/blog' %}active{% endif %}">
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+    </li>
+
+    <li class="{% if page.url contains '/glossary' %}active{% endif %}">
+      <a href="{{ '/glossary/' | relative_url }}">Glossary</a>
+    </li>
+
+    <li class="{% if page.url contains '/tags' %}active{% endif %}">
+      <a href="{{ '/tags/' | relative_url }}">Tags</a>
+    </li>
+
+    <li class="{% if page.url contains '/search' %}active{% endif %}">
+      <a href="{{ '/search/' | relative_url }}">Search</a>
+    </li>
+  </ul>
 </nav>
