@@ -6,7 +6,7 @@ permalink: /tags/
 
 # Tags
 
-Labels for organizing posts across the portfolio.
+Browse topics across investigations, projects, and theory notes using consistent tags and tracks.
 
 {% assign tags_sorted = site.tags | sort %}
 <ul>
