@@ -30,10 +30,3 @@ Each post aims to show clear ownership:
 
 ## AI assistance (disclosure)
 I may use AI tools to assist with drafting and editing for clarity and consistency. The technical work, evidence selection, validation, and conclusions are mine.
-
----
-
-## Suggested starting points
-- Start with the latest posts in the [Blog]({{ '/blog/' | relative_url }})
-- Browse by topic in [Tags]({{ '/tags/' | relative_url }})
-- Use [Search]({{ '/search/' | relative_url }}) to find tools, playbooks, or specific investigations
