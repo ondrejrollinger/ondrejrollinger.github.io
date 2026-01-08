@@ -6,6 +6,8 @@ permalink: /search/
 
 # Search
 
+Search across the portfolio.
+
 <input id="q" type="search" placeholder="Search..." autofocus />
 <div id="results"></div>
 
