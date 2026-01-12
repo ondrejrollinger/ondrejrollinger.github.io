@@ -5,7 +5,7 @@ title: Home
 
 # Ondřej Rollinger — Cybersecurity notes and portfolio
 
-I’m transitioning from automotive software development into cybersecurity. This site is my public notebook and portfolio.
+I’m an automotive software engineer expanding my knowledge and hands-on experience in cybersecurity. This site is my public notebook and portfolio.
 
 I document what I build, test, and learn, with a strong focus on **repeatable, evidence-driven work**.
 
