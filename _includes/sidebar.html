@@ -12,6 +12,10 @@
       <a href="{{ '/glossary/' | relative_url }}">Glossary</a>
     </li>
 
+    <li class="{% if page.url contains '/secplus' %}active{% endif %}">
+      <a href="{{ '/secplus/' | relative_url }}">Security+ Dashboard</a>
+    </li>
+
     <li class="{% if page.url contains '/tags' %}active{% endif %}">
       <a href="{{ '/tags/' | relative_url }}">Tags</a>
     </li>
