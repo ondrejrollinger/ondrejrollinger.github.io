@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Given a scenario, apply common security techniques to computing resources.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

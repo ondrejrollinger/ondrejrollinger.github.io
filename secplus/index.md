@@ -8,11 +8,14 @@ permalink: /secplus/
 
 This dashboard tracks my progress across the SY0-701 exam objectives. Each objective links to a dedicated notes page and carries a simple status badge.
 
+Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).
+
 {% assign total = 0 %}
 {% assign pending = 0 %}
 {% assign in_progress = 0 %}
 {% assign review = 0 %}
 {% assign done = 0 %}
+{% assign pdf_path = site.data.sy0_701_pdf_pages.pdf.path %}
 
 {% for domain in site.data.secplus701.domains %}
   {% for objective in domain.objectives %}
@@ -56,10 +59,12 @@ This dashboard tracks my progress across the SY0-701 exam objectives. Each objec
             <th scope="col">Title</th>
             <th scope="col">Status</th>
             <th scope="col">Link</th>
+            <th scope="col">Official</th>
           </tr>
         </thead>
         <tbody>
           {% for objective in domain.objectives %}
+            {% assign pdf_page = site.data.sy0_701_pdf_pages.pdf.objectives[objective.id] %}
             <tr>
               <td>{{ objective.id }}</td>
               <td>{{ objective.title }}</td>
@@ -72,6 +77,17 @@ This dashboard tracks my progress across the SY0-701 exam objectives. Each objec
                 <a href="{{ '/secplus/objectives/' | append: objective.slug | append: '/' | relative_url }}">
                   View notes
                 </a>
+              </td>
+              <td>
+                <a href="{{ '/secplus/objectives/' | append: objective.slug | append: '/#official-scope' | relative_url }}">
+                  Official scope
+                </a>
+                {% if pdf_page %}
+                  <span aria-hidden="true"> · </span>
+                  <a href="{{ site.baseurl }}{{ pdf_path }}#page={{ pdf_page }}" target="_blank" rel="noreferrer noopener">
+                    PDF p.{{ pdf_page }}
+                  </a>
+                {% endif %}
               </td>
             </tr>
           {% endfor %}

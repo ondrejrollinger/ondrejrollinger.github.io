@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Given a scenario, modify enterprise capabilities to enhance security.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

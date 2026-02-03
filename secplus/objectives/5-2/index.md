@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain elements of the risk management process.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

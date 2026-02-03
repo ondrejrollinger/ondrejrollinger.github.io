@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Summarize elements of effective security governance.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

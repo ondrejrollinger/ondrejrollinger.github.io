@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the importance of automation and orchestration related to secure operations.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

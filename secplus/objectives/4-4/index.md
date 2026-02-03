@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain security alerting and monitoring concepts and tools.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

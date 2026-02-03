@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain appropriate incident response activities.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

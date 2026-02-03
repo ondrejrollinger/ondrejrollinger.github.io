@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Compare and contrast concepts and strategies to protect data.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

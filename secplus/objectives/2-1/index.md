@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Compare and contrast common threat actors and motivations.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the importance of resilience and recovery in security architecture.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 
