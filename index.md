@@ -19,6 +19,7 @@ Most posts are practical (investigations, playbooks, small tools/scripts, lab pr
 ## Current focus
 - Building the blog structure (navigation, tags, search, posting conventions)
 - Setting up my home lab hardware and network visibility (segmentation/telemetry foundations)
+- New: [CompTIA Security+ (SY0-701) Dashboard](/secplus/) — tracks my progress across exam objectives.
 
 ## Portfolio standards (how I write)
 Each post aims to show clear ownership:
