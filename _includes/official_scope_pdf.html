@@ -1,0 +1,21 @@
+{% assign objective_id = include.objective_id %}
+{% assign pdf_path = site.data.sy0_701_pdf_pages.pdf.local_path %}
+{% assign pdf_page = site.data.sy0_701_pdf_pages.pdf.objectives[objective_id] %}
+
+<section class="official-scope">
+  <h2 id="official-scope">Official CompTIA scope (SY0-701 v5.0)</h2>
+  {% if pdf_page %}
+    <p>
+      <a href="{{ site.baseurl }}{{ pdf_path }}#page={{ pdf_page }}&view=FitH">
+        Open PDF on page {{ pdf_page }}
+      </a>
+    </p>
+    <iframe
+      class="pdf-embed"
+      src="{{ site.baseurl }}{{ pdf_path }}#page={{ pdf_page }}&view=FitH"
+      loading="lazy"
+    ></iframe>
+  {% else %}
+    <p>Missing PDF page mapping for objective {{ objective_id }}</p>
+  {% endif %}
+</section>

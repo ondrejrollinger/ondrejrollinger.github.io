@@ -146,6 +146,12 @@
   border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+  .pdf-embed {
+    height: 70vh;
+  }
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .layout {
