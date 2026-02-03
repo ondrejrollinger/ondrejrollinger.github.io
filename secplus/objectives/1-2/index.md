@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Summarize fundamental security concepts.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

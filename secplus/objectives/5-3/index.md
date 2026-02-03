@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the processes associated with third-party risk assessment and management.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

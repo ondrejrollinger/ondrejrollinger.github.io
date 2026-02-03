@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Given a scenario, use data sources to support an investigation.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the purpose of mitigation techniques used to secure the enterprise.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

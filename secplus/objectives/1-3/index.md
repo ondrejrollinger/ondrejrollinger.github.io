@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the importance of change management processes and the impact to security.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

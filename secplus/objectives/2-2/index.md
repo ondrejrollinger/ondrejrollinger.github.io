@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain common threat vectors and attack surfaces.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

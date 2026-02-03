@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain types and purposes of audits and assessments.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 

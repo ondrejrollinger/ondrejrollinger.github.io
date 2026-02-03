@@ -1,0 +1,36 @@
+{% assign objective_id = page.objective_id %}
+{% if objective_id == nil and page.slug %}
+  {% assign objective_id = page.slug | replace: '-', '.' %}
+{% endif %}
+{% if objective_id == nil and page.url %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign slug = url_parts | last %}
+  {% if slug == '' %}
+    {% assign slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+  {% assign objective_id = slug | replace: '-', '.' %}
+{% endif %}
+
+{% assign pdf_path = site.data.sy0_701_pdf_pages.pdf.path %}
+{% assign pdf_page = site.data.sy0_701_pdf_pages.pdf.objectives[objective_id] %}
+
+<section class="official-scope">
+  <h2 id="official-scope">Official CompTIA scope (SY0-701 v5.0)</h2>
+  <p><strong>Attribution:</strong> Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).</p>
+  <p>This embedded view is provided for reference; the authoritative source is CompTIA.</p>
+  {% if pdf_page %}
+    <p>
+      <a href="{{ site.baseurl }}{{ pdf_path }}#page={{ pdf_page }}" target="_blank" rel="noreferrer noopener">
+        Open official PDF on page {{ pdf_page }}
+      </a>
+    </p>
+    <iframe
+      class="pdf-embed"
+      src="{{ site.baseurl }}{{ pdf_path }}#page={{ pdf_page }}&view=FitH"
+      loading="lazy"
+      title="CompTIA Security+ SY0-701 Exam Objectives page {{ pdf_page }}"
+    ></iframe>
+  {% else %}
+    <p>Official PDF page mapping not found for objective {{ objective_id }}.</p>
+  {% endif %}
+</section>

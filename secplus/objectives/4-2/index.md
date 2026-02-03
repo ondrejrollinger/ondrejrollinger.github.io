@@ -16,6 +16,8 @@ Status: <span class="status-badge pending">Pending</span>
 ## Exam objective
 Explain the security implications of proper hardware, software, and data asset management.
 
+{% include secplus-official-scope.html %}
+
 ## My notes
 - Pending.
 
