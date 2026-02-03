@@ -8,14 +8,12 @@ permalink: /secplus/
 
 This dashboard tracks my progress across the SY0-701 exam objectives. Each objective links to a dedicated notes page and carries a simple status badge.
 
-Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).
-
 {% assign total = 0 %}
 {% assign pending = 0 %}
 {% assign in_progress = 0 %}
 {% assign review = 0 %}
 {% assign done = 0 %}
-{% assign pdf_path = site.data.sy0_701_pdf_pages.pdf.path %}
+{% assign pdf_path = site.data.sy0_701_pdf_pages.pdf.local_path %}
 
 {% for domain in site.data.secplus701.domains %}
   {% for objective in domain.objectives %}
@@ -80,7 +78,7 @@ Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).
               </td>
               <td>
                 <a href="{{ '/secplus/objectives/' | append: objective.slug | append: '/#official-scope' | relative_url }}">
-                  Official scope
+                  Official PDF
                 </a>
                 {% if pdf_page %}
                   <span aria-hidden="true"> · </span>
@@ -96,3 +94,5 @@ Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).
     </div>
   </section>
 {% endfor %}
+
+<p><strong>Attribution:</strong> Exam objectives content © CompTIA. Source: SY0-701 Exam Objectives (v5.0).</p>

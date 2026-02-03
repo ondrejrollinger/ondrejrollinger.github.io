@@ -9,3 +9,4 @@ Personal blog on GitHub Pages
 Place the official CompTIA Security+ SY0-701 Exam Objectives PDF at:
 `assets/comptia/CompTIA-Security-Plus-SY0-701-Exam-Objectives-v5.0.pdf`
 so the objective pages can embed and deep-link to it.
+The official objectives PDF is stored locally under `assets/comptia/` — do not rename without updating the mapping.
