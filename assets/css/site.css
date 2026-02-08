@@ -152,6 +152,28 @@
   }
 }
 
+/* Collapsible quiz sections */
+details {
+  margin: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(120, 255, 120, 0.15);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+details[open] {
+  border-color: rgba(120, 255, 120, 0.3);
+}
+
+details summary {
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+details summary:hover {
+  color: rgba(120, 255, 120, 0.95);
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .layout {
