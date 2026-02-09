@@ -38,45 +38,66 @@ Security controls are safeguards or countermeasures put in place to reduce risk.
 1. **Categories** — _what the control is_ (Technical, Managerial, Operational, Physical)
 2. **Control types** — _what the control does_ (Preventive, Deterrent, Detective, Corrective, Compensating, Directive)
 
-Any single control can be described by combining one category with one type. For example, a firewall is a **Technical Preventive** control; a security policy is a **Managerial Directive** control.
+Any single control can be described by combining one category with one type. For example, a firewall is a **Technical Preventive** control; a security policy is a **Managerial Directive** control. A single control can also serve multiple types depending on context.
 
 ---
 
-### Categories of controls
+### Security control categories (the four pillars)
 
-| Category | Also called | Description | Examples |
-|---|---|---|---|
-| **Technical** | Logical | Implemented through technology — hardware, software, firmware | Firewalls, encryption, ACLs, IDS/IPS, antivirus |
-| **Managerial** | Administrative | Policies, procedures, and governance frameworks defined by management | Risk assessments, security policies, background checks, training programs |
-| **Operational** | Procedural | Day-to-day processes carried out by people | Patch management, change management, incident response procedures, guard patrols |
-| **Physical** | — | Tangible mechanisms that protect facilities and hardware | Locks, fences, cameras, mantraps, bollards, security guards |
+| Category | Also called | Description | Exam tip | Examples |
+|---|---|---|---|---|
+| **Technical** | Logical | Technologies, hardware, and software mechanisms | "If it requires IT systems or software, it's technical" | Firewalls, encryption, ACLs, IDS/IPS, antivirus, MFA, biometric scanners |
+| **Managerial** | Administrative | Strategic planning and governance — the policies and procedures | "Think paperwork and planning" | Risk assessments, security policies, background checks, vulnerability management programs, change management processes |
+| **Operational** | Procedural | Day-to-day processes carried out by people | "Think people doing things" | Backup procedures, account reviews, log monitoring, configuration management, incident response activities, security awareness training delivery |
+| **Physical** | — | Tangible, real-world measures to protect assets | "If you can physically touch it, it's physical" | Locks, badge readers, security guards, CCTV, fences, bollards, mantraps, fire suppression, HVAC |
 
-#### Memory aid
+#### Memory aid — TMOP
 
-> **T-M-O-P** — "**T**ech **M**anagers **O**perate **P**hysically"
+> **T**ech **M**anagers **O**perate **P**hysically
 
 ---
 
-### Control types
+### Security control types (the six functions)
 
-| Type | Purpose | When it acts | Examples |
-|---|---|---|---|
-| **Preventive** | Stop an incident before it occurs | Before | Firewall rules, door locks, encryption, separation of duties |
-| **Deterrent** | Discourage a threat actor from acting | Before | Warning banners, security cameras (visible), guard dogs, "Trespassers will be prosecuted" signs |
-| **Detective** | Identify that an incident has occurred or is in progress | During/After | IDS, log monitoring, SIEM alerts, motion sensors, audit trails |
-| **Corrective** | Fix or restore after an incident | After | Backup restores, patching a vulnerability, fire extinguishers, antivirus quarantine |
-| **Compensating** | Substitute when primary control is not feasible | Any time | MFA when password policy cannot be enforced; using an application-layer firewall because a network firewall cannot inspect encrypted traffic |
-| **Directive** | Direct or mandate behavior through policy | Before | Acceptable use policies (AUP), standard operating procedures (SOPs), regulatory requirements |
+| Type | Purpose | When it acts | Key phrase | Examples |
+|---|---|---|---|---|
+| **Preventive** | Stop an incident before it occurs | Before | "Pre-event" | Firewall rules, door locks, encryption, system hardening, separation of duties |
+| **Deterrent** | Discourage a threat actor from acting | Before | "Discourages" | Warning signs, visible security cameras, login banners, cable locks, guard presence |
+| **Detective** | Identify that an incident has occurred or is in progress | During/After | "Detect it" | IDS, log monitoring, SIEM, motion detectors, file integrity monitoring, security audits |
+| **Corrective** | Fix or restore after an incident | After | "Correct the problem" | Backup restores, patching, IPS blocking traffic, antivirus quarantine |
+| **Compensating** | Substitute when primary control is not feasible | Any time | "Plan B" | Network segmentation when encryption is impossible; increased monitoring when patching a legacy system is not an option |
+| **Directive** | Direct or mandate behavior through policy | Before | "Directs behavior through rules" | AUPs, SOPs, compliance requirements, training materials |
 
-#### Memory aid
+#### Quick decision tree
 
-> Think of a timeline: **Prevent → Deter → Detect → Correct**. Then add **Compensating** (plan B) and **Directive** (the rule book).
+- Is it stopping something BEFORE?    → Preventive
+- Is it discouraging via warning?      → Deterrent
+- Is it finding/alerting?              → Detective
+- Is it fixing after?                  → Corrective
+- Is it a backup plan?                 → Compensating
+- Is it a rule/guideline?              → Directive
+
+#### Memory aid — PP-DD-CC
+
+> **P**reventive, "**P**lease don't" (deterrent), **D**etective, "**D**o this" (directive), **C**orrective, **C**ompensating
 
 ---
 
 ### Combining categories and types — the control matrix
 
-The exam often asks you to identify which cell a specific control falls into. Here is a sample matrix:
+The exam often asks you to identify which cell a specific control falls into. Controls can be **both a category AND a type** — and a single control can serve multiple types:
+
+| Control Example | Category | Type(s) |
+|---|---|---|
+| Firewall | Technical | Preventive |
+| IDS | Technical | Detective |
+| Security policy | Managerial | Directive |
+| Security awareness training | Managerial/Operational | Preventive |
+| Security guard | Physical | Deterrent/Detective/Preventive |
+| CCTV cameras | Physical | Detective/Deterrent |
+| Backup procedures | Operational | Corrective |
+
+**Full matrix with example controls:**
 
 | | Preventive | Deterrent | Detective | Corrective | Compensating | Directive |
 |---|---|---|---|---|---|---|
@@ -89,17 +110,29 @@ The exam often asks you to identify which cell a specific control falls into. He
 
 ### Key distinctions to know for the exam
 
-**Preventive vs. Deterrent:**
-A *preventive* control physically or logically blocks the action. A *deterrent* control discourages the action but does not block it. A locked door is preventive; a "Do Not Enter" sign is a deterrent.
+| Comparison | Distinction |
+|---|---|
+| **Preventive vs. Deterrent** | Preventive **stops** it; deterrent **discourages** it. A locked door is preventive; a "Do Not Enter" sign is a deterrent. |
+| **Detective vs. Corrective** | Detective **finds** it; corrective **fixes** it. An IDS detects; backup restores correct. |
+| **Managerial vs. Operational** | Managerial **plans** it; operational **does** it. Training *program* = managerial; training *delivery* = operational. |
+| **Technical vs. Physical** | Technical is **digital**; physical is **tangible**. |
+| **Compensating vs. Corrective** | Compensating is used **instead of** primary control (proactive alternative); corrective is used **after** an incident (reactive fix). |
 
-**Detective vs. Corrective:**
-*Detective* finds the problem; *corrective* fixes it. An IDS detects an attack; an IPS that drops packets is both detective and corrective (or preventive, depending on framing).
+---
 
-**Compensating controls:**
-These exist because the ideal primary control is too costly, technically impossible, or operationally disruptive. They must provide a comparable level of protection. Compensating controls are commonly referenced in PCI DSS compliance.
+### Common exam traps
 
-**Directive controls:**
-Often overlooked — these are the written rules. Policies, standards, guidelines, and procedures all fall here. They tell people what to do but do not enforce anything by themselves.
+**Trap: Thinking a security guard is ONLY physical.**
+Reality: A security guard can be Physical (category) AND Preventive + Deterrent + Detective (types) simultaneously.
+
+**Trap: Assuming all managerial controls are directive.**
+Reality: Security policies are Managerial + Directive, but risk assessments are Managerial + Detective.
+
+**Trap: Confusing "compensating" with "corrective".**
+Reality: Compensating = used INSTEAD of primary control (proactive alternative). Corrective = used AFTER an incident (reactive fix).
+
+**Trap: Thinking training is only one category.**
+Reality: Training *program* = Managerial. Training *delivery* = Operational. Training *content* = Directive.
 
 ---
 
@@ -110,6 +143,7 @@ Often overlooked — these are the written rules. Policies, standards, guideline
 3. **Directive is policy-based.** If the answer choice is a written policy, procedure, or regulation, it is directive.
 4. **"Compare and contrast" means know the differences.** Be prepared for questions that present two similar controls and ask you to identify which type each one is.
 5. **Category vs. type is a two-dimensional classification.** Don't confuse "technical" (category) with "preventive" (type) — a control has both.
+6. **Look for keywords:** "Prevents/Blocks" = Preventive. "Warns/Discourages" = Deterrent. "Detects/Monitors/Alerts" = Detective. "Restores/Fixes" = Corrective. "Alternative/Instead of" = Compensating. "Policy/Guideline" = Directive.
 
 ---
 
@@ -139,8 +173,8 @@ Often overlooked — these are the written rules. Policies, standards, guideline
 - **Category:** Operational
 - **Type:** Corrective
 
-**Scenario 3:** An organization cannot enforce full-disk encryption on legacy laptops, so it requires those laptops to remain in a locked, secure room.
-- The locked room is a **Physical Compensating** control (it compensates for the lack of encryption).
+**Scenario 3:** A healthcare organization cannot encrypt a legacy medical device due to compatibility issues. They place it in a separate VLAN with restricted access and enhanced monitoring.
+- **Type:** Compensating (alternative measures because the primary control — encryption — cannot be used)
 
 **Scenario 4:** A company publishes an Acceptable Use Policy stating that employees must not install unapproved software.
 - **Category:** Managerial
@@ -157,7 +191,7 @@ Often overlooked — these are the written rules. Policies, standards, guideline
 <details>
 <summary><strong>Question 1:</strong> A company posts a banner on its login screen warning that unauthorized access is prohibited and will be prosecuted. What type of control is this?</summary>
 
-**Answer:** Deterrent (Technical Deterrent). It discourages unauthorized users but does not prevent them from attempting to log in.
+**Answer:** Deterrent (also Directive). It discourages unauthorized access by warning of consequences, but doesn't actually prevent someone from attempting to log in. It also directs behavior by stating what is/isn't allowed.
 </details>
 
 <details>
@@ -183,6 +217,52 @@ Often overlooked — these are the written rules. Policies, standards, guideline
 
 **Answer:** Operational Corrective. It is a people-driven process (operational) that restores normal operations after an incident (corrective).
 </details>
+
+### CompTIA-style practice questions
+
+<details>
+<summary><strong>Question 6:</strong> A security administrator implements a system that automatically blocks IP addresses after three failed login attempts. Which type of security control is being described?<br>A. Detective  B. Deterrent  C. Corrective  D. Preventive</summary>
+
+**Correct Answer: D. Preventive**
+
+The system PREVENTS further unauthorized access attempts by blocking the IP address. While it detects the failed attempts (detective aspect), its PRIMARY function is prevention of future attacks from that IP.
+
+- A: Detective would only alert, not block
+- B: Deterrent would warn but not enforce
+- C: Corrective would fix after an incident occurred
+</details>
+
+<details>
+<summary><strong>Question 7:</strong> Which of the following is the BEST example of a compensating control?<br>A. Installing antivirus on all workstations  B. Using network segmentation when encryption isn't possible  C. Creating a disaster recovery plan  D. Implementing multi-factor authentication</summary>
+
+**Correct Answer: B. Using network segmentation when encryption isn't possible**
+
+This is compensating because it's an ALTERNATIVE measure used when the primary control (encryption) cannot be implemented. Keywords: "when X isn't possible" = compensating.
+
+- A: Standard preventive control, not compensating
+- C: Standard operational control for business continuity
+- D: Standard preventive control, not an alternative to something else
+</details>
+
+<details>
+<summary><strong>Question 8 (Multi-select):</strong> A company installs visible security cameras at all entrances. Select TWO types of controls this represents.<br>A. Preventive  B. Detective  C. Deterrent  D. Corrective  E. Compensating</summary>
+
+**Correct Answers: B. Detective and C. Deterrent**
+
+- **Detective**: Cameras record and allow security to detect incidents
+- **Deterrent**: VISIBLE cameras discourage would-be attackers
+
+Note: CompTIA typically views cameras as primarily detective/deterrent since they don't physically prevent entry.
+</details>
+
+---
+
+## Related objectives
+
+- [**1.2**]({{ '/secplus/objectives/1-2/' | relative_url }}) — CIA Triad ties to control goals
+- [**2.5**]({{ '/secplus/objectives/2-5/' | relative_url }}) — Mitigation techniques implement these controls
+- [**3.2**]({{ '/secplus/objectives/3-2/' | relative_url }}) — Security principles use these controls
+- [**5.1**]({{ '/secplus/objectives/5-1/' | relative_url }}) — Governance includes control frameworks
 
 ---
 
