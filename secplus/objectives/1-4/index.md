@@ -1248,55 +1248,17 @@ Masked:        j***d**@company.com
 
 ## Examples / scenarios
 
-**Scenario 1:** A company needs to encrypt a 500GB database. Which encryption type should they use and why?
+**Scenario 1:** A company needs to encrypt a 500GB database.
+- **Solution:** Symmetric encryption (AES-256)
+- **Why:** Large data volume requires speed — symmetric is 100-1000x faster than asymmetric, and key distribution is not an issue for database encryption
 
-<details>
-<summary>Answer</summary>
+**Scenario 2:** A developer wants to verify that a downloaded software file hasn't been tampered with. The vendor provides an MD5 hash.
+- **Security concern:** MD5 is broken and vulnerable to collision attacks — an attacker could create a malicious file with the same MD5 hash
+- **Better approach:** Vendor should provide a SHA-256 or SHA-512 hash instead
 
-**Answer**: Symmetric encryption (AES-256)
-
-**Explanation**:
-- Large data volume = need speed
-- Symmetric is 100-1000x faster than asymmetric
-- AES-256 is current standard
-- Key distribution not an issue (database server has the key)
-
-**NOT asymmetric**: Too slow for 500GB of data
-</details>
-
-**Scenario 2:** A developer wants to verify that a downloaded software file hasn't been tampered with. The vendor provides an MD5 hash. What's the security concern?
-
-<details>
-<summary>Answer</summary>
-
-**Answer**: MD5 is broken and vulnerable to collision attacks
-
-**Explanation**:
-- MD5 has known collision vulnerabilities
-- Attacker could create malicious file with same MD5 hash
-- Should use SHA-256 or SHA-512 instead
-- MD5 is fine for non-security checksums but NOT for integrity verification
-
-**Better approach**: Vendor should provide SHA-256 hash
-</details>
-
-**Scenario 3:** A web application stores credit card numbers. Compliance requires protecting this data. What cryptographic technique should be used?
-
-<details>
-<summary>Answer</summary>
-
-**Answer**: Tokenization
-
-**Explanation**:
-- Payment card data = perfect tokenization use case
-- PCI DSS compliance
-- Reduces scope (tokens in system, real data in vault)
-- No decryption key to steal (lookup required)
-
-**Could also encrypt**: But tokenization is PCI DSS best practice for payments
-
-**NOT masking**: Masking is for display/testing, not storage
-</details>
+**Scenario 3:** A web application stores credit card numbers. Compliance requires protecting this data.
+- **Technique:** Tokenization
+- **Why:** Tokens replace real card data in the system, reducing PCI DSS compliance scope — unlike encryption, tokens have no mathematical relationship to the original data
 
 ---
 

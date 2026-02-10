@@ -791,64 +791,17 @@ Users can't log in
 
 ## Examples / scenarios
 
-**Scenario 1:** A database administrator wants to apply a critical security patch to the production database server immediately. The patch was just released. What should be the FIRST step?
+**Scenario 1:** A database administrator wants to apply a critical security patch to the production database server immediately. The patch was just released.
+- **First step:** Test the patch in a non-production environment
+- **Why:** Even for critical security patches, the change management process must be followed — test first, then get expedited CAB approval. Skipping testing risks breaking the production database, which could be worse than the vulnerability.
 
-<details>
-<summary>Answer</summary>
+**Scenario 2:** During a change implementation, the new firewall rules cause the company's VPN to stop working.
+- **Next step:** Execute the backout plan to restore the previous firewall configuration
+- **Why:** Restoring service is the priority — restore first, debug later. The backout plan should have been prepared before the change.
 
-**Correct Answer**: Test the patch in a non-production environment
-
-**Explanation**: Even for critical security patches, the change management process must be followed:
-1. Test in development/staging first
-2. Verify no adverse effects
-3. Create change request with test results
-4. Get approval (expedited for emergency)
-5. Schedule implementation
-6. Apply in production
-
-Skipping testing risks breaking the production database, which could be worse than the vulnerability the patch fixes!
-
-**NOT skipping approval** — Emergency changes still need approval, just expedited through CAB.
-</details>
-
-**Scenario 2:** During a change implementation, the new firewall rules cause the company's VPN to stop working. What should the security team do NEXT?
-
-<details>
-<summary>Answer</summary>
-
-**Correct Answer**: Execute the backout plan to restore the previous firewall configuration
-
-**Explanation**: When a change causes problems:
-1. **FIRST**: Execute backout plan — Restore service
-2. **THEN**: Investigate what went wrong
-3. **FINALLY**: Fix the issue and try again later
-
-Restoring service is the priority. The backout plan should have been prepared before the change, allowing quick recovery.
-
-**Why not troubleshoot first?** Because users are down NOW. Restore service first, debug later.
-</details>
-
-**Scenario 3:** A company wants to update a legacy billing application that hasn't been updated in 10 years. The vendor no longer supports it. What compensating controls should be considered?
-
-<details>
-<summary>Answer</summary>
-
-**Correct Answer**: Network segmentation, enhanced monitoring, strict access controls
-
-**Explanation**: For legacy applications that can't be patched:
-
-**Compensating Controls**:
-- **Network Segmentation**: Isolate in separate VLAN
-- **Enhanced Monitoring**: Watch for suspicious activity
-- **Strict Access Controls**: Limit who can access
-- **Firewall Rules**: Restrict network traffic
-- **Data Encryption**: Protect data at rest
-- **Regular Backups**: Ensure recovery capability
-
-These controls reduce risk when primary controls (patching) aren't possible.
-
-This is a classic compensating control scenario!
-</details>
+**Scenario 3:** A company has a legacy billing application that hasn't been updated in 10 years. The vendor no longer supports it.
+- **Approach:** Implement compensating controls — network segmentation, enhanced monitoring, strict access controls, dedicated firewall rules
+- **Why:** When primary controls (patching) can't be used, compensating controls reduce the risk
 
 ---
 
