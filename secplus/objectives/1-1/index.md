@@ -274,7 +274,7 @@ Note: CompTIA typically views cameras as primarily detective/deterrent since the
 |---|---|---|
 | **1.1** | Compare and contrast various types of security controls (current) | done |
 | [1.2]({{ '/secplus/objectives/1-2/' | relative_url }}) | Summarize fundamental security concepts | done |
-| [1.3]({{ '/secplus/objectives/1-3/' | relative_url }}) | Explain the importance of change management processes | pending |
-| [1.4]({{ '/secplus/objectives/1-4/' | relative_url }}) | Explain the importance of using appropriate cryptographic solutions | pending |
+| [1.3]({{ '/secplus/objectives/1-3/' | relative_url }}) | Explain the importance of change management processes | done |
+| [1.4]({{ '/secplus/objectives/1-4/' | relative_url }}) | Explain the importance of using appropriate cryptographic solutions | done |
 
 [← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 1.2 →]({{ '/secplus/objectives/1-2/' | relative_url }})
