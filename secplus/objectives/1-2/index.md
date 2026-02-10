@@ -575,8 +575,8 @@ Why others are wrong:
 |---|---|---|
 | [1.1]({{ '/secplus/objectives/1-1/' | relative_url }}) | Compare and contrast various types of security controls | done |
 | **1.2** | Summarize fundamental security concepts (current) | done |
-| [1.3]({{ '/secplus/objectives/1-3/' | relative_url }}) | Explain the importance of change management processes | pending |
-| [1.4]({{ '/secplus/objectives/1-4/' | relative_url }}) | Explain the importance of using appropriate cryptographic solutions | pending |
+| [1.3]({{ '/secplus/objectives/1-3/' | relative_url }}) | Explain the importance of change management processes | done |
+| [1.4]({{ '/secplus/objectives/1-4/' | relative_url }}) | Explain the importance of using appropriate cryptographic solutions | done |
 
 [← Previous: Objective 1.1]({{ '/secplus/objectives/1-1/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 1.3 →]({{ '/secplus/objectives/1-3/' | relative_url }})
 
