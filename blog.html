@@ -10,7 +10,7 @@ permalink: /blog/
 
 <ul>
 {% for post in site.posts %}
-  <li>
+  <li style="margin-bottom: 1.5rem;">
     <strong><a href="{{ post.url | relative_url }}">{{ post.title }}</a></strong>
     <small>({{ post.date | date: "%-d %b %Y" }})</small>
 
