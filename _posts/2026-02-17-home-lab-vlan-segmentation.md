@@ -2,6 +2,7 @@
 layout: post
 title: "Home IDS Lab — VLAN Segmentation on MikroTik E50UG and TP-Link TL-SG108E"
 date: 2026-02-17
+toc: true
 tags: [lab, vlan, mikrotik, tp-link, networking, segmentation]
 summary: >
   Building the network visibility foundation for a home IDS/IPS lab.
