@@ -17,5 +17,8 @@ layout: default
 <hr />
 
 <div id="markdown-content">
+  {% if page.toc %}
+  {% include toc.html %}
+  {% endif %}
   {{ content }}
 </div>

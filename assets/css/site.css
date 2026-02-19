@@ -213,3 +213,46 @@ details summary:hover {
     content: "";
   }
 }
+
+/* ── Table of Contents ──────────────────────────────────── */
+.toc {
+  background: var(--bg-secondary, rgba(0, 0, 0, 0.15));
+  border: 1px solid var(--border-color, rgba(120, 255, 120, 0.2));
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 0 0 2rem 0;
+  font-size: 0.9rem;
+}
+
+.toc__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.6rem 0;
+  color: var(--text-muted, rgba(120, 255, 120, 0.7));
+}
+
+.toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc__item {
+  margin: 0.3rem 0;
+}
+
+.toc__item--sub {
+  margin-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.toc__item a {
+  color: var(--link-color, rgba(120, 255, 120, 0.9));
+  text-decoration: none;
+}
+
+.toc__item a:hover {
+  text-decoration: underline;
+}
