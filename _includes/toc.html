@@ -4,7 +4,7 @@
 </nav>
 
 <script>
-  (function () {
+  document.addEventListener('DOMContentLoaded', function () {
     const article = document.querySelector('.post-content') || document.querySelector('article') || document.body;
     const headings = article.querySelectorAll('h2, h3');
     const list = document.getElementById('toc-list');
@@ -27,5 +27,5 @@
       li.appendChild(a);
       list.appendChild(li);
     });
-  })();
+  });
 </script>
