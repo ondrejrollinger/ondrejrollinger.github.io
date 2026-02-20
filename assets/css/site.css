@@ -222,6 +222,8 @@ details summary:hover {
   padding: 1rem 1.25rem;
   margin: 0 0 2rem 0;
   font-size: 0.9rem;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .toc__title {
