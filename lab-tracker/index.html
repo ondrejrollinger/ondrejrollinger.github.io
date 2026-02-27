@@ -658,6 +658,22 @@
           { id: "ns-7-4", label: "Tune alert format and publish detection post", done: false },
         ]
       },
+      {
+        id: "ns-10",
+        title: "Self-Hosted Matrix Homeserver (Non-Federated)",
+        category: "lab",
+        column: "Backlog",
+        note: "Standalone lab infrastructure task",
+        description: "Deploy a self-hosted Matrix homeserver as a private communication and alerting platform. Federation must be disabled. Use cases: (1) Alert delivery channel — receive Zeek and Suricata alerts via Matrix bot; (2) Private family communication — E2EE rooms for family members accessed via VPN.",
+        phases: [
+          { id: "ns-10-1", label: "Choose homeserver implementation (Synapse vs Dendrite) and provision VM", done: false },
+          { id: "ns-10-2", label: "Install homeserver and disable federation in configuration", done: false },
+          { id: "ns-10-3", label: "Configure reverse proxy with TLS and restrict to VPN-only access", done: false },
+          { id: "ns-10-4", label: "Create alert bot and wire Zeek and Suricata notification scripts", done: false },
+          { id: "ns-10-5", label: "Set up E2EE rooms and onboard family members via VPN", done: false },
+          { id: "ns-10-6", label: "Document deployment and publish post", done: false },
+        ]
+      },
     ];
 
     // ── CardItem component ─────────────────────────────────────────────────
