@@ -663,7 +663,7 @@
         id: "ns-5",
         title: "Port Mirroring and Shuttle IDS Sensor Connection",
         category: "lab",
-        column: "Backlog",
+        column: "Planned",
         note: "Next step from VLAN segmentation post",
         description: "Physically connect the Shuttle to switch port 8 and configure port mirroring on the TL-SG108E (source ports 1, 6, 7 → destination port 8, both directions). Verify frames arrive on the sensor interface with tcpdump and confirm VLAN tags are preserved through the mirror.",
         phases: [
@@ -678,7 +678,7 @@
         id: "ns-6",
         title: "Zeek Deployment on Shuttle Sensor",
         category: "lab",
-        column: "Backlog",
+        column: "In Progress",
         note: "Next step from VLAN segmentation post",
         description: "Install and configure Zeek on the Shuttle machine listening on the mirror interface (eth1). Validate that conn.log shows traffic from all three VLAN subnets (10.0.20.x, 10.0.30.x, 10.0.40.x). Configure log rotation and retention, then publish a deployment walkthrough post.",
         phases: [
@@ -722,7 +722,7 @@
         id: "ns-11",
         title: "DNS Privacy Evaluation — Pi-hole + Unbound vs. Third-Party Resolvers",
         category: "practical",
-        column: "Backlog",
+        column: "In Progress",
         note: "Planned blog post — DNS privacy comparison",
         description: "Evidence-based comparison of Pi-hole + Unbound recursive resolution against third-party resolvers across three dimensions: privacy exposure (upstream org distribution via packet capture), DNSSEC integrity (sigok/sigfail/unsigned zone test cases), and query latency (cold cache benchmark). DNSSEC is confirmed working end-to-end through the full stack.",
         phases: [
