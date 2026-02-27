@@ -468,93 +468,194 @@
     };
 
     const CARDS = [
+      // ── Done cards — published posts, ordered by date descending ──────────
       {
-        id: "1",
-        title: "Port Scan Detection",
-        category: "lab",
-        column: "In Progress",
-        note: "Zeek script in progress",
-        description: "Build a Zeek script that detects horizontal and vertical port scanning behavior on the home network. The goal is to identify both slow and fast scans, log scanner IPs, and generate a structured alert for Grafana.",
-        phases: [
-          { id: "1-1", label: "Research Zeek conn.log fields for scan detection", done: false },
-          { id: "1-2", label: "Write initial Zeek script (threshold-based)", done: false },
-          { id: "1-3", label: "Test against nmap scan in lab environment", done: false },
-          { id: "1-4", label: "Tune thresholds to reduce false positives", done: false },
-          { id: "1-5", label: "Document detection logic and publish on GitHub", done: false },
-        ]
-      },
-      {
-        id: "2",
-        title: "DNS Tunneling Detection",
-        category: "theory",
-        column: "Planned",
-        note: "",
-        description: "Write a theory post explaining how DNS tunneling works as a data exfiltration and C2 technique. Cover encoding methods, common tools (dnscat2, iodine), and how defenders detect it through query length and entropy analysis.",
-        phases: [
-          { id: "2-1", label: "Research DNS tunneling techniques and tools", done: false },
-          { id: "2-2", label: "Draft post outline and section headings", done: false },
-          { id: "2-3", label: "Write detection logic section with Zeek examples", done: false },
-          { id: "2-4", label: "Add packet captures / screenshots", done: false },
-          { id: "2-5", label: "Publish post and link from GitHub", done: false },
-        ]
-      },
-      {
-        id: "3",
-        title: "TLS Certificate Analysis",
-        category: "theory",
-        column: "Backlog",
-        note: "",
-        description: "Theory post covering how TLS certificates can be used as a detection signal. Topics include JA3 fingerprinting, self-signed cert alerts, certificate validity anomalies, and how C2 frameworks use TLS to blend in.",
-        phases: [
-          { id: "3-1", label: "Research JA3/JA3S fingerprinting methodology", done: false },
-          { id: "3-2", label: "Understand Zeek ssl.log and x509.log fields", done: false },
-          { id: "3-3", label: "Write draft post", done: false },
-          { id: "3-4", label: "Publish post", done: false },
-        ]
-      },
-      {
-        id: "4",
-        title: "VLAN Segmentation Setup",
+        id: "p4",
+        title: "Local Jekyll Setup for GitHub Pages (Kali Linux)",
         category: "practical",
         column: "Done",
-        note: "Documented in lab PDF",
-        description: "Practical guide covering the full VLAN configuration across MikroTik router, TP-Link managed switch, and EAP225 access points. Covers trunk vs access ports, SSID-to-VLAN mapping, and verification with packet capture.",
+        note: "Published 2026-02-23",
+        description: "Documents the reproducible local Jekyll dev environment for the GitHub Pages site on Kali Linux, covering the webrick dependency, gem path isolation with GEM_HOME, gitignore configuration for _site and Gemfile.lock, Liquid tag fixes, and the local config override for serving.",
         phases: [
-          { id: "4-1", label: "Configure VLANs on MikroTik E50UG", done: true },
-          { id: "4-2", label: "Configure port assignments on TP-Link TL-SG108E", done: true },
-          { id: "4-3", label: "Map SSIDs to VLANs on EAP225 APs", done: true },
-          { id: "4-4", label: "Verify isolation with tcpdump", done: true },
-          { id: "4-5", label: "Write and publish practical post", done: true },
+          { id: "p4-1", label: "Set up local Ruby and Bundler environment", done: true },
+          { id: "p4-2", label: "Resolve webrick and permission issues", done: true },
+          { id: "p4-3", label: "Configure _config_local.yml and .gitignore", done: true },
+          { id: "p4-4", label: "Verify clean local build with jekyll serve", done: true },
+          { id: "p4-5", label: "Write and publish post", done: true },
         ]
       },
       {
-        id: "5",
-        title: "Inline IPS Mode",
-        category: "idea",
+        id: "p3",
+        title: "802.1Q: How VLAN Tagging Actually Works",
+        category: "theory",
+        column: "Done",
+        note: "Published 2026-02-20",
+        description: "A deep-dive into the 802.1Q standard explaining how VLAN tags are inserted into Ethernet frames. Covers the TPID and TCI fields, VID encoding, frame size implications, how non-802.1Q devices handle tagged frames, and how the standard connects to PVID and port type configuration.",
+        phases: [
+          { id: "p3-1", label: "Research 802.1Q frame format and field definitions", done: true },
+          { id: "p3-2", label: "Draft post outline covering TPID, TCI, VID, PVID link", done: true },
+          { id: "p3-3", label: "Write post with ASCII diagrams and explanations", done: true },
+          { id: "p3-4", label: "Publish post", done: true },
+        ]
+      },
+      {
+        id: "p2",
+        title: "Understanding VLANs and PVID: A Practical Guide",
+        category: "theory",
+        column: "Done",
+        note: "Published 2026-02-19",
+        description: "A practical breakdown of how VLANs and PVID work, drawn from real troubleshooting during home lab setup. Covers 802.1Q tagging, tagged vs. untagged ports, the PVID misconfiguration that silently drops wired device traffic while WiFi works, and the golden rule for access port configuration.",
+        phases: [
+          { id: "p2-1", label: "Document PVID misconfiguration root cause from lab", done: true },
+          { id: "p2-2", label: "Write explanation of tagged vs. untagged ports", done: true },
+          { id: "p2-3", label: "Add complete traffic flow walkthrough", done: true },
+          { id: "p2-4", label: "Publish post", done: true },
+        ]
+      },
+      {
+        id: "p1",
+        title: "Home IDS Lab — VLAN Segmentation on MikroTik and TP-Link",
+        category: "practical",
+        column: "Done",
+        note: "Published 2026-02-17",
+        description: "Full VLAN configuration across MikroTik E50UG router and TP-Link TL-SG108E switch for a three-VLAN home IDS lab (User VLAN 20, IoT VLAN 30, Guest VLAN 40). Documents the management lockout problem, PVID misconfiguration on wired ports, and verification evidence for all five success criteria.",
+        phases: [
+          { id: "p1-1", label: "Configure VLANs and DHCP on MikroTik E50UG", done: true },
+          { id: "p1-2", label: "Configure PVID and port assignments on TL-SG108E", done: true },
+          { id: "p1-3", label: "Verify DHCP assignment per VLAN", done: true },
+          { id: "p1-4", label: "Verify gateway reachability and internet access", done: true },
+          { id: "p1-5", label: "Write and publish practical post", done: true },
+        ]
+      },
+
+      // ── Backlog cards — next steps from posts, source date descending ─────
+      {
+        id: "ns-8",
+        title: "Fix Sass Deprecation Warnings from jekyll-theme-hacker",
+        category: "practical",
         column: "Backlog",
-        note: "Suricata blocking mode",
-        description: "Future expansion: reconfigure Suricata from passive IDS mode to active inline IPS mode using NFQ or AF_PACKET. This requires rethinking the network topology to route traffic through the sensor rather than just mirroring it.",
+        note: "Next step from Jekyll setup post",
+        description: "The Jekyll theme hacker 0.2.0 produces Sass deprecation warnings that will not fail the build before Dart Sass 3.0. Monitor the theme for an update, upgrade when available, and verify warnings are resolved without introducing new issues in CI or locally.",
         phases: [
-          { id: "5-1", label: "Research NFQ vs AF_PACKET IPS deployment options", done: false },
-          { id: "5-2", label: "Design new network topology for inline mode", done: false },
-          { id: "5-3", label: "Test in isolated lab segment first", done: false },
-          { id: "5-4", label: "Deploy and tune drop rules", done: false },
-          { id: "5-5", label: "Document and publish", done: false },
+          { id: "ns-8-1", label: "Monitor jekyll-theme-hacker for a new release", done: false },
+          { id: "ns-8-2", label: "Update gem version in Gemfile", done: false },
+          { id: "ns-8-3", label: "Test local build for warning elimination", done: false },
+          { id: "ns-8-4", label: "Verify CI passes after theme update", done: false },
         ]
       },
       {
-        id: "6",
-        title: "IoT Device Behavior Profiling",
-        category: "lab",
-        column: "Planned",
-        note: "",
-        description: "Profile normal traffic patterns of IoT devices on VLAN 30 using Zeek logs. Build baseline models and create detection logic that alerts when a device deviates significantly — unusual destinations, ports, or data volumes.",
+        id: "ns-9",
+        title: "Align Ruby Version Between Local and CI",
+        category: "practical",
+        column: "Backlog",
+        note: "Next step from Jekyll setup post",
+        description: "Local environment runs Ruby 3.3 while CI is pinned to Ruby 3.1. No divergence observed yet, but if a local build passes while CI fails, gem version incompatibility is the first suspect. Track aligning the versions or pinning gems to prevent silent breakage.",
         phases: [
-          { id: "6-1", label: "Identify all IoT devices and document expected behavior", done: false },
-          { id: "6-2", label: "Collect 7 days of baseline Zeek conn.log data", done: false },
-          { id: "6-3", label: "Write Zeek script for deviation detection", done: false },
-          { id: "6-4", label: "Tune alert thresholds per device type", done: false },
-          { id: "6-5", label: "Document findings and publish practical post", done: false },
+          { id: "ns-9-1", label: "Investigate Ruby 3.3 vs CI 3.1 divergence impact", done: false },
+          { id: "ns-9-2", label: "Update CI workflow Ruby version or pin gem versions", done: false },
+          { id: "ns-9-3", label: "Test full CI pipeline after changes", done: false },
+        ]
+      },
+      {
+        id: "ns-1",
+        title: "MikroTik Inter-VLAN Firewall Rules",
+        category: "practical",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Block Guest and IoT VLANs from reaching the User VLAN; restrict IoT traffic to internet only. Uses the negative ping test from the segmentation post as the before-baseline — once rules are applied, that test must fail to confirm enforcement. Includes before/after nmap scan diff as publishable evidence.",
+        phases: [
+          { id: "ns-1-1", label: "Research MikroTik firewall chain structure for inter-VLAN", done: false },
+          { id: "ns-1-2", label: "Write and apply rules to block IoT/Guest from User VLAN", done: false },
+          { id: "ns-1-3", label: "Run negative ping test and nmap scan to verify enforcement", done: false },
+          { id: "ns-1-4", label: "Verify internet access still works from all VLANs", done: false },
+          { id: "ns-1-5", label: "Document rules and publish post", done: false },
+        ]
+      },
+      {
+        id: "ns-2",
+        title: "Management VLAN 10 Setup",
+        category: "practical",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Create VLAN 10 for all infrastructure management traffic — MikroTik router, TP-Link switch, and EAP225 APs. Separates management access from user-facing VLANs and reduces attack surface if a user-side device is compromised.",
+        phases: [
+          { id: "ns-2-1", label: "Design VLAN 10 scope and list all management interfaces", done: false },
+          { id: "ns-2-2", label: "Configure VLAN 10 on MikroTik, switch, and APs", done: false },
+          { id: "ns-2-3", label: "Migrate management access and verify connectivity", done: false },
+          { id: "ns-2-4", label: "Verify isolation from user-facing VLANs", done: false },
+          { id: "ns-2-5", label: "Document and publish post", done: false },
+        ]
+      },
+      {
+        id: "ns-3",
+        title: "Pi-hole DNS Deployment Across All VLANs",
+        category: "practical",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Deploy Pi-hole on VLAN 20 and route DNS from all three VLANs through it. Requires DHCP server updates, inter-VLAN firewall allow rules for DNS, a NAT redirect rule to catch bypass attempts, and per-VLAN blocklist policies. Pi-hole query logs per VLAN also enable additional IDS detection scenarios.",
+        phases: [
+          { id: "ns-3-1", label: "Install and configure Pi-hole on VLAN 20", done: false },
+          { id: "ns-3-2", label: "Update DHCP dns-server option for all three VLANs", done: false },
+          { id: "ns-3-3", label: "Add firewall rules to allow DNS from IoT/Guest to Pi-hole", done: false },
+          { id: "ns-3-4", label: "Add NAT redirect rule for hardcoded upstream bypass", done: false },
+          { id: "ns-3-5", label: "Test per-VLAN DNS behavior and document", done: false },
+        ]
+      },
+      {
+        id: "ns-4",
+        title: "mDNS Reflector for Cross-VLAN Device Discovery",
+        category: "practical",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Evaluate and implement an mDNS reflector to restore Chromecast, AirPlay, and printer discovery across the VLAN 20/30 boundary. mDNS is link-local and does not cross VLANs by default. Options include Avahi on the Shuttle or a MikroTik service. Security implications of selective reflection must be explicitly scoped.",
+        phases: [
+          { id: "ns-4-1", label: "Audit mDNS-dependent services and decide reflection scope", done: false },
+          { id: "ns-4-2", label: "Install and configure Avahi or equivalent reflector", done: false },
+          { id: "ns-4-3", label: "Test Chromecast/AirPlay discovery across VLAN boundary", done: false },
+          { id: "ns-4-4", label: "Assess and document security implications", done: false },
+        ]
+      },
+      {
+        id: "ns-5",
+        title: "Port Mirroring and Shuttle IDS Sensor Connection",
+        category: "lab",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Physically connect the Shuttle to switch port 8 and configure port mirroring on the TL-SG108E (source ports 1, 6, 7 → destination port 8, both directions). Verify frames arrive on the sensor interface with tcpdump and confirm VLAN tags are preserved through the mirror.",
+        phases: [
+          { id: "ns-5-1", label: "Physically connect Shuttle eth1 to switch port 8", done: false },
+          { id: "ns-5-2", label: "Configure port mirroring on TL-SG108E", done: false },
+          { id: "ns-5-3", label: "Verify frames arrive on sensor with tcpdump", done: false },
+          { id: "ns-5-4", label: "Confirm VLAN tags preserved through mirror", done: false },
+          { id: "ns-5-5", label: "Capture Wireshark artifacts and publish post", done: false },
+        ]
+      },
+      {
+        id: "ns-6",
+        title: "Zeek Deployment on Shuttle Sensor",
+        category: "lab",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Install and configure Zeek on the Shuttle machine listening on the mirror interface (eth1). Validate that conn.log shows traffic from all three VLAN subnets (10.0.20.x, 10.0.30.x, 10.0.40.x). Configure log rotation and retention, then publish a deployment walkthrough post.",
+        phases: [
+          { id: "ns-6-1", label: "Install Zeek on Shuttle and configure for eth1", done: false },
+          { id: "ns-6-2", label: "Validate conn.log traffic from all three VLAN subnets", done: false },
+          { id: "ns-6-3", label: "Configure log rotation and retention policy", done: false },
+          { id: "ns-6-4", label: "Document deployment and publish post", done: false },
+        ]
+      },
+      {
+        id: "ns-7",
+        title: "Inter-VLAN Anomaly Detection with Zeek",
+        category: "lab",
+        column: "Backlog",
+        note: "Next step from VLAN segmentation post",
+        description: "Build the first detection use case: alert when an IoT VLAN device (10.0.30.x) initiates a connection to the User VLAN (10.0.20.x). This is the Zeek scripting entry point for the lab, producing structured alerts that can feed into a Grafana dashboard or log aggregator.",
+        phases: [
+          { id: "ns-7-1", label: "Research Zeek conn.log fields for cross-VLAN detection", done: false },
+          { id: "ns-7-2", label: "Write Zeek script to detect IoT-to-User VLAN connections", done: false },
+          { id: "ns-7-3", label: "Test against crafted cross-VLAN traffic in lab", done: false },
+          { id: "ns-7-4", label: "Tune alert format and publish detection post", done: false },
         ]
       },
     ];
