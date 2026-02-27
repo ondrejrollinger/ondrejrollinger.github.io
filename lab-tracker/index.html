@@ -710,6 +710,21 @@
           { id: "ns-11-6", label: "Write and publish post", done: false },
         ]
       },
+      {
+        id: "ns-12",
+        title: "Blog Post: Network Diagnostic Tools in Traffic",
+        category: "practical",
+        column: "Backlog",
+        note: "IDS lab — diagnostic tool wire signatures",
+        description: "Deep dive blog post documenting how common diagnostic and recon tools appear on the wire. Covers packet-level anatomy, Zeek log signatures, and Suricata detection opportunities for: ping (ICMP echo), traceroute (TTL exploitation, UDP/ICMP/TCP variants), ARP & ARP spoofing, Nmap scan types (SYN, UDP, NULL/FIN/Xmas, OS detection), Netcat (C2 simulation, protocol mismatch detection), hping3 (arbitrary packet crafting). Post will follow site portfolio standards: what I built, what I ran, what I observed, what I verified — with sanitized artifacts.",
+        phases: [
+          { id: "ns-12-1", label: "Capture pcap artifacts for each tool in home lab environment", done: false },
+          { id: "ns-12-2", label: "Analyze Zeek logs (conn.log, weird.log, notice.log) per tool", done: false },
+          { id: "ns-12-3", label: "Document Suricata alert signatures and detection opportunities", done: false },
+          { id: "ns-12-4", label: "Write post: packet anatomy, Zeek signatures, sanitized artifacts", done: false },
+          { id: "ns-12-5", label: "Review evidence, verify sanitization, and publish post", done: false },
+        ]
+      },
     ];
 
     // ── CardItem component ─────────────────────────────────────────────────
