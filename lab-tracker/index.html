@@ -547,6 +547,26 @@
           { id: "wg-1-8", label: "Document final working configuration", done: false },
         ]
       },
+      {
+        id: "lab-1",
+        title: "Home IDS/IPS Lab Setup — Ubuntu Server on Shuttle DL30N",
+        category: "lab",
+        column: "In Progress",
+        note: "Started 2026-02-27",
+        description: "Provision the Shuttle DL30N as a dedicated IDS/IPS sensor on VLAN 20. Covers bootable USB creation, Ubuntu 24.04.4 LTS server install, SSH hardening, static IP via netplan, MikroTik access port configuration, and eventual Zeek + Suricata deployment with Grafana dashboards.",
+        phases: [
+          { id: "lab-1-1", label: "Create bootable USB with Ubuntu 24.04.4 LTS on Kali using dd", done: true },
+          { id: "lab-1-2", label: "Install Ubuntu Server on Shuttle DL30N", done: true },
+          { id: "lab-1-3", label: "Configure SSH with key-based auth, password auth disabled", done: true },
+          { id: "lab-1-4", label: "Set static IP 10.0.20.5 on VLAN 20 (enp1s0) via netplan", done: true },
+          { id: "lab-1-5", label: "Configure MikroTik ether3 as VLAN 20 access port (untagged)", done: true },
+          { id: "lab-1-6", label: "Add SSH shortcut config on Kali (ssh shuttle)", done: true },
+          { id: "lab-1-7", label: "Connect Shuttle ethernet to MikroTik ether3 and verify connectivity", done: false },
+          { id: "lab-1-8", label: "Install and configure Zeek", done: false },
+          { id: "lab-1-9", label: "Install and configure Suricata", done: false },
+          { id: "lab-1-10", label: "Set up Grafana dashboards", done: false },
+        ]
+      },
 
       // ── Backlog cards — next steps from posts, source date descending ─────
       {
