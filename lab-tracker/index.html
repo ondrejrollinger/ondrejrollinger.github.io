@@ -54,15 +54,21 @@
     }
 
     .header-title {
-      color: #00ff9f;
       font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       white-space: nowrap;
     }
 
-    .header-title span {
-      color: #4d5566;
+    .header-prompt {
+      color: #00ff9f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .header-path {
+      color: #4a7a4a;
+      font-size: 12px;
     }
 
     .header-divider {
@@ -173,10 +179,10 @@
     }
 
     .column-title {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 3px;
     }
 
     .column-count {
@@ -451,7 +457,7 @@
     const COLUMNS = ['Backlog', 'Planned', 'In Progress', 'Done'];
 
     const COLUMN_COLORS = {
-      'Backlog':     '#4d5566',
+      'Backlog':     '#6e7d8c',
       'Planned':     '#38bdf8',
       'In Progress': '#f59e0b',
       'Done':        '#00ff9f',
@@ -646,7 +652,8 @@
           {/* Header */}
           <header className="header">
             <div className="header-title">
-              <span>▶ ondrej@lab</span> ~/projects/ids-lab
+              <span className="header-prompt">▶ ondrej@lab</span>{' '}
+              <span className="header-path">~/projects/ids-lab</span>
             </div>
             <div className="header-divider" />
             <div className="filters">
