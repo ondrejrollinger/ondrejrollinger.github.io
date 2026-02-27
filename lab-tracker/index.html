@@ -182,13 +182,15 @@
       border: 1px solid #1e2530;
       border-radius: 3px;
       padding: 10px 12px;
-      cursor: default;
-      transition: background 0.15s;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      overflow: hidden;
     }
 
     .card:hover {
-      background: #111820;
-      border-color: #2e3a4a;
+      background: #141b24;
+      border-color: #3a4a5c;
+      transform: translateY(-1px);
     }
 
     .card-top {
@@ -220,6 +222,21 @@
       font-style: italic;
     }
 
+    /* ── Card progress bar ── */
+    .card-progress-track {
+      height: 2px;
+      background: #1e2530;
+      margin-top: 10px;
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .card-progress-fill {
+      height: 100%;
+      border-radius: 1px;
+      transition: width 0.2s;
+    }
+
     /* ── Empty state ── */
     .empty-state {
       font-size: 0.68rem;
@@ -227,13 +244,206 @@
       text-align: center;
       padding: 16px 8px;
     }
+
+    /* ── Detail Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: overlayIn 0.15s ease;
+    }
+
+    @keyframes overlayIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .modal-panel {
+      background: #0d1117;
+      border: 1px solid #1e2530;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      animation: panelIn 0.15s ease;
+    }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid #1e2530;
+    }
+
+    .modal-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .modal-category {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .modal-column-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      border: 1px solid currentColor;
+      text-transform: uppercase;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f0f6fc;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .modal-note {
+      font-size: 11px;
+      color: #a0aab4;
+      font-style: italic;
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-section-heading {
+      font-size: 10px;
+      color: #6e7681;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .modal-description {
+      font-size: 13px;
+      color: #c9d1d9;
+      line-height: 1.7;
+    }
+
+    .modal-phases-summary {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .phases-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .phase-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    /* Custom checkbox */
+    .phase-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid #3a4a5c;
+      border-radius: 2px;
+      background: #0a0e14;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+      position: relative;
+      transition: background 0.1s, border-color 0.1s;
+    }
+
+    .phase-checkbox:checked {
+      background: var(--check-color, #00ff9f);
+      border-color: var(--check-color, #00ff9f);
+    }
+
+    .phase-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 1px;
+      width: 5px;
+      height: 8px;
+      border: 2px solid #0a0e14;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .phase-label {
+      font-size: 12px;
+      color: #c9d1d9;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: color 0.1s;
+    }
+
+    .phase-label.done {
+      color: #4a5568;
+      text-decoration: line-through;
+    }
+
+    .modal-footer {
+      padding: 12px 20px;
+      border-top: 1px solid #1e2530;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-close-btn {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #6e7681;
+      background: transparent;
+      border: 1px solid #1e2530;
+      border-radius: 3px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      color: #b3b1ad;
+      border-color: #3a4a5c;
+    }
   </style>
 </head>
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useState } = React;
+    const { useState, useEffect, useCallback } = React;
 
     // ── Constants ──────────────────────────────────────────────────────────
     const COLUMNS = ['Backlog', 'Planned', 'In Progress', 'Done'];
@@ -253,32 +463,273 @@
     };
 
     const CARDS = [
-      { id: "1", title: "Port Scan Detection",          category: "lab",       column: "In Progress", note: "Zeek script in progress" },
-      { id: "2", title: "DNS Tunneling Detection",       category: "theory",    column: "Planned",     note: "" },
-      { id: "3", title: "TLS Certificate Analysis",      category: "theory",    column: "Backlog",     note: "" },
-      { id: "4", title: "VLAN Segmentation Setup",       category: "practical", column: "Done",        note: "Documented in lab PDF" },
-      { id: "5", title: "Inline IPS Mode",               category: "idea",      column: "Backlog",     note: "Suricata blocking mode" },
-      { id: "6", title: "IoT Device Behavior Profiling", category: "lab",       column: "Planned",     note: "" },
+      {
+        id: "1",
+        title: "Port Scan Detection",
+        category: "lab",
+        column: "In Progress",
+        note: "Zeek script in progress",
+        description: "Build a Zeek script that detects horizontal and vertical port scanning behavior on the home network. The goal is to identify both slow and fast scans, log scanner IPs, and generate a structured alert for Grafana.",
+        phases: [
+          { id: "1-1", label: "Research Zeek conn.log fields for scan detection", done: false },
+          { id: "1-2", label: "Write initial Zeek script (threshold-based)", done: false },
+          { id: "1-3", label: "Test against nmap scan in lab environment", done: false },
+          { id: "1-4", label: "Tune thresholds to reduce false positives", done: false },
+          { id: "1-5", label: "Document detection logic and publish on GitHub", done: false },
+        ]
+      },
+      {
+        id: "2",
+        title: "DNS Tunneling Detection",
+        category: "theory",
+        column: "Planned",
+        note: "",
+        description: "Write a theory post explaining how DNS tunneling works as a data exfiltration and C2 technique. Cover encoding methods, common tools (dnscat2, iodine), and how defenders detect it through query length and entropy analysis.",
+        phases: [
+          { id: "2-1", label: "Research DNS tunneling techniques and tools", done: false },
+          { id: "2-2", label: "Draft post outline and section headings", done: false },
+          { id: "2-3", label: "Write detection logic section with Zeek examples", done: false },
+          { id: "2-4", label: "Add packet captures / screenshots", done: false },
+          { id: "2-5", label: "Publish post and link from GitHub", done: false },
+        ]
+      },
+      {
+        id: "3",
+        title: "TLS Certificate Analysis",
+        category: "theory",
+        column: "Backlog",
+        note: "",
+        description: "Theory post covering how TLS certificates can be used as a detection signal. Topics include JA3 fingerprinting, self-signed cert alerts, certificate validity anomalies, and how C2 frameworks use TLS to blend in.",
+        phases: [
+          { id: "3-1", label: "Research JA3/JA3S fingerprinting methodology", done: false },
+          { id: "3-2", label: "Understand Zeek ssl.log and x509.log fields", done: false },
+          { id: "3-3", label: "Write draft post", done: false },
+          { id: "3-4", label: "Publish post", done: false },
+        ]
+      },
+      {
+        id: "4",
+        title: "VLAN Segmentation Setup",
+        category: "practical",
+        column: "Done",
+        note: "Documented in lab PDF",
+        description: "Practical guide covering the full VLAN configuration across MikroTik router, TP-Link managed switch, and EAP225 access points. Covers trunk vs access ports, SSID-to-VLAN mapping, and verification with packet capture.",
+        phases: [
+          { id: "4-1", label: "Configure VLANs on MikroTik E50UG", done: true },
+          { id: "4-2", label: "Configure port assignments on TP-Link TL-SG108E", done: true },
+          { id: "4-3", label: "Map SSIDs to VLANs on EAP225 APs", done: true },
+          { id: "4-4", label: "Verify isolation with tcpdump", done: true },
+          { id: "4-5", label: "Write and publish practical post", done: true },
+        ]
+      },
+      {
+        id: "5",
+        title: "Inline IPS Mode",
+        category: "idea",
+        column: "Backlog",
+        note: "Suricata blocking mode",
+        description: "Future expansion: reconfigure Suricata from passive IDS mode to active inline IPS mode using NFQ or AF_PACKET. This requires rethinking the network topology to route traffic through the sensor rather than just mirroring it.",
+        phases: [
+          { id: "5-1", label: "Research NFQ vs AF_PACKET IPS deployment options", done: false },
+          { id: "5-2", label: "Design new network topology for inline mode", done: false },
+          { id: "5-3", label: "Test in isolated lab segment first", done: false },
+          { id: "5-4", label: "Deploy and tune drop rules", done: false },
+          { id: "5-5", label: "Document and publish", done: false },
+        ]
+      },
+      {
+        id: "6",
+        title: "IoT Device Behavior Profiling",
+        category: "lab",
+        column: "Planned",
+        note: "",
+        description: "Profile normal traffic patterns of IoT devices on VLAN 30 using Zeek logs. Build baseline models and create detection logic that alerts when a device deviates significantly — unusual destinations, ports, or data volumes.",
+        phases: [
+          { id: "6-1", label: "Identify all IoT devices and document expected behavior", done: false },
+          { id: "6-2", label: "Collect 7 days of baseline Zeek conn.log data", done: false },
+          { id: "6-3", label: "Write Zeek script for deviation detection", done: false },
+          { id: "6-4", label: "Tune alert thresholds per device type", done: false },
+          { id: "6-5", label: "Document findings and publish practical post", done: false },
+        ]
+      },
     ];
 
+    const LS_KEY = 'ondrej-lab-phases-v1';
+
+    function loadPhaseState() {
+      try {
+        const raw = localStorage.getItem(LS_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function savePhaseState(state) {
+      try {
+        localStorage.setItem(LS_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    // Merge CARDS default phase.done with any localStorage overrides
+    function buildInitialPhaseState() {
+      const stored = loadPhaseState();
+      const merged = {};
+      CARDS.forEach(card => {
+        if (card.phases) {
+          card.phases.forEach(phase => {
+            merged[phase.id] = phase.id in stored ? stored[phase.id] : phase.done;
+          });
+        }
+      });
+      return merged;
+    }
+
     // ── CardItem component ─────────────────────────────────────────────────
-    function CardItem({ card }) {
+    function CardItem({ card, phaseState, onClick }) {
       const cat = CATEGORIES[card.category] || CATEGORIES['lab'];
+      const hasPhases = card.phases && card.phases.length > 0;
+      const total = hasPhases ? card.phases.length : 0;
+      const done = hasPhases
+        ? card.phases.filter(p => phaseState[p.id] !== undefined ? phaseState[p.id] : p.done).length
+        : 0;
+      const pct = total > 0 ? (done / total) * 100 : 0;
 
       return (
-        <div className="card" style={{ borderLeft: `3px solid ${cat.color}` }}>
+        <div
+          className="card"
+          style={{ borderLeft: `3px solid ${cat.color}` }}
+          onClick={onClick}
+        >
           <div className="card-top">
             <span className="card-symbol" style={{ color: cat.color }}>{cat.symbol}</span>
             <span className="card-title">{card.title}</span>
           </div>
           {card.note && <div className="card-note">{card.note}</div>}
+          {hasPhases && (
+            <div className="card-progress-track">
+              <div
+                className="card-progress-fill"
+                style={{ width: `${pct}%`, background: cat.color }}
+              />
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // ── DetailModal component ──────────────────────────────────────────────
+    function DetailModal({ card, phaseState, onTogglePhase, onClose }) {
+      const cat = CATEGORIES[card.category] || CATEGORIES['lab'];
+      const colColor = COLUMN_COLORS[card.column] || '#6e7d8c';
+      const hasPhases = card.phases && card.phases.length > 0;
+      const total = hasPhases ? card.phases.length : 0;
+      const doneCount = hasPhases
+        ? card.phases.filter(p => phaseState[p.id] !== undefined ? phaseState[p.id] : p.done).length
+        : 0;
+
+      // Close on Escape
+      useEffect(() => {
+        function onKey(e) {
+          if (e.key === 'Escape') onClose();
+        }
+        document.addEventListener('keydown', onKey);
+        return () => document.removeEventListener('keydown', onKey);
+      }, [onClose]);
+
+      function handleOverlayClick(e) {
+        if (e.target === e.currentTarget) onClose();
+      }
+
+      return (
+        <div className="modal-overlay" onClick={handleOverlayClick}>
+          <div
+            className="modal-panel"
+            style={{ borderLeft: `4px solid ${cat.color}` }}
+          >
+            {/* Header */}
+            <div className="modal-header">
+              <div className="modal-meta">
+                <span className="modal-category" style={{ color: cat.color }}>
+                  {cat.symbol} {cat.label}
+                </span>
+                <span className="modal-column-badge" style={{ color: colColor }}>
+                  {card.column}
+                </span>
+              </div>
+              <div className="modal-title">{card.title}</div>
+              {card.note && <div className="modal-note">{card.note}</div>}
+            </div>
+
+            {/* Body */}
+            <div className="modal-body">
+              {/* Overview */}
+              {card.description && (
+                <div>
+                  <div className="modal-section-heading">// OVERVIEW</div>
+                  <p className="modal-description">{card.description}</p>
+                </div>
+              )}
+
+              {/* Phases */}
+              {hasPhases && (
+                <div>
+                  <div className="modal-section-heading">// PHASES</div>
+                  <div className="modal-phases-summary" style={{ color: cat.color }}>
+                    {doneCount} / {total} completed
+                  </div>
+                  <div className="phases-list">
+                    {card.phases.map(phase => {
+                      const checked = phaseState[phase.id] !== undefined
+                        ? phaseState[phase.id]
+                        : phase.done;
+                      return (
+                        <div key={phase.id} className="phase-row">
+                          <input
+                            type="checkbox"
+                            className="phase-checkbox"
+                            checked={checked}
+                            style={{ '--check-color': cat.color }}
+                            onChange={() => onTogglePhase(phase.id, !checked)}
+                          />
+                          <span
+                            className={`phase-label${checked ? ' done' : ''}`}
+                            onClick={() => onTogglePhase(phase.id, !checked)}
+                          >
+                            {phase.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="modal-footer">
+              <button className="modal-close-btn" onClick={onClose}>✕ CLOSE</button>
+            </div>
+          </div>
         </div>
       );
     }
 
     // ── Main App ───────────────────────────────────────────────────────────
     function App() {
-      const [filter, setFilter] = useState(null); // null = show all
+      const [filter, setFilter] = useState(null);
+      const [selectedCard, setSelectedCard] = useState(null);
+      const [phaseState, setPhaseState] = useState(buildInitialPhaseState);
+
+      const handleTogglePhase = useCallback((phaseId, newValue) => {
+        setPhaseState(prev => {
+          const next = { ...prev, [phaseId]: newValue };
+          savePhaseState(next);
+          return next;
+        });
+      }, []);
+
+      const handleCloseModal = useCallback(() => setSelectedCard(null), []);
 
       const visibleCards = filter ? CARDS.filter(c => c.category === filter) : CARDS;
 
@@ -330,13 +781,28 @@
                       <div className="empty-state">— empty —</div>
                     )}
                     {colCards.map(card => (
-                      <CardItem key={card.id} card={card} />
+                      <CardItem
+                        key={card.id}
+                        card={card}
+                        phaseState={phaseState}
+                        onClick={() => setSelectedCard(card)}
+                      />
                     ))}
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* Detail Modal */}
+          {selectedCard && (
+            <DetailModal
+              card={selectedCard}
+              phaseState={phaseState}
+              onTogglePhase={handleTogglePhase}
+              onClose={handleCloseModal}
+            />
+          )}
         </>
       );
     }
