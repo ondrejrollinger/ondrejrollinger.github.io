@@ -694,6 +694,22 @@
           { id: "ns-10-6", label: "Document deployment and publish post", done: false },
         ]
       },
+      {
+        id: "ns-11",
+        title: "DNS Privacy Evaluation — Pi-hole + Unbound vs. Third-Party Resolvers",
+        category: "practical",
+        column: "Backlog",
+        note: "Planned blog post — DNS privacy comparison",
+        description: "Evidence-based comparison of Pi-hole + Unbound recursive resolution against third-party resolvers across three dimensions: privacy exposure (upstream org distribution via packet capture), DNSSEC integrity (sigok/sigfail/unsigned zone test cases), and query latency (cold cache benchmark). DNSSEC is confirmed working end-to-end through the full stack.",
+        phases: [
+          { id: "ns-11-1", label: "Verify DNSSEC working end-to-end through Pi-hole + Unbound stack", done: true },
+          { id: "ns-11-2", label: "Capture tcpdump upstream org trace — Unbound recursive resolver", done: false },
+          { id: "ns-11-3", label: "Capture tcpdump upstream org trace — 1.1.1.1 comparison", done: false },
+          { id: "ns-11-4", label: "Run cold-cache latency benchmark across popular, mid-tier, and obscure domains", done: false },
+          { id: "ns-11-5", label: "Run DNSSEC test cases (sigok/sigfail/unsigned) against 8.8.8.8 and 1.1.1.1", done: false },
+          { id: "ns-11-6", label: "Write and publish post", done: false },
+        ]
+      },
     ];
 
     // ── CardItem component ─────────────────────────────────────────────────
