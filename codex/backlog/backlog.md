@@ -206,7 +206,6 @@ Prefer topics where you can show:
 | 127 | Tamper/physical signals: event schema + buffering ideas | iot | intermediate | planned | ordering + outage buffering proof | Post + schema |
 | 128 | Crypto audit playground: AEAD/KDF/signatures misuse demos | fundamentals | advanced | planned | test vectors + benchmarks | Post + lab notes |
 | 129 | SSH certificates (SSH CA): short-lived access + auditability | operations | advanced | planned | expiry proof + principals | Post + issuance notes |
-| 130 | DNS Privacy Evaluation — Pi-hole + Unbound vs. Third-Party Resolvers | operations | intermediate | planned | tcpdump upstream org capture (Unbound vs 1.1.1.1) + cold-cache latency benchmark across popular/mid-tier/obscure domains + DNSSEC sigok/sigfail/unsigned test cases against 8.8.8.8 and 1.1.1.1 | Post |
 
 ---
 
