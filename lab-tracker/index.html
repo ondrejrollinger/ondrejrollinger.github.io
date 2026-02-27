@@ -399,6 +399,11 @@
       transform: rotate(45deg);
     }
 
+    input[type="checkbox"]:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
     .phase-label {
       font-size: 12px;
       color: #c9d1d9;
@@ -554,45 +559,12 @@
       },
     ];
 
-    const LS_KEY = 'ondrej-lab-phases-v1';
-
-    function loadPhaseState() {
-      try {
-        const raw = localStorage.getItem(LS_KEY);
-        return raw ? JSON.parse(raw) : {};
-      } catch (e) {
-        return {};
-      }
-    }
-
-    function savePhaseState(state) {
-      try {
-        localStorage.setItem(LS_KEY, JSON.stringify(state));
-      } catch (e) {}
-    }
-
-    // Merge CARDS default phase.done with any localStorage overrides
-    function buildInitialPhaseState() {
-      const stored = loadPhaseState();
-      const merged = {};
-      CARDS.forEach(card => {
-        if (card.phases) {
-          card.phases.forEach(phase => {
-            merged[phase.id] = phase.id in stored ? stored[phase.id] : phase.done;
-          });
-        }
-      });
-      return merged;
-    }
-
     // ── CardItem component ─────────────────────────────────────────────────
-    function CardItem({ card, phaseState, onClick }) {
+    function CardItem({ card, onClick }) {
       const cat = CATEGORIES[card.category] || CATEGORIES['lab'];
       const hasPhases = card.phases && card.phases.length > 0;
       const total = hasPhases ? card.phases.length : 0;
-      const done = hasPhases
-        ? card.phases.filter(p => phaseState[p.id] !== undefined ? phaseState[p.id] : p.done).length
-        : 0;
+      const done = hasPhases ? card.phases.filter(p => p.done).length : 0;
       const pct = total > 0 ? (done / total) * 100 : 0;
 
       return (
@@ -619,14 +591,12 @@
     }
 
     // ── DetailModal component ──────────────────────────────────────────────
-    function DetailModal({ card, phaseState, onTogglePhase, onClose }) {
+    function DetailModal({ card, onClose }) {
       const cat = CATEGORIES[card.category] || CATEGORIES['lab'];
       const colColor = COLUMN_COLORS[card.column] || '#6e7d8c';
       const hasPhases = card.phases && card.phases.length > 0;
       const total = hasPhases ? card.phases.length : 0;
-      const doneCount = hasPhases
-        ? card.phases.filter(p => phaseState[p.id] !== undefined ? phaseState[p.id] : p.done).length
-        : 0;
+      const doneCount = hasPhases ? card.phases.filter(p => p.done).length : 0;
 
       // Close on Escape
       useEffect(() => {
@@ -679,28 +649,21 @@
                     {doneCount} / {total} completed
                   </div>
                   <div className="phases-list">
-                    {card.phases.map(phase => {
-                      const checked = phaseState[phase.id] !== undefined
-                        ? phaseState[phase.id]
-                        : phase.done;
-                      return (
-                        <div key={phase.id} className="phase-row">
-                          <input
-                            type="checkbox"
-                            className="phase-checkbox"
-                            checked={checked}
-                            style={{ '--check-color': cat.color }}
-                            onChange={() => onTogglePhase(phase.id, !checked)}
-                          />
-                          <span
-                            className={`phase-label${checked ? ' done' : ''}`}
-                            onClick={() => onTogglePhase(phase.id, !checked)}
-                          >
-                            {phase.label}
-                          </span>
-                        </div>
-                      );
-                    })}
+                    {card.phases.map(phase => (
+                      <div key={phase.id} className="phase-row">
+                        <input
+                          type="checkbox"
+                          className="phase-checkbox"
+                          checked={phase.done}
+                          disabled
+                          style={{ '--check-color': cat.color }}
+                          onChange={() => {}}
+                        />
+                        <span className={`phase-label${phase.done ? ' done' : ''}`}>
+                          {phase.label}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -719,15 +682,6 @@
     function App() {
       const [filter, setFilter] = useState(null);
       const [selectedCard, setSelectedCard] = useState(null);
-      const [phaseState, setPhaseState] = useState(buildInitialPhaseState);
-
-      const handleTogglePhase = useCallback((phaseId, newValue) => {
-        setPhaseState(prev => {
-          const next = { ...prev, [phaseId]: newValue };
-          savePhaseState(next);
-          return next;
-        });
-      }, []);
 
       const handleCloseModal = useCallback(() => setSelectedCard(null), []);
 
@@ -784,7 +738,6 @@
                       <CardItem
                         key={card.id}
                         card={card}
-                        phaseState={phaseState}
                         onClick={() => setSelectedCard(card)}
                       />
                     ))}
@@ -798,8 +751,6 @@
           {selectedCard && (
             <DetailModal
               card={selectedCard}
-              phaseState={phaseState}
-              onTogglePhase={handleTogglePhase}
               onClose={handleCloseModal}
             />
           )}
