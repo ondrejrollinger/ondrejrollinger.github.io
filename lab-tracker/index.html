@@ -561,7 +561,7 @@
         note: "MikroTik E50UG → VPS WireGuard hub | Priority: Medium",
         description: "Configure MikroTik E50UG as a WireGuard client connecting to a VPS WireGuard server for remote access to home network VLANs (users, IoT, guest, servers). Raspberry Pi runs Pi-hole and Home Assistant on the server VLAN. VPS acts as WireGuard hub. Goal is secure remote access to all home VLANs.",
         phases: [
-          { id: "wg-1-1", label: "Configure WireGuard peer on MikroTik", done: false },
+          { id: "wg-1-1", label: "Configure WireGuard peer on MikroTik", done: true },
           { id: "wg-1-2", label: "Set up correct routing for all home VLANs through tunnel", done: false },
           { id: "wg-1-3", label: "Configure VPS peer block with home subnet AllowedIPs", done: false },
           { id: "wg-1-4", label: "Fallback: Raspberry Pi as WireGuard client if MikroTik has limitations", done: false },
