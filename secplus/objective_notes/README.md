@@ -23,7 +23,7 @@ Each objective note includes:
 
 - [x] 1.1 - Security Controls (COMPLETE)
 - [x] 1.2 - Fundamental Security Concepts (COMPLETE)
-- [ ] 1.3 - Change Management
+- [x] 1.3 - Change Management (COMPLETE)
 - [ ] 1.4 - Cryptographic Solutions
 
 ### Domain 2: Threats, Vulnerabilities, and Mitigations (22%)
