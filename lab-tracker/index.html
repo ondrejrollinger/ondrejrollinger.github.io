@@ -655,7 +655,7 @@
         title: "Pi-hole DNS Deployment Across All VLANs",
         category: "practical",
         column: "In Progress",
-        note: "Pi-hole running on RPi with static IP on VLAN 20; DHCP advertising Pi-hole as DNS for VLAN 20 clients. Next: create VLAN 50 dedicated to DNS traffic so Zeek/Suricata can see inter-VLAN DNS queries as routed traffic, improving DNS tunneling detection.",
+        note: "Pi-hole on RPi VLAN 20 — next: VLAN 50 dedicated DNS routing",
         description: "Pi-hole is deployed on a Raspberry Pi with a static IP on VLAN 20. DHCP is configured to advertise Pi-hole as the DNS server for all VLAN 20 clients. Next phase: create VLAN 50 dedicated to Pi-hole DNS traffic and configure an eth.50 sub-interface on the RPi exclusively for Pi-hole, while keeping other RPi services on VLAN 20. Route DNS queries from VLANs 20, 30, and 40 through VLAN 50 so that inter-VLAN DNS requests are visible in Zeek and Suricata logs — improving DNS tunneling detection and general DNS visibility across the segmented network. Requires inter-VLAN firewall allow rules for DNS and a NAT redirect rule to catch hardcoded-upstream bypass attempts.",
         phases: [
           { id: "ns-3-1", label: "Install and configure Pi-hole on Raspberry Pi", done: true },
