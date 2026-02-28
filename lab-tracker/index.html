@@ -745,6 +745,20 @@
           { id: "ns-12-5", label: "Review evidence, verify sanitization, and publish post", done: false },
         ]
       },
+      {
+        id: "ns-13",
+        title: "Port Scan Detection with Zeek",
+        category: "practical",
+        column: "Planned",
+        note: "Phase 4 detection development — one scenario only",
+        description: "Build a port scan detection use case using Zeek scripting. Write a script to detect scanning behavior when a host rapidly attempts connections to multiple ports. Test it live using nmap against lab targets, then document the full detection on GitHub using the standard template.",
+        phases: [
+          { id: "ns-13-1", label: "Write Zeek script to detect scanning behavior (rapid multi-port connection attempts)", done: false },
+          { id: "ns-13-2", label: "Test against self with nmap (e.g. nmap -sS, nmap -sV scans on lab subnet)", done: false },
+          { id: "ns-13-3", label: "Capture sample alert output (log excerpt or screenshot for documentation)", done: false },
+          { id: "ns-13-4", label: "Document on GitHub using full template: Threat Description, Detection Logic (Zeek script), Sample Alert (log excerpt or screenshot), Investigation Steps, False Positive Handling", done: false },
+        ]
+      },
     ];
 
     // ── CardItem component ─────────────────────────────────────────────────
