@@ -556,7 +556,7 @@
       {
         id: "wg-1",
         title: "MikroTik WireGuard Client Setup",
-        category: "lab",
+        category: "practical",
         column: "In Progress",
         note: "MikroTik E50UG → VPS WireGuard hub | Priority: Medium",
         description: "Configure MikroTik E50UG as a WireGuard client connecting to a VPS WireGuard server for remote access to home network VLANs (users, IoT, guest, servers). Raspberry Pi runs Pi-hole and Home Assistant on the server VLAN. VPS acts as WireGuard hub. Goal is secure remote access to all home VLANs.",
@@ -574,7 +574,7 @@
       {
         id: "lab-1",
         title: "Home IDS/IPS Lab Setup — Ubuntu Server on Shuttle DL30N",
-        category: "lab",
+        category: "practical",
         column: "In Progress",
         note: "Started 2026-02-27",
         description: "Provision the Shuttle DL30N as a dedicated IDS/IPS sensor on VLAN 20. Covers bootable USB creation, Ubuntu 24.04.4 LTS server install, SSH hardening, static IP via netplan, MikroTik access port configuration, and eventual Zeek + Suricata deployment with Grafana dashboards.",
@@ -659,7 +659,7 @@
       {
         id: "ns-5",
         title: "Port Mirroring and Shuttle IDS Sensor Connection",
-        category: "lab",
+        category: "practical",
         column: "Planned",
         note: "Next step from VLAN segmentation post",
         description: "Physically connect the Shuttle to switch port 8 and configure port mirroring on the TL-SG108E (source ports 1, 6, 7 → destination port 8, both directions). Verify frames arrive on the sensor interface with tcpdump and confirm VLAN tags are preserved through the mirror.",
@@ -673,7 +673,7 @@
       {
         id: "ns-6",
         title: "Zeek Deployment on Shuttle Sensor",
-        category: "lab",
+        category: "practical",
         column: "In Progress",
         note: "Next step from VLAN segmentation post",
         description: "Install and configure Zeek on the Shuttle machine listening on the mirror interface (eth1). Validate that conn.log shows traffic from all three VLAN subnets (10.0.20.x, 10.0.30.x, 10.0.40.x). Configure log rotation and retention, then publish a deployment walkthrough post.",
@@ -687,7 +687,7 @@
       {
         id: "ns-7",
         title: "Inter-VLAN Anomaly Detection with Zeek",
-        category: "lab",
+        category: "practical",
         column: "Backlog",
         note: "Next step from VLAN segmentation post",
         description: "Build the first detection use case: alert when an IoT VLAN device (10.0.30.x) initiates a connection to the User VLAN (10.0.20.x). This is the Zeek scripting entry point for the lab, producing structured alerts that can feed into a Grafana dashboard or log aggregator.",
@@ -701,7 +701,7 @@
       {
         id: "ns-10",
         title: "Self-Hosted Matrix Homeserver (Non-Federated)",
-        category: "lab",
+        category: "practical",
         column: "Backlog",
         note: "Standalone lab infrastructure task",
         description: "Deploy a self-hosted Matrix homeserver as a private communication and alerting platform. Federation must be disabled. Use cases: (1) Alert delivery channel — receive Zeek and Suricata alerts via Matrix bot; (2) Private family communication — E2EE rooms for family members accessed via VPN.",
@@ -732,7 +732,7 @@
       },
       {
         id: "ns-12",
-        title: "Blog Post: Network Diagnostic Tools in Traffic",
+        title: "Network Diagnostic Tools in Traffic",
         category: "practical",
         column: "Backlog",
         note: "IDS lab — diagnostic tool wire signatures",
