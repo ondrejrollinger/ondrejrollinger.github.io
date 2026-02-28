@@ -17,9 +17,9 @@ Most posts are practical (investigations, playbooks, small tools/scripts, lab pr
 - **Methodology**: how I structure investigations, validate conclusions, and publish safely
 
 ## Current focus
-- Building the blog structure (navigation, tags, search, posting conventions)
-- Setting up my home lab hardware and network visibility (segmentation/telemetry foundations)
-- [CompTIA Security+ (SY0-701) Dashboard](/secplus/) — tracks my progress across exam objectives.
+
+- **Home IDS/IPS lab** — network layer complete (VLAN segmentation, port mirroring). Moving into sensor setup and security tool deployment. Progress tracked on the [Lab Tracker](/lab-tracker/).
+- **CompTIA Security+ (SY0-701)** — objectives mapped on the [dashboard](/secplus/), running alongside lab work.
 
 ## Portfolio standards (how I write)
 Each post aims to show clear ownership:
