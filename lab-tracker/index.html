@@ -594,33 +594,6 @@
 
       // ── Backlog cards — next steps from posts, source date descending ─────
       {
-        id: "ns-8",
-        title: "Fix Sass Deprecation Warnings from jekyll-theme-hacker",
-        category: "practical",
-        column: "Backlog",
-        note: "Next step from Jekyll setup post",
-        description: "The Jekyll theme hacker 0.2.0 produces Sass deprecation warnings that will not fail the build before Dart Sass 3.0. Monitor the theme for an update, upgrade when available, and verify warnings are resolved without introducing new issues in CI or locally.",
-        phases: [
-          { id: "ns-8-1", label: "Monitor jekyll-theme-hacker for a new release", done: false },
-          { id: "ns-8-2", label: "Update gem version in Gemfile", done: false },
-          { id: "ns-8-3", label: "Test local build for warning elimination", done: false },
-          { id: "ns-8-4", label: "Verify CI passes after theme update", done: false },
-        ]
-      },
-      {
-        id: "ns-9",
-        title: "Align Ruby Version Between Local and CI",
-        category: "practical",
-        column: "Backlog",
-        note: "Next step from Jekyll setup post",
-        description: "Local environment runs Ruby 3.3 while CI is pinned to Ruby 3.1. No divergence observed yet, but if a local build passes while CI fails, gem version incompatibility is the first suspect. Track aligning the versions or pinning gems to prevent silent breakage.",
-        phases: [
-          { id: "ns-9-1", label: "Investigate Ruby 3.3 vs CI 3.1 divergence impact", done: false },
-          { id: "ns-9-2", label: "Update CI workflow Ruby version or pin gem versions", done: false },
-          { id: "ns-9-3", label: "Test full CI pipeline after changes", done: false },
-        ]
-      },
-      {
         id: "ns-1",
         title: "MikroTik Inter-VLAN Firewall Rules",
         category: "practical",
