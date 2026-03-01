@@ -759,6 +759,104 @@
         ]
       },
       {
+        id: "rfc-791",
+        title: "RFC 791 – Internet Protocol (IP)",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for packet analysis",
+        description: "Study the IPv4 packet structure (header fields, TTL, fragmentation, checksums). Understand how IP addresses, routing, and packet forwarding work at the network layer. Relevant for analyzing raw packets in Zeek conn.log and Wireshark captures.",
+        phases: [
+          { id: "rfc-791-1", label: "Read RFC 791 and summarize the IPv4 header fields (version, IHL, TTL, protocol, checksum, src/dst addresses)", done: false },
+          { id: "rfc-791-2", label: "Explain IP fragmentation, reassembly, and why TTL exists and how it is decremented", done: false },
+          { id: "rfc-791-3", label: "Correlate IPv4 header fields to Zeek conn.log and Wireshark packet view", done: false },
+          { id: "rfc-791-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-793",
+        title: "RFC 793 – Transmission Control Protocol (TCP)",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for connection analysis",
+        description: "Study TCP connection lifecycle (SYN, SYN-ACK, ACK, FIN, RST flags), sequence numbers, flow control, and the 3-way handshake. Essential for detecting port scans, half-open connections, and abnormal session termination in Zeek conn.log.",
+        phases: [
+          { id: "rfc-793-1", label: "Read RFC 793 and summarize the TCP segment header fields and flag meanings", done: false },
+          { id: "rfc-793-2", label: "Trace the full TCP lifecycle: 3-way handshake, data transfer, and 4-way teardown (FIN) vs. RST", done: false },
+          { id: "rfc-793-3", label: "Identify how half-open connections and RST anomalies appear in Zeek conn.log", done: false },
+          { id: "rfc-793-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-768",
+        title: "RFC 768 – User Datagram Protocol (UDP)",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for stateless traffic analysis",
+        description: "Study UDP's stateless, connectionless design. Understand why it's favored for DNS, DHCP, and IoT traffic — and why it's commonly abused in amplification DDoS attacks. Relevant for analyzing IoT VLAN 30 traffic patterns.",
+        phases: [
+          { id: "rfc-768-1", label: "Read RFC 768 and summarize the UDP datagram structure (src port, dst port, length, checksum)", done: false },
+          { id: "rfc-768-2", label: "Explain why DNS, DHCP, and IoT protocols use UDP over TCP", done: false },
+          { id: "rfc-768-3", label: "Describe UDP amplification DDoS mechanics and how to identify anomalous UDP traffic in Zeek", done: false },
+          { id: "rfc-768-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-826",
+        title: "RFC 826 – Address Resolution Protocol (ARP)",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for VLAN and MITM analysis",
+        description: "Study how ARP maps IP addresses to MAC addresses on a local network. Understand ARP cache poisoning, gratuitous ARP, and how attackers use it for MITM attacks. Directly relevant to monitoring VLANs 10/20/30/40 in the home lab.",
+        phases: [
+          { id: "rfc-826-1", label: "Read RFC 826 and summarize ARP request/reply mechanics and the ARP cache", done: false },
+          { id: "rfc-826-2", label: "Explain gratuitous ARP and how ARP cache poisoning enables MITM attacks", done: false },
+          { id: "rfc-826-3", label: "Identify how to detect ARP anomalies (duplicate IP-MAC mappings) in the home lab VLAN environment", done: false },
+          { id: "rfc-826-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-1034",
+        title: "RFC 1034 / 1035 – Domain Name System (DNS)",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for DNS-based threat detection",
+        description: "Study DNS query/response structure, record types (A, AAAA, CNAME, MX, TXT, PTR, NS), and the resolution chain. Foundation for detecting DNS tunneling, C2 beaconing, and data exfiltration via DNS — all detectable in Zeek dns.log.",
+        phases: [
+          { id: "rfc-1034-1", label: "Read RFC 1034/1035 and summarize DNS message format (header, question, answer, authority, additional sections)", done: false },
+          { id: "rfc-1034-2", label: "List and explain key DNS record types: A, AAAA, CNAME, MX, TXT, PTR, NS", done: false },
+          { id: "rfc-1034-3", label: "Explain how DNS tunneling and C2 beaconing abuse DNS queries and how they appear in Zeek dns.log", done: false },
+          { id: "rfc-1034-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-5246",
+        title: "RFC 5246 – TLS 1.2",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for encrypted traffic analysis",
+        description: "Study the TLS 1.2 handshake (ClientHello, ServerHello, certificate exchange, key exchange, Finished), cipher suites, and certificate chain validation. Baseline for identifying weak cipher usage and self-signed certificates in Zeek ssl.log.",
+        phases: [
+          { id: "rfc-5246-1", label: "Read RFC 5246 and summarize the TLS 1.2 handshake message sequence", done: false },
+          { id: "rfc-5246-2", label: "Explain cipher suites, certificate chain validation, and session resumption", done: false },
+          { id: "rfc-5246-3", label: "Identify how weak cipher usage and self-signed certificates appear in Zeek ssl.log", done: false },
+          { id: "rfc-5246-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
+        id: "rfc-8446",
+        title: "RFC 8446 – TLS 1.3",
+        category: "theory",
+        column: "Backlog",
+        note: "Networking fundamentals for modern encrypted traffic visibility",
+        description: "Study TLS 1.3 improvements over 1.2 — 0-RTT handshake, removal of weak cipher suites, encrypted SNI. Understand how these changes affect IDS visibility and what modern encrypted traffic looks like in Zeek ssl.log and Suricata alerts.",
+        phases: [
+          { id: "rfc-8446-1", label: "Read RFC 8446 and summarize the TLS 1.3 handshake changes vs. TLS 1.2", done: false },
+          { id: "rfc-8446-2", label: "Explain 0-RTT, removal of weak cipher suites, and encrypted SNI implications for IDS", done: false },
+          { id: "rfc-8446-3", label: "Identify what TLS 1.3 traffic looks like in Zeek ssl.log and what metadata remains visible", done: false },
+          { id: "rfc-8446-4", label: "Write theory post with comparison table, key points, and exam-style takeaways", done: false },
+        ]
+      },
+      {
         id: "ns-13",
         title: "Port Scan Detection with Zeek",
         category: "practical",
