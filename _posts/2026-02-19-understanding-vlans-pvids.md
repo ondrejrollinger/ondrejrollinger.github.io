@@ -3,7 +3,7 @@ layout: post
 title: "Understanding VLANs and PVID: A Practical Guide"
 date: 2026-02-19
 toc: true
-tags: [networking, vlan, pvid, lab]
+tags: [networking, vlan, pvid]
 summary: >
   A practical breakdown of how VLANs and PVID actually work — covering 802.1Q tagging,
   tagged vs. untagged ports, and the PVID misconfiguration that silently drops traffic
