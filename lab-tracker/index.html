@@ -997,6 +997,24 @@
           { id: "ns-20-4", label: "Confirm internet access and verify devices no longer appear on VLAN 20 in Zeek logs", done: false },
         ]
       },
+      {
+        id: "ns-21",
+        title: "IoT Device Behavioral Baseline — Thermostat (10.0.30.247)",
+        category: "practical",
+        column: "Planned",
+        note: "IoT VLAN 30 — first device behavioral profile",
+        description: "Document the full network behavioral baseline for the IoT thermostat at 10.0.30.247 using 24h Grafana/Zeek data. Investigation confirmed all traffic as benign: NTP pool rotation (0-3.pool.ntp.org every 20 minutes via UDP/123), DNS resolution to Pi-hole at 10.0.20.10 (cross-VLAN, intentional), and Cloudflare IPs (162.159.200.x) for time sync. Unknown service labels in Zeek were a classification gap — same NTP/DNS traffic Zeek logged without service tags due to seeing responses without full handshakes. Identify device make/model via MAC vendor lookup and Pi-hole DHCP lease. Publish as a portfolio post demonstrating the full SOC investigation workflow: alert triage → dashboard analysis → traffic explanation → false positive closure.",
+        phases: [
+          { id: "ns-21-1", label: "Identify device make/model via MAC vendor lookup (arp + curl macvendors.com) and Pi-hole DHCP lease", done: false },
+          { id: "ns-21-2", label: "Capture 24h Zeek conn.log baseline and document all destination IPs and ports", done: false },
+          { id: "ns-21-3", label: "Verify NTP pool rotation pattern (0-3.pool.ntp.org, 20-minute interval, UDP/123)", done: false },
+          { id: "ns-21-4", label: "Confirm DNS cross-VLAN traffic to Pi-hole (10.0.20.10) is intentional and expected", done: false },
+          { id: "ns-21-5", label: "Investigate and explain Cloudflare IPs (162.159.200.x) in connection logs", done: false },
+          { id: "ns-21-6", label: "Resolve Zeek unknown service classification gap (fix with redef NTP::ports and DNS::ports in local.zeek)", done: false },
+          { id: "ns-21-7", label: "Write Grafana LogQL queries for per-device IoT baseline dashboard", done: false },
+          { id: "ns-21-8", label: "Document investigation workflow and publish post on GitHub Pages", done: false },
+        ]
+      },
     ];
 
     // ── CardItem component ─────────────────────────────────────────────────
