@@ -1,13 +1,15 @@
 ---
-layout: default
+layout: page
 title: TLS
 permalink: /glossary/tls/
 ---
 
-# TLS
+<a class="back-link" href="{{ '/glossary/' | relative_url }}">← Glossary</a>
 
-**Definition:** Transport Layer Security encrypts and authenticates network sessions to protect data in transit.  
+### Definition
 
-**Why it matters (security):** Strong TLS prevents eavesdropping and credential theft, while weak ciphers or misissued certificates can enable interception or downgrade attacks.
+Transport Layer Security encrypts and authenticates network sessions to protect data in transit.
 
-<p><a href="{{ '/glossary/' | relative_url }}">← Glossary</a></p>
+### Security relevance
+
+Strong TLS prevents eavesdropping and credential theft, while weak ciphers or misissued certificates can enable interception or downgrade attacks.

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ondřej Rollinger</title>
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0b0c0f;
+      --surface:      #111318;
+      --surface-2:    #15171d;
+      --border:       #1e2128;
+      --border-2:     #262930;
+      --dim:          #3a3f4a;
+      --muted:        #6b7280;
+      --text:         #d4d8e0;
+      --text-bright:  #eceef2;
+      --cyber:        #00e5a0;
+      --cyber-dim:    rgba(0, 229, 160, 0.08);
+      --cyber-mid:    rgba(0, 229, 160, 0.18);
+      --embedded:     #f59e0b;
+      --embedded-dim: rgba(245, 158, 11, 0.08);
+      --font-mono:    'IBM Plex Mono', monospace;
+      --font-display: 'Syne', sans-serif;
+    }
+
+    html {
+      background: var(--bg);
+    }
+
+    body {
+      font-family: var(--font-mono);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      overflow-x: clip;
+      position: relative;
+    }
+
+    /* Grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Radial fade */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, var(--bg) 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .header {
+      text-align: center;
+      animation: fadeIn 0.8s ease both;
+    }
+
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Cards ──────────────────────────────────────────── */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      width: 100%;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .card--cyber {
+      border-left: 3px solid var(--cyber);
+    }
+
+    .card--embedded {
+      border-left: 3px solid var(--embedded);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card--cyber:hover {
+      border-color: var(--cyber);
+      background: color-mix(in srgb, var(--surface) 100%, transparent), var(--cyber-dim);
+      background: linear-gradient(var(--cyber-dim), var(--cyber-dim)), var(--surface);
+    }
+
+    .card--embedded:hover {
+      border-color: var(--embedded);
+      background: linear-gradient(var(--embedded-dim), var(--embedded-dim)), var(--surface);
+    }
+
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .card--cyber .card-tag { color: var(--cyber); }
+    .card--embedded .card-tag { color: var(--embedded); }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-bright);
+      margin-bottom: 0.65rem;
+      line-height: 1.3;
+    }
+
+    .card p {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-2);
+      color: var(--dim);
+      padding: 0.2em 0.55em;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      font-size: 1rem;
+      color: var(--dim);
+      transition: color 0.18s ease;
+    }
+
+    .card--cyber:hover .card-arrow { color: var(--cyber); }
+    .card--embedded:hover .card-arrow { color: var(--embedded); }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .foot {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      text-align: center;
+      animation: fadeIn 1s 0.5s ease both;
+    }
+
+    .foot a {
+      color: var(--dim);
+      text-decoration: none;
+    }
+
+    .foot a:hover { color: var(--cyber); }
+
+    /* ── Animations ─────────────────────────────────────── */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <p class="label">ondrejrollinger.github.io</p>
+      <h1>Ondřej Rollinger</h1>
+      <p class="tagline">Software engineer. Perpetually out of comfort zone, on purpose.</p>
+    </header>
+
+    <div class="cards">
+      <a class="card card--cyber" href="/cybersec/">
+        <p class="card-tag">01 — Security</p>
+        <h2>Cybersecurity Lab &amp; Notes</h2>
+        <p>Home IDS/IPS lab, CompTIA Security+, detection engineering, playbooks, and evidence-driven investigations.</p>
+        <div class="card-chips">
+          <span class="chip">Blog</span>
+          <span class="chip">Lab Tracker</span>
+          <span class="chip">Security+</span>
+          <span class="chip">Glossary</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </a>
+
+      <a class="card card--embedded" href="/embedded/">
+        <p class="card-tag">02 — Embedded</p>
+        <h2>AI-Supported Embedded Dev</h2>
+        <p>A Pi runs four AI agents that autonomously develop ESP32-S3 firmware. Telegram in, GitHub PRs out.</p>
+        <div class="card-chips">
+          <span class="chip">ESP32-S3</span>
+          <span class="chip">Telegram</span>
+          <span class="chip">GitHub</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </a>
+    </div>
+
+    <footer class="foot">
+      <a href="https://github.com/ondrejrollinger">github</a> · ondrejrollinger.github.io
+    </footer>
+  </div>
+</body>
+</html>

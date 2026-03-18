@@ -4,12 +4,14 @@ title: Search
 permalink: /search/
 ---
 
-# Search
-
-Search across posts and notes to quickly find tools, playbooks, investigations, and key concepts.
+<div class="page-header">
+  <h1 class="page-title">Search</h1>
+</div>
+<p class="page-description">Search across posts and notes to quickly find tools, playbooks, investigations, and key concepts.</p>
 
 <input id="q" type="search" placeholder="Search..." autofocus />
-<div id="results"></div>
+<p id="results-count"></p>
+<div id="search-results"></div>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
@@ -26,25 +28,25 @@ Search across posts and notes to quickly find tools, playbooks, investigations, 
   });
 
   const q = document.getElementById('q');
-  const out = document.getElementById('results');
+  const out = document.getElementById('search-results');
+  const count = document.getElementById('results-count');
 
   function render(query) {
-    out.innerHTML = "";
+    out.innerHTML = '';
+    count.textContent = '';
     if (!query || query.length < 2) return;
     const hits = idx.search(query).slice(0, 20);
+    count.textContent = hits.length + ' result' + (hits.length === 1 ? '' : 's');
     hits.forEach(h => {
       const doc = docs.find(d => d.url === h.ref);
-      const a = document.createElement('a');
-      a.href = doc.url;
-      a.textContent = doc.title;
-      const div = document.createElement('div');
-      div.appendChild(a);
-      out.appendChild(div);
+      const item = document.createElement('div');
+      item.className = 'search-result-item';
+      item.innerHTML = '<a class="search-result-title" href="' + doc.url + '">' + doc.title + '</a>'
+        + (doc.date ? '<span class="search-result-date">' + doc.date + '</span>' : '');
+      out.appendChild(item);
     });
   }
 
   q.addEventListener('input', () => render(q.value));
 })();
 </script>
-
-<p><a href="{{ '/' | relative_url }}">← Home</a></p>

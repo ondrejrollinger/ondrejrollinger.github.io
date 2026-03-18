@@ -1,26 +1,21 @@
 ---
 layout: default
 ---
+<a class="back-link" href="/blog/">← Blog</a>
+<article>
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <span class="post-date">{{ page.date | date: "%d %b %Y" }}</span>
+      {% for tag in page.tags %}
+        <a class="post-tag" href="/tag-{{ tag | slugify }}/">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </header>
 
-<h1>{{ page.title }}</h1>
-<p><small>{{ page.date | date: "%-d %b %Y" }}</small></p>
+  {% if page.toc %}
+    {% include toc.html %}
+  {% endif %}
 
-{% if page.tags %}
-<p>
-  Tags:
-  {% for tag in page.tags %}
-    {% assign tag_slug = tag | slugify %}
-    <a href="{{ '/tag-' | append: tag_slug | append: '/' | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-  {% endfor %}
-</p>
-{% endif %}
-
-<hr />
-
-{% if page.toc %}
-{% include toc.html %}
-{% endif %}
-
-<div class="post-content">
-  {{ content }}
-</div>
+  <div class="post-content">{{ content }}</div>
+</article>

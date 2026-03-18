@@ -1,21 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }} | {{ site.title }}</title>
-    {% seo %}
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar">
-        {% include sidebar.html %}
-      </aside>
-      <main class="content">
-        {{ content }}
-      </main>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+</head>
+{% assign path = page.url %}
+{% if path contains '/embedded' %}
+<body class="section-embedded">
+{% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
+<body class="section-cyber">
+{% else %}
+<body>
+{% endif %}
+  <header class="site-header">
+    <div class="site-header-inner">
+      {% if path contains '/embedded' %}
+      <a class="site-logo" href="/">OR<span class="title-accent title-accent--embedded">_</span></a>
+      {% else %}
+      <a class="site-logo" href="/">OR<span class="title-accent">_</span></a>
+      {% endif %}
+      <nav class="site-nav" aria-label="Primary navigation">
+        {% if path contains '/embedded' %}
+          <span class="nav-section-badge">Embedded</span>
+          <a href="/embedded/"{% if path == '/embedded/' %} class="active"{% endif %}>Home</a>
+          <a href="/embedded/projects/"{% if path contains '/projects' %} class="active"{% endif %}>Projects</a>
+          <a href="/embedded/notes/"{% if path contains '/notes' %} class="active"{% endif %}>Notes</a>
+        {% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
+          <span class="nav-section-badge">Security</span>
+          <a href="/cybersec/"{% if path == '/cybersec/' %} class="active"{% endif %}>Home</a>
+          <a href="/blog/"{% if path contains '/blog' %} class="active"{% endif %}>Blog</a>
+          <a href="/glossary/"{% if path contains '/glossary' %} class="active"{% endif %}>Glossary</a>
+          <a href="/secplus/"{% if path contains '/secplus' %} class="active"{% endif %}>Security+</a>
+          <a href="/tags/"{% if path contains '/tags' or path contains '/tag' %} class="active"{% endif %}>Tags</a>
+          <a href="/search/"{% if path contains '/search' %} class="active"{% endif %}>Search</a>
+          <a href="/lab-tracker/"{% if path contains '/lab-tracker' %} class="active"{% endif %}>Lab</a>
+        {% else %}
+          <a href="/cybersec/">Security</a>
+          <a href="/embedded/">Embedded</a>
+        {% endif %}
+      </nav>
     </div>
-  </body>
+  </header>
+
+  <main class="site-main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://github.com/ondrejrollinger">github</a> · ondrejrollinger.github.io
+  </footer>
+</body>
 </html>

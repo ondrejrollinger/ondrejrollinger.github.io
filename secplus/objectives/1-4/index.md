@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 1.4 — Explain the importance of using appropriate cryptographic solutions."
 objective_id: "1.4"
 domain: "1.0 General Security Concepts"

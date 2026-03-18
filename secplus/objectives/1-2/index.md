@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 1.2 — Summarize fundamental security concepts."
 objective_id: "1.2"
 domain: "1.0 General Security Concepts"

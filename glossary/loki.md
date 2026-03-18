@@ -1,13 +1,15 @@
 ---
-layout: default
+layout: page
 title: Loki
 permalink: /glossary/loki/
 ---
 
-# Loki
+<a class="back-link" href="{{ '/glossary/' | relative_url }}">← Glossary</a>
 
-**Definition:** Loki is a log aggregation system that indexes labels for efficient querying while storing raw log lines separately.  
+### Definition
 
-**Why it matters (security):** Centralized, queryable logs accelerate detection, investigations, and correlation across systems, but depend on consistent labeling and retention hygiene.
+Loki is a log aggregation system that indexes labels for efficient querying while storing raw log lines separately.
 
-<p><a href="{{ '/glossary/' | relative_url }}">← Glossary</a></p>
+### Security relevance
+
+Centralized, queryable logs accelerate detection, investigations, and correlation across systems, but depend on consistent labeling and retention hygiene.

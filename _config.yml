@@ -1,6 +1,6 @@
 title: Ondřej Rollinger — Cybersecurity Notes
 description: Evidence-driven cybersecurity learning notes, projects, and playbooks.
-theme: jekyll-theme-hacker
+# theme: jekyll-theme-hacker
 
 permalink: /blog/:year/:month/:day/:title/
 

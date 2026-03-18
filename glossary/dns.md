@@ -1,13 +1,15 @@
 ---
-layout: default
+layout: page
 title: DNS
 permalink: /glossary/dns/
 ---
 
-# DNS
+<a class="back-link" href="{{ '/glossary/' | relative_url }}">← Glossary</a>
 
-**Definition:** The Domain Name System maps human-readable domain names to IP addresses and other records so clients can locate services.  
+### Definition
 
-**Why it matters (security):** DNS is a common chokepoint and visibility layer; tampering, spoofing, or misconfiguration can redirect users or hide malicious infrastructure, so monitoring and hardening DNS is a core defensive control.
+The Domain Name System maps human-readable domain names to IP addresses and other records so clients can locate services.
 
-<p><a href="{{ '/glossary/' | relative_url }}">← Glossary</a></p>
+### Security relevance
+
+DNS is a common chokepoint and visibility layer; tampering, spoofing, or misconfiguration can redirect users or hide malicious infrastructure, so monitoring and hardening DNS is a core defensive control.

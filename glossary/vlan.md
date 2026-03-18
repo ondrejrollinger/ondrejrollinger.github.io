@@ -1,13 +1,15 @@
 ---
-layout: default
+layout: page
 title: VLAN
 permalink: /glossary/vlan/
 ---
 
-# VLAN
+<a class="back-link" href="{{ '/glossary/' | relative_url }}">← Glossary</a>
 
-**Definition:** A Virtual LAN is a logical network segmentation technique that separates traffic into isolated broadcast domains on shared infrastructure.  
+### Definition
 
-**Why it matters (security):** VLANs reduce lateral movement and limit blast radius, but misconfigured trunking or access control can collapse segmentation boundaries.
+A Virtual LAN is a logical network segmentation technique that separates traffic into isolated broadcast domains on shared infrastructure.
 
-<p><a href="{{ '/glossary/' | relative_url }}">← Glossary</a></p>
+### Security relevance
+
+VLANs reduce lateral movement and limit blast radius, but misconfigured trunking or access control can collapse segmentation boundaries.

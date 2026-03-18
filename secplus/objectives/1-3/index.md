@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 1.3 — Explain the importance of change management processes and the impact to security."
 objective_id: "1.3"
 domain: "1.0 General Security Concepts"

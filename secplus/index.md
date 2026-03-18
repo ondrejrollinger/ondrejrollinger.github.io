@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: CompTIA Security+ (SY0-701) Dashboard
 permalink: /secplus/
 ---
-
-# CompTIA Security+ (SY0-701) Dashboard
 
 This dashboard tracks my progress across the SY0-701 exam objectives. Each objective links to a dedicated notes page and carries a simple status badge.
 
@@ -37,14 +35,32 @@ This dashboard tracks my progress across the SY0-701 exam objectives. Each objec
   {% assign completion = 0 %}
 {% endif %}
 
-<div class="secplus-summary">
-  <div><strong>Total objectives:</strong> {{ total }}</div>
-  <div><strong>Pending:</strong> {{ pending }}</div>
-  <div><strong>In progress:</strong> {{ in_progress }}</div>
-  <div><strong>Review:</strong> {{ review }}</div>
-  <div><strong>Done:</strong> {{ done }}</div>
-  <div><strong>Completion:</strong> {{ completion }}%</div>
+<div class="secplus-stats">
+  <div class="secplus-stat secplus-stat--done">
+    <span class="secplus-stat-value">{{ done }}</span>
+    <span class="secplus-stat-label">Done</span>
+  </div>
+  <div class="secplus-stat">
+    <span class="secplus-stat-value">{{ in_progress }}</span>
+    <span class="secplus-stat-label">In progress</span>
+  </div>
+  <div class="secplus-stat">
+    <span class="secplus-stat-value">{{ review }}</span>
+    <span class="secplus-stat-label">Review</span>
+  </div>
+  <div class="secplus-stat">
+    <span class="secplus-stat-value">{{ pending }}</span>
+    <span class="secplus-stat-label">Pending</span>
+  </div>
+  <div class="secplus-stat secplus-stat--total">
+    <span class="secplus-stat-value">{{ total }}</span>
+    <span class="secplus-stat-label">Total</span>
+  </div>
 </div>
+<div class="secplus-progress">
+  <div class="secplus-progress-bar" style="width: {{ completion }}%"></div>
+</div>
+<p class="secplus-progress-label">{{ completion }}% complete — {{ done }} of {{ total }} objectives</p>
 
 {% for domain in site.data.secplus701.domains %}
   <section class="secplus-domain">

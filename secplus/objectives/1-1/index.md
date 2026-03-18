@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 1.1 — Compare and contrast various types of security controls."
 objective_id: "1.1"
 domain: "1.0 General Security Concepts"
