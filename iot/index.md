@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Agentic IoT Development
+title: AI-Driven IoT Development
 permalink: /iot/
 ---
 
