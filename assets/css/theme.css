@@ -465,10 +465,10 @@ tr:hover td { background: var(--surface-2); }
 
 .post-list-date {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--muted);
   padding-top: 0.25rem;
   line-height: 1.4;
   white-space: nowrap;
@@ -476,19 +476,19 @@ tr:hover td { background: var(--surface-2); }
 
 .post-list-date .date-day {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--text-bright);
   letter-spacing: 0;
   line-height: 1;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 
 .post-list-date .date-month {
   display: block;
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--dim);
+  color: var(--muted);
 }
 
 .post-list-body { min-width: 0; }
@@ -518,12 +518,12 @@ tr:hover td { background: var(--surface-2); }
 /* ── Tags / chips ───────────────────────────────────────── */
 .post-tag {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--dim);
-  border: 1px solid var(--border);
-  padding: 0.15em 0.5em;
+  color: var(--muted);
+  border: 1px solid var(--border-2);
+  padding: 0.2em 0.55em;
   text-decoration: none;
   transition: color 0.2s, border-color 0.2s;
 }
