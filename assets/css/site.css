@@ -214,6 +214,11 @@ details summary:hover {
   }
 }
 
+/* ── Blog list titles ───────────────────────────────────── */
+.post-list-title {
+  color: cyan;
+}
+
 /* ── Table of Contents ──────────────────────────────────── */
 .toc {
   background: var(--bg-secondary, rgba(0, 0, 0, 0.15));
