@@ -687,13 +687,13 @@ input[type="search"]:focus {
 .terminal-prompt {
   font-family: var(--font-mono);
   font-size: 1.15rem;
-  color: var(--cyber);
+  color: rgba(120, 255, 120, 0.9);
   margin: 2rem 0 0.5rem;
   letter-spacing: 0.02em;
 }
 
 .terminal-prompt--dim {
-  color: var(--dim);
+  color: rgba(120, 255, 120, 0.5);
   margin-top: 2.5rem;
 }
 
@@ -752,7 +752,7 @@ input[type="search"]:focus {
 
 .terminal-note {
   font-size: 1rem;
-  color: var(--muted);
+  color: var(--text);
   font-style: italic;
   margin-top: 0.25rem;
   padding-left: 0.5rem;
