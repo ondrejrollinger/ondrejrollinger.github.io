@@ -13,9 +13,9 @@ a { color: var(--cyber); text-decoration: none; }
   --muted:        #6b7280;
   --text:         #d4d8e0;
   --text-bright:  #eceef2;
-  --cyber:        #00e5a0;
-  --cyber-dim:    rgba(0, 229, 160, 0.08);
-  --cyber-mid:    rgba(0, 229, 160, 0.18);
+  --cyber:        #78ff78;
+  --cyber-dim:    rgba(120, 255, 120, 0.08);
+  --cyber-mid:    rgba(120, 255, 120, 0.18);
   --embedded:     #f59e0b;
   --embedded-dim: rgba(245, 158, 11, 0.08);
   --font-mono:    'IBM Plex Mono', monospace;
