@@ -697,6 +697,12 @@ input[type="search"]:focus {
   margin-top: 2.5rem;
 }
 
+.terminal-note--dim {
+  opacity: 0.45;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
 .terminal-listing {
   border: 1px solid var(--border);
   border-left: 3px solid var(--border-2);
