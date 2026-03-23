@@ -216,7 +216,7 @@ details summary:hover {
 
 /* ── Blog list titles ───────────────────────────────────── */
 .post-list-title {
-  color: cyan;
+  color: rgba(0, 229, 160, 0.95);
 }
 
 /* ── Table of Contents ──────────────────────────────────── */
