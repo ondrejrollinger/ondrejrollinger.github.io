@@ -23,5 +23,3 @@ permalink: /tags/
     </li>
   {% endfor %}
 </ul>
-
-<a class="back-link" href="{{ '/' | relative_url }}">← Home</a>
