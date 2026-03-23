@@ -49,16 +49,6 @@
   opacity: 1;
 }
 
-.sidebar-ai-disclaimer {
-  margin-top: 1.5rem;
-  padding: 0.55rem;
-  font-size: 0.72rem;
-  line-height: 1.4;
-  opacity: 0.55;
-  font-style: italic;
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
-}
-
 .sidebar-nav li.active a::before {
   content: "› ";
 }
