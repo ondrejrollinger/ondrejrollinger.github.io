@@ -478,7 +478,7 @@ tr:hover td { background: var(--surface-2); }
   display: block;
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--cyber);
+  color: var(--text-bright);
   letter-spacing: 0;
   line-height: 1;
   margin-bottom: 0.2rem;
@@ -498,7 +498,7 @@ tr:hover td { background: var(--surface-2); }
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--text-bright);
+  color: var(--cyber);
   text-decoration: none;
   margin-bottom: 0.45rem;
   border-bottom: none;
@@ -506,7 +506,7 @@ tr:hover td { background: var(--surface-2); }
   transition: color 0.2s;
 }
 
-.post-list-title:hover { color: var(--cyber); }
+.post-list-title:hover { color: var(--text-bright); }
 
 .post-tags {
   display: flex;
