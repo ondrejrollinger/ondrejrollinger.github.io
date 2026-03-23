@@ -686,7 +686,7 @@ input[type="search"]:focus {
 /* ── Terminal listing (cybersec home) ───────────────────── */
 .terminal-prompt {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 1.15rem;
   color: var(--cyber);
   margin: 2rem 0 0.5rem;
   letter-spacing: 0.02em;
@@ -751,7 +751,7 @@ input[type="search"]:focus {
 .tl-desc a:hover { text-decoration: underline; }
 
 .terminal-note {
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: var(--muted);
   font-style: italic;
   margin-top: 0.25rem;

@@ -214,25 +214,6 @@ details summary:hover {
   }
 }
 
-/* ── Terminal prompts (cybersec index) ──────────────────── */
-.terminal-prompt {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 1.15rem;
-  color: rgba(120, 255, 120, 0.9);
-  margin: 1.5rem 0 0.5rem;
-}
-
-.terminal-prompt--dim {
-  opacity: 0.6;
-}
-
-.terminal-note {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 1rem;
-  opacity: 0.7;
-  margin-top: 0.25rem;
-}
-
 /* ── Table of Contents ──────────────────────────────────── */
 .toc {
   background: var(--bg-secondary, rgba(0, 0, 0, 0.15));
