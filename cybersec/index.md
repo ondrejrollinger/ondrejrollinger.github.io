@@ -53,4 +53,4 @@ I document what I build, test, and learn, with a strong focus on
 </div>
 
 <p class="terminal-prompt terminal-prompt--dim">ondrej@lab:~$ cat ./disclosure</p>
-<p class="terminal-note">AI tools may assist with drafting and editing for clarity. Technical work, evidence selection, validation, and conclusions are mine.</p>
+<p class="terminal-note terminal-note--dim">AI tools may assist with drafting and editing for clarity. Technical work, evidence selection, validation, and conclusions are mine.</p>
