@@ -690,41 +690,6 @@ Users can't log in
 
 ---
 
-### Memory Aids
-
-#### Change Management Steps: "I-CREATE-VERIFY"
-- **I**dentify need
-- **C**reate request
-- **R**eview (CAB approval)
-- **E**valuate impact
-- **A**rrange maintenance window
-- **T**est first
-- **E**xecute change
-- **V**erify success
-- **E**nsure documentation updated
-- **R**eview lessons learned
-- **I**mprove process
-- **F**inalize closure
-- **Y**ield results to stakeholders
-
-#### Critical Change Documents: "BAT PITs"
-- **B**ackout plan
-- **A**pproval
-- **T**est results
-- **P**lan (implementation)
-- **I**mpact analysis
-- **T**imeline (maintenance window)
-- **S**OP (procedure)
-
-#### Technical Impacts: "DARLA"
-- **D**owntime
-- **A**llow/deny lists
-- **R**estricted activities
-- **L**egacy apps
-- **A**pp/service restarts
-
----
-
 ### Common Exam Traps
 
 **Trap 1: "Emergency = No Approval Needed"**
