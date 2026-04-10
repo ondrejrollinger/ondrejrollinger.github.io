@@ -51,8 +51,6 @@ Vulnerabilities are weaknesses that can be exploited to compromise confidentiali
 | **Cross-site request forgery (CSRF)** | Tricks authenticated user's browser into sending an unauthorized request | Forged requests riding valid session |
 | **Directory traversal** | Uses `../` sequences to access files outside the web root | Access to `/etc/passwd` or `C:\Windows\` |
 
-> **Mnemonic for web app attacks: BSXCD** — Buffer overflow, SQLi, XSS, CSRF, Directory traversal
-
 #### Other application vulnerabilities
 
 - **Malicious update:** Attacker compromises the software update mechanism (update server, signed package) to push malware.
