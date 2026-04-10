@@ -48,8 +48,6 @@ Threat actors are the people or groups behind cyberattacks. The exam tests your 
 | **Insider threat** | **Internal** | Varies | Privileged access | Varies (revenge, gain, negligence) | Trusted access = hard to detect |
 | **Shadow IT** | Internal | Low–Medium | Company resources | Convenience | Unauthorized systems / apps |
 
-> **Mnemonic: UOHNIS** — Unskilled, Organized crime, Hacktivist, Nation-state, Insider, Shadow IT
-
 ---
 
 ### Threat actor motivations
