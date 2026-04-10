@@ -60,8 +60,6 @@ Mitigation techniques are the defensive controls and processes used to reduce th
 | **Air Gap** | Complete physical isolation from other networks — used for critical systems (ICS, classified systems) |
 | **Micro-segmentation** | Fine-grained segmentation at the workload/application level; enforces Zero Trust between internal systems |
 
-> **Mnemonic: SDA-M** — **S**egmentation, **D**MZ, **A**ir gap, **M**icro-segmentation.
-
 **Primary value:** Contains breach impact — even if an attacker enters one segment, they cannot freely move laterally to others.
 
 ---
@@ -138,8 +136,6 @@ The full cycle:
 | **Hashing** | One-way transformation; password storage; integrity verification |
 | **DLP Systems** | Endpoint, network, storage, and cloud-based DLP prevent data exfiltration |
 | **Backups (3-2-1 Rule)** | 3 copies, 2 different media, 1 offsite; primary defence against ransomware |
-
-> **Mnemonic: 3-2-1 Rule** — **3** copies, **2** media types, **1** offsite location. If you have this, ransomware is a nuisance, not a disaster.
 
 ---
 
