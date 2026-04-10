@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 3.1 — Compare and contrast security implications of different architecture models."
 objective_id: "3.1"
 domain: "3.0 Security Architecture"
@@ -424,8 +424,8 @@ Changing default credentials (B) addresses the most common IoT attack vector. Ne
 
 | Objective | Title | Status |
 |---|---|---|
-| 3.1 (current) | Compare and contrast security implications of different architecture models. | ✅ done |
-| [**3.2**]({{ '/secplus/objectives/3-2/' | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | ✅ done |
-| [**3.3**]({{ '/secplus/objectives/3-3/' | relative_url }}) | Compare and contrast concepts and strategies to protect data. | ✅ done |
+| **3.1** | Compare and contrast security implications of different architecture models. (current) | done |
+| [3.2]({{ '/secplus/objectives/3-2/' | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | done |
+| [3.3]({{ '/secplus/objectives/3-3/' | relative_url }}) | Compare and contrast concepts and strategies to protect data. | done |
 
 [← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.2 →]({{ '/secplus/objectives/3-2/' | relative_url }})

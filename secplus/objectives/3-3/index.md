@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 3.3 — Compare and contrast concepts and strategies to protect data."
 objective_id: "3.3"
 domain: "3.0 Security Architecture"
@@ -382,8 +382,8 @@ HIPAA requires encryption for PHI both at rest (A) and in transit (C). Data at r
 
 | Objective | Title | Status |
 |---|---|---|
-| [**3.1**]({{ '/secplus/objectives/3-1/' | relative_url }}) | Compare and contrast security implications of different architecture models. | ✅ done |
-| [**3.2**]({{ '/secplus/objectives/3-2/' | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | ✅ done |
-| 3.3 (current) | Compare and contrast concepts and strategies to protect data. | ✅ done |
+| [3.1]({{ '/secplus/objectives/3-1/' | relative_url }}) | Compare and contrast security implications of different architecture models. | done |
+| [3.2]({{ '/secplus/objectives/3-2/' | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | done |
+| **3.3** | Compare and contrast concepts and strategies to protect data. (current) | done |
 
 [← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 4.1 →]({{ '/secplus/objectives/4-1/' | relative_url }})
