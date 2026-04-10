@@ -12,7 +12,6 @@ Each objective note includes:
 - ✅ Key concepts with definitions
 - ✅ Exam tips and common question patterns
 - ✅ Practical scenarios and examples
-- ✅ Memory aids and mnemonics
 - ✅ CompTIA-style practice questions with explanations
 - ✅ Common exam traps
 - ✅ Related objectives cross-references
@@ -23,16 +22,16 @@ Each objective note includes:
 
 - [x] 1.1 - Security Controls (COMPLETE)
 - [x] 1.2 - Fundamental Security Concepts (COMPLETE)
-- [ ] 1.3 - Change Management
-- [ ] 1.4 - Cryptographic Solutions
+- [x] 1.3 - Change Management
+- [x] 1.4 - Cryptographic Solutions
 
 ### Domain 2: Threats, Vulnerabilities, and Mitigations (22%)
 
-- [ ] 2.1 - Threat Actors and Motivations
-- [ ] 2.2 - Threat Vectors and Attack Surfaces
-- [ ] 2.3 - Types of Vulnerabilities
-- [ ] 2.4 - Indicators of Malicious Activity
-- [ ] 2.5 - Mitigation Techniques
+- [x] 2.1 - Threat Actors and Motivations
+- [x] 2.2 - Threat Vectors and Attack Surfaces
+- [x] 2.3 - Types of Vulnerabilities
+- [x] 2.4 - Indicators of Malicious Activity
+- [x] 2.5 - Mitigation Techniques
 
 ### Domain 3: Security Architecture (18%)
 
