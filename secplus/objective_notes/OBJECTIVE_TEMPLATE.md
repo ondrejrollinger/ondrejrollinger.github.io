@@ -89,8 +89,6 @@ Status: <span class="status-badge done">done</span>
      GUIDELINES:
      - Use comparison tables (markdown) whenever contrasting categories,
        types, or methods. Tables should have 3-6 columns.
-     - Include "Memory aid" call-outs where helpful:
-       > **Mnemonic** — explanation
      - Include "Exam tip" notes inline where relevant.
      - Keep language concise and exam-focused.
 -->
@@ -236,10 +234,6 @@ Status: <span class="status-badge done">done</span>
 - Use markdown tables for any comparison of 3+ items.
 - Keep column count between 3 and 6 for readability.
 - Include an "Exam tip" or "Key phrase" column where it helps recognition.
-
-### Memory aids
-- Add at least one mnemonic or memory aid per major concept group.
-- Format as a blockquote: `> **Mnemonic** — explanation`
 
 ### Quiz questions
 - Questions 1-5: open-ended with collapsible answers (concept recall).
