@@ -1119,45 +1119,6 @@ Masked:        j***d**@company.com
 
 ---
 
-### Memory Aids and Mnemonics
-
-#### Data States: "RAT"
-- **R**est (stored)
-- **A**ctive (in use)
-- **T**ransit (moving)
-
-#### Symmetric vs Asymmetric: "SAFE"
-- **S**ymmetric = Same key
-- **A**symmetric = Asymmetric (different keys)
-- **F**ast = Symmetric
-- **E**verywhere = Asymmetric (key distribution)
-
-#### Good Hashes: "SHA-2/3"
-- MD5 — broken
-- SHA-1 — broken
-- SHA-2 — current standard (SHA-256)
-- SHA-3 — newest, most secure
-
-#### PKI Components: "CRACK"
-- **C**A (Certificate Authority)
-- **R**A (Registration Authority)
-- **A**uthorization/Authentication
-- **C**ertificate
-- **K**ey management
-
-#### Obfuscation Types: "STM"
-- **S**teganography (hide existence)
-- **T**okenization (substitute sensitive data)
-- **M**asking (obscure while maintaining format)
-
-#### Encryption Tools: "THE KEYS"
-- **T**PM (Trusted Platform Module)
-- **H**SM (Hardware Security Module)
-- **E**nclave (Secure Enclave)
-- **K**MS (Key Management System)
-
----
-
 ### Common Exam Traps
 
 **Trap 1: Confusing Encryption and Hashing**
