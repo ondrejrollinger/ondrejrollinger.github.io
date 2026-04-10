@@ -44,8 +44,6 @@ A **threat vector** is *how* an attacker gets in — the pathway or method to de
 | **Threat vector** | Method or pathway used to deliver the attack | *How* does the attacker get in? |
 | **Attack surface** | All points where unauthorized entry or data extraction is possible | *Where* can the attacker get in? |
 
-> **Mnemonic:** Vector = **How** (method). Surface = **Where** (target points).
-
 Reducing the attack surface: restrict access, remove unnecessary software, disable unused protocols.
 
 ---
@@ -76,8 +74,6 @@ Social engineers exploit **human psychology** rather than technical vulnerabilit
 | **Likability** | Builds rapport — people comply with people they like | Attacker acts friendly, finds common ground |
 | **Fear** | Threat of negative consequences | "If you don't comply, you'll be audited" |
 
-> **Mnemonic: AUSSFL** — Authority, Urgency, Scarcity, Social proof, Fear, Likability
-
 ---
 
 ### Impersonation techniques
@@ -103,8 +99,6 @@ Mitigation: train employees not to fill in missing information for callers — r
 | **BEC (Business Email Compromise)** | Business employees | Email | Uses a **compromised real account** |
 | **Vishing** | General | Phone / voice | Voice-based phishing |
 | **Smishing** | General | SMS text | Text message phishing |
-
-> **Mnemonic: P-SSW-BV** — Phishing, Spear, Whaling, BEC, Vishing, Smishing
 
 **Phishing red flags:**
 - Urgency — "Respond immediately or your account will be suspended"
@@ -244,7 +238,7 @@ Reality: BlueBorne requires *no user interaction* — proximity to a vulnerable 
 <details>
 <summary><strong>Question 2:</strong> What are the six motivational triggers social engineers exploit?</summary>
 
-**Answer:** Authority, Urgency, Scarcity, Social proof, Fear, and Likability — mnemonic: AUSSFL.
+**Answer:** Authority, Urgency, Scarcity, Social proof, Fear, and Likability.
 </details>
 
 <details>
