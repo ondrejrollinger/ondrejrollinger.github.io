@@ -99,10 +99,6 @@ The foundational model of information security. Every security decision maps bac
 | **Integrity** | Data is accurate, complete, and unaltered | Man-in-the-middle, data tampering | Hashing, digital signatures, version control | Hashing |
 | **Availability** | Systems and data are accessible when needed | DDoS, ransomware, hardware failure | Redundancy, backups, load balancing | Redundancy |
 
-#### Memory aid
-
-> **C**an't see it = **C**onfidentiality (encryption). **I**s it accurate? = **I**ntegrity (hashing). **A**lways available = **A**vailability (redundancy).
-
 ---
 
 ### Non-repudiation
@@ -154,10 +150,6 @@ The foundational model of information security. Every security decision maps bac
 - **Is MFA:** Password + SMS code (knowledge + possession)
 
 **Exam tip:** Count the TYPES of factors, not the NUMBER of items.
-
-#### Memory aid — KHAIL
-
-> **K**nowledge, **H**ave, **A**re, **I** do, **L**ocation
 
 ---
 
@@ -211,10 +203,6 @@ The foundational model of information security. Every security decision maps bac
 **Protocols that implement AAA:**
 - **RADIUS** — Remote Authentication Dial-In User Service. Commonly used for network access (VPN, Wi-Fi). Encrypts only the password.
 - **TACACS+** — Terminal Access Controller Access-Control System Plus. Cisco-favored. Encrypts the entire payload. Separates authentication, authorization, and accounting.
-
-#### Memory aid
-
-> **"Who, What, When"** — Authentication: WHO are you? Authorization: WHAT can you access? Accounting: WHEN did you do it?
 
 ---
 
@@ -284,10 +272,6 @@ WHERE access decisions are enforced.
 6. Continuous monitoring and re-evaluation
 
 **Exam tip:** Know difference between Control Plane (decisions) and Data Plane (enforcement). PEP is part of the DATA plane, not the control plane — this is a common exam trap.
-
-#### Memory aid
-
-> **"Never trust, always verify, enforce everywhere"**
 
 ---
 
