@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 2.5 — Explain the purpose of mitigation techniques used to secure the enterprise."
 objective_id: "2.5"
 domain: "2.0 Threats, Vulnerabilities, and Mitigations"
@@ -337,10 +337,10 @@ Least privilege (B) limits what an insider can access — reducing the blast rad
 
 | Objective | Title | Status |
 |---|---|---|
-| [**2.1**]({{ '/secplus/objectives/2-1/' | relative_url }}) | Compare and contrast common threat actors and motivations. | ✅ done |
-| [**2.2**]({{ '/secplus/objectives/2-2/' | relative_url }}) | Explain common threat vectors and attack surfaces. | ✅ done |
-| [**2.3**]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | ✅ done |
-| [**2.4**]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | ✅ done |
-| 2.5 (current) | Explain the purpose of mitigation techniques used to secure the enterprise. | ✅ done |
+| [2.1]({{ '/secplus/objectives/2-1/' | relative_url }}) | Compare and contrast common threat actors and motivations. | done |
+| [2.2]({{ '/secplus/objectives/2-2/' | relative_url }}) | Explain common threat vectors and attack surfaces. | done |
+| [2.3]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | done |
+| [2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | done |
+| **2.5** | Explain the purpose of mitigation techniques used to secure the enterprise. (current) | done |
 
-[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.1 →]({{ '/secplus/objectives/3-1/' | relative_url }})
+[← Previous: Objective 2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Domain 3 →]({{ '/secplus/objectives/3-1/' | relative_url }})
