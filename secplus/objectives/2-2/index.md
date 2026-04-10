@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 2.2 — Explain common threat vectors and attack surfaces."
 objective_id: "2.2"
 domain: "2.0 Threats, Vulnerabilities, and Mitigations"
@@ -320,10 +320,10 @@ Mismatched URLs (B) and artificial urgency (C) are two of the most consistently 
 
 | Objective | Title | Status |
 |---|---|---|
-| [2.1]({{ '/secplus/objectives/2-1/' | relative_url }}) | Compare and contrast common threat actors and motivations. | <span class="status-badge done">done</span> |
-| **2.2 (current)** | Explain common threat vectors and attack surfaces. | <span class="status-badge done">done</span> |
-| [2.3]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | <span class="status-badge done">done</span> |
-| [2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | <span class="status-badge done">done</span> |
-| [2.5]({{ '/secplus/objectives/2-5/' | relative_url }}) | Explain the purpose of mitigation techniques used to secure the enterprise. | <span class="status-badge done">done</span> |
+| [2.1]({{ '/secplus/objectives/2-1/' | relative_url }}) | Compare and contrast common threat actors and motivations. | done |
+| **2.2** | Explain common threat vectors and attack surfaces. (current) | done |
+| [2.3]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | done |
+| [2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | done |
+| [2.5]({{ '/secplus/objectives/2-5/' | relative_url }}) | Explain the purpose of mitigation techniques used to secure the enterprise. | done |
 
-[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 2-3 →]({{ '/secplus/objectives/2-3/' | relative_url }})
+[← Previous: Objective 2.1]({{ '/secplus/objectives/2-1/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 2.3 →]({{ '/secplus/objectives/2-3/' | relative_url }})

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 2.1 — Compare and contrast common threat actors and motivations."
 objective_id: "2.1"
 domain: "2.0 Threats, Vulnerabilities, and Mitigations"
@@ -261,10 +261,10 @@ Nation-state actors are characterized by high sophistication with government bac
 
 | Objective | Title | Status |
 |---|---|---|
-| **2.1 (current)** | Compare and contrast common threat actors and motivations. | <span class="status-badge done">done</span> |
-| [2.2]({{ '/secplus/objectives/2-2/' | relative_url }}) | Explain common threat vectors and attack surfaces. | <span class="status-badge done">done</span> |
-| [2.3]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | <span class="status-badge done">done</span> |
-| [2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | <span class="status-badge done">done</span> |
-| [2.5]({{ '/secplus/objectives/2-5/' | relative_url }}) | Explain the purpose of mitigation techniques used to secure the enterprise. | <span class="status-badge done">done</span> |
+| **2.1** | Compare and contrast common threat actors and motivations. (current) | done |
+| [2.2]({{ '/secplus/objectives/2-2/' | relative_url }}) | Explain common threat vectors and attack surfaces. | done |
+| [2.3]({{ '/secplus/objectives/2-3/' | relative_url }}) | Explain various types of vulnerabilities. | done |
+| [2.4]({{ '/secplus/objectives/2-4/' | relative_url }}) | Given a scenario, analyze indicators of malicious activity. | done |
+| [2.5]({{ '/secplus/objectives/2-5/' | relative_url }}) | Explain the purpose of mitigation techniques used to secure the enterprise. | done |
 
-[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 2-2 →]({{ '/secplus/objectives/2-2/' | relative_url }})
+[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 2.2 →]({{ '/secplus/objectives/2-2/' | relative_url }})
