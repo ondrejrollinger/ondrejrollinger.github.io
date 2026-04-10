@@ -51,10 +51,6 @@ Any single control can be described by combining one category with one type. For
 | **Operational** | Procedural | Day-to-day processes carried out by people | "Think people doing things" | Backup procedures, account reviews, log monitoring, configuration management, incident response activities, security awareness training delivery |
 | **Physical** | — | Tangible, real-world measures to protect assets | "If you can physically touch it, it's physical" | Locks, badge readers, security guards, CCTV, fences, bollards, mantraps, fire suppression, HVAC |
 
-#### Memory aid — TMOP
-
-> **T**ech **M**anagers **O**perate **P**hysically
-
 ---
 
 ### Security control types (the six functions)
@@ -76,10 +72,6 @@ Any single control can be described by combining one category with one type. For
 - Is it fixing after?                  → Corrective
 - Is it a backup plan?                 → Compensating
 - Is it a rule/guideline?              → Directive
-
-#### Memory aid — PP-DD-CC
-
-> **P**reventive, "**P**lease don't" (deterrent), **D**etective, "**D**o this" (directive), **C**orrective, **C**ompensating
 
 ---
 
