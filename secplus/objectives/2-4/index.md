@@ -54,8 +54,6 @@ This is a **scenario-based** objective — the exam gives you observable symptom
 | **Backdoor** | Hidden access mechanism; bypasses normal authentication | Persistent unauthorized access | Trojans, malicious updates, insiders |
 | **Bloatware** | Pre-installed unwanted software consuming resources | Sluggish performance; unexpected apps | Pre-installed on devices |
 
-> **Mnemonic for malware types: VWTR-RSB-KLB** — Virus, Worm, Trojan, RAT, Ransomware, Spyware, Botnet, Keylogger, Logic bomb, Backdoor
-
 ---
 
 ### Virus types (deeper detail)
@@ -120,8 +118,6 @@ This is a **scenario-based** objective — the exam gives you observable symptom
 | **Out-of-cycle logging** | Log entries generated at unusual hours — attacker activity when no staff present |
 | **Missing logs** | Gaps or cleared logs — attacker covering tracks; concealment phase |
 | **Published / documented attacks** | Threat intel reports naming your organization as part of a known botnet or campaign |
-
-> **Mnemonic: ACIB-RROM-P** — Account lockouts, Concurrent sessions, Impossible travel, Blocked content, Resource consumption, Resource inaccessibility, Out-of-cycle logging, Missing logs, Published attacks.
 
 #### Network attack indicators
 
