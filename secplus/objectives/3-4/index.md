@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: objective
 title: "Security+ 3.4 — Explain the importance of resilience and recovery in security architecture."
 objective_id: "3.4"
 domain: "3.0 Security Architecture"
