@@ -1,37 +1,33 @@
------
-
-layout: default
+---
+layout: objective
 title: “Security+ 3.4 — Explain the importance of resilience and recovery in security architecture.”
 objective_id: “3.4”
 domain: “3.0 Security Architecture”
 status: “done”
 tags:
-
-- secplus701
-  permalink: /secplus/objectives/3-4/
-
------
+  - secplus701
+permalink: /secplus/objectives/3-4/
+---
 
 # Security+ 3.4 — Explain the importance of resilience and recovery in security architecture.
 
 Status: <span class="status-badge done">done</span>
 
 ## Exam objective
-
 Explain the importance of resilience and recovery in security architecture.
 
 {% assign objective_slug = page.slug %}
 {% if objective_slug == nil or objective_slug == ‘’ or objective_slug == ‘index’ %}
-{% assign url_parts = page.url | split: ‘/’ %}
-{% assign objective_slug = url_parts | last %}
-{% if objective_slug == ‘’ %}
-{% assign objective_slug = url_parts | slice: -2, 1 | first %}
-{% endif %}
+  {% assign url_parts = page.url | split: ‘/’ %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == ‘’ %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
 {% endif %}
 {% assign objective_id = objective_slug | replace: ‘-’, ‘.’ %}
 {% include official_scope_pdf.html objective_id=objective_id %}
 
------
+---
 
 ## My notes
 
@@ -39,14 +35,14 @@ Explain the importance of resilience and recovery in security architecture.
 
 Resilience ensures systems can withstand disruptions and continue operating. Recovery ensures systems can be restored after failures. Together, they form the foundation of business continuity and disaster recovery planning. This objective covers high availability mechanisms, backup site strategies, capacity planning, testing methodologies, backup approaches, recovery techniques, and power infrastructure.
 
------
+---
 
 ### High availability
 
 **High availability** — systems designed to remain operational with minimal downtime, typically measured as a percentage of uptime.
 
 |Uptime Target             |Annual Downtime|Description                           |
-|--------------------------|---------------|--------------------------------------|
+|----------------|---------|------------------------|
 |**99%** (“two nines”)     |3.65 days      |Basic availability                    |
 |**99.9%** (“three nines”) |8.76 hours     |Standard enterprise                   |
 |**99.99%** (“four nines”) |52.56 minutes  |High availability                     |
@@ -56,7 +52,7 @@ Resilience ensures systems can withstand disruptions and continue operating. Rec
 **Load balancing vs. clustering:**
 
 |Mechanism         |Description                                   |Purpose                               |Failure Behavior                    |
-|------------------|----------------------------------------------|--------------------------------------|------------------------------------|
+|------------|----------------------------|------------------------|----------------------|
 |**Load Balancing**|Distributes workload across multiple servers  |Optimize performance, prevent overload|Redirects traffic to healthy servers|
 |**Clustering**    |Multiple systems acting as single logical unit|High availability, failover           |Cluster takes over if primary fails |
 
@@ -74,7 +70,7 @@ Resilience ensures systems can withstand disruptions and continue operating. Rec
 - Combines with load balancing for comprehensive HA solution
 - Shared storage ensures data consistency across cluster
 
------
+---
 
 ### Site considerations
 
@@ -83,7 +79,7 @@ Organizations maintain backup sites to recover operations if primary site is una
 **Site types:**
 
 |Site Type      |Ready Time             |Cost         |Infrastructure                        |Use Case                                     |
-|---------------|-----------------------|-------------|--------------------------------------|---------------------------------------------|
+|---------|---------------|---------|------------------------|---------------------------|
 |**Hot Site**   |Immediate - minutes    |Very high    |Fully equipped, live data replication |Mission-critical; cannot tolerate downtime   |
 |**Warm Site**  |Hours to days          |Moderate     |Partially equipped, periodic data sync|Important services; can tolerate brief outage|
 |**Cold Site**  |Weeks to months        |Low          |Empty building, no equipment          |Non-critical; long recovery acceptable       |
@@ -119,7 +115,7 @@ Organizations maintain backup sites to recover operations if primary site is una
 - Minimum distance recommendations: 50-100 miles (avoid regional disasters like hurricanes)
 - Considerations: Latency for data replication, regulatory data sovereignty requirements
 
------
+---
 
 ### Platform diversity and multi-cloud
 
@@ -146,7 +142,7 @@ Organizations maintain backup sites to recover operations if primary site is una
 - Data synchronization and consistency
 - Staff training on multiple platforms
 
------
+---
 
 ### Continuity of operations
 
@@ -168,7 +164,7 @@ Organizations maintain backup sites to recover operations if primary site is una
 **Key metrics:**
 
 |Metric                               |Definition                                                         |Example                                                             |
-|-------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
+|-----------------------|-----------------------------------------|------------------------------------------|
 |**RPO (Recovery Point Objective)**   |Maximum acceptable data loss (time between last backup and failure)|RPO = 1 hour means backups every hour; can lose up to 1 hour of data|
 |**RTO (Recovery Time Objective)**    |Maximum acceptable downtime (time to restore operations)           |RTO = 4 hours means system must be back online within 4 hours       |
 |**MTTR (Mean Time To Repair)**       |Average time to fix a failed component                             |MTTR = 2 hours means typical repair takes 2 hours                   |
@@ -179,7 +175,7 @@ Organizations maintain backup sites to recover operations if primary site is una
 - **RPO** = How much data can you afford to lose? (drives backup frequency)
 - **RTO** = How quickly must you recover? (drives site selection: hot/warm/cold)
 
------
+---
 
 ### Capacity planning
 
@@ -188,7 +184,7 @@ Ensures resources can handle current and future demand without over-provisioning
 **Capacity planning dimensions:**
 
 |Dimension         |Considerations                                                                              |
-|------------------|--------------------------------------------------------------------------------------------|
+|------------|--------------------------------------------------------|
 |**People**        |Staffing levels for normal operations and emergency response; training and skill development|
 |**Technology**    |Server capacity, storage, network bandwidth, processing power                               |
 |**Infrastructure**|Physical space (data center, office), power capacity, cooling requirements                  |
@@ -205,14 +201,14 @@ Ensures resources can handle current and future demand without over-provisioning
 - **Vertical scaling (scale up)** — add resources to existing systems (more CPU, RAM)
 - **Horizontal scaling (scale out)** — add more systems to distribute load
 
------
+---
 
 ### Testing methodologies
 
 Regular testing validates that resilience and recovery plans actually work.
 
 |Test Type              |Description                                  |Disruption Level  |Frequency                  |
-|-----------------------|---------------------------------------------|------------------|---------------------------|
+|---------------|---------------------------|------------|-----------------|
 |**Tabletop Exercise**  |Discussion-based walkthrough of scenario     |None (theoretical)|Quarterly                  |
 |**Failover Test**      |Switch to backup systems in controlled manner|Planned, minimal  |Semi-annually              |
 |**Simulation**         |Virtual environment mimicking real disaster  |None (simulated)  |Annually                   |
@@ -248,7 +244,7 @@ Regular testing validates that resilience and recovery plans actually work.
 - Tests ability to handle multiple failure scenarios
 - Can be used for both resilience testing and recovery testing
 
------
+---
 
 ### Backup strategies
 
@@ -257,7 +253,7 @@ Backups are copies of data created to protect against loss, corruption, or ranso
 **Backup locations:**
 
 |Type       |Description                                     |Pros                              |Cons                             |
-|-----------|------------------------------------------------|----------------------------------|---------------------------------|
+|-------|------------------------------|----------------------|---------------------|
 |**Onsite** |Stored at same physical location as primary data|Fast restore, low cost            |Vulnerable to site-wide disasters|
 |**Offsite**|Stored at geographically separate location      |Protected from localized disasters|Slower restore, higher cost      |
 
@@ -285,7 +281,7 @@ Backups are copies of data created to protect against loss, corruption, or ranso
 - **Use case:** Database servers, file servers, virtual machines
 - **Limitation:** Not a substitute for full backups; dependent on base image
 
------
+---
 
 ### Recovery techniques
 
@@ -313,7 +309,7 @@ Backups are copies of data created to protect against loss, corruption, or ranso
 1. **Documentation** — record recovery steps, time taken, issues encountered
 1. **Notification** — inform stakeholders when system is operational
 
------
+---
 
 ### Power infrastructure
 
@@ -322,7 +318,7 @@ Uninterrupted power is critical for continuous operations.
 **Power components:**
 
 |Component                             |Purpose                                                       |Runtime                       |Cost    |
-|--------------------------------------|--------------------------------------------------------------|------------------------------|--------|
+|------------------------|--------------------------------------|------------------|------|
 |**UPS (Uninterruptible Power Supply)**|Bridge power during brief outages, line conditioning          |10-60 minutes                 |Moderate|
 |**Generator**                         |Long-term power during extended grid outages                  |Hours to days (fuel-dependent)|High    |
 |**PDC (Power Distribution Center)**   |Central hub for power distribution, monitoring, load balancing|N/A (distribution)            |High    |
@@ -360,12 +356,12 @@ Uninterrupted power is critical for continuous operations.
 - Rack-mounted UPS for individual servers
 - PDU (Power Distribution Units) manage load balancing
 
------
+---
 
 ### Key distinctions to know for the exam
 
 | Comparison | Distinction |
-|—|—|—|
+|---|---|
 | **Load Balancing vs. Clustering** | Load balancing = distributes requests for performance; Clustering = failover for availability |
 | **Hot vs. Warm vs. Cold Site** | Hot = immediate (expensive); Warm = hours-days (moderate); Cold = weeks-months (cheap) |
 | **RPO vs. RTO** | RPO = acceptable data loss (drives backup frequency); RTO = acceptable downtime (drives recovery speed) |
@@ -376,7 +372,7 @@ Uninterrupted power is critical for continuous operations.
 | **Tabletop vs. Failover Test** | Tabletop = discussion-based, no disruption; Failover = actual system switch, controlled disruption |
 | **BC vs. DR** | BC = all organizational functions; DR = IT systems recovery |
 
------
+---
 
 ### Common exam traps
 
@@ -395,7 +391,7 @@ Reality: Load balancing optimizes performance by distributing requests. Clusteri
 **Trap: Thinking UPS provides long-term power.**
 Reality: UPS provides 10-60 minutes — enough to start a generator or gracefully shut down. For extended outages, generators are required.
 
------
+---
 
 ### Exam tips
 
@@ -406,7 +402,7 @@ Reality: UPS provides 10-60 minutes — enough to start a generator or gracefull
 1. **Power infrastructure** questions emphasize the UPS → Generator handoff. UPS provides immediate power; generator provides extended power after startup.
 1. When asked about **3-2-1 backup rule**, remember: 3 copies, 2 media types, 1 offsite. This appears on the exam.
 
------
+---
 
 ## Key terms
 
@@ -441,7 +437,7 @@ Reality: UPS provides 10-60 minutes — enough to start a generator or gracefull
 - **Generator** — Converts mechanical energy to electrical energy for extended power during grid outages.
 - **PDC (Power Distribution Center)** — Central hub for power distribution, monitoring, and load balancing.
 
------
+---
 
 ## Examples / scenarios
 
@@ -465,7 +461,7 @@ Reality: UPS provides 10-60 minutes — enough to start a generator or gracefull
 
 - **Answer:** This is **parallel processing** testing. Both systems run concurrently to validate the backup site can handle production load without disrupting operations. This is the safest DR testing method — if backup site fails, primary is unaffected.
 
------
+---
 
 ## Mini quiz
 
@@ -533,7 +529,7 @@ RPO (B) determines how frequently backups must occur (e.g., RPO = 1 hour means h
 
 </details>
 
------
+---
 
 ## Related objectives
 
@@ -542,17 +538,17 @@ RPO (B) determines how frequently backups must occur (e.g., RPO = 1 hour means h
 - [**3.2**]({{ ‘/secplus/objectives/3-2/’ | relative_url }}) — Infrastructure redundancy (load balancing, clustering) implements high availability.
 - [**5.1**]({{ ‘/secplus/objectives/5-1/’ | relative_url }}) — Security governance defines BC/DR policies and testing requirements.
 
------
+---
 
 ## Navigation
 
 **Domain 3.0: Security Architecture**
 
-|Objective                              |Title                                                                      |Status                                                                          |
-|---------------------------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-|[**3.1**]({{ ‘/secplus/objectives/3-1/’|relative_url }})                                                           |Compare and contrast security implications of different architecture models.    |
-|[**3.2**]({{ ‘/secplus/objectives/3-2/’|relative_url }})                                                           |Given a scenario, apply security principles to secure enterprise infrastructure.|
-|[**3.3**]({{ ‘/secplus/objectives/3-3/’|relative_url }})                                                           |Compare and contrast concepts and strategies to protect data.                   |
-|3.4 (current)                          |Explain the importance of resilience and recovery in security architecture.|✅ done                                                                          |
+| Objective | Title | Status |
+|---|---|---|
+| [3.1]({{ ‘/secplus/objectives/3-1/’ | relative_url }}) | Compare and contrast security implications of different architecture models. | done |
+| [3.2]({{ ‘/secplus/objectives/3-2/’ | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | done |
+| [3.3]({{ ‘/secplus/objectives/3-3/’ | relative_url }}) | Compare and contrast concepts and strategies to protect data. | done |
+| **3.4** | Explain the importance of resilience and recovery in security architecture. (current) | done |
 
 [← Back to Dashboard]({{ ‘/secplus/’ | relative_url }}) | [Next: Objective 4.1 →]({{ ‘/secplus/objectives/4-1/’ | relative_url }})
