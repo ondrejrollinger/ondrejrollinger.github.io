@@ -6,7 +6,7 @@ domain: "4.0 Security Operations"
 status: "done"
 tags:
   - secplus701
-permalink: /objectives/4-1/
+permalink: /secplus/objectives/4-1/
 ---
 
 ## Overview
