@@ -446,4 +446,4 @@ Both are fundamental segmentation best practices. Screened subnets (B) isolate i
 | **3.2** | Given a scenario, apply security principles to secure enterprise infrastructure. (current) | done |
 | [3.3]({{ '/secplus/objectives/3-3/' | relative_url }}) | Compare and contrast concepts and strategies to protect data. | done |
 
-[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.3 →]({{ '/secplus/objectives/3-3/' | relative_url }})
+[← Previous: Objective 3.1]({{ '/secplus/objectives/3-1/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.3 →]({{ '/secplus/objectives/3-3/' | relative_url }})

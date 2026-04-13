@@ -551,4 +551,4 @@ RPO (B) determines how frequently backups must occur (e.g., RPO = 1 hour means h
 | [3.3]({{ ‘/secplus/objectives/3-3/’ | relative_url }}) | Compare and contrast concepts and strategies to protect data. | done |
 | **3.4** | Explain the importance of resilience and recovery in security architecture. (current) | done |
 
-[← Back to Dashboard]({{ ‘/secplus/’ | relative_url }}) | [Next: Objective 4.1 →]({{ ‘/secplus/objectives/4-1/’ | relative_url }})
+[← Previous: Objective 3.3]({{ ‘/secplus/objectives/3-3/’ | relative_url }}) | [Back to Dashboard]({{ ‘/secplus/’ | relative_url }}) | [Next: Domain 4 →]({{ ‘/secplus/objectives/4-1/’ | relative_url }})

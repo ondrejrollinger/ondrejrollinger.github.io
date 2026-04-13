@@ -428,4 +428,4 @@ Changing default credentials (B) addresses the most common IoT attack vector. Ne
 | [3.2]({{ '/secplus/objectives/3-2/' | relative_url }}) | Given a scenario, apply security principles to secure enterprise infrastructure. | done |
 | [3.3]({{ '/secplus/objectives/3-3/' | relative_url }}) | Compare and contrast concepts and strategies to protect data. | done |
 
-[← Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.2 →]({{ '/secplus/objectives/3-2/' | relative_url }})
+[← Previous: Domain 2]({{ '/secplus/objectives/2-5/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 3.2 →]({{ '/secplus/objectives/3-2/' | relative_url }})
