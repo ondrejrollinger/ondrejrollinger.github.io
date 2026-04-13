@@ -13,16 +13,7 @@ permalink: /secplus/objectives/4-1/
 
 Securing computing resources requires a layered approach combining baseline establishment, system hardening, mobile device management, wireless security, and application security. This objective covers practical security techniques applied across workstations, servers, mobile devices, wireless infrastructure, and applications.
 
-{% assign objective_slug = page.slug %}
-{% if objective_slug == nil or objective_slug == ‘’ or objective_slug == ‘index’ %}
-  {% assign url_parts = page.url | split: ‘/’ %}
-  {% assign objective_slug = url_parts | last %}
-  {% if objective_slug == ‘’ %}
-    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
-  {% endif %}
-{% endif %}
-{% assign objective_id = objective_slug | replace: ‘-’, ‘.’ %}
-{% include official_scope_pdf.html objective_id=objective_id %}
+{% include official_scope_pdf.html objective_id=page.objective_id %}
 
 ---
 
