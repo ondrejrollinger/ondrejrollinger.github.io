@@ -4,7 +4,8 @@ title: "4.1 Apply Common Security Techniques to Computing Resources"
 objective_id: "4.1"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["hardening", "baselines", "mobile-security", "wireless-security", "application-security", "MDM", "WPA3", "sandboxing"]
+tags:
+  - secplus701
 permalink: /objectives/4-1/
 ---
 
