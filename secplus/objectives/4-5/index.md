@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.5 Identity and Access Management"
+title: "Security+ 4.5 — Given a scenario, modify enterprise capabilities to enhance security."
 objective_id: "4.5"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["IAM", "authentication", "authorization", "privileged-access"]
-permalink: /objectives/4-5/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-5/
 ---
 
-## Overview
+# Security+ 4.5 — Given a scenario, modify enterprise capabilities to enhance security.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Given a scenario, modify enterprise capabilities to enhance security.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Identity and Access Management (IAM) ensures the right users have appropriate access to resources. This includes provisioning/deprovisioning accounts, managing privileged access, and implementing least privilege principles.
 

@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "5.5 Types of Policies"
+title: "Security+ 5.5 — Explain types and purposes of audits and assessments."
 objective_id: "5.5"
 domain: "5.0 Security Program Management and Oversight"
 status: "done"
-tags: ["policies", "procedures", "standards", "guidelines"]
-permalink: /objectives/5-5/
+tags:
+  - secplus701
+permalink: /secplus/objectives/5-5/
 ---
 
-## Overview
+# Security+ 5.5 — Explain types and purposes of audits and assessments.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Explain types and purposes of audits and assessments.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Security policies provide the framework for an organization's security program. This includes various policy types, standards, procedures, and guidelines that guide security decisions and actions.
 

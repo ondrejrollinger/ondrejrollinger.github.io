@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.1 Security Techniques for Computing Resources"
+title: "Security+ 4.1 — Given a scenario, apply common security techniques to computing resources."
 objective_id: "4.1"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["secure-baselines", "wireless-security", "mobile-security", "hardening"]
-permalink: /objectives/4-1/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-1/
 ---
 
-## Overview
+# Security+ 4.1 — Given a scenario, apply common security techniques to computing resources.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Given a scenario, apply common security techniques to computing resources.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Security techniques for computing resources focus on implementing secure configurations, protecting wireless networks, and managing mobile devices. This objective covers secure baselines, wireless security protocols, and mobile device management (MDM) strategies.
 
