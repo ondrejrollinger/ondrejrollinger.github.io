@@ -1,412 +1,415 @@
 ---
 layout: objective
-title: "4.8 Incident Response"
-objective_id: "4.8"
+title: "4.9 Investigation Data Sources"
+objective_id: "4.9"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["incident-response", "forensics", "containment", "lessons-learned"]
-permalink: /objectives/4-8/
+tags: ["logs", "forensics", "network-analysis", "SIEM"]
+permalink: /objectives/4-9/
 ---
 
 ## Overview
 
-Incident response is the systematic approach to managing security incidents. This objective covers the incident response process, team roles, forensics, threat hunting, and post-incident activities.
+Investigation data sources provide the evidence needed to understand security incidents. This includes log files, network captures, forensic artifacts, and automated scanning results.
 
 ---
 
-## Incident Response Process
+## Log Files
 
-**7 steps (CompTIA framework):**
+**System logs:**
 
-### 1. Preparation
-- Establish incident response team
-- Create policies and procedures (playbooks)
-- Deploy security tools (SIEM, EDR, forensic tools)
-- Train team members
-- Conduct tabletop exercises
+**Windows Event Logs:**
+- **Security log:** Authentication (Event ID 4624/4625), privilege use
+- **System log:** Service starts/stops, driver loading, system errors
+- **Application log:** Application-specific events
+- **Location:** Event Viewer
 
-### 2. Detection  
-- Identify that security incident occurred
-- Sources: SIEM alerts, EDR, user reports, threat intelligence
-- Triage: Determine if real incident or false positive
+**Linux logs:**
+- **/var/log/auth.log:** Authentication attempts (SSH, sudo)
+- **/var/log/syslog:** General system messages
+- **/var/log/secure:** Security-related (RHEL/CentOS)
+- **journalctl:** systemd log viewer
 
-### 3. Analysis
-- Investigate scope and impact
-- Determine: What happened? When? How? Which systems affected?
-- Collect evidence (logs, memory dumps, network captures)
+**Network device logs:**
+- **Firewall:** Allowed/denied connections, rule matches
+- **Router/Switch:** Interface status, routing changes, port security violations
+- **Wireless:** Client associations, authentication failures
+- **VPN:** Remote access sessions, tunnel establishments
 
-### 4. Containment
-- Stop incident from spreading
-- **Short-term:** Immediate actions (isolate systems, block IPs)
-- **Long-term:** Temporary fixes while planning permanent solution
+**Application logs:**
+- **Web server:** Access logs (requests), error logs (failures)
+- **Database:** Queries, access patterns, errors
+- **Email:** Message delivery, spam filtering, authentication
 
-### 5. Eradication
-- Remove threat from environment
-- Delete malware, close vulnerabilities, remove attacker access
-- Verify threat completely eliminated
-
-### 6. Recovery
-- Restore systems to normal operation
-- Restore from backups, apply patches, return to production
-- Monitor for reinfection
-
-### 7. Lessons Learned
-- Post-incident review (1-2 weeks after recovery)
-- Document what worked and what didn't
-- Update procedures to prevent recurrence
-
-**Key principle:** Each phase builds on previous, can't skip steps
-
-**Comparison to NIST:**
-- NIST has 4 phases (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident)
-- CompTIA expands to 7 distinct phases for exam
-
----
-
-## Incident Response Team
-
-**Roles:**
-
-**Incident Response Manager:**
-- Coordinate response activities
-- Make critical decisions
-- Communicate with executives
-
-**Security Analysts:**
-- Investigate alerts
-- Analyze logs
-- Execute containment
-
-**Forensic Specialists:**
-- Preserve evidence
-- Conduct detailed analysis
-- Expert testimony (if legal proceedings)
-
-**IT Operations:**
-- System administrators (restore backups, patch systems)
-- Network engineers (implement firewall rules)
-
-**Legal Counsel:**
-- Breach notification requirements
-- Law enforcement coordination
-- Liability assessment
-
-**Human Resources:**
-- Insider threat investigations
-- Employee discipline
-
-**Public Relations:**
-- External communications (customers, media)
-- Reputation management
-
----
-
-## Digital Forensics
-
-**Three core principles:**
-
-### 1. Avoid Bias
-- Objective analysis (let evidence guide conclusions)
-- Independent verification
-- Peer review
-
-### 2. Repeatable Actions
-- Document every step
-- Commands used, results obtained
-- Third party can reproduce analysis
-
-### 3. Evidence Preservation
-- Chain of custody (who collected, when, how stored)
-- Work on copies (never original)
-- Write protection (prevent modification)
-
-**Order of volatility (most volatile first):**
-1. CPU registers and cache (milliseconds)
-2. System memory (RAM) - **MOST IMPORTANT TO COLLECT FIRST**
-3. Network state (active connections)
-4. Running processes
-5. Temporary files and swap
-6. Hard disk data
-7. Remote logging and monitoring
-8. Physical configuration
-9. Archival media
-
-**Why order matters:**
+**Important Windows Event IDs:**
 ```
-Incident: Malware detected on workstation
+Authentication:
+- 4624: Successful logon
+- 4625: Failed logon
+- 4648: Logon using explicit credentials (runas)
+- 4768: Kerberos TGT requested
+- 4769: Kerberos service ticket requested
 
-Correct order:
-1. Memory dump FIRST (captures running malware, encryption keys)
-2. Network connections (shows active C2 communication)
-3. Running processes
-4. Disk image (takes hours but data is persistent)
+Account Management:
+- 4720: User account created
+- 4722: User account enabled
+- 4724: Password reset attempted
+- 4728: User added to security-enabled global group
+- 4732: User added to security-enabled local group
+- 4756: User added to security-enabled universal group
 
-If reversed (disk first):
-- Disk imaging takes 3 hours
-- During that time, malware process stops
-- RAM contents lost (attacker may detect investigation)
-- Network connections closed
-- Critical evidence GONE
+Process/Service:
+- 4688: New process created
+- 4697: Service installed
+- 7045: Service installed (System log)
 
-Result: Order of volatility ensures you capture most time-sensitive evidence first
-```
-
-**Forensic imaging:**
-
-**Process:**
-1. Write blocker (hardware prevents modification)
-2. Create bit-by-bit copy (dd, FTK Imager)
-3. Calculate hashes (MD5, SHA-256)
-4. Verify hashes match (original = image)
-5. Work on image, preserve original
-
-**Hash verification:**
-```bash
-# Hash original drive
-md5sum /dev/sda > original-hash.txt
-
-# Create image
-dd if=/dev/sda of=/mnt/forensics/evidence.dd bs=4M
-
-# Hash image
-md5sum evidence.dd > image-hash.txt
-
-# Compare
-diff original-hash.txt image-hash.txt
-# If identical: Image is exact copy (integrity verified)
-```
-
-**Chain of custody:**
-```
-Evidence ID: HD-2024-042
-Description: Laptop hard drive
-Serial: WD-WCAV29374628
-
-Collected by: J. Smith
-Date/Time: 2024-04-14 14:00 UTC
-Location: Building A, 3rd floor
-
-Transferred to: Forensic lab
-Date/Time: 2024-04-14 16:00 UTC
-Received by: M. Johnson
-
-Stored: Evidence locker #3
-Access log: Maintained
-
-Purpose: Legal proceedings require proving evidence not tampered with
+Object Access:
+- 4663: Object accessed (file/folder)
+- 5140: Network share accessed
+- 5145: Network share object accessed
 ```
 
 ---
 
-## Threat Hunting
+## Network Traffic Analysis
 
-**Definition:** Proactive search for threats that evaded detection
+**NetFlow/IPFIX:**
+- **What it captures:** Metadata (source/dest IP, ports, protocol, bytes transferred)
+- **What it doesn't capture:** Actual packet contents
+- **Use cases:** Bandwidth analysis, detect data exfiltration, traffic patterns
+- **Advantage:** Low overhead (doesn't store full packets)
 
-**Difference from detection:**
-- **Detection:** Automated (SIEM rules, EDR signatures)
-- **Hunting:** Manual investigation by analyst
+**Packet capture (PCAP):**
+- **Tools:** Wireshark, tcpdump, tshark
+- **What it captures:** Full packet contents (headers + payload)
+- **Use cases:** Deep protocol analysis, malware communication, credential theft
+- **Limitation:** High storage requirements
 
-**Threat hunting process:**
+**Network analysis use cases:**
 
-### 1. Establish Hypothesis
+**Detecting data exfiltration:**
 ```
-Example hypotheses:
-- "Attacker may be using stolen credentials during off-hours"
-- "PowerShell being used for fileless malware"
-- "Data exfiltration via DNS tunneling"
-- "Lateral movement using PsExec"
-
-Hypothesis sources:
-- Threat intelligence (new attack campaign)
-- Industry trends (increase in specific attack type)
-- Anomalies (unusual patterns observed)
-```
-
-### 2. Profile Threat Actors
-```
-Identify likely attacker TTPs:
-- APT: Custom malware, living-off-the-land, long dwell time
-- Cybercriminal: Automated tools, quick smash-and-grab
-- Insider: Slow data exfiltration, after-hours access
-
-Expected indicators:
-- APT: Subtle, low-and-slow, uses legitimate tools
-- Cybercriminal: Noisy, known malware, rapid activity
-- Insider: USB usage, large file transfers, access to unrelated systems
+NetFlow indicators:
+- Large outbound transfer to external IP
+- Unusual protocols (DNS with large payloads = tunneling)
+- High volume to single destination
+- Transfer during off-hours
 ```
 
-### 3. Conduct Hunt
+**Malware C2 detection:**
 ```
-Data sources:
-- Windows Event Logs (Event ID 4624/4625 for authentication)
-- EDR telemetry (process execution, network connections)
-- Network traffic (NetFlow, packet captures)
-- DNS logs (unusual queries)
-
-Hunt queries:
-- "Find PowerShell with -EncodedCommand"
-- "Detect network logons from workstations using admin accounts"
-- "Identify large outbound data transfers to external IPs"
+Packet analysis:
+- Beaconing pattern (regular intervals)
+- Connections to newly registered domains
+- Unusual user-agent strings
+- Encrypted traffic to non-standard ports
 ```
 
-### 4. Document Findings
+**Protocol analysis:**
 ```
-If threat found:
-- Escalate to incident response
-- Create detection rules (automate future detection)
-- Update threat intelligence
-
-If no threat found:
-- Document methodology
-- Refine hypothesis
-- Plan next hunt
-```
-
-**Hunt metrics:**
-- Hunts conducted per month
-- Threats detected
-- New detection rules created
-- Time per hunt
-
----
-
-## Root Cause Analysis
-
-**Purpose:** Identify fundamental reason incident occurred
-
-**5 Whys technique:**
-```
-Problem: Ransomware encrypted 50 systems
-
-Why? User clicked malicious email attachment
-Why? Email appeared legitimate
-Why? Email filtering didn't catch it
-Why? No sandbox to detonate suspicious attachments
-Why? Sandbox procurement delayed (budget)
-
-Root cause: Lack of email sandbox solution
-
-Remediation: Deploy sandbox, enhance training
-```
-
-**Fishbone diagram (Ishikawa):**
-```
-Categories: People, Process, Technology, Environment
-
-People:
-- User clicked without verification
-- No security awareness training
-
-Process:
-- No email verification procedure
-- Backup process incomplete
-
-Technology:
-- Email filter outdated
-- No EDR on all endpoints
-
-Environment:
-- Remote work reduces security culture
-- Vendor delay in updates
-
-Result: Multiple contributing factors identified
+Wireshark filters:
+http.request.method == "POST" (find POST requests)
+dns.qry.name contains "malicious" (DNS queries)
+tcp.flags.syn == 1 && tcp.flags.ack == 0 (SYN scans)
+ip.src == 192.168.1.100 (filter by source IP)
 ```
 
 ---
 
-## Training and Testing
+## Endpoint Artifacts
 
-**Tabletop exercise:**
-- **Format:** Discussion-based, conference room
-- **Participants:** Team discusses scenario
-- **Benefit:** Low cost, identifies process gaps
-- **Example:** "Ransomware detected at 2 AM, what do you do?"
+**Windows artifacts:**
 
-**Simulation:**
-- **Format:** Hands-on in lab environment
-- **Participants:** Team responds to simulated attack
-- **Benefit:** Technical practice, realistic
-- **Example:** Red team launches attack in isolated network
+**Registry:**
+- **Run keys:** Programs that auto-start
+  - `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`
+  - `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
+- **Recently used:** Recent documents, searches
+- **USB devices:** History of connected USB drives
+- **User accounts:** Account creation dates, last login
 
-**Full interruption test:**
-- **Format:** Actually fail over to backup systems
-- **Benefit:** Proves disaster recovery works
-- **Limitation:** Expensive, disruptive
-- **Frequency:** Rarely (once a year for mature programs)
+**Prefetch:**
+- **Location:** `C:\Windows\Prefetch\`
+- **Purpose:** Optimize program loading
+- **Forensic value:** Proves program executed, execution count, timestamps
 
-**Red team vs Purple team:**
+**Event logs:**
+- Already covered above (Security, System, Application)
 
-**Red team:**
-- **Goal:** Attack systems (adversarial)
-- **Method:** Exploit vulnerabilities, evade detection
-- **Output:** Report on weaknesses
+**Browser history:**
+- **Location:** User profile (AppData)
+- **Contains:** URLs visited, downloads, cookies, cache
+- **Use:** Identify phishing sites visited, malware downloads
 
-**Purple team:**
-- **Goal:** Improve detection (collaborative)
-- **Method:** Red demonstrates attack, blue improves detection
-- **Output:** Enhanced detection capabilities
+**File system:**
+- **MFT (Master File Table):** NTFS metadata, file creation/modification times
+- **USN Journal:** Change journal (tracks file system changes)
+- **Recycle Bin:** Deleted files (may contain evidence)
+
+**Memory artifacts:**
+- **Running processes:** Active malware
+- **Network connections:** Active C2 communication
+- **Loaded DLLs:** Injected malicious code
+- **Passwords:** Credentials in memory
+
+**Linux artifacts:**
+
+**Shell history:**
+- **Location:** `~/.bash_history`, `~/.zsh_history`
+- **Contains:** Commands executed by user
+- **Forensic value:** Attacker commands, lateral movement
+
+**Cron jobs:**
+- **Location:** `/etc/crontab`, `/var/spool/cron/`
+- **Purpose:** Scheduled tasks
+- **Forensic value:** Persistence mechanisms
+
+**Authentication logs:**
+- **/var/log/auth.log:** SSH logins, sudo usage
+- **/var/log/wtmp:** Login history
+- **/var/log/lastlog:** Last login per user
+
+**Package manager logs:**
+- **APT:** `/var/log/apt/history.log` (installed packages)
+- **YUM:** `/var/log/yum.log`
+- **Forensic value:** Attacker-installed tools
+
+---
+
+## Automated Reports and Dashboards
+
+**Vulnerability scan results:**
+- **Source:** Nessus, OpenVAS, Qualys
+- **Contains:** Vulnerabilities found, severity (CVSS), affected systems
+- **Use:** Prioritize patching, identify attack vectors
+
+**SIEM dashboards:**
+- **Real-time monitoring:** Current threat activity
+- **Historical trends:** Security posture over time
+- **Compliance reports:** PCI, HIPAA, SOX reporting
+
+**Key metrics to display:**
+
+**Security Operations Center (SOC):**
+```
+Operational metrics:
+- Alerts per day (volume)
+- Mean time to detect (MTTD)
+- Mean time to respond (MTTR)
+- Open incidents (current workload)
+- False positive rate (tuning effectiveness)
+
+Threat landscape:
+- Top attacked systems
+- Top attack types (malware, brute force, etc.)
+- Geographic source of attacks
+- Blocked vs allowed connections
+```
+
+**Executive dashboard:**
+```
+High-level metrics:
+- Security posture score (0-100)
+- Critical vulnerabilities (count)
+- Open high-severity incidents
+- Compliance status (% compliant)
+- Trend: Improving or declining?
+```
+
+**Automated report examples:**
+
+**Daily Security Summary:**
+- New incidents created
+- Incidents closed
+- Critical alerts
+- Failed login summary
+- Top talkers (most active systems)
+
+**Weekly Vulnerability Report:**
+- New vulnerabilities discovered
+- Remediation progress
+- Overdue patches
+- Systems missing critical updates
+
+**Monthly Compliance Report:**
+- PCI DSS compliance status
+- HIPAA audit trail
+- SOX controls validation
+- Policy violations
+
+---
+
+## Metadata
+
+**Definition:** Data about data
+
+**File metadata:**
+- **Creation time:** When file created
+- **Modification time:** When last changed
+- **Access time:** When last opened
+- **Owner:** User who owns file
+- **Permissions:** Read/write/execute for user/group/others
+- **File size:** Bytes
+- **File type:** Extension, MIME type
+
+**Email metadata:**
+- **From/To:** Sender and recipient
+- **Subject:** Email subject line
+- **Date/Time:** When sent
+- **Message-ID:** Unique identifier
+- **X-headers:** Routing information, spam scores, authentication results
+
+**Image metadata (EXIF):**
+- **Camera make/model:** Device used
+- **GPS coordinates:** Where photo taken
+- **Date/Time:** When photo taken
+- **Forensic value:** Prove photo location/time, identify device
+
+**Document metadata:**
+- **Author:** Who created document
+- **Created/Modified:** Timestamps
+- **Application:** Software used (Word, PDF creator)
+- **Forensic value:** Identify document source
+
+**Metadata analysis example:**
+```
+Incident: Leaked confidential document
+
+Metadata examination:
+- Author: john.doe
+- Created: 2024-04-10 15:32:18
+- Last modified: 2024-04-11 09:15:42
+- Application: Microsoft Word 2019
+- File path: C:\Users\john.doe\Documents\Confidential\Q2_Strategy.docx
+
+Conclusion:
+- John Doe created document (insider threat investigation)
+- Modified day before leak (timing)
+- File path shows it was in Confidential folder (unauthorized disclosure)
+```
+
+---
+
+## Threat Feeds and Intelligence
+
+**Threat intelligence sources:**
+
+**Open-source:**
+- AlienVault OTX (Open Threat Exchange)
+- Abuse.ch (malware samples, C2 IPs)
+- MISP (Malware Information Sharing Platform)
+- US-CERT alerts
+
+**Commercial:**
+- Recorded Future
+- ThreatConnect
+- Mandiant Threat Intelligence
+- CrowdStrike Threat Graph
+
+**Intelligence types:**
+
+**Indicators of Compromise (IOCs):**
+- **File hashes:** MD5, SHA-1, SHA-256 of known malware
+- **IP addresses:** Known C2 servers, malicious hosts
+- **Domains:** Phishing sites, malware distribution
+- **URLs:** Specific malicious links
+- **Email addresses:** Phishing sender addresses
+
+**Tactics, Techniques, and Procedures (TTPs):**
+- **MITRE ATT&CK framework:** Catalog of adversary behaviors
+- **Example TTP:** "T1078 - Valid Accounts" (attacker using stolen credentials)
+- **Use:** Detect attack patterns, not just specific indicators
+
+**Threat intelligence use cases:**
+
+**Proactive blocking:**
+```
+Threat feed: List of known malicious IPs
+
+Integration:
+1. SIEM ingests threat feed
+2. Firewall automatically blocks IPs from feed
+3. IDS/IPS signatures updated
+4. Email gateway blocks domains
+
+Result: Prevent known threats before they reach network
+```
+
+**Enrichment:**
+```
+Alert: Connection to 203.0.113.45
+
+Threat intel lookup:
+- IP reputation: Known C2 server (APT28)
+- First seen: 2024-03-15
+- Associated malware: Fancy Bear toolkit
+- Geographic location: Russia
+
+Enriched alert:
+"Connection to KNOWN C2 (APT28), high confidence malicious"
+vs
+"Connection to 203.0.113.45" (no context)
+
+Result: Better prioritization, faster response
+```
 
 ---
 
 ## Key Distinctions
 
-**Detection vs Analysis:**
-- Detection: Is this an incident? (yes/no)
-- Analysis: What happened? (scope, impact)
+**NetFlow vs Packet Capture:**
+- NetFlow: Metadata only (who, when, how much)
+- Packet capture: Full content (what was said)
 
-**Containment vs Eradication:**
-- Containment: Stop spread (temporary, immediate)
-- Eradication: Remove threat (permanent, thorough)
+**Event logs vs Syslog:**
+- Event logs: Windows (Event Viewer)
+- Syslog: Linux/Unix standard logging
 
-**Playbook vs Runbook:**
-- Playbook: Manual checklist
-- Runbook: Automated workflow
+**IOC vs TTP:**
+- IOC: Specific indicator (file hash, IP)
+- TTP: Behavior pattern (attack technique)
 
-**Tabletop vs Simulation:**
-- Tabletop: Discussion only
-- Simulation: Hands-on technical exercise
-
-**Threat Hunting vs Detection:**
-- Hunting: Manual, proactive search
-- Detection: Automated alerts
+**Metadata vs Data:**
+- Metadata: Information about file (creation time, author)
+- Data: Actual file contents
 
 ---
 
 ## Common Exam Traps
 
-1. **Trap:** Thinking containment and eradication are same step
-   - **Reality:** Containment stops spread, eradication removes threat
+1. **Trap:** Thinking NetFlow captures full packet contents
+   - **Reality:** NetFlow is metadata only (need PCAP for full content)
 
-2. **Trap:** Believing forensics should analyze original disk
-   - **Reality:** Always work on copy (preserve evidence)
+2. **Trap:** Believing deleted files are unrecoverable
+   - **Reality:** Recycle Bin, volume shadow copies, forensic tools can recover
 
-3. **Trap:** Assuming order of volatility doesn't matter
-   - **Reality:** Collect RAM before disk (RAM lost when powered off)
+3. **Trap:** Assuming logs are always accurate
+   - **Reality:** Logs can be tampered with (need log integrity protection)
 
-4. **Trap:** Thinking lessons learned happens during incident
-   - **Reality:** Post-incident (1-2 weeks after recovery)
+4. **Trap:** Thinking threat intelligence eliminates need for detection
+   - **Reality:** Feeds provide IOCs, still need detection rules
 
-5. **Trap:** Believing all incidents require law enforcement
-   - **Reality:** Only specific cases (financial fraud, major breaches)
+5. **Trap:** Believing metadata is less important than file contents
+   - **Reality:** Metadata often reveals more (who created, when, where)
 
 ---
 
 ## Exam Tips
 
-1. **7 steps in order:** Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned
-2. **Containment first** before eradication (stop spread, then remove)
-3. **Preserve evidence** during containment (don't destroy forensic artifacts)
-4. **Order of volatility:** RAM first, disk second (most volatile collected first)
-5. **Forensics:** Work on copy, never original
-6. **Chain of custody:** Document who, what, when for evidence
-7. **Root cause analysis:** Identify WHY (not just what)
-8. **Lessons learned:** Post-incident only (after recovery)
-9. **Tabletop:** Discussion-based training (low cost)
-10. **Threat hunting:** Proactive manual search (not automated detection)
+1. **Windows Event 4624** = successful logon
+2. **Windows Event 4625** = failed logon  
+3. **NetFlow = metadata** (not full packets)
+4. **Packet capture = full content** (headers + payload)
+5. **Prefetch proves** program executed on Windows
+6. **Metadata includes** creation time, author, location
+7. **IOCs = specific indicators** (hash, IP)
+8. **TTPs = behavior patterns** (attack techniques)
+9. **Order of volatility:** RAM first, disk later
+10. **Threat intelligence enriches** alerts with context
 
 ---
 
 ## Quick Navigation
-- [← Previous: 4.7 Automation & Orchestration](../4-7/)
-- [→ Next: 4.9 Investigation Data Sources](../4-9/)
+- [← Previous: 4.8 Incident Response](../4-8/)
 - [↑ Back to Domain 4](../)
+- [⌂ Home](/)
