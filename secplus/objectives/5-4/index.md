@@ -496,7 +496,17 @@ Certificate maintenance:
 
 ---
 
-## Quick Navigation
-- [← Previous: 5.3 Third-Party Risk](../5-3/)
-- [→ Next: 5.5 Policy Types](../5-5/)
-- [↑ Back to Domain 5](../)
+## Navigation
+
+**Domain 5.0: Security Program Management and Oversight**
+
+| Objective | Title | Status |
+|---|---|---|
+| [5.1]({{ '/secplus/objectives/5-1/' | relative_url }}) | Summarize elements of effective security governance. | done |
+| [5.2]({{ '/secplus/objectives/5-2/' | relative_url }}) | Explain elements of the risk management process. | done |
+| [5.3]({{ '/secplus/objectives/5-3/' | relative_url }}) | Explain the processes associated with third-party risk assessment and management. | done |
+| **5.4** | Summarize elements of effective security compliance. (current) | done |
+| [5.5]({{ '/secplus/objectives/5-5/' | relative_url }}) | Explain types and purposes of audits and assessments. | done |
+| [5.6]({{ '/secplus/objectives/5-6/' | relative_url }}) | Given a scenario, implement security awareness practices. | done |
+
+[← Previous: Objective 5.3]({{ '/secplus/objectives/5-3/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 5.5 →]({{ '/secplus/objectives/5-5/' | relative_url }})

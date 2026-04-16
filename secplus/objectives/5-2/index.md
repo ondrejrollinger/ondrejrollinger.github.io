@@ -513,7 +513,17 @@ Treatment requirements:
 
 ---
 
-## Quick Navigation
-- [← Previous: 5.1 Governance](../5-1/)
-- [→ Next: 5.3 Third-Party Risk](../5-3/)
-- [↑ Back to Domain 5](../)
+## Navigation
+
+**Domain 5.0: Security Program Management and Oversight**
+
+| Objective | Title | Status |
+|---|---|---|
+| [5.1]({{ '/secplus/objectives/5-1/' | relative_url }}) | Summarize elements of effective security governance. | done |
+| **5.2** | Explain elements of the risk management process. (current) | done |
+| [5.3]({{ '/secplus/objectives/5-3/' | relative_url }}) | Explain the processes associated with third-party risk assessment and management. | done |
+| [5.4]({{ '/secplus/objectives/5-4/' | relative_url }}) | Summarize elements of effective security compliance. | done |
+| [5.5]({{ '/secplus/objectives/5-5/' | relative_url }}) | Explain types and purposes of audits and assessments. | done |
+| [5.6]({{ '/secplus/objectives/5-6/' | relative_url }}) | Given a scenario, implement security awareness practices. | done |
+
+[← Previous: Objective 5.1]({{ '/secplus/objectives/5-1/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 5.3 →]({{ '/secplus/objectives/5-3/' | relative_url }})
