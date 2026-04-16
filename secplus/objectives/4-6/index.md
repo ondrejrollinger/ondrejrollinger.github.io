@@ -421,7 +421,20 @@ Implementation:
 
 ---
 
-## Quick Navigation
-- [← Previous: 4.5 Identity & Access](../4-5/)
-- [→ Next: 4.7 Automation & Orchestration](../4-7/)
-- [↑ Back to Domain 4](../)
+## Navigation
+
+**Domain 4.0: Security Operations**
+
+| Objective | Title | Status |
+|---|---|---|
+| [4.1]({{ '/secplus/objectives/4-1/' | relative_url }}) | Given a scenario, apply common security techniques to computing resources. | done |
+| [4.2]({{ '/secplus/objectives/4-2/' | relative_url }}) | Explain the security implications of proper hardware, software, and data asset management. | done |
+| [4.3]({{ '/secplus/objectives/4-3/' | relative_url }}) | Explain various activities associated with vulnerability management. | done |
+| [4.4]({{ '/secplus/objectives/4-4/' | relative_url }}) | Explain security alerting and monitoring concepts and tools. | done |
+| [4.5]({{ '/secplus/objectives/4-5/' | relative_url }}) | Given a scenario, modify enterprise capabilities to enhance security. | done |
+| **4.6** | Given a scenario, implement and maintain identity and access management. (current) | done |
+| [4.7]({{ '/secplus/objectives/4-7/' | relative_url }}) | Explain the importance of automation and orchestration related to secure operations. | done |
+| [4.8]({{ '/secplus/objectives/4-8/' | relative_url }}) | Explain appropriate incident response activities. | done |
+| [4.9]({{ '/secplus/objectives/4-9/' | relative_url }}) | Given a scenario, use data sources to support an investigation. | done |
+
+[← Previous: Objective 4.5]({{ '/secplus/objectives/4-5/' | relative_url }}) | [Back to Dashboard]({{ '/secplus/' | relative_url }}) | [Next: Objective 4.7 →]({{ '/secplus/objectives/4-7/' | relative_url }})
