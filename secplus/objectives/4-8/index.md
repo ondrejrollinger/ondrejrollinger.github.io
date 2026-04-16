@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.8 Incident Response"
+title: "Security+ 4.8 — Explain appropriate incident response activities."
 objective_id: "4.8"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["incident-response", "forensics", "containment", "lessons-learned"]
-permalink: /objectives/4-8/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-8/
 ---
 
-## Overview
+# Security+ 4.8 — Explain appropriate incident response activities.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Explain appropriate incident response activities.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Incident response is the systematic approach to managing security incidents. This objective covers the incident response process, team roles, forensics, threat hunting, and post-incident activities.
 

@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.2 Asset Management"
+title: "Security+ 4.2 — Explain the security implications of proper hardware, software, and data asset management."
 objective_id: "4.2"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["asset-management", "inventory", "lifecycle", "disposal"]
-permalink: /objectives/4-2/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-2/
 ---
 
-## Overview
+# Security+ 4.2 — Explain the security implications of proper hardware, software, and data asset management.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Explain the security implications of proper hardware, software, and data asset management.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Asset management involves tracking, maintaining, and securing organizational resources throughout their lifecycle. This includes acquisition, deployment, maintenance, and disposal of hardware, software, and data assets.
 

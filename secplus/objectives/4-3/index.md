@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.3 Vulnerability Management"
+title: "Security+ 4.3 — Explain various activities associated with vulnerability management."
 objective_id: "4.3"
-domain: "4.0 Security Operations"  
+domain: "4.0 Security Operations"
 status: "done"
-tags: ["vulnerability-scanning", "patching", "CVSS", "remediation"]
-permalink: /objectives/4-3/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-3/
 ---
 
-## Overview
+# Security+ 4.3 — Explain various activities associated with vulnerability management.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Explain various activities associated with vulnerability management.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Vulnerability management is the continuous process of identifying, evaluating, prioritizing, and remediating security weaknesses in systems. This includes vulnerability scanning, patch management, and risk-based remediation strategies.
 

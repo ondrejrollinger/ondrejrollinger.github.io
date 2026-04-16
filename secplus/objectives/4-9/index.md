@@ -1,14 +1,37 @@
 ---
 layout: objective
-title: "4.9 Investigation Data Sources"
+title: "Security+ 4.9 — Given a scenario, use data sources to support an investigation."
 objective_id: "4.9"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["logs", "forensics", "network-analysis", "SIEM"]
-permalink: /objectives/4-9/
+tags:
+  - secplus701
+permalink: /secplus/objectives/4-9/
 ---
 
-## Overview
+# Security+ 4.9 — Given a scenario, use data sources to support an investigation.
+
+Status: <span class="status-badge done">done</span>
+
+## Exam objective
+Given a scenario, use data sources to support an investigation.
+
+{% assign objective_slug = page.slug %}
+{% if objective_slug == nil or objective_slug == '' or objective_slug == 'index' %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign objective_slug = url_parts | last %}
+  {% if objective_slug == '' %}
+    {% assign objective_slug = url_parts | slice: -2, 1 | first %}
+  {% endif %}
+{% endif %}
+{% assign objective_id = objective_slug | replace: '-', '.' %}
+{% include official_scope_pdf.html objective_id=objective_id %}
+
+---
+
+## My notes
+
+### Overview
 
 Investigation data sources provide the evidence needed to understand security incidents. This includes log files, network captures, forensic artifacts, and automated scanning results.
 
