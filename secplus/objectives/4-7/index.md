@@ -1,404 +1,444 @@
 ---
 layout: objective
-title: "4.6 Resilience and Recovery"
-objective_id: "4.6"
+title: "4.7 Automation and Orchestration"
+objective_id: "4.7"
 domain: "4.0 Security Operations"
 status: "done"
-tags: ["backup", "disaster-recovery", "business-continuity", "redundancy"]
-permalink: /objectives/4-6/
+tags: ["automation", "SOAR", "orchestration", "scripting"]
+permalink: /objectives/4-7/
 ---
 
 ## Overview
 
-Resilience and recovery ensure business operations continue during and after disruptions. This includes backup strategies, disaster recovery planning, high availability systems, and business continuity management.
+Automation and orchestration streamline security operations by reducing manual tasks and coordinating responses across multiple systems. This includes playbooks, runbooks, APIs, and SOAR platforms.
 
 ---
 
-## Backup Strategies
+## Benefits of Automation
 
-**Backup types:**
+**Efficiency gains:**
+- **Speed:** Automated responses in seconds vs hours
+- **Consistency:** Same process every time (no human variability)
+- **Scalability:** Handle more incidents with same staff
+- **24/7 operation:** Automation doesn't need sleep
 
-**Full backup:**
-- **Method:** Copy all data
-- **Restoration:** Single backup needed
-- **Time:** Longest (hours for TB of data)
-- **Storage:** Most space required
-- **Frequency:** Weekly or monthly
+**Security improvements:**
+- **Faster response:** Contain threats before spread
+- **Reduced errors:** No manual mistakes (typos, forgotten steps)
+- **Compliance:** Automated logging proves controls executed
+- **Analyst focus:** Free analysts for complex investigations
 
-**Incremental backup:**
-- **Method:** Copy only data changed since last backup (any type)
-- **Restoration:** Need last full + all incrementals
-- **Time:** Fastest backup
-- **Storage:** Least space
-- **Frequency:** Daily or multiple times per day
-- **Risk:** If one incremental lost, can't restore fully
+**Cost benefits:**
+- **Reduced staffing needs:** Automation handles tier-1 tasks
+- **Lower incident impact:** Faster response = less damage
+- **Improved retention:** Analysts do interesting work (not repetitive tasks)
 
-**Differential backup:**
-- **Method:** Copy data changed since last FULL backup
-- **Restoration:** Need last full + last differential
-- **Time:** Slower than incremental (grows until next full)
-- **Storage:** More than incremental
-- **Frequency:** Daily
-- **Benefit:** Faster restoration than incremental
-
-**Backup schedule example:**
+**Example automation impact:**
 ```
-Sunday: Full backup (all data)
-Monday: Differential (changes since Sunday)
-Tuesday: Differential (all changes since Sunday)
-Wednesday: Differential (all changes since Sunday)
-Thursday: Differential (all changes since Sunday)
-Friday: Differential (all changes since Sunday)
-Saturday: Differential (all changes since Sunday)
+Phishing email response (manual):
+- User reports suspicious email: 5 minutes
+- Analyst reviews email: 10 minutes  
+- Analyst searches all inboxes for same email: 30 minutes
+- Analyst manually deletes from each inbox: 60 minutes
+- Analyst blocks sender: 5 minutes
+- Analyst updates ticket: 5 minutes
+Total: 115 minutes per incident
 
-Restoration on Friday:
-- Restore Sunday's full backup
-- Restore Friday's differential
-- Done! (2 backups needed)
+Phishing email response (automated):
+- User reports → SOAR receives alert: 10 seconds
+- SOAR queries email gateway: 20 seconds
+- SOAR deletes from all inboxes: 30 seconds
+- SOAR blocks sender: 10 seconds
+- SOAR creates ticket: 5 seconds
+- SOAR notifies user: 5 seconds
+Total: 80 seconds per incident
 
-VS Incremental schedule:
-Sunday: Full
-Monday-Saturday: Incremental (changes since previous day)
-
-Restoration on Friday:
-- Restore Sunday's full
-- Restore Monday's incremental
-- Restore Tuesday's incremental
-- Restore Wednesday's incremental
-- Restore Thursday's incremental
-- Restore Friday's incremental
-- Done (6 backups needed, longer restoration)
+Time saved: 113.7 minutes (99.3% faster)
 ```
-
-**Backup locations:**
-
-**On-site:**
-- **Storage:** Same building/datacenter
-- **Pro:** Fast backup and restoration
-- **Con:** Vulnerable to same disasters (fire, flood)
-- **Use:** Quick recovery for minor incidents
-
-**Off-site:**
-- **Storage:** Different geographic location
-- **Pro:** Protected from local disasters
-- **Con:** Slower restoration (physical transport or network transfer)
-- **Use:** Disaster recovery
-
-**Cloud backup:**
-- **Storage:** AWS S3, Azure Blob, Google Cloud
-- **Pro:** Scalable, geographically distributed, cost-effective
-- **Con:** Requires internet, subscription costs
-- **Use:** Long-term retention, disaster recovery
-
-**3-2-1 backup rule:**
-- **3 copies** of data (production + 2 backups)
-- **2 different media types** (disk + tape, or disk + cloud)
-- **1 off-site** backup (protect against local disasters)
-
-**Backup media:**
-
-**Disk (hard drives, NAS, SAN):**
-- **Pro:** Fast backup/restoration, random access
-- **Con:** More expensive per GB than tape
-- **Use:** Recent backups, quick recovery
-
-**Tape (LTO - Linear Tape-Open):**
-- **Pro:** Cheap per GB, long-term durability (30+ years)
-- **Con:** Sequential access (slow), requires tape drive
-- **Use:** Long-term archival
-
-**Cloud storage:**
-- **Pro:** No hardware to maintain, unlimited scalability
-- **Con:** Ongoing costs, egress fees
-- **Use:** Off-site backup, disaster recovery
-
-**Backup testing:**
-- **Frequency:** Quarterly minimum
-- **Method:** Restore test data, verify integrity
-- **Document:** Recovery time actual vs RTO target
-- **Purpose:** Verify backups work (don't discover failures during actual disaster)
-
-**Backup security:**
-- **Encryption:** Encrypt backups (at rest and in transit)
-- **Access control:** Limit who can delete/modify backups
-- **Immutability:** Write-once-read-many (WORM) prevents ransomware from encrypting backups
-- **Air gap:** Physically disconnect backup media from network
 
 ---
 
-## Disaster Recovery
+## Playbooks vs Runbooks
 
-**Disaster types:**
-- **Natural:** Hurricane, earthquake, flood, fire
-- **Technical:** Hardware failure, power outage, network failure
-- **Human-caused:** Cyberattack, sabotage, terrorism
-- **Pandemic:** Workforce unavailable
+**Playbook:**
+- **Definition:** High-level workflow for responding to incidents
+- **Audience:** Security analysts (humans)
+- **Format:** Checklist, decision tree
+- **Execution:** Manual (analyst follows steps)
+- **Example:** "How to respond to ransomware"
 
-**Disaster Recovery Plan (DRP):**
+**Runbook:**
+- **Definition:** Automated workflow executed by systems
+- **Audience:** SOAR platform, scripts (automated)
+- **Format:** Code, workflow automation
+- **Execution:** Automatic (system executes)
+- **Example:** "Automatically isolate endpoint when ransomware detected"
 
-**Components:**
-1. **Emergency contacts:** Who to call (IT, management, vendors)
-2. **Recovery procedures:** Step-by-step recovery instructions
-3. **System priorities:** Which systems restore first
-4. **Backup locations:** Where backups stored, how to access
-5. **Alternate sites:** Where to operate if primary site unavailable
-
-**Recovery objectives:**
-
-**RPO (Recovery Point Objective):**
-- **Definition:** Maximum acceptable data loss (measured in time)
-- **Example:** RPO = 4 hours means max 4 hours of data loss acceptable
-- **Determines:** Backup frequency
-- **Calculation:** If RPO = 4 hours, must backup every 4 hours or less
-
-**RTO (Recovery Time Objective):**
-- **Definition:** Maximum acceptable downtime
-- **Example:** RTO = 8 hours means must restore within 8 hours
-- **Determines:** Recovery strategy (hot site vs cold site)
-- **Calculation:** Time from disaster to full operation
-
-**MTBF (Mean Time Between Failures):**
-- **Definition:** Average time system operates before failing
-- **Example:** MTBF = 100,000 hours = ~11 years
-- **Use:** Hardware reliability metric
-
-**MTTR (Mean Time To Repair):**
-- **Definition:** Average time to repair and restore
-- **Example:** MTTR = 4 hours
-- **Use:** Measure recovery efficiency
-
-**Example RPO/RTO calculation:**
+**Playbook example (human-readable):**
 ```
-Critical database server:
-- Business impact if down: $50k/hour revenue loss
-- Data sensitivity: High (customer orders)
-- Regulatory requirement: Financial data must be recoverable
+Incident: Brute Force Attack Detected
 
-Decision:
-- RPO = 1 hour (max 1 hour data loss acceptable)
-- RTO = 4 hours (max 4 hours downtime acceptable)
+Step 1: Verify alert is not false positive
+- Check: Source IP reputation
+- Check: User account history (is account high-value target?)
+- Decision: If false positive → close ticket
+           If real attack → continue to Step 2
 
-Implementation:
-- Backup every 30 minutes (meets RPO)
-- Hot site with real-time replication (meets RTO)
-- Cost: $100k/year
-- Justification: 4-hour outage costs $200k, hot site prevents this
+Step 2: Gather context
+- How many failed attempts?
+- Source IP geolocation
+- Targeted accounts
+
+Step 3: Containment
+- Block source IP at firewall
+- If account compromised: Disable account
+- If high-value target: Enable MFA immediately
+
+Step 4: Investigation
+- Review logs for successful logins from same IP
+- Check for lateral movement
+- Determine if credentials compromised
+
+Step 5: Remediation
+- Force password reset on targeted accounts
+- Review similar attacks (same source, pattern)
+- Update detection rules if needed
+
+Step 6: Documentation
+- Update ticket with findings
+- Notify user if their account targeted
+- Escalate if credentials compromised
 ```
 
-**Recovery sites:**
+**Runbook example (automated):**
+```python
+# Automated Brute Force Response Runbook
 
-**Hot site:**
-- **Definition:** Fully equipped, operational duplicate datacenter
-- **Readiness:** Immediate (real-time replication)
-- **RTO:** Minutes to hours
-- **Cost:** Most expensive
-- **Use:** Mission-critical systems (can't tolerate downtime)
+def respond_to_brute_force(alert):
+    # Step 1: Gather alert details
+    source_ip = alert['source_ip']
+    target_account = alert['account']
+    failed_attempts = alert['failed_count']
+    
+    # Step 2: Enrich with threat intelligence
+    ip_reputation = query_threat_intel(source_ip)
+    
+    # Step 3: Automated containment
+    if failed_attempts > 20:
+        block_ip_at_firewall(source_ip)
+        log_action("Blocked IP: " + source_ip)
+    
+    # Step 4: Account protection
+    if account_is_high_value(target_account):
+        enable_mfa(target_account)
+        notify_user(target_account, "Brute force detected, MFA enabled")
+    
+    # Step 5: Create incident ticket
+    ticket_id = create_ticket(
+        title="Brute Force: " + target_account,
+        severity="High",
+        details=alert
+    )
+    
+    # Step 6: Notify SOC
+    send_slack_message(
+        channel="#soc-alerts",
+        message=f"Brute force blocked. IP: {source_ip}, Ticket: {ticket_id}"
+    )
+    
+    return ticket_id
+```
 
-**Warm site:**
-- **Definition:** Partially equipped, hardware ready but data delayed
-- **Readiness:** Hours to restore (restore from backups)
-- **RTO:** Hours to days
-- **Cost:** Medium
-- **Use:** Important but not mission-critical
+**Key differences:**
 
-**Cold site:**
-- **Definition:** Empty facility with power/network (no equipment)
-- **Readiness:** Days to weeks (install hardware, restore data)
-- **RTO:** Days to weeks
-- **Cost:** Least expensive
-- **Use:** Non-critical systems, budget constraints
-
-**Mobile site:**
-- **Definition:** Portable datacenter (trailer/container)
-- **Readiness:** Hours to days (transport and setup)
-- **Use:** Temporary recovery, remote locations
-
-**Recovery strategies:**
-
-**Failover:**
-- **Definition:** Switch to backup system when primary fails
-- **Automatic:** System detects failure, switches automatically
-- **Manual:** IT admin initiates failover
-- **Example:** Primary database fails, failover to standby replica
-
-**Failback:**
-- **Definition:** Return to primary system after recovery
-- **Process:** Restore primary, sync data, switch back
-- **Timing:** After primary fully restored and tested
-
-**Replication:**
-- **Synchronous:** Real-time copy (zero data loss, slower)
-- **Asynchronous:** Delayed copy (minimal data loss, faster)
-- **Use:** Hot site, database high availability
+| Aspect | Playbook | Runbook |
+|--------|----------|---------|
+| Execution | Manual (analyst) | Automated (system) |
+| Format | Checklist, flowchart | Code, workflow |
+| Decision-making | Human judgment | Predefined logic |
+| Speed | Slow (human-paced) | Fast (seconds) |
+| Use case | Complex investigations | Repetitive tasks |
 
 ---
 
-## High Availability and Redundancy
+## SOAR Platforms
 
-**High availability (HA):**
-- **Goal:** Minimize downtime
-- **Measure:** Uptime percentage (99.9% = 8.76 hours/year downtime)
-- **Methods:** Redundancy, clustering, load balancing
+**SOAR (Security Orchestration, Automation, and Response):**
 
-**Availability tiers:**
+**Capabilities:**
+
+**Orchestration:**
+- **Definition:** Coordinate actions across multiple security tools
+- **Example:** SOAR receives alert from SIEM, queries EDR for endpoint data, blocks IP at firewall, creates ticket in ServiceNow
+- **Benefit:** Single platform integrates all security tools
+
+**Automation:**
+- **Definition:** Execute tasks without human intervention
+- **Example:** Automatically isolate infected endpoint
+- **Benefit:** Faster response, consistent execution
+
+**Response:**
+- **Definition:** Execute predefined responses to incidents
+- **Example:** Phishing email → automatically delete from all inboxes
+- **Benefit:** Immediate containment
+
+**Case management:**
+- **Definition:** Track incidents from detection to resolution
+- **Features:** Ticket creation, assignment, escalation, metrics
+- **Benefit:** Visibility into all ongoing incidents
+
+**SOAR platforms:**
+- Splunk Phantom
+- Palo Alto Cortex XSOAR
+- IBM Resilient
+- Swimlane
+- Demisto (acquired by Palo Alto)
+
+**SOAR workflow example:**
 ```
-99% = 3.65 days/year downtime
-99.9% (three nines) = 8.76 hours/year downtime
-99.99% (four nines) = 52.56 minutes/year downtime
-99.999% (five nines) = 5.26 minutes/year downtime
+Malware Detection Workflow:
+
+Trigger: EDR detects malware on endpoint
+
+Automated actions:
+1. Isolate endpoint from network (EDR API call)
+2. Collect forensic data:
+   - Memory dump
+   - Running processes
+   - Network connections
+3. Query threat intelligence:
+   - File hash lookup (VirusTotal)
+   - Domain reputation check
+4. Enrich incident:
+   - User information (Active Directory)
+   - Asset information (CMDB)
+5. Create ticket (ServiceNow)
+6. Notify:
+   - Email to user ("Your computer isolated, IT contacted")
+   - Slack message to SOC (#incidents channel)
+7. Escalate if high-severity:
+   - Page on-call analyst
+   - Notify CISO if executive's device
+
+All actions: < 2 minutes (automated)
+Manual equivalent: 1-2 hours
 ```
-
-**Redundancy types:**
-
-**Hardware redundancy:**
-- **Redundant power supplies:** Two power supplies per server
-- **RAID:** Multiple drives (data survives drive failure)
-- **Redundant network interfaces:** Multiple NICs per server
-- **UPS:** Uninterruptible Power Supply (battery backup)
-
-**Geographic redundancy:**
-- **Multiple datacenters:** Different cities/regions
-- **Purpose:** Survive regional disasters
-- **Example:** AWS availability zones
-
-**Network redundancy:**
-- **Multiple ISPs:** Diverse internet connections
-- **Redundant switches/routers:** Eliminate single points of failure
-- **Alternate paths:** Multiple network routes
-
-**Clustering:**
-- **Definition:** Multiple servers working together as one
-- **Active-Active:** All nodes handle traffic (load balanced)
-- **Active-Passive:** One node active, others standby (failover)
-- **Use:** Database servers, web servers, applications
-
-**Load balancing:**
-- **Definition:** Distribute traffic across multiple servers
-- **Methods:**
-  - **Round robin:** Rotate through servers sequentially
-  - **Least connections:** Send to server with fewest active connections
-  - **Geographic:** Route to nearest server
-- **Benefits:** Performance, redundancy (server fails, others continue)
-
-**Single Point of Failure (SPOF):**
-- **Definition:** Component whose failure stops entire system
-- **Examples:** Single power supply, single network link, single server
-- **Mitigation:** Redundancy (eliminate all SPOFs)
 
 ---
 
-## Business Continuity
+## APIs and Integrations
 
-**Business Continuity Plan (BCP):**
+**API (Application Programming Interface):**
 
-**Difference from DRP:**
-- **DRP:** IT systems recovery (technology focus)
-- **BCP:** Entire business operations (people, processes, technology)
+**Definition:** Interface for systems to communicate
 
-**BCP components:**
+**REST API:**
+- **Protocol:** HTTP/HTTPS
+- **Format:** JSON or XML
+- **Methods:** GET (retrieve), POST (create), PUT (update), DELETE (remove)
+- **Authentication:** API key, OAuth token
 
-**Business Impact Analysis (BIA):**
-- **Purpose:** Identify critical business functions and impact of disruption
-- **Process:**
-  1. Identify critical functions (payroll, customer support, manufacturing)
-  2. Determine impact of downtime (revenue loss, reputation damage)
-  3. Calculate maximum tolerable downtime (MTD)
-  4. Prioritize recovery (most critical first)
+**API use cases in security:**
 
-**Continuity of Operations Plan (COOP):**
-- **Purpose:** Continue operations during disruption
-- **Strategies:**
-  - **Work from home:** Remote work capabilities
-  - **Alternate work site:** Backup office location
-  - **Cross-training:** Employees can cover multiple roles
-  - **Succession planning:** Backup for key personnel
+**Threat intelligence:**
+```python
+# Query VirusTotal for file hash reputation
+import requests
 
-**Crisis communication plan:**
-- **Internal:** Notify employees of situation
-- **External:** Communicate with customers, partners, media
-- **Templates:** Pre-written messages for different scenarios
+api_key = "your_api_key"
+file_hash = "5d41402abc4b2a76b9719d911017c592"
 
-**Testing BCP:**
+response = requests.get(
+    f"https://www.virustotal.com/api/v3/files/{file_hash}",
+    headers={"x-apikey": api_key}
+)
 
-**Tabletop exercise:**
-- **Method:** Discussion-based walkthrough
-- **Participants:** Key personnel discuss scenario
-- **Benefit:** Identifies plan gaps without disruption
-- **Frequency:** Quarterly
+result = response.json()
+if result['data']['attributes']['last_analysis_stats']['malicious'] > 5:
+    print("MALWARE DETECTED")
+    block_hash(file_hash)
+```
 
-**Simulation:**
-- **Method:** Simulated disaster, team responds
-- **Scope:** Larger than tabletop, may involve technology
-- **Benefit:** More realistic than tabletop
-- **Frequency:** Annually
+**Firewall management:**
+```python
+# Block IP address via firewall API
+import requests
 
-**Full interruption test:**
-- **Method:** Actually fail over to backup systems
-- **Scope:** Complete DR test
-- **Benefit:** Proves plan works
-- **Frequency:** Rarely (disruptive and expensive)
+firewall_ip = "192.168.1.1"
+api_key = "firewall_api_key"
+block_ip = "203.0.113.45"
+
+requests.post(
+    f"https://{firewall_ip}/api/firewall/rules",
+    headers={"Authorization": f"Bearer {api_key}"},
+    json={
+        "action": "deny",
+        "source": block_ip,
+        "destination": "any",
+        "service": "any"
+    }
+)
+print(f"Blocked {block_ip} at firewall")
+```
+
+**Integration patterns:**
+
+**Push (webhooks):**
+- Security tool pushes alerts to SOAR
+- Real-time notification
+- Example: SIEM webhook sends alert to SOAR when rule triggered
+
+**Pull (polling):**
+- SOAR queries security tool periodically
+- Scheduled checks
+- Example: SOAR queries ticket system every 5 minutes for new incidents
+
+**Bi-directional:**
+- SOAR both sends and receives data
+- Full integration
+- Example: SOAR creates ticket in ServiceNow, ServiceNow updates SOAR when ticket closed
+
+---
+
+## CI/CD in Security
+
+**CI/CD (Continuous Integration/Continuous Deployment):**
+
+**Definition:** Automated software development and deployment pipeline
+
+**Security integration (DevSecOps):**
+
+**Code scanning:**
+- **SAST (Static Application Security Testing):** Scan source code for vulnerabilities
+- **DAST (Dynamic Application Security Testing):** Test running application
+- **SCA (Software Composition Analysis):** Scan dependencies for known vulnerabilities
+- **Integration:** Automated scans in CI/CD pipeline (fail build if critical vulns found)
+
+**Infrastructure as Code (IaC) scanning:**
+- **Tools:** Terraform, CloudFormation, Ansible
+- **Security:** Scan for misconfigurations (open S3 buckets, default credentials)
+- **Example:** Terraform plan scanned before deployment
+
+**Container security:**
+- **Image scanning:** Scan Docker images for vulnerabilities
+- **Tools:** Trivy, Clair, Anchore
+- **Integration:** Scan before pushing to registry
+
+**Secrets management:**
+- **Problem:** Hardcoded credentials in code
+- **Solution:** Secrets vault (HashiCorp Vault, AWS Secrets Manager)
+- **Integration:** CI/CD fetches secrets at runtime (never in code)
+
+**CI/CD pipeline example:**
+```
+Developer commits code to Git
+↓
+CI/CD pipeline triggered:
+1. Build code
+2. Run unit tests
+3. SAST scan (static code analysis)
+4. Build Docker container
+5. Scan container image for vulnerabilities
+6. Deploy to staging
+7. DAST scan (test running application)
+8. Manual approval (security review)
+9. Deploy to production
+↓
+If any security scan fails → Stop pipeline, notify developer
+```
+
+---
+
+## Use Cases and Decisions
+
+**When to automate:**
+
+**Automate:**
+- Repetitive tasks (password resets, account lockouts)
+- Well-defined processes (block IP, isolate endpoint)
+- Time-sensitive responses (ransomware containment)
+- High-volume activities (phishing email deletion)
+
+**Don't automate:**
+- Complex investigations (requires human judgment)
+- Ambiguous situations (unclear if incident is real)
+- High-risk actions (deleting production data)
+- Novel threats (no existing playbook)
+
+**Decision matrix:**
+
+| Task | Frequency | Complexity | Risk | Automate? |
+|------|-----------|------------|------|-----------|
+| Block known-bad IP | High | Low | Low | Yes |
+| Isolate malware-infected endpoint | High | Low | Medium | Yes |
+| Delete phishing emails | High | Low | Low | Yes |
+| Investigate insider threat | Low | High | High | No |
+| Restore from backup | Low | Medium | High | No (manual approval) |
+| Password reset | High | Low | Low | Yes |
+
+**Gradual automation approach:**
+1. **Manual:** Analyst performs all steps (learn the process)
+2. **Semi-automated:** Tool assists analyst (suggestions, not actions)
+3. **Supervised automation:** Tool acts, analyst approves
+4. **Fully automated:** Tool acts independently (analyst notified)
 
 ---
 
 ## Key Distinctions
 
-**RPO vs RTO:**
-- RPO: How much data loss acceptable (backup frequency)
-- RTO: How long downtime acceptable (recovery speed)
+**Playbook vs Runbook:**
+- Playbook: Manual checklist (human executes)
+- Runbook: Automated workflow (system executes)
 
-**Hot Site vs Cold Site:**
-- Hot site: Fully ready, immediate failover (expensive)
-- Cold site: Empty facility, days to setup (cheap)
+**Orchestration vs Automation:**
+- Orchestration: Coordinate across multiple systems
+- Automation: Execute single task without human
 
-**Full vs Incremental backup:**
-- Full: All data, long backup, fast restore
-- Incremental: Changed data, fast backup, slow restore
+**SOAR vs SIEM:**
+- SOAR: Automates response to incidents
+- SIEM: Detects and correlates security events
 
-**DRP vs BCP:**
-- DRP: IT disaster recovery (technology)
-- BCP: Business continuity (entire organization)
-
-**Failover vs Failback:**
-- Failover: Switch to backup system
-- Failback: Return to primary system
+**API vs Webhook:**
+- API: Pull data on request (polling)
+- Webhook: Push data when event occurs (real-time)
 
 ---
 
 ## Common Exam Traps
 
-1. **Trap:** Thinking RPO and RTO are the same
-   - **Reality:** RPO = data loss, RTO = downtime
+1. **Trap:** Thinking automation eliminates need for analysts
+   - **Reality:** Automation handles repetitive tasks, analysts focus on complex investigations
 
-2. **Trap:** Believing backups guarantee recovery
-   - **Reality:** Must test backups (verify they work)
+2. **Trap:** Believing all security tasks should be automated
+   - **Reality:** High-risk and ambiguous situations require human judgment
 
-3. **Trap:** Assuming on-site backup sufficient
-   - **Reality:** Need off-site for disaster recovery (3-2-1 rule)
+3. **Trap:** Assuming playbook and runbook are the same
+   - **Reality:** Playbook = manual, runbook = automated
 
-4. **Trap:** Thinking full backup always best
-   - **Reality:** Incremental faster, uses less storage (trade-off with restore time)
+4. **Trap:** Thinking SOAR only automates (missing orchestration aspect)
+   - **Reality:** SOAR orchestrates across tools AND automates responses
 
-5. **Trap:** Believing hot site is always required
-   - **Reality:** Choose based on RTO/RPO requirements and budget
+5. **Trap:** Believing automation is always faster
+   - **Reality:** Complex automation may be slower than simple manual task
 
 ---
 
 ## Exam Tips
 
-1. **RPO = data loss** (time between backups)
-2. **RTO = downtime** (time to restore)
-3. **3-2-1 backup rule:** 3 copies, 2 media types, 1 off-site
-4. **Hot site = immediate** (real-time replication, expensive)
-5. **Cold site = days/weeks** (empty facility, cheap)
-6. **Full backup = all data** (slow backup, fast restore)
-7. **Incremental backup = changed data** (fast backup, slow restore)
-8. **Test backups quarterly** (verify they work before disaster)
-9. **BCP = entire business**, DRP = IT systems
-10. **High availability measured** in uptime percentage (99.9% = 8.76 hours downtime/year)
+1. **Playbook = manual** checklist for analysts
+2. **Runbook = automated** workflow for systems
+3. **SOAR orchestrates** multiple security tools
+4. **Automation benefits:** Speed, consistency, scalability
+5. **API enables integration** between security tools
+6. **CI/CD security:** SAST (code scan), DAST (runtime scan)
+7. **Automate repetitive tasks**, manual for complex investigations
+8. **Webhook = push** notification (real-time)
+9. **REST API uses** HTTP methods (GET, POST, PUT, DELETE)
+10. **Gradual automation:** Manual → Semi-automated → Supervised → Fully automated
 
 ---
 
 ## Quick Navigation
-- [← Previous: 4.5 Identity & Access](../4-5/)
-- [→ Next: 4.7 Automation & Orchestration](../4-7/)
+- [← Previous: 4.6 Resilience & Recovery](../4-6/)
+- [→ Next: 4.8 Incident Response](../4-8/)
 - [↑ Back to Domain 4](../)
