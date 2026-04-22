@@ -327,22 +327,22 @@ Recovery order:
 ### Common exam traps
 
 **Trap:** Confusing RTO and RPO.
-**Reality:** RTO = how long the system can be down (time to restore). RPO = how much data loss is acceptable (drives backup frequency). They measure different things.
+Reality: RTO = how long the system can be down (time to restore). RPO = how much data loss is acceptable (drives backup frequency). They measure different things.
 
 **Trap:** Thinking risk transfer eliminates the risk.
-**Reality:** Cyber insurance or outsourcing shifts *financial liability* — the risk of the event occurring still exists and can still cause operational disruption.
+Reality: Cyber insurance or outsourcing shifts financial liability — the risk of the event occurring still exists and can still cause operational disruption.
 
 **Trap:** Assuming qualitative analysis is always inferior to quantitative.
-**Reality:** Each has legitimate use cases. Qualitative is faster, requires no historical data, and is appropriate for initial prioritization. Quantitative is better for cost-benefit decisions when data is available.
+Reality: Each has legitimate use cases. Qualitative is faster, requires no historical data, and is appropriate for initial prioritization. Quantitative is better for cost-benefit decisions when data is available.
 
 **Trap:** Assuming all risks must be mitigated.
-**Reality:** Low-value risks can and should be accepted if the cost of mitigation exceeds the potential loss.
+Reality: Low-value risks can and should be accepted if the cost of mitigation exceeds the potential loss.
 
 **Trap:** Believing residual risk should reach zero.
-**Reality:** Some risk always remains after controls. The goal is to reduce residual risk to within the organization's risk appetite — not to eliminate it entirely.
+Reality: Some risk always remains after controls. The goal is to reduce residual risk to within the organization's risk appetite — not to eliminate it entirely.
 
 **Trap:** Thinking MTD, RTO, and RPO are interchangeable.
-**Reality:** MTD is the absolute maximum (set by business impact). RTO is the recovery target (must be ≤ MTD). RPO governs data loss tolerance and drives backup scheduling — it is independent of RTO.
+Reality: MTD is the absolute maximum (set by business impact). RTO is the recovery target (must be ≤ MTD). RPO governs data loss tolerance and drives backup scheduling — it is independent of RTO.
 
 ---
 
