@@ -33,421 +33,304 @@ Explain types and purposes of audits and assessments.
 
 ### Overview
 
-Security policies provide the framework for an organization's security program. This includes various policy types, standards, procedures, and guidelines that guide security decisions and actions.
+Audits and assessments are systematic methods for evaluating the security posture of an organization. This objective covers the full spectrum — from internal compliance audits and third-party attestation, to technical assessments like penetration tests and vulnerability scans. The exam emphasizes knowing *which* assessment type fits a given scenario and what each reveals.
 
 ---
 
-## Policy Hierarchy
+### Attestation
 
-**Hierarchy (top to bottom):**
+Attestation is the formal process of confirming or vouching for the accuracy of security-related information.
 
-### 1. Policies
-- **Level:** High-level, strategic
-- **Defines:** WHAT must be done
-- **Example:** "All systems must use encryption for sensitive data"
-- **Audience:** Entire organization
-- **Approval:** Executive management, board
-- **Frequency:** Review annually, update as needed
+| Type | Description | Exam keyword |
+|---|---|---|
+| **Software Bill of Materials (SBOM)** | A formal inventory of all components, libraries, and dependencies in a software product | Supply chain transparency; identifies vulnerable third-party components |
+| **Attestation of findings** | A formal statement (signed by an auditor or responsible party) confirming the accuracy of an audit's results | Regulatory submissions, third-party audit reports |
 
-### 2. Standards
-- **Level:** Mid-level, tactical
-- **Defines:** HOW policy will be implemented (specific requirements)
-- **Example:** "Use AES-256 encryption for data at rest"
-- **Audience:** IT staff, administrators
-- **Approval:** CISO, IT management
-- **Frequency:** Review semi-annually
-
-### 3. Procedures
-- **Level:** Detailed, operational
-- **Defines:** Step-by-step instructions
-- **Example:** "Step 1: Open BitLocker control panel, Step 2: Select drive..."
-- **Audience:** Specific roles (admins, users)
-- **Approval:** Department managers
-- **Frequency:** Update as technology changes
-
-### 4. Guidelines
-- **Level:** Recommendations (not mandatory)
-- **Defines:** Best practices, suggestions
-- **Example:** "Consider using a password manager for convenience"
-- **Compliance:** Optional (encouraged but not required)
-
-**Example hierarchy:**
-```
-Policy: "Protect confidential data"
-  ↓
-Standard: "Encrypt all laptops with BitLocker or FileVault"
-  ↓
-Procedure: "How to enable BitLocker on Windows 10"
-  ↓
-Guideline: "Consider disabling sleep mode during encryption"
-```
+> **Exam tip:** An SBOM is used to understand *what is in* software — critical for supply chain risk management. If a zero-day hits an open-source library, the SBOM tells you immediately which of your products are affected.
 
 ---
 
-## Common Security Policies
+### Internal audits
 
-**Acceptable Use Policy (AUP):**
-- **Purpose:** Define acceptable use of company resources
-- **Covers:**
-  - Internet usage (no personal shopping during work hours)
-  - Email usage (no sending confidential data to personal email)
-  - Software installation (only approved software)
-  - Device usage (no jailbreaking company phones)
-- **Consequences:** Disciplinary action for violations
-- **User requirement:** Sign acknowledgement annually
+Internal audits are conducted by personnel within the organization — typically an internal audit team or IT/security staff.
 
-**Data Classification Policy:**
-- **Purpose:** Define data sensitivity levels and handling requirements
-- **Classification levels:**
-  - **Public:** No harm if disclosed (marketing materials)
-  - **Internal:** Low harm if disclosed (employee directory)
-  - **Confidential:** Moderate harm (internal strategies)
-  - **Restricted/Sensitive:** High harm (customer PII, trade secrets)
-- **Requirements per level:**
-  ```
-  Public: No special controls
-  Internal: Access control (employees only)
-  Confidential: Encryption, access logging
-  Restricted: Encryption, MFA, DLP, audit trail
-  ```
+| Type | Description |
+|---|---|
+| **Compliance audit** | Verifies the organization is meeting regulatory or policy requirements (e.g., PCI DSS, HIPAA, internal policy) |
+| **Audit committee** | A governance body (often board-level) that oversees audit activities, reviews findings, and ensures accountability |
+| **Self-assessment** | Teams evaluate their own controls against a standard or framework (e.g., NIST CSF self-assessment) |
 
-**Password Policy:**
-- **Requirements:**
-  - Minimum length (12-16 characters)
-  - Complexity (uppercase, lowercase, numbers, symbols)
-  - Expiration (90 days, or no expiration if using MFA)
-  - History (can't reuse last 5 passwords)
-  - Account lockout (5 failed attempts = 30 min lockout)
-- **Exceptions:** Service accounts (longer, complex, stored in vault)
-
-**Information Security Policy:**
-- **Purpose:** Overarching security policy (umbrella policy)
-- **Covers:**
-  - Security program goals
-  - Roles and responsibilities
-  - Compliance requirements
-  - Incident response
-  - Risk management
-- **Scope:** All employees, contractors, partners
-
-**Bring Your Own Device (BYOD) Policy:**
-- **Purpose:** Govern use of personal devices for work
-- **Requirements:**
-  - MDM enrollment mandatory
-  - Device encryption
-  - Screen lock (PIN/biometric)
-  - Prohibited: Jailbroken/rooted devices
-  - Company rights: Remote wipe if device lost/stolen
-- **User consent:** Agree to monitoring, wipe capability
-
-**Remote Access Policy:**
-- **Purpose:** Secure remote connections
-- **Requirements:**
-  - VPN required for remote access
-  - MFA for VPN authentication
-  - Approved devices only (managed endpoints)
-  - Prohibited: Public Wi-Fi without VPN
-  - Logging: All remote sessions logged
-
-**Incident Response Policy:**
-- **Purpose:** Define incident handling procedures
-- **Defines:**
-  - What constitutes an incident
-  - Reporting procedures (who to contact, how quickly)
-  - Response team roles
-  - Communication protocols
-  - Escalation criteria
-
-**Business Continuity Policy:**
-- **Purpose:** Ensure business operations continue during disruption
-- **Defines:**
-  - Critical business functions
-  - Recovery objectives (RTO, RPO)
-  - Backup requirements
-  - Disaster recovery procedures
-  - Testing frequency (annual)
-
-**Disaster Recovery Policy:**
-- **Purpose:** Restore IT systems after disaster
-- **Defines:**
-  - Recovery priorities (which systems first)
-  - Backup locations (on-site, off-site, cloud)
-  - Recovery procedures
-  - Alternate site plans (hot, warm, cold)
-
-**Software Development Lifecycle (SDLC) Policy:**
-- **Purpose:** Secure software development
-- **Requirements:**
-  - Security requirements phase (threat modeling)
-  - Code review (peer review before merge)
-  - Security testing (SAST, DAST)
-  - Change management (approval before production)
-
-**Change Management Policy:**
-- **Purpose:** Control system modifications
-- **Defines:**
-  - Change approval process
-  - Testing requirements (dev → staging → production)
-  - Rollback procedures
-  - Emergency change process
-  - Documentation requirements
+> **Exam tip:** Internal audits are less independent than external audits — they may be biased toward favorable results. Regulators often require external audits for this reason.
 
 ---
 
-## User Behavior and Training
+### External audits
 
-**Security Awareness Policy:**
-- **Purpose:** Ensure users understand security responsibilities
-- **Requirements:**
-  - Annual security awareness training (mandatory)
-  - Phishing simulation (quarterly)
-  - New hire orientation (security basics)
-  - Role-specific training (developers, admins)
-- **Topics:**
-  - Password security
-  - Phishing recognition
-  - Social engineering
-  - Physical security
-  - Incident reporting
+External audits are performed by independent parties outside the organization, providing greater objectivity.
 
-**Clean Desk Policy:**
-- **Purpose:** Prevent unauthorized information access
-- **Requirements:**
-  - Lock computer when away (Windows+L)
-  - Secure documents in locked drawer overnight
-  - Shred confidential papers (don't trash)
-  - No passwords on sticky notes
-  - Visitor area restrictions
+| Type | Description | Example |
+|---|---|---|
+| **Regulatory audit** | Required by law or regulation; failure results in fines or penalties | HIPAA audit by HHS, PCI DSS QSA assessment |
+| **Examination** | Formal review by a regulatory authority or examiner to verify compliance | OCC bank examination, FedRAMP assessment |
+| **Assessment** | Broader evaluation of security posture, not necessarily tied to a specific regulation | SOC 2 Type II readiness assessment |
+| **Independent third-party audit** | Audit conducted by a qualified, neutral external firm with no affiliation to the organization | ISO 27001 certification audit |
 
-**Onboarding/Offboarding Policy:**
-
-**Onboarding:**
-```
-Day 1:
-- Sign acceptable use policy
-- Security awareness training
-- Issue credentials (username, password)
-- Provision accounts (email, systems access)
-- Issue equipment (laptop, phone)
-- Badge access (building entry)
-```
-
-**Offboarding:**
-```
-Termination day:
-- Disable accounts immediately
-- Revoke access (VPN, badges, systems)
-- Retrieve equipment (laptop, phone, badge)
-- Transfer data ownership (email, files to manager)
-- Exit interview (return of property confirmation)
-
-30 days post-termination:
-- Delete accounts (after retention period)
-```
-
-**Code of Conduct/Ethics Policy:**
-- **Purpose:** Define expected professional behavior
-- **Covers:**
-  - Conflicts of interest (disclosure requirements)
-  - Gifts and entertainment (limits)
-  - Confidentiality (protect company/customer data)
-  - Harassment (zero tolerance)
-  - Reporting violations (whistleblower protection)
+> **Exam tip:** A **SOC 2 Type II** report is a common external audit output — it covers security controls over a period of time (usually 6–12 months), not just a point-in-time snapshot.
 
 ---
 
-## Credential and Account Management
+### Penetration testing
 
-**Credential Management Policy:**
+Penetration testing (pen testing) is an authorized, simulated attack against a system to identify exploitable vulnerabilities before real attackers do.
 
-**Password requirements:**
-- Length, complexity, expiration (covered in Password Policy)
-- Storage: Password manager or vault (not plain text)
-- Transmission: Encrypted channels only (no email/SMS)
-- Sharing: Prohibited (except via secure vault)
+#### Pen test types by scope
 
-**Account types:**
+| Type | Description |
+|---|---|
+| **Physical** | Tests physical security controls — locks, badge readers, tailgating, dumpster diving |
+| **Offensive** | Red team–style attack simulation; mimics real threat actors to test detection and response |
+| **Defensive** | Blue team evaluation — assesses how well the organization detects and responds to simulated attacks |
+| **Integrated** | Red and blue team work together (purple team); real-time knowledge sharing to improve defenses |
 
-**User accounts:**
-- Standard privileges (least privilege)
-- Unique per person (no shared accounts)
-- Named accounts (john.doe, not user1)
+#### Pen test types by knowledge level
 
-**Service accounts:**
-- Application/service use (not human login)
-- Long, complex passwords
-- Stored in password vault
-- No expiration (breaks services)
-- Documented ownership (who manages)
+| Type | Also called | Description |
+|---|---|---|
+| **Known environment** | White box | Tester has full knowledge — network diagrams, source code, credentials; most thorough coverage |
+| **Partially known environment** | Gray box | Tester has some information (e.g., IP ranges, user-level credentials); simulates insider threat |
+| **Unknown environment** | Black box | Tester has no prior knowledge; simulates an external attacker; most realistic but may miss coverage |
 
-**Privileged/Admin accounts:**
-- Separate from user accounts (john.doe-admin)
-- Used only when needed (not daily use)
-- MFA required
-- Session recording
-- Regular access reviews
+#### Reconnaissance
 
-**Guest accounts:**
-- Limited access (specific resources only)
-- Time-limited (auto-expire after period)
-- Sponsored (employee vouches for guest)
-- Monitoring (enhanced logging)
+Reconnaissance is the first phase of a pen test — gathering information about the target before active exploitation.
 
-**Shared accounts:**
-- Discouraged (prefer unique accounts)
-- If necessary: Vault for password, audit logging
-- Example: Local admin account (for break-glass emergency)
+| Type | Description | Example techniques |
+|---|---|---|
+| **Passive reconnaissance** | Gathering information without directly interacting with the target | OSINT, WHOIS lookups, Google dorking, LinkedIn scraping |
+| **Active reconnaissance** | Directly probing the target system — detectable by IDS/IPS | Port scanning (Nmap), banner grabbing, ping sweeps |
 
-**Account lifecycle:**
-```
-Creation:
-- Manager request (approval workflow)
-- Provisioning (IT creates account)
-- Notification (user receives credentials)
-
-Maintenance:
-- Access reviews (quarterly for privileged, annually for standard)
-- Password changes (if no MFA: 90 days)
-- Role changes (update access when user changes roles)
-
-Termination:
-- Immediate disable (when employment ends)
-- Data transfer (to manager)
-- Deletion (after retention period, 30-90 days)
-```
+> **Exam tip:** Passive recon leaves **no footprint** on the target — it uses publicly available sources. Active recon *touches* the target and can trigger alerts. The question "Which method would not be detected by the target?" → **passive reconnaissance**.
 
 ---
 
-## Organizational Policies
+### Vulnerability scans
 
-**Data Retention Policy:**
-- **Purpose:** Define how long data kept
-- **Legal requirements:**
-  - Email: 7 years (SOX for public companies)
-  - Medical records: 6 years (HIPAA)
-  - Tax records: 7 years (IRS)
-- **Security consideration:** Less data = less breach risk
-- **Balance:** Legal retention vs minimization
+A vulnerability scan is an automated, non-exploitative assessment that identifies known weaknesses in systems, applications, and configurations.
 
-**Data Destruction Policy:**
-- **Purpose:** Secure data disposal
-- **Methods:** (covered in 4.2 Asset Management)
-  - Overwriting (HDDs)
-  - Degaussing (magnetic media)
-  - Physical destruction (shredding)
-  - Cryptographic erasure (delete key)
-- **Requirements:**
-  - Certificate of destruction
-  - Asset decommissioning tracking
+| Characteristic | Vulnerability Scan | Penetration Test |
+|---|---|---|
+| **Method** | Automated tool (Nessus, Qualys, OpenVAS) | Manual + automated; human-driven |
+| **Exploitation** | No — identifies weaknesses only | Yes — actively exploits vulnerabilities |
+| **Depth** | Broad coverage, lower depth | Narrow focus, higher depth |
+| **Frequency** | Continuous or scheduled (weekly/monthly) | Periodic (annually or after major changes) |
+| **Output** | List of CVEs and severity ratings | Narrative report with attack chains and business impact |
 
-**Separation of Duties Policy:**
-- **Purpose:** No single person controls entire critical process
-- **Examples:**
-  - Person who approves invoice ≠ person who pays
-  - Code developer ≠ code approver
-  - Backup administrator ≠ restore requester
-- **Implementation:** Role-based access control (RBAC)
-
-**Job Rotation Policy:**
-- **Purpose:** Detect fraud, reduce insider threat
-- **Method:** Employees rotate roles periodically
-- **Benefit:** Multiple people know each process, fraud harder to hide
-- **Frequency:** Annually or semi-annually
-
-**Mandatory Vacation Policy:**
-- **Purpose:** Detect fraud (requires someone else to handle duties)
-- **Requirement:** Minimum consecutive days (e.g., 5 days)
-- **Financial sector:** Common in banks (detect embezzlement)
-
-**Least Privilege Policy:**
-- **Principle:** Users have minimum access needed
-- **Implementation:**
-  - Role-based access control
-  - Regular access reviews
-  - Remove access when no longer needed
-- **Reduces:** Insider threat, lateral movement
-
-**Background Check Policy:**
-- **Purpose:** Verify employee trustworthiness
-- **Checks:**
-  - Criminal background (felony convictions)
-  - Employment verification (past jobs)
-  - Education verification (degree claims)
-  - Credit check (financial sector, positions with monetary access)
-- **Timing:** Before hire, periodic re-checks for sensitive roles
-
-**Non-Disclosure Agreement (NDA):**
-- **Purpose:** Protect confidential information
-- **Signed:** Before employee accesses sensitive data
-- **Covers:** Trade secrets, customer data, internal strategies
-- **Duration:** Often survives employment (5 years post-termination)
-
-**Social Media Policy:**
-- **Purpose:** Govern employee social media use
-- **Covers:**
-  - Prohibited: Posting confidential company info
-  - Prohibited: Disparaging company/customers
-  - Disclosure: Identify as employee if posting about company
-  - Personal: Personal views don't represent company
-- **Balance:** Free speech vs company protection
+> **Exam tip:** The key distinction the exam tests — a vulnerability scan **finds** weaknesses; a pen test **exploits** them to prove impact.
 
 ---
 
-## Key Distinctions
+### Bug bounty programs
 
-**Policy vs Standard:**
-- Policy: What must be done (high-level)
-- Standard: How it's done (specific requirements)
+A bug bounty program is a formalized program that rewards external researchers for responsibly reporting security vulnerabilities.
 
-**Standard vs Procedure:**
-- Standard: Requirements (AES-256 encryption)
-- Procedure: Step-by-step (how to enable AES-256)
+| Characteristic | Description |
+|---|---|
+| **Scope** | Organization defines what systems are in/out of scope |
+| **Reward** | Cash payments, hall of fame recognition, or both |
+| **Purpose** | Crowdsource security testing; find vulnerabilities before attackers do |
+| **Participants** | Independent security researchers (ethical hackers) |
+| **Examples** | HackerOne, Bugcrowd platforms; Google, Microsoft, Apple programs |
 
-**Guideline vs Policy:**
-- Guideline: Recommended (optional)
-- Policy: Required (mandatory)
-
-**AUP vs Code of Conduct:**
-- AUP: Technology resource usage
-- Code of Conduct: Professional behavior/ethics
-
-**Onboarding vs Offboarding:**
-- Onboarding: Grant access when hired
-- Offboarding: Revoke access when terminated
+> **Exam tip:** Bug bounty programs leverage the broader security community as an extension of internal testing — cost-effective and scalable, but require a mature vulnerability management process to handle incoming reports.
 
 ---
 
-## Common Exam Traps
+### Responsible disclosure programs
 
-1. **Trap:** Thinking policies and procedures are the same
-   - **Reality:** Policy = what, procedure = how (step-by-step)
+Responsible disclosure (also called coordinated disclosure) defines the process by which researchers report vulnerabilities to vendors *before* public disclosure.
 
-2. **Trap:** Believing guidelines are mandatory
-   - **Reality:** Guidelines are recommendations (not required)
+| Concept | Description |
+|---|---|
+| **Responsible disclosure** | Researcher reports vulnerability to vendor privately; vendor gets time to patch before public announcement |
+| **Coordinated disclosure** | Structured timeline agreed upon between researcher and vendor (e.g., 90-day disclosure window) |
+| **Full disclosure** | Researcher publishes vulnerability details immediately, with or without vendor patch — controversial |
+| **Disclosure window** | Typical window is 90 days (Google Project Zero standard); vendor must patch within this period |
 
-3. **Trap:** Assuming all accounts need password expiration
-   - **Reality:** Service accounts often no expiration (breaks automation)
-
-4. **Trap:** Thinking shared accounts are never allowed
-   - **Reality:** Sometimes necessary (with enhanced monitoring)
-
-5. **Trap:** Believing data retention is always "longer is better"
-   - **Reality:** Balance legal requirements with minimization (less data = less risk)
+> **Exam tip:** Responsible disclosure protects users by giving vendors time to patch. Full disclosure pressures vendors but may expose users to risk before a patch is available.
 
 ---
 
-## Exam Tips
+### Key distinctions
 
-1. **Policy hierarchy:** Policy → Standard → Procedure → Guideline
-2. **AUP defines** acceptable use of company resources
-3. **Password policy** includes length, complexity, expiration, history
-4. **Clean desk policy** requires locking screens, securing documents
-5. **Offboarding** = immediate account disable, delayed deletion
-6. **Service accounts** = long passwords, no expiration, vault storage
-7. **Separation of duties** prevents single person controlling critical process
-8. **Mandatory vacation** detects fraud (someone else handles duties)
-9. **Least privilege** = minimum access needed
-10. **Guidelines are optional**, policies are mandatory
+| Comparison | Distinction |
+|---|---|
+| **Internal audit vs. external audit** | Internal = conducted by organization's own staff, less independent; external = independent third party, higher objectivity |
+| **Compliance audit vs. self-assessment** | Compliance audit is formal and often required; self-assessment is voluntary and internally driven |
+| **Vulnerability scan vs. penetration test** | Scan = automated, finds vulnerabilities, no exploitation; pen test = manual, actively exploits, proves business impact |
+| **Known vs. unknown environment** | Known (white box) = tester has full info, most thorough; unknown (black box) = no prior info, most realistic |
+| **Passive vs. active reconnaissance** | Passive = no target interaction, leaves no trace; active = directly probes target, detectable |
+| **Bug bounty vs. responsible disclosure** | Bug bounty = financial reward for finding bugs; responsible disclosure = structured process for *reporting* them to the vendor |
+| **Attestation vs. audit** | Attestation = formal sign-off that findings are accurate; audit = the systematic evaluation process itself |
+
+---
+
+### Common exam traps
+
+**Trap: Thinking a vulnerability scan and a penetration test are the same thing.**
+Reality: A vulnerability scan is automated and non-exploitative — it identifies what *might* be exploitable. A pen test is manual, actively exploits confirmed vulnerabilities, and demonstrates real business impact.
+
+**Trap: Confusing black box with "bad" and white box with "better."**
+Reality: Neither is universally better. Black box is more *realistic* (simulates an outside attacker); white box is more *thorough* (maximizes coverage). The right choice depends on the testing goal.
+
+**Trap: Assuming active reconnaissance is always part of a pen test.**
+Reality: In some engagements, only passive recon is authorized. Active recon is explicitly in-scope when the rules of engagement permit it.
+
+**Trap: Believing responsible disclosure means the vendor controls the timeline forever.**
+Reality: Coordinated disclosure programs (like Google's 90-day window) give vendors a defined period to patch — after which researchers may publish regardless of whether the patch is ready.
+
+**Trap: Thinking internal audits are unreliable.**
+Reality: Internal audits have real value for continuous compliance monitoring. They are less *independent*, not less *valid*. Regulators typically require *both* internal and external audit activity.
+
+---
+
+### Exam tips
+
+1. **Attestation of findings** = formal signed confirmation that audit results are accurate
+2. **SBOM** = inventory of all software components; key for supply chain risk
+3. **Internal audits** = less independent; include compliance audits, self-assessments, audit committee oversight
+4. **External audits** = independent; regulatory, examinations, third-party assessments
+5. **Pen test phases:** Recon → Scan → Exploit → Report
+6. **White box** = known environment (full info); **gray box** = partially known; **black box** = unknown (most realistic)
+7. **Passive recon** = no target contact, undetectable; **active recon** = touches target, detectable
+8. **Vulnerability scan** = automated, no exploitation; **pen test** = manual, actively exploits
+9. **Bug bounty** = pay researchers to find bugs; **responsible disclosure** = structured process to report them
+10. **90-day disclosure window** = Google Project Zero coordinated disclosure standard
+
+---
+
+## Key terms
+
+- **Attestation** — Formal confirmation that security findings or system states are accurate; typically signed by an auditor or responsible party.
+- **SBOM (Software Bill of Materials)** — A complete inventory of all components, libraries, and dependencies in a software product.
+- **Internal audit** — An audit conducted by personnel within the organization to assess compliance or control effectiveness.
+- **External audit** — An audit performed by an independent third party, providing higher objectivity than internal audits.
+- **Self-assessment** — An internal, voluntary evaluation of controls measured against a standard or framework.
+- **Penetration test** — An authorized simulated attack against a system to identify and exploit vulnerabilities before real attackers do.
+- **Known environment (white box)** — Pen test where the tester has full knowledge of the target environment.
+- **Partially known environment (gray box)** — Pen test where the tester has limited prior knowledge (e.g., user credentials, IP ranges).
+- **Unknown environment (black box)** — Pen test where the tester has no prior knowledge; simulates an external attacker.
+- **Passive reconnaissance** — Gathering target information through publicly available sources without directly interacting with the target.
+- **Active reconnaissance** — Directly probing a target system; detectable by security monitoring.
+- **Vulnerability scan** — Automated, non-exploitative tool that identifies known weaknesses based on CVEs and configuration checks.
+- **Bug bounty program** — A formal program offering rewards to external researchers for responsibly reporting security vulnerabilities.
+- **Responsible disclosure** — The practice of reporting vulnerabilities to the vendor privately before public disclosure, giving time to patch.
+- **Coordinated disclosure** — A structured responsible disclosure process with an agreed timeline (typically 90 days) before public release.
+- **Red team** — Offensive security team simulating real-world attacker techniques.
+- **Blue team** — Defensive security team focused on detection and response.
+- **Purple team** — Integrated exercise where red and blue teams collaborate in real time to improve defenses.
+
+---
+
+## Examples / scenarios
+
+**Scenario 1:** A CISO wants to know whether a recently deployed web application has any known CVEs in its open-source dependencies before it goes live.
+- **Answer:** Request an **SBOM** from the development team. The SBOM lists all third-party libraries and their versions, which can be cross-referenced against vulnerability databases.
+
+**Scenario 2:** A financial services firm must demonstrate to regulators that its controls meet SOX requirements. An internal team reviews its own controls and documents the results.
+- **Answer:** This is an **internal compliance audit** (or self-assessment). Regulators may also require an independent **external audit** to supplement this.
+
+**Scenario 3:** A security consultant is hired to test an organization's defenses but is given no information about the target systems beforehand. The consultant must find and exploit weaknesses the same way a real attacker would.
+- **Answer:** **Unknown environment (black box) penetration test**. Simulates a real external threat actor with no insider knowledge.
+
+**Scenario 4:** A pen tester uses Shodan, WHOIS, and LinkedIn to build a profile of a target company's exposed services and key personnel — without scanning or touching the target systems.
+- **Answer:** **Passive reconnaissance**. Uses publicly available sources only; leaves no trace on the target.
+
+**Scenario 5:** A security researcher discovers a critical SQL injection vulnerability in a popular e-commerce platform. They notify the vendor privately and agree to wait 90 days before publishing details.
+- **Answer:** **Coordinated (responsible) disclosure**. The researcher gives the vendor time to patch before the vulnerability becomes public knowledge.
+
+---
+
+## Mini quiz
+
+<details>
+<summary><strong>Question 1:</strong> What is the key difference between a vulnerability scan and a penetration test?</summary>
+
+**Answer:** A vulnerability scan is automated and non-exploitative — it identifies potential weaknesses and maps them to CVEs. A penetration test is manual and actively exploits confirmed vulnerabilities to demonstrate real business impact. Scans are broad and frequent; pen tests are deep and periodic.
+</details>
+
+<details>
+<summary><strong>Question 2:</strong> What does "black box" mean in the context of penetration testing?</summary>
+
+**Answer:** Black box (unknown environment) means the tester has no prior knowledge of the target — no network diagrams, no credentials, no architecture details. It simulates a real external attacker and is the most realistic test scenario.
+</details>
+
+<details>
+<summary><strong>Question 3:</strong> How does passive reconnaissance differ from active reconnaissance?</summary>
+
+**Answer:** Passive recon gathers information without directly interacting with the target — using OSINT, WHOIS, public records, and social media. It leaves no trace. Active recon directly probes the target (port scans, banner grabbing) and can be detected by IDS/IPS.
+</details>
+
+<details>
+<summary><strong>Question 4:</strong> What is a Software Bill of Materials (SBOM) and why is it important?</summary>
+
+**Answer:** An SBOM is a formal inventory of all components, libraries, and dependencies in a software product. It's important for supply chain risk management — when a vulnerability is discovered in a common library (e.g., Log4Shell), an SBOM tells you immediately which of your products are affected.
+</details>
+
+<details>
+<summary><strong>Question 5:</strong> What distinguishes a bug bounty program from a responsible disclosure program?</summary>
+
+**Answer:** A bug bounty program offers financial rewards (or other incentives) to external researchers for finding and reporting vulnerabilities. Responsible disclosure is the process by which those (or any) researchers report vulnerabilities to the vendor privately before going public — it may or may not involve a reward.
+</details>
+
+### CompTIA-style practice questions
+
+<details>
+<summary><strong>Question 6:</strong> A security team wants to simulate a real-world attacker with no prior knowledge of the organization's systems. Which type of penetration test BEST fits this requirement?<br>A. White box<br>B. Gray box<br>C. Black box<br>D. Integrated</summary>
+
+**Correct Answer: C. Black box**
+
+A black box (unknown environment) test gives the tester no advance information, simulating the perspective of an external attacker. This is the most realistic test scenario.
+
+- A: White box (known environment) provides full information — most thorough, least realistic.
+- B: Gray box provides partial information — simulates an insider or a compromised credential scenario.
+- D: Integrated (purple team) involves red and blue teams working together in real time — not an adversarial simulation.
+</details>
+
+<details>
+<summary><strong>Question 7:</strong> A security analyst uses Nmap to perform a port scan against a target during the reconnaissance phase of a penetration test. Which type of reconnaissance does this represent?<br>A. Passive reconnaissance<br>B. Active reconnaissance<br>C. OSINT gathering<br>D. Social engineering</summary>
+
+**Correct Answer: B. Active reconnaissance**
+
+Nmap directly probes target systems by sending packets — this is active reconnaissance. It interacts with the target and can be detected by IDS/IPS.
+
+- A: Passive recon uses publicly available sources and does not touch the target.
+- C: OSINT (Open Source Intelligence) is a passive technique using public data sources.
+- D: Social engineering targets people, not systems.
+</details>
+
+<details>
+<summary><strong>Question 8 (Multi-select):</strong> An organization wants to assess its security posture using both internal and external methods. Which TWO activities represent an external assessment? (Select TWO.)<br>A. An internal audit team reviews firewall rule compliance against policy<br>B. A QSA (Qualified Security Assessor) evaluates the organization for PCI DSS certification<br>C. The security team conducts a self-assessment against the NIST CSF<br>D. An independent pen testing firm performs a black box test of production systems<br>E. The CISO reviews access control logs for anomalies</summary>
+
+**Correct Answers: B and D**
+
+External assessments are conducted by independent parties outside the organization.
+
+- B: A QSA is an independent, certified external assessor — required for PCI DSS compliance.
+- D: An independent pen testing firm is an external party conducting a formal assessment.
+- A: Internal audit team = internal assessment.
+- C: Self-assessment = internal activity by the organization's own staff.
+- E: Log review by the CISO = internal monitoring activity.
+</details>
+
+---
+
+## Related objectives
+
+- [**5.1**]({{ '/secplus/objectives/5-1/' | relative_url }}) — Security governance establishes the policies and frameworks that audits measure compliance against.
+- [**5.2**]({{ '/secplus/objectives/5-2/' | relative_url }}) — Risk management informs which systems and assets are prioritized for assessment.
+- [**5.3**]({{ '/secplus/objectives/5-3/' | relative_url }}) — Third-party risk assessment is a specific application of external audit and attestation.
+- [**4.3**]({{ '/secplus/objectives/4-3/' | relative_url }}) — Vulnerability management operationalizes the vulnerability scanning activity covered here.
+- [**2.3**]({{ '/secplus/objectives/2-3/' | relative_url }}) — Vulnerability types are what assessments and scans are designed to find.
 
 ---
 
