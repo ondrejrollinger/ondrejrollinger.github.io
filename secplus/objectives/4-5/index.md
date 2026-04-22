@@ -220,13 +220,13 @@ Federation extends SSO across organizational boundaries — allowing users from 
 ### Common exam traps
 
 **Trap: Thinking password + security question = MFA.**
-Reality: Both are knowledge factors ("something you know"). MFA requires factors from *different* categories — a second password is not a second factor.
+Reality: Both are knowledge factors ("something you know"). MFA requires factors from different categories — a second password is not a second factor.
 
 **Trap: Assuming SSO weakens security.**
 Reality: SSO centralizes authentication, which enables consistent MFA enforcement, better monitoring, and fewer passwords (fewer phishing targets). Properly implemented, SSO improves security.
 
 **Trap: Believing deprovisioning means deleting the account immediately.**
-Reality: The account should be **disabled** immediately, but kept (not deleted) for the data retention period (30–90 days) to support forensic investigations and data transfer.
+Reality: The account should be disabled immediately, but kept (not deleted) for the data retention period (30–90 days) to support forensic investigations and data transfer.
 
 **Trap: Treating least privilege as "no access."**
 Reality: Least privilege means the *minimum* access necessary to perform the job function — not zero access, not convenient access.
