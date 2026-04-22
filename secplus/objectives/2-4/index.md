@@ -70,7 +70,7 @@ This is a **scenario-based** objective — the exam gives you observable symptom
 | **Stealth** | Intercepts OS calls to hide its presence from scanners |
 | **Armored** | Adds obfuscation layers to confuse analysis |
 
-> **Exam tip:** Polymorphic = changes decryption code. Metamorphic = rewrites the entire virus. Both evade signature-based AV.
+**Exam tip:** Polymorphic = changes decryption code. Metamorphic = rewrites the entire virus. Both evade signature-based AV.
 
 ---
 

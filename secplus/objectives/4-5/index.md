@@ -69,7 +69,7 @@ The user lifecycle governs how accounts are created, modified, and removed as pe
 | **HR → IdP integration** | Termination in HR system automatically triggers account disable in IdP |
 | **Just-in-Time (JIT) provisioning** | Account is created the first time a user authenticates to an application |
 
-> **Exam tip:** For involuntary terminations, **disable the account immediately** — before the employee is notified. Delaying creates a window for data exfiltration or sabotage. Disable ≠ delete; keep the account for data retention and potential investigation.
+**Exam tip:** For involuntary terminations, **disable the account immediately** — before the employee is notified. Delaying creates a window for data exfiltration or sabotage. Disable ≠ delete; keep the account for data retention and potential investigation.
 
 ---
 
@@ -103,7 +103,7 @@ Regular access reviews validate that users still need the permissions they hold,
 - Implemented as mutually exclusive roles in an IAM system.
 - Purpose: prevent fraud and reduce insider threat risk.
 
-> **Exam tip:** Separation of duties and least privilege often appear together in exam scenarios. SoD prevents a single person from committing fraud alone; least privilege limits the blast radius if an account is compromised.
+**Exam tip:** Separation of duties and least privilege often appear together in exam scenarios. SoD prevents a single person from committing fraud alone; least privilege limits the blast radius if an account is compromised.
 
 ---
 
@@ -121,7 +121,7 @@ Privileged accounts (admins, service accounts, emergency "break-glass" accounts)
 | **Real-time monitoring** | Suspicious commands trigger alerts during live sessions | Admin runs `rm -rf /`; alert fires |
 | **Just-in-Time (JIT) access** | Admin rights granted on demand for a defined window, then automatically revoked | Developer gets production access for 2 hours |
 
-> **Exam tip:** PAM's core value is eliminating **standing privileges** — permanent admin rights that sit idle but represent constant risk. JIT access and password vaulting both reduce the window of exposure. "Session recording" = accountability + audit trail.
+**Exam tip:** PAM's core value is eliminating **standing privileges** — permanent admin rights that sit idle but represent constant risk. JIT access and password vaulting both reduce the window of exposure. "Session recording" = accountability + audit trail.
 
 ---
 
@@ -151,7 +151,7 @@ MFA requires users to prove identity using two or more **different** factor type
 | **Hardware token (FIDO2/WebAuthn)** | Highest | Cost; can be lost; but phishing-resistant |
 | **Biometric** | High | Cannot be changed if compromised; false accept/reject rates |
 
-> **Exam tip:** Security hierarchy for MFA methods: **Hardware token > Authenticator app > Push notification > SMS**. If a scenario asks for the "most secure" MFA option, hardware tokens (FIDO2/WebAuthn) are the answer. If it asks about a weakness unique to push notifications, the answer is **MFA fatigue**.
+**Exam tip:** Security hierarchy for MFA methods: **Hardware token > Authenticator app > Push notification > SMS**. If a scenario asks for the "most secure" MFA option, hardware tokens (FIDO2/WebAuthn) are the answer. If it asks about a weakness unique to push notifications, the answer is **MFA fatigue**.
 
 ---
 
@@ -181,7 +181,7 @@ SSO allows a user to authenticate once and access multiple applications without 
 4. IdP sends a signed SAML assertion back to SP
 5. SP validates the assertion and grants access — no separate login required
 
-> **Exam tip:** **SAML = enterprise SSO (XML)**; **OAuth = authorization, not authentication**; **OIDC = authentication built on OAuth**. SSO's main risk is that the IdP becomes a single point of failure — compromise the IdP and all connected apps are exposed. Mitigate with strong IdP security and mandatory MFA.
+**Exam tip:** **SAML = enterprise SSO (XML)**; **OAuth = authorization, not authentication**; **OIDC = authentication built on OAuth**. SSO's main risk is that the IdP becomes a single point of failure — compromise the IdP and all connected apps are exposed. Mitigate with strong IdP security and mandatory MFA.
 
 ---
 
@@ -198,7 +198,7 @@ Federation extends SSO across organizational boundaries — allowing users from 
 | **Resource organization** | Where the resource being accessed is hosted |
 | **Shibboleth** | Federation protocol common in academic and research institutions |
 
-> **Exam tip:** Federation = SSO across organizations. The key benefit is that neither organization needs to manage accounts for the other's users — each manages its own identity store.
+**Exam tip:** Federation = SSO across organizations. The key benefit is that neither organization needs to manage accounts for the other's users — each manages its own identity store.
 
 ---
 

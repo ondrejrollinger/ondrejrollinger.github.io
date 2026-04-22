@@ -45,7 +45,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | **External** | Independent third-party | Verify compliance; issue certification/attestation | ISO 27001 audit, SOC 2, PCI DSS QSA assessment |
 | **Regulatory** | Government regulator | Verify compliance with law/regulation | HIPAA (HHS OCR), GDPR (EU DPA), SOX (PCAOB) |
 
-> **Exam tip:** Internal audits find gaps early at lower cost; external audits are required for formal certification. Regulatory audits are government-initiated and can result in fines and sanctions.
+**Exam tip:** Internal audits find gaps early at lower cost; external audits are required for formal certification. Regulatory audits are government-initiated and can result in fines and sanctions.
 
 ---
 
@@ -64,7 +64,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | **User** | Employee | "I have read and understand the Acceptable Use Policy" |
 | **Access recertification** | Manager | "This user still requires this level of access" |
 
-> **Exam tip:** Attestation = declaration of *truth or compliance*. Acknowledgement = confirmation of *receipt or understanding*. These are different — confusing them is a common trap.
+**Exam tip:** Attestation = declaration of *truth or compliance*. Acknowledgement = confirmation of *receipt or understanding*. These are different — confusing them is a common trap.
 
 **Access recertification process (example):**
 ```
@@ -102,7 +102,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | Repeat findings | Issues recurring across multiple audit cycles |
 | Attestation completion rate | % of required attestations completed on time |
 
-> **Exam tip:** Compliance monitoring is continuous, not a once-per-year activity. Real-time dashboards track control status; audit reports document point-in-time snapshots.
+**Exam tip:** Compliance monitoring is continuous, not a once-per-year activity. Real-time dashboards track control status; audit reports document point-in-time snapshots.
 
 ---
 
@@ -113,7 +113,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | **Due diligence** | Research and investigation before making a decision | Vendor risk assessment; reviewing audit reports before signing a contract |
 | **Due care** | Reasonable steps taken to protect assets (acting on what you know) | Patching vulnerabilities promptly; training employees; deploying EDR |
 
-> **Exam tip:** Due diligence = *knowing what to do*. Due care = *doing it*. Both are legally required — having only one is not sufficient. Failing to exercise either constitutes **negligence**.
+**Exam tip:** Due diligence = *knowing what to do*. Due care = *doing it*. Both are legally required — having only one is not sufficient. Failing to exercise either constitutes **negligence**.
 
 **Legal implications:**
 
@@ -135,7 +135,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | **Policies and procedures** | Security policy, IRP, BCP, vendor management policy | Current + prior versions |
 | **Configurations** | Hardening baselines, firewall rulesets, network diagrams, ACLs | At time of audit |
 
-> **Exam tip:** Evidence must be collected, centralized, version-controlled, and access-restricted. The audit trail itself (who accessed evidence, when) is also evidence.
+**Exam tip:** Evidence must be collected, centralized, version-controlled, and access-restricted. The audit trail itself (who accessed evidence, when) is also evidence.
 
 ---
 
@@ -159,7 +159,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 6. Close finding and prevent recurrence (update procedures, train staff)
 ```
 
-> **Exam tip:** Finding severity drives timeline — not all findings require immediate action. Regulators and auditors expect a documented remediation plan even for low-severity findings.
+**Exam tip:** Finding severity drives timeline — not all findings require immediate action. Regulators and auditors expect a documented remediation plan even for low-severity findings.
 
 ---
 
@@ -172,7 +172,7 @@ Compliance ensures organizations meet regulatory requirements and industry stand
 | **ISO 27001** | Stage 1 (docs) + Stage 2 (on-site) by certification body | 3-year cert + annual surveillance | ISO 27001 certificate |
 | **HIPAA** | Audit by HHS Office for Civil Rights | As scheduled or triggered | N/A (regulatory, not certification) |
 
-> **Exam tip:** SOC 2 Type I tests *design* of controls (snapshot); SOC 2 Type II tests *operating effectiveness* over a period. ISO 27001 certificates are valid for 3 years with annual surveillance audits in between.
+**Exam tip:** SOC 2 Type I tests *design* of controls (snapshot); SOC 2 Type II tests *operating effectiveness* over a period. ISO 27001 certificates are valid for 3 years with annual surveillance audits in between.
 
 ---
 

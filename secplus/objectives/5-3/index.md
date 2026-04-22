@@ -108,7 +108,7 @@ Net benefit            = +$30,000 → IMPLEMENT
 | Enables cost-benefit analysis | Time-consuming |
 | Precise prioritization | Hard to quantify reputational damage |
 
-> **Exam tip:** Know the formula chain: **SLE = AV × EF** → **ALE = SLE × ARO**. The exam tests all three formulas and cost-benefit interpretation. Safeguard value = ALE before − ALE after.
+**Exam tip:** Know the formula chain: **SLE = AV × EF** → **ALE = SLE × ARO**. The exam tests all three formulas and cost-benefit interpretation. Safeguard value = ALE before − ALE after.
 
 ---
 
@@ -121,7 +121,7 @@ Net benefit            = +$30,000 → IMPLEMENT
 | **Mitigate / Reduce** | Implement controls to reduce likelihood or impact | High-value risk with cost-effective controls | Deploy EDR to reduce malware risk |
 | **Avoid** | Stop the risky activity entirely | Risk exceeds any acceptable level | Don't store card data → eliminate PCI risk |
 
-> **Exam tip:** Risk **transfer** does not eliminate the risk — it only shifts the **financial impact**. The underlying threat and vulnerability still exist.
+**Exam tip:** Risk **transfer** does not eliminate the risk — it only shifts the **financial impact**. The underlying threat and vulnerability still exist.
 
 ---
 
@@ -183,7 +183,7 @@ RPO = 1 hr  → restore from 9:00 AM backup (1 hr data loss acceptable)
 MTD = 4 hrs → catastrophic if not live by 2:00 PM
 ```
 
-> **Exam tip:** BIA determines **MTD**, which sets the upper bound for **RTO**. **RPO** determines how often you need to back up. RTO and RPO are independent metrics with different units of concern.
+**Exam tip:** BIA determines **MTD**, which sets the upper bound for **RTO**. **RPO** determines how often you need to back up. RTO and RPO are independent metrics with different units of concern.
 
 ---
 

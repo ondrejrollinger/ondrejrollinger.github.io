@@ -69,7 +69,7 @@ Investigation data sources provide the evidence needed to understand security in
 | **5140** | Network share accessed | Object access |
 | **5145** | Network share object accessed | Object access |
 
-> **Exam tip:** 4624 = successful logon; 4625 = failed logon. These two are the most tested. A spike in 4625 followed by a single 4624 is a classic brute-force success pattern.
+**Exam tip:** 4624 = successful logon; 4625 = failed logon. These two are the most tested. A spike in 4625 followed by a single 4624 is a classic brute-force success pattern.
 
 #### Linux logs
 
@@ -131,7 +131,7 @@ Investigation data sources provide the evidence needed to understand security in
 | `tcp.flags.syn == 1 && tcp.flags.ack == 0` | Detect SYN scan (no ACK = incomplete handshake) |
 | `ip.src == 192.168.1.100` | Filter traffic from a specific source IP |
 
-> **Exam tip:** NetFlow = metadata only (who talked to whom, how much). Packet capture = full content (what was said). If a question asks about detecting exfiltration volume, NetFlow is sufficient. If it asks about recovering credentials or payload content, you need PCAP.
+**Exam tip:** NetFlow = metadata only (who talked to whom, how much). Packet capture = full content (what was said). If a question asks about detecting exfiltration volume, NetFlow is sufficient. If it asks about recovering credentials or payload content, you need PCAP.
 
 ---
 
@@ -154,7 +154,7 @@ Investigation data sources provide the evidence needed to understand security in
 - Loaded DLLs — injected malicious code
 - Plaintext credentials — passwords or tokens cached in memory
 
-> **Exam tip:** Prefetch files prove a program was executed on Windows even if the executable has been deleted. This is a key artifact for proving attacker tool usage.
+**Exam tip:** Prefetch files prove a program was executed on Windows even if the executable has been deleted. This is a key artifact for proving attacker tool usage.
 
 #### Linux artifacts
 
@@ -166,7 +166,7 @@ Investigation data sources provide the evidence needed to understand security in
 | **YUM log** | `/var/log/yum.log` | Same for RHEL/CentOS systems |
 | **Auth log** | `/var/log/auth.log` | SSH logins, sudo usage |
 
-> **Exam tip:** Order of volatility — collect RAM (most volatile) before disk, and disk before network metadata. This is fundamental to forensic integrity.
+**Exam tip:** Order of volatility — collect RAM (most volatile) before disk, and disk before network metadata. This is fundamental to forensic integrity.
 
 ---
 
@@ -199,7 +199,7 @@ Sources: Nessus, OpenVAS, Qualys
 | **Vulnerability report** | Weekly | New vulns, remediation progress, overdue patches |
 | **Compliance report** | Monthly | PCI DSS status, HIPAA audit trail, SOX controls, policy violations |
 
-> **Exam tip:** MTTD (Mean Time to Detect) and MTTR (Mean Time to Respond) are the key SOC metrics used to evaluate incident response effectiveness.
+**Exam tip:** MTTD (Mean Time to Detect) and MTTR (Mean Time to Respond) are the key SOC metrics used to evaluate incident response effectiveness.
 
 ---
 
@@ -214,7 +214,7 @@ Sources: Nessus, OpenVAS, Qualys
 | **Image (EXIF)** | Camera make/model, GPS coordinates, date/time taken | Places a photo at a specific location and time; identifies device |
 | **Document metadata** | Author, created/modified timestamps, application used | Identifies document creator; may reveal internal usernames |
 
-> **Exam tip:** Metadata often reveals more than the file contents themselves. GPS coordinates in a photo, the author field in a Word document, or email routing headers are all examples of metadata with high investigative value.
+**Exam tip:** Metadata often reveals more than the file contents themselves. GPS coordinates in a photo, the author field in a Word document, or email routing headers are all examples of metadata with high investigative value.
 
 ---
 
@@ -240,7 +240,7 @@ Sources: Nessus, OpenVAS, Qualys
 - **Alert enrichment:** A bare IP address in an alert is cross-referenced against threat intel to reveal it is a known APT C2 server — context that drives faster, better-prioritised response.
 - **Signature updates:** IDS/IPS rules and email gateway filters updated from feed data.
 
-> **Exam tip:** IOCs identify *specific* known-bad artifacts (a hash, an IP). TTPs describe *how* attackers behave and are more durable — attackers change IPs frequently, but their techniques change slowly.
+**Exam tip:** IOCs identify *specific* known-bad artifacts (a hash, an IP). TTPs describe *how* attackers behave and are more durable — attackers change IPs frequently, but their techniques change slowly.
 
 ---
 

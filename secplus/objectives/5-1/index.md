@@ -72,7 +72,7 @@ Governance elements provide structure and accountability for security programs. 
 - **Compliance team:** Ensure regulatory adherence
 - **Security engineering:** Implement controls
 
-> **Exam tip:** The CISO leads the security program but the Board of Directors holds ultimate *oversight* of organizational risk. Questions may ask who receives CISO reports or who approves major security investments.
+**Exam tip:** The CISO leads the security program but the Board of Directors holds ultimate *oversight* of organizational risk. Questions may ask who receives CISO reports or who approves major security investments.
 
 ---
 
@@ -122,7 +122,7 @@ Governance elements provide structure and accountability for security programs. 
 - **Scope:** Government information systems
 - **Requirements:** Risk-based security programs, annual FISMA audits, NIST framework compliance
 
-> **Exam tip:** PCI DSS is frequently tested as a trap — it is a *card brand contractual requirement*, not a government regulation. GDPR and HIPAA are laws. ISO 27001 and NIST CSF are voluntary standards.
+**Exam tip:** PCI DSS is frequently tested as a trap — it is a *card brand contractual requirement*, not a government regulation. GDPR and HIPAA are laws. ISO 27001 and NIST CSF are voluntary standards.
 
 ---
 
@@ -164,7 +164,7 @@ Governance elements provide structure and accountability for security programs. 
 - **HITRUST:** Health Information Trust Alliance (healthcare)
 - **FedRAMP:** Federal Risk and Authorization Management Program (cloud services for US government)
 
-> **Exam tip:** Know NIST CSF's five functions by name. "Identify, Protect, Detect, Respond, Recover" is a common exam topic. NIST 800-53 provides the *detailed controls* behind the framework.
+**Exam tip:** Know NIST CSF's five functions by name. "Identify, Protect, Detect, Respond, Recover" is a common exam topic. NIST 800-53 provides the *detailed controls* behind the framework.
 
 ---
 
@@ -177,7 +177,7 @@ Governance elements provide structure and accountability for security programs. 
 | **Scope** | Within country borders | Multiple countries or global |
 | **Extraterritorial reach** | Generally limited to country | GDPR applies to *any* org processing EU citizen data |
 
-> **Exam tip:** GDPR's extraterritorial reach is a key exam topic. A US-based company with EU customers must comply with GDPR — jurisdiction is determined by where the *data subject* is located, not where the company is headquartered.
+**Exam tip:** GDPR's extraterritorial reach is a key exam topic. A US-based company with EU customers must comply with GDPR — jurisdiction is determined by where the *data subject* is located, not where the company is headquartered.
 
 ---
 
@@ -219,7 +219,7 @@ Governance elements provide structure and accountability for security programs. 
 5. Audit compliance regularly
 6. Update when new benchmark versions are released
 
-> **Exam tip:** Benchmarks do not need to be followed *exactly*. Deviations are permitted — they must be **documented with business justification**. This often appears in exam scenarios as a trap implying any deviation is a violation.
+**Exam tip:** Benchmarks do not need to be followed *exactly*. Deviations are permitted — they must be **documented with business justification**. This often appears in exam scenarios as a trap implying any deviation is a violation.
 
 ---
 

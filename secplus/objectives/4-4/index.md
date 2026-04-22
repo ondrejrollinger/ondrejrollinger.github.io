@@ -112,7 +112,7 @@ SIEM is a centralized platform that aggregates, normalizes, correlates, and aler
 | **Anomaly-based** | Detects deviation from established baseline | Can detect novel/zero-day attacks | Higher false positive rate |
 | **Behavior-based** | Monitors for suspicious behavioral patterns (hybrid approach) | Contextual; catches stealthy threats | Requires good baseline; complex tuning |
 
-> **Exam tip:** Signature detection is reactive (known threats only). Anomaly detection is proactive (finds unknowns) but generates more false positives. Real-world SIEMs use both.
+**Exam tip:** Signature detection is reactive (known threats only). Anomaly detection is proactive (finds unknowns) but generates more false positives. Real-world SIEMs use both.
 
 **Alert tuning techniques:**
 - **Baseline establishment:** Monitor environment 30–90 days to define normal behavior before setting thresholds

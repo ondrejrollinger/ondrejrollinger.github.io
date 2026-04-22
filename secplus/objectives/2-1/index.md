@@ -65,7 +65,7 @@ Threat actors are the people or groups behind cyberattacks. The exam tests your 
 | **War** | Cyber operations as acts of warfare | Nation-state |
 | **Ethical** | Improve security (authorized hackers only) | Penetration testers |
 
-> **Exam tip:** CompTIA distinguishes **intent** (what they want to achieve) from **motivation** (why they do it). Intent = objective; motivation = driving force.
+**Exam tip:** CompTIA distinguishes **intent** (what they want to achieve) from **motivation** (why they do it). Intent = objective; motivation = driving force.
 
 ---
 

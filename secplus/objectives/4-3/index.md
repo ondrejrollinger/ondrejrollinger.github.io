@@ -60,7 +60,7 @@ Vulnerability management is the continuous process of identifying, evaluating, p
 | **Credentialed** | Scanner logs in with admin credentials | Internal view — sees all vulnerabilities | Requires credentials; security risk if scanner is compromised | Internal vulnerability assessments |
 | **Non-credentialed** | External probe — no login | Simulates attacker perspective | May miss internal vulnerabilities | External pen tests, compliance checks |
 
-> **Exam tip:** Credentialed scans are more thorough. Non-credentialed scans reflect what an external attacker would see.
+**Exam tip:** Credentialed scans are more thorough. Non-credentialed scans reflect what an external attacker would see.
 
 #### False positives vs. false negatives
 
@@ -69,7 +69,7 @@ Vulnerability management is the continuous process of identifying, evaluating, p
 | **False positive** | Scanner reports a vulnerability that doesn't exist | Wasted investigation time | Tune scanner rules; verify findings manually |
 | **False negative** | Scanner misses an actual vulnerability | Real risk goes undetected | Use multiple scanners; supplement with manual testing |
 
-> **Exam tip:** False negatives are more dangerous than false positives — a missed vulnerability leaves real risk unaddressed while false positives only waste time.
+**Exam tip:** False negatives are more dangerous than false positives — a missed vulnerability leaves real risk unaddressed while false positives only waste time.
 
 ---
 
@@ -83,7 +83,7 @@ Vulnerability management is the continuous process of identifying, evaluating, p
 | **Frequency** | Ongoing (weekly, monthly) | Annual or after major changes |
 | **Invasiveness** | Low — read-only, safe checks | High — actual exploitation; may cause disruption |
 
-> **Exam tip:** Assessment = identify. Penetration test = exploit. They are not interchangeable.
+**Exam tip:** Assessment = identify. Penetration test = exploit. They are not interchangeable.
 
 ---
 
@@ -109,7 +109,7 @@ CVSS provides a standardized severity rating that enables consistent prioritizat
 | **Temporal score** | Time-sensitive factors | Exploit availability, remediation level, report confidence |
 | **Environmental score** | Organization-specific context | Asset value, compensating controls already in place |
 
-> **Exam tip:** CVSS Base score alone does not determine patch priority. Environmental and temporal scores — plus asset criticality — must be factored in. A Critical CVSS score on an isolated internal system may be lower priority than a High score on an internet-facing payment server.
+**Exam tip:** CVSS Base score alone does not determine patch priority. Environmental and temporal scores — plus asset criticality — must be factored in. A Critical CVSS score on an isolated internal system may be lower priority than a High score on an internet-facing payment server.
 
 #### Risk-based prioritization
 
@@ -135,7 +135,7 @@ Beyond CVSS, prioritization considers:
 | **Removal / decommissioning** | Remove software or service entirely | Vulnerable component is no longer needed |
 | **Isolation / segmentation** | VLAN or firewall restricts access to the vulnerable system | System cannot be patched but must remain operational |
 
-> **Exam tip:** Virtual patching (IPS/WAF rule) does not fix the vulnerability — it only blocks known exploit patterns. It is a temporary measure, not a substitute for patching.
+**Exam tip:** Virtual patching (IPS/WAF rule) does not fix the vulnerability — it only blocks known exploit patterns. It is a temporary measure, not a substitute for patching.
 
 ---
 
@@ -158,7 +158,7 @@ Beyond CVSS, prioritization considers:
 | **Manual patching** | Critical or complex systems requiring validation | Human error; inconsistent application |
 | **Emergency patching** | Critical vulnerability with active exploitation (zero-day) | Expedited testing increases breaking-change risk |
 
-> **Exam tip:** Patches should always be tested before production deployment — even emergency patches when time allows. "Deploy immediately without testing" is almost never the correct answer.
+**Exam tip:** Patches should always be tested before production deployment — even emergency patches when time allows. "Deploy immediately without testing" is almost never the correct answer.
 
 ---
 

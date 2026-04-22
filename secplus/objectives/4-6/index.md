@@ -47,7 +47,7 @@ Resilience and recovery ensure business operations continue during and after dis
 | **Incremental** | Data changed since last backup (any type) | Last full + all incrementals | Fastest | Least | Daily / multiple times per day |
 | **Differential** | Data changed since last **full** backup | Last full + last differential | Slower than incremental | More than incremental | Daily |
 
-> **Exam tip:** Incremental = **fastest backup, slowest restore**. Differential = **slower backup, faster restore** than incremental. Full = **slowest backup, fastest restore**. If a question asks which restores fastest — full wins; if it asks which backs up fastest — incremental wins.
+**Exam tip:** Incremental = **fastest backup, slowest restore**. Differential = **slower backup, faster restore** than incremental. Full = **slowest backup, fastest restore**. If a question asks which restores fastest — full wins; if it asks which backs up fastest — incremental wins.
 
 **Backup schedule comparison:**
 
@@ -73,7 +73,7 @@ Restore on Friday = Full (Sun) + Mon + Tue + Wed + Thu + Fri = 6 backups
 | **Off-site** | Different geographic location | Protected from local disasters | Slower restore (transport or network transfer) | Disaster recovery |
 | **Cloud** | AWS S3, Azure Blob, Google Cloud | Scalable, distributed, cost-effective | Requires internet; ongoing subscription costs | Long-term retention, DR |
 
-> **Exam tip:** The **3-2-1 rule** — **3** copies of data, on **2** different media types, with **1** stored off-site. This is the standard backup best practice and a frequent exam scenario anchor.
+**Exam tip:** The **3-2-1 rule** — **3** copies of data, on **2** different media types, with **1** stored off-site. This is the standard backup best practice and a frequent exam scenario anchor.
 
 #### Backup media
 
@@ -91,7 +91,7 @@ Restore on Friday = Full (Sun) + Mon + Tue + Wed + Thu + Fri = 6 backups
 - **Air gap:** Physically disconnect backup media from the network.
 - **Testing frequency:** At minimum quarterly — restore test data, verify integrity, and document actual recovery time vs. RTO target.
 
-> **Exam tip:** Untested backups are not backups. A common exam trap is assuming backups work without testing. Test quarterly and document actual vs. target recovery times.
+**Exam tip:** Untested backups are not backups. A common exam trap is assuming backups work without testing. Test quarterly and document actual vs. target recovery times.
 
 ---
 
@@ -113,7 +113,7 @@ Restore on Friday = Full (Sun) + Mon + Tue + Wed + Thu + Fri = 6 backups
 | **MTBF** (Mean Time Between Failures) | Average operating time before a failure | Hardware reliability planning | MTBF = 100,000 h ≈ 11 years |
 | **MTTR** (Mean Time To Repair) | Average time to repair and restore after failure | Recovery efficiency measurement | MTTR = 4 hours |
 
-> **Exam tip:** RPO = **data loss** → drives backup frequency. RTO = **downtime** → drives recovery site choice. These are commonly swapped on the exam — commit the distinction to memory.
+**Exam tip:** RPO = **data loss** → drives backup frequency. RTO = **downtime** → drives recovery site choice. These are commonly swapped on the exam — commit the distinction to memory.
 
 **RPO / RTO worked example:**
 ```
@@ -137,7 +137,7 @@ Decision:
 | **Cold site** | Days to weeks (install hardware, restore data) | Days to weeks | Lowest | Non-critical systems; budget-constrained environments |
 | **Mobile site** | Hours to days (transport and setup) | Variable | Medium | Temporary recovery; remote locations |
 
-> **Exam tip:** Match site type to RTO. If a scenario demands near-instant recovery → **hot site**. If cost is the primary constraint and long downtime is tolerable → **cold site**. Warm site sits in between.
+**Exam tip:** Match site type to RTO. If a scenario demands near-instant recovery → **hot site**. If cost is the primary constraint and long downtime is tolerable → **cold site**. Warm site sits in between.
 
 #### Failover and replication
 
@@ -161,7 +161,7 @@ Decision:
 | 99.99% | Four nines | 52.56 minutes |
 | 99.999% | Five nines | 5.26 minutes |
 
-> **Exam tip:** "Five nines" (99.999%) is the gold standard for mission-critical systems. Know that higher availability requires exponentially more investment in redundancy.
+**Exam tip:** "Five nines" (99.999%) is the gold standard for mission-critical systems. Know that higher availability requires exponentially more investment in redundancy.
 
 #### Redundancy types
 
@@ -181,7 +181,7 @@ Decision:
 | **Least-connections load balancing** | Route to server with fewest active connections | More efficient than round-robin for variable workloads |
 | **Geographic load balancing** | Route users to nearest server | Reduces latency; provides regional redundancy |
 
-> **Exam tip:** **Single Point of Failure (SPOF)** — any component whose failure stops the entire system. High availability design means eliminating all SPOFs through redundancy. Common SPOFs: single power supply, single ISP connection, single server.
+**Exam tip:** **Single Point of Failure (SPOF)** — any component whose failure stops the entire system. High availability design means eliminating all SPOFs through redundancy. Common SPOFs: single power supply, single ISP connection, single server.
 
 ---
 
@@ -194,7 +194,7 @@ Decision:
 | **DRP** (Disaster Recovery Plan) | IT systems recovery | Technology: servers, data, applications |
 | **BCP** (Business Continuity Plan) | Entire business operations | People, processes, and technology |
 
-> **Exam tip:** BCP is the **broader** plan; DRP is a **subset** of BCP focused specifically on IT systems. If a scenario asks about keeping the whole organization running — BCP. If it asks about restoring IT systems — DRP.
+**Exam tip:** BCP is the **broader** plan; DRP is a **subset** of BCP focused specifically on IT systems. If a scenario asks about keeping the whole organization running — BCP. If it asks about restoring IT systems — DRP.
 
 #### Business Impact Analysis (BIA)
 
@@ -222,7 +222,7 @@ The BIA is the foundation of any BCP. It identifies what matters most and how lo
 | **Simulation** | Simulated disaster; team actively responds using procedures | Medium; may involve technology | Annually |
 | **Full interruption test** | Actual failover to backup systems | High; fully disruptive and expensive | Rarely |
 
-> **Exam tip:** Tabletop exercises are the **least disruptive** and most common. Full interruption tests are the **most realistic** but rare due to cost and risk. The exam may ask which test type is appropriate given operational constraints.
+**Exam tip:** Tabletop exercises are the **least disruptive** and most common. Full interruption tests are the **most realistic** but rare due to cost and risk. The exam may ask which test type is appropriate given operational constraints.
 
 ---
 

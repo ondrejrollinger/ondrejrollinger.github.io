@@ -50,7 +50,7 @@ Automation and orchestration streamline security operations by replacing manual,
 | **Use case** | Complex investigations, novel threats | Repetitive, well-defined tasks |
 | **Example** | "How to respond to ransomware" checklist | "Isolate endpoint automatically when ransomware detected" |
 
-> **Exam tip:** Playbook = manual checklist. Runbook = automated execution. The distinction is always human vs. system.
+**Exam tip:** Playbook = manual checklist. Runbook = automated execution. The distinction is always human vs. system.
 
 ---
 
@@ -68,7 +68,7 @@ Automation and orchestration streamline security operations by replacing manual,
 - **Compliance:** Automated logging proves controls were executed consistently
 - **Analyst focus:** Frees analysts from tier-1 tasks for complex investigations
 
-> **Exam tip:** Automation does **not** eliminate the need for analysts — it redirects analyst effort from repetitive tasks to complex investigations.
+**Exam tip:** Automation does **not** eliminate the need for analysts — it redirects analyst effort from repetitive tasks to complex investigations.
 
 ---
 
@@ -85,7 +85,7 @@ Automation and orchestration streamline security operations by replacing manual,
 
 **Common SOAR platforms:** Splunk Phantom, Palo Alto Cortex XSOAR, IBM Resilient, Swimlane
 
-> **Exam tip:** SOAR does both — it **orchestrates** (coordinates tools) AND **automates** (executes without humans). Do not treat it as automation-only.
+**Exam tip:** SOAR does both — it **orchestrates** (coordinates tools) AND **automates** (executes without humans). Do not treat it as automation-only.
 
 ---
 
@@ -101,7 +101,7 @@ Automation and orchestration streamline security operations by replacing manual,
 
 **REST API** uses HTTP methods: **GET** (retrieve), **POST** (create), **PUT** (update), **DELETE** (remove). Authentication via API key or OAuth token.
 
-> **Exam tip:** Webhook = **push** (real-time, event-driven). REST API polling = **pull** (scheduled). The exam may ask you to distinguish these.
+**Exam tip:** Webhook = **push** (real-time, event-driven). REST API polling = **pull** (scheduled). The exam may ask you to distinguish these.
 
 ---
 
@@ -118,7 +118,7 @@ Automation and orchestration streamline security operations by replacing manual,
 | **Container image scanning** | Container security | Scans Docker images for vulnerabilities before pushing to registry |
 | **Secrets management** | Credential security | Prevents hardcoded credentials in code; fetches secrets from vaults (e.g., HashiCorp Vault) at runtime |
 
-> **Exam tip:** SAST scans **source code** (static). DAST tests the **running application** (dynamic). Both integrate into CI/CD pipelines to catch vulnerabilities before production.
+**Exam tip:** SAST scans **source code** (static). DAST tests the **running application** (dynamic). Both integrate into CI/CD pipelines to catch vulnerabilities before production.
 
 ---
 

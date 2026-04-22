@@ -137,7 +137,7 @@ Cost of safeguard  = $20,000/year
 Net benefit        = $30,000/year → IMPLEMENT
 ```
 
-> **Exam tip:** If a question gives you AV, EF, and ARO — always solve SLE first, then ALE. The exam won't skip steps.
+**Exam tip:** If a question gives you AV, EF, and ARO — always solve SLE first, then ALE. The exam won't skip steps.
 
 | Advantage | Disadvantage |
 |---|---|
@@ -156,7 +156,7 @@ Net benefit        = $30,000/year → IMPLEMENT
 | **Mitigate / Reduce** | Implement controls to reduce likelihood or impact | High or critical risks with cost-effective controls available |
 | **Avoid** | Stop the risky activity entirely | Risk is unacceptable and the activity is not essential |
 
-> **Exam tip:** Risk transfer does **not** eliminate the risk — it only shifts the *financial impact*. The underlying risk still exists.
+**Exam tip:** Risk transfer does **not** eliminate the risk — it only shifts the *financial impact*. The underlying risk still exists.
 
 **Decision guidance:**
 
@@ -212,7 +212,7 @@ Treatment: Mitigate (implement EDR, immutable backups)
 Status: In Progress | Review Date: Quarterly
 ```
 
-> **Exam tip:** **Inherent risk** is the risk before any controls. **Residual risk** is what remains after controls are applied. Residual risk is never zero.
+**Exam tip:** **Inherent risk** is the risk before any controls. **Residual risk** is what remains after controls are applied. Residual risk is never zero.
 
 #### Risk reporting by audience
 
@@ -306,7 +306,7 @@ Recovery order:
 | **Risk tolerance** | Acceptable variation around the appetite | "0–5 security incidents/quarter = acceptable; >5 = unacceptable" |
 | **Risk threshold** | Point at which risk becomes unacceptable and triggers escalation | "Any incident costing >$100k requires immediate board escalation" |
 
-> **Exam tip:** Risk appetite is set by the **Board of Directors / Executive Management** — not by IT or security teams. It reflects strategic business decisions, not technical ones.
+**Exam tip:** Risk appetite is set by the **Board of Directors / Executive Management** — not by IT or security teams. It reflects strategic business decisions, not technical ones.
 
 ---
 
