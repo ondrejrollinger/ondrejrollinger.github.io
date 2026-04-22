@@ -33,399 +33,328 @@ Explain appropriate incident response activities.
 
 ### Overview
 
-Incident response is the systematic approach to managing security incidents. This objective covers the incident response process, team roles, forensics, threat hunting, and post-incident activities.
+Incident response is the systematic approach to managing security incidents — from preparation through lessons learned. This objective covers the IR process, team roles, digital forensics, threat hunting, root cause analysis, and training/testing methods.
 
 ---
 
-## Incident Response Process
+### Incident response process
 
-**7 steps (CompTIA framework):**
+CompTIA uses a **7-step framework** for the exam (NIST condenses these into 4 phases):
 
-### 1. Preparation
-- Establish incident response team
-- Create policies and procedures (playbooks)
-- Deploy security tools (SIEM, EDR, forensic tools)
-- Train team members
-- Conduct tabletop exercises
+| Step | Name | Key actions |
+|---|---|---|
+| 1 | **Preparation** | Build the team, create playbooks, deploy tools (SIEM, EDR), train staff, run tabletops |
+| 2 | **Detection** | Identify that an incident has occurred via SIEM alerts, EDR, user reports; triage real vs. false positive |
+| 3 | **Analysis** | Determine scope, impact, timeline, and affected systems; collect evidence |
+| 4 | **Containment** | Stop the incident from spreading — short-term (isolate systems) and long-term (temporary fixes) |
+| 5 | **Eradication** | Remove the threat completely — delete malware, close vulnerabilities, revoke attacker access |
+| 6 | **Recovery** | Restore systems to normal operation; restore from backups, apply patches, monitor for reinfection |
+| 7 | **Lessons Learned** | Post-incident review (1–2 weeks after recovery); document what worked, update procedures |
 
-### 2. Detection  
-- Identify that security incident occurred
-- Sources: SIEM alerts, EDR, user reports, threat intelligence
-- Triage: Determine if real incident or false positive
+> **Exam tip:** The steps must be followed **in order** — you cannot eradicate before containing, and lessons learned always comes *after* recovery.
 
-### 3. Analysis
-- Investigate scope and impact
-- Determine: What happened? When? How? Which systems affected?
-- Collect evidence (logs, memory dumps, network captures)
+**NIST vs. CompTIA:**
 
-### 4. Containment
-- Stop incident from spreading
-- **Short-term:** Immediate actions (isolate systems, block IPs)
-- **Long-term:** Temporary fixes while planning permanent solution
-
-### 5. Eradication
-- Remove threat from environment
-- Delete malware, close vulnerabilities, remove attacker access
-- Verify threat completely eliminated
-
-### 6. Recovery
-- Restore systems to normal operation
-- Restore from backups, apply patches, return to production
-- Monitor for reinfection
-
-### 7. Lessons Learned
-- Post-incident review (1-2 weeks after recovery)
-- Document what worked and what didn't
-- Update procedures to prevent recurrence
-
-**Key principle:** Each phase builds on previous, can't skip steps
-
-**Comparison to NIST:**
-- NIST has 4 phases (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident)
-- CompTIA expands to 7 distinct phases for exam
+| NIST (4 phases) | CompTIA equivalent |
+|---|---|
+| Preparation | Preparation |
+| Detection & Analysis | Detection + Analysis |
+| Containment, Eradication & Recovery | Containment + Eradication + Recovery |
+| Post-Incident Activity | Lessons Learned |
 
 ---
 
-## Incident Response Team
+### Incident response team roles
 
-**Roles:**
-
-**Incident Response Manager:**
-- Coordinate response activities
-- Make critical decisions
-- Communicate with executives
-
-**Security Analysts:**
-- Investigate alerts
-- Analyze logs
-- Execute containment
-
-**Forensic Specialists:**
-- Preserve evidence
-- Conduct detailed analysis
-- Expert testimony (if legal proceedings)
-
-**IT Operations:**
-- System administrators (restore backups, patch systems)
-- Network engineers (implement firewall rules)
-
-**Legal Counsel:**
-- Breach notification requirements
-- Law enforcement coordination
-- Liability assessment
-
-**Human Resources:**
-- Insider threat investigations
-- Employee discipline
-
-**Public Relations:**
-- External communications (customers, media)
-- Reputation management
+| Role | Responsibilities |
+|---|---|
+| **IR Manager** | Coordinates response, makes critical decisions, communicates with executives |
+| **Security Analysts** | Investigate alerts, analyze logs, execute containment actions |
+| **Forensic Specialists** | Preserve and analyze evidence; provide expert testimony in legal proceedings |
+| **IT Operations** | Restore backups, apply patches, implement firewall rules |
+| **Legal Counsel** | Breach notification requirements, law enforcement coordination, liability assessment |
+| **Human Resources** | Insider threat investigations, employee discipline |
+| **Public Relations** | External communications to customers and media; reputation management |
 
 ---
 
-## Digital Forensics
+### Digital forensics
 
 **Three core principles:**
 
-### 1. Avoid Bias
-- Objective analysis (let evidence guide conclusions)
-- Independent verification
-- Peer review
+| Principle | Meaning |
+|---|---|
+| **Avoid bias** | Let evidence guide conclusions; independent verification; peer review |
+| **Repeatable actions** | Document every step (commands, results) so a third party can reproduce the analysis |
+| **Evidence preservation** | Maintain chain of custody; always work on a **copy**, never the original |
 
-### 2. Repeatable Actions
-- Document every step
-- Commands used, results obtained
-- Third party can reproduce analysis
+**Order of volatility** (collect most volatile first):
 
-### 3. Evidence Preservation
-- Chain of custody (who collected, when, how stored)
-- Work on copies (never original)
-- Write protection (prevent modification)
+| Priority | Source | Why it disappears |
+|---|---|---|
+| 1 | CPU registers & cache | Lost in milliseconds |
+| 2 | **System memory (RAM)** | Lost when power is cut — **collect first** |
+| 3 | Network state (active connections) | Closes when session ends |
+| 4 | Running processes | Terminate when system reboots |
+| 5 | Temporary files & swap | Cleared on reboot |
+| 6 | Hard disk data | Persistent — but capture early avoids modification |
+| 7 | Remote logs & monitoring data | May be overwritten by rotation |
+| 8 | Archival media | Most persistent; collect last |
 
-**Order of volatility (most volatile first):**
-1. CPU registers and cache (milliseconds)
-2. System memory (RAM) - **MOST IMPORTANT TO COLLECT FIRST**
-3. Network state (active connections)
-4. Running processes
-5. Temporary files and swap
-6. Hard disk data
-7. Remote logging and monitoring
-8. Physical configuration
-9. Archival media
+> **Exam tip:** RAM must be captured **before** disk imaging. Disk imaging can take hours — during that time, running processes and network connections (which only exist in RAM) are lost.
 
-**Why order matters:**
-```
-Incident: Malware detected on workstation
-
-Correct order:
-1. Memory dump FIRST (captures running malware, encryption keys)
-2. Network connections (shows active C2 communication)
-3. Running processes
-4. Disk image (takes hours but data is persistent)
-
-If reversed (disk first):
-- Disk imaging takes 3 hours
-- During that time, malware process stops
-- RAM contents lost (attacker may detect investigation)
-- Network connections closed
-- Critical evidence GONE
-
-Result: Order of volatility ensures you capture most time-sensitive evidence first
-```
-
-**Forensic imaging:**
-
-**Process:**
-1. Write blocker (hardware prevents modification)
-2. Create bit-by-bit copy (dd, FTK Imager)
-3. Calculate hashes (MD5, SHA-256)
-4. Verify hashes match (original = image)
-5. Work on image, preserve original
-
-**Hash verification:**
-```bash
-# Hash original drive
-md5sum /dev/sda > original-hash.txt
-
-# Create image
-dd if=/dev/sda of=/mnt/forensics/evidence.dd bs=4M
-
-# Hash image
-md5sum evidence.dd > image-hash.txt
-
-# Compare
-diff original-hash.txt image-hash.txt
-# If identical: Image is exact copy (integrity verified)
-```
+**Forensic imaging process:**
+1. Attach a **write blocker** (hardware device preventing any writes to the original)
+2. Create a bit-by-bit copy (tools: `dd`, FTK Imager)
+3. Calculate hash of original (MD5 or SHA-256)
+4. Calculate hash of image
+5. Verify hashes match — proves the copy is an exact, unmodified duplicate
 
 **Chain of custody:**
-```
-Evidence ID: HD-2024-042
-Description: Laptop hard drive
-Serial: WD-WCAV29374628
-
-Collected by: J. Smith
-Date/Time: 2024-04-14 14:00 UTC
-Location: Building A, 3rd floor
-
-Transferred to: Forensic lab
-Date/Time: 2024-04-14 16:00 UTC
-Received by: M. Johnson
-
-Stored: Evidence locker #3
-Access log: Maintained
-
-Purpose: Legal proceedings require proving evidence not tampered with
-```
+- Documents who collected evidence, when, how it was stored, and every person who accessed it
+- Required to prove evidence was not tampered with in legal proceedings
 
 ---
 
-## Threat Hunting
+### Threat hunting
 
-**Definition:** Proactive search for threats that evaded detection
+**Definition:** Proactive, manual search for threats that have already evaded automated detection.
 
-**Difference from detection:**
-- **Detection:** Automated (SIEM rules, EDR signatures)
-- **Hunting:** Manual investigation by analyst
+| | Threat Hunting | Automated Detection |
+|---|---|---|
+| **Approach** | Manual, analyst-driven | Automated (SIEM rules, EDR signatures) |
+| **Trigger** | Hypothesis or anomaly | Alert threshold |
+| **Goal** | Find unknown threats | Alert on known patterns |
 
 **Threat hunting process:**
 
-### 1. Establish Hypothesis
-```
-Example hypotheses:
-- "Attacker may be using stolen credentials during off-hours"
-- "PowerShell being used for fileless malware"
-- "Data exfiltration via DNS tunneling"
-- "Lateral movement using PsExec"
-
-Hypothesis sources:
-- Threat intelligence (new attack campaign)
-- Industry trends (increase in specific attack type)
-- Anomalies (unusual patterns observed)
-```
-
-### 2. Profile Threat Actors
-```
-Identify likely attacker TTPs:
-- APT: Custom malware, living-off-the-land, long dwell time
-- Cybercriminal: Automated tools, quick smash-and-grab
-- Insider: Slow data exfiltration, after-hours access
-
-Expected indicators:
-- APT: Subtle, low-and-slow, uses legitimate tools
-- Cybercriminal: Noisy, known malware, rapid activity
-- Insider: USB usage, large file transfers, access to unrelated systems
-```
-
-### 3. Conduct Hunt
-```
-Data sources:
-- Windows Event Logs (Event ID 4624/4625 for authentication)
-- EDR telemetry (process execution, network connections)
-- Network traffic (NetFlow, packet captures)
-- DNS logs (unusual queries)
-
-Hunt queries:
-- "Find PowerShell with -EncodedCommand"
-- "Detect network logons from workstations using admin accounts"
-- "Identify large outbound data transfers to external IPs"
-```
-
-### 4. Document Findings
-```
-If threat found:
-- Escalate to incident response
-- Create detection rules (automate future detection)
-- Update threat intelligence
-
-If no threat found:
-- Document methodology
-- Refine hypothesis
-- Plan next hunt
-```
-
-**Hunt metrics:**
-- Hunts conducted per month
-- Threats detected
-- New detection rules created
-- Time per hunt
+| Step | Description | Example |
+|---|---|---|
+| **Establish hypothesis** | Form a testable question about attacker behavior | "Is PowerShell being used for fileless malware?" |
+| **Profile threat actors** | Identify likely TTPs based on actor type | APT: slow and low, uses living-off-the-land tools |
+| **Conduct hunt** | Query logs, EDR telemetry, network traffic for indicators | Search Event ID 4624/4625 for off-hours authentication |
+| **Document findings** | Escalate to IR if threat found; create detection rules; refine hypothesis if not | New SIEM rule created from hunt results |
 
 ---
 
-## Root Cause Analysis
+### Root cause analysis
 
-**Purpose:** Identify fundamental reason incident occurred
+**Purpose:** Identify the fundamental *why* behind an incident — not just what happened.
 
 **5 Whys technique:**
-```
-Problem: Ransomware encrypted 50 systems
 
-Why? User clicked malicious email attachment
-Why? Email appeared legitimate
-Why? Email filtering didn't catch it
-Why? No sandbox to detonate suspicious attachments
-Why? Sandbox procurement delayed (budget)
+> Problem: Ransomware encrypted 50 systems → User clicked malicious attachment → Email filter didn't catch it → No sandbox to detonate attachments → Sandbox procurement was delayed by budget.
+> **Root cause:** Lack of email sandbox. Remediation: deploy sandbox + improve training.
 
-Root cause: Lack of email sandbox solution
+**Fishbone (Ishikawa) diagram** — organizes contributing factors into categories:
+- People, Process, Technology, Environment
 
-Remediation: Deploy sandbox, enhance training
-```
-
-**Fishbone diagram (Ishikawa):**
-```
-Categories: People, Process, Technology, Environment
-
-People:
-- User clicked without verification
-- No security awareness training
-
-Process:
-- No email verification procedure
-- Backup process incomplete
-
-Technology:
-- Email filter outdated
-- No EDR on all endpoints
-
-Environment:
-- Remote work reduces security culture
-- Vendor delay in updates
-
-Result: Multiple contributing factors identified
-```
+> **Exam tip:** Root cause analysis is distinct from incident analysis. Analysis asks *what happened*; root cause analysis asks *why it was possible*.
 
 ---
 
-## Training and Testing
+### Training and testing methods
 
-**Tabletop exercise:**
-- **Format:** Discussion-based, conference room
-- **Participants:** Team discusses scenario
-- **Benefit:** Low cost, identifies process gaps
-- **Example:** "Ransomware detected at 2 AM, what do you do?"
+| Method | Format | Benefit | Limitation |
+|---|---|---|---|
+| **Tabletop exercise** | Discussion-based, conference room | Low cost; identifies process and communication gaps | No hands-on technical practice |
+| **Simulation** | Hands-on in lab/isolated environment | Realistic technical practice | Requires setup; more expensive |
+| **Full interruption test** | Actually fail over to backup systems | Proves DR truly works | Expensive and disruptive; done rarely |
 
-**Simulation:**
-- **Format:** Hands-on in lab environment
-- **Participants:** Team responds to simulated attack
-- **Benefit:** Technical practice, realistic
-- **Example:** Red team launches attack in isolated network
+**Red team vs. Purple team:**
 
-**Full interruption test:**
-- **Format:** Actually fail over to backup systems
-- **Benefit:** Proves disaster recovery works
-- **Limitation:** Expensive, disruptive
-- **Frequency:** Rarely (once a year for mature programs)
-
-**Red team vs Purple team:**
-
-**Red team:**
-- **Goal:** Attack systems (adversarial)
-- **Method:** Exploit vulnerabilities, evade detection
-- **Output:** Report on weaknesses
-
-**Purple team:**
-- **Goal:** Improve detection (collaborative)
-- **Method:** Red demonstrates attack, blue improves detection
-- **Output:** Enhanced detection capabilities
+| | Red Team | Purple Team |
+|---|---|---|
+| **Goal** | Attack systems (adversarial) | Improve detection (collaborative) |
+| **Method** | Exploit vulnerabilities, evade detection | Red demonstrates attack while blue improves detection in real time |
+| **Output** | Report on weaknesses | Enhanced detection capabilities and new SIEM rules |
 
 ---
 
-## Key Distinctions
+### Key distinctions
 
-**Detection vs Analysis:**
-- Detection: Is this an incident? (yes/no)
-- Analysis: What happened? (scope, impact)
-
-**Containment vs Eradication:**
-- Containment: Stop spread (temporary, immediate)
-- Eradication: Remove threat (permanent, thorough)
-
-**Playbook vs Runbook:**
-- Playbook: Manual checklist
-- Runbook: Automated workflow
-
-**Tabletop vs Simulation:**
-- Tabletop: Discussion only
-- Simulation: Hands-on technical exercise
-
-**Threat Hunting vs Detection:**
-- Hunting: Manual, proactive search
-- Detection: Automated alerts
+| Comparison | Distinction |
+|---|---|
+| **Containment vs. Eradication** | Containment stops the spread (temporary, immediate); eradication removes the threat (permanent, thorough) |
+| **Detection vs. Analysis** | Detection: is this an incident? (yes/no); analysis: what happened, scope, and impact |
+| **Playbook vs. Runbook** | Playbook: manual checklist; runbook: automated workflow |
+| **Tabletop vs. Simulation** | Tabletop: discussion only; simulation: hands-on technical exercise |
+| **Threat Hunting vs. Detection** | Hunting: manual, proactive search by analyst; detection: automated alerts from rules/signatures |
+| **Root cause vs. Lessons learned** | Root cause: why was this possible; lessons learned: what do we change going forward |
+| **Chain of custody vs. Evidence preservation** | Evidence preservation protects the data; chain of custody documents who touched it and when |
 
 ---
 
-## Common Exam Traps
+### Common exam traps
 
-1. **Trap:** Thinking containment and eradication are same step
-   - **Reality:** Containment stops spread, eradication removes threat
+**Trap: Treating containment and eradication as the same step.**
+Reality: Containment is about stopping the spread quickly (isolate the host). Eradication is the thorough removal of the threat (delete malware, close the vulnerability). Both are required.
 
-2. **Trap:** Believing forensics should analyze original disk
-   - **Reality:** Always work on copy (preserve evidence)
+**Trap: Thinking forensic analysis should be done on the original disk.**
+Reality: Always work on a verified copy. The original is preserved with a write blocker and maintained with chain of custody.
 
-3. **Trap:** Assuming order of volatility doesn't matter
-   - **Reality:** Collect RAM before disk (RAM lost when powered off)
+**Trap: Ignoring order of volatility.**
+Reality: RAM must be captured before disk. Disk imaging can take hours — running processes, network connections, and encryption keys only exist in RAM and disappear when power is cut.
 
-4. **Trap:** Thinking lessons learned happens during incident
-   - **Reality:** Post-incident (1-2 weeks after recovery)
+**Trap: Thinking lessons learned happens during the incident.**
+Reality: Lessons learned is a post-incident activity, conducted 1–2 weeks *after* recovery — not during the active response.
 
-5. **Trap:** Believing all incidents require law enforcement
-   - **Reality:** Only specific cases (financial fraud, major breaches)
+**Trap: Assuming all incidents require law enforcement notification.**
+Reality: Only specific incident types (financial fraud, major data breaches meeting legal thresholds) require law enforcement. Legal counsel determines this.
+
+**Trap: Confusing tabletop exercises with simulations.**
+Reality: A tabletop is a discussion — no systems are touched. A simulation involves hands-on technical activity in a lab environment.
 
 ---
 
-## Exam Tips
+### Exam tips
 
-1. **7 steps in order:** Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned
-2. **Containment first** before eradication (stop spread, then remove)
-3. **Preserve evidence** during containment (don't destroy forensic artifacts)
-4. **Order of volatility:** RAM first, disk second (most volatile collected first)
-5. **Forensics:** Work on copy, never original
-6. **Chain of custody:** Document who, what, when for evidence
-7. **Root cause analysis:** Identify WHY (not just what)
-8. **Lessons learned:** Post-incident only (after recovery)
-9. **Tabletop:** Discussion-based training (low cost)
-10. **Threat hunting:** Proactive manual search (not automated detection)
+1. **7 steps in order:** Preparation → Detection → Analysis → Containment → Eradication → Recovery → Lessons Learned
+2. **Containment before eradication** — always stop the spread first, then remove the threat
+3. **Preserve evidence during containment** — don't destroy forensic artifacts while isolating
+4. **Order of volatility:** RAM first — most volatile data; disk last — most persistent
+5. **Forensics:** always work on a copy; verify with hash comparison; maintain chain of custody
+6. **Root cause analysis:** answers *why* — 5 Whys and fishbone diagram are the two key techniques
+7. **Lessons learned:** post-incident only — after recovery, typically 1–2 weeks later
+8. **Tabletop = discussion; simulation = hands-on** — know which is which
+9. **Threat hunting = manual + proactive** — distinct from automated detection
+10. **Purple team = collaborative improvement** — red attacks, blue learns in real time
+
+---
+
+### Key terms
+
+- **Incident response** — A systematic, structured approach to managing and mitigating security incidents.
+- **Preparation** — IR phase focused on building teams, policies, tools, and training before an incident occurs.
+- **Containment** — Stopping an incident from spreading; may be short-term (isolate host) or long-term (temporary fix).
+- **Eradication** — Permanently removing a threat from the environment after containment.
+- **Lessons learned** — Post-incident review conducted after recovery to improve future response.
+- **Digital forensics** — The collection, preservation, and analysis of electronic evidence using sound, repeatable methodology.
+- **Order of volatility** — The sequence in which evidence should be collected, prioritizing the most transient data first.
+- **Chain of custody** — Documentation tracking who collected evidence, how it was stored, and every person who accessed it.
+- **Write blocker** — Hardware device that prevents any writes to original evidence media during forensic imaging.
+- **Threat hunting** — Proactive, analyst-driven search for threats that have evaded automated detection.
+- **Root cause analysis** — The process of identifying the fundamental reason an incident was possible.
+- **5 Whys** — Root cause analysis technique that iteratively asks "why" to trace a problem to its origin.
+- **Tabletop exercise** — Discussion-based IR training where participants talk through a scenario without hands-on activity.
+- **Simulation** — Hands-on IR training conducted in a lab or isolated environment with a realistic attack scenario.
+- **Playbook** — Manual checklist of steps for responding to a specific incident type.
+- **Runbook** — Automated workflow that executes IR steps programmatically.
+- **Red team** — Adversarial group that attacks systems to identify weaknesses.
+- **Purple team** — Collaborative exercise where red team attacks and blue team improves detection in real time.
+
+---
+
+### Examples / scenarios
+
+**Scenario 1:** A security analyst receives a SIEM alert at 2 AM indicating a host is communicating with a known C2 server. The analyst confirms the connection is active. What should happen next?
+- **Answer:** Analysis (confirm scope), then Containment (isolate the host). The analyst must not power off the system yet — RAM must be captured first to preserve forensic evidence including the running malware and active connection details.
+
+**Scenario 2:** A forensic specialist is handed a hard drive from a compromised server. Before beginning analysis, they connect the drive through a hardware device that prevents any writes. They then create a bit-by-bit copy and compare MD5 hashes of both.
+- **Answer:** Correct forensic procedure: write blocker protects original, hash comparison verifies integrity of the copy. All analysis proceeds on the copy.
+
+**Scenario 3:** A threat hunter hypothesizes that an attacker may be using encoded PowerShell commands to execute fileless malware. They search EDR telemetry for processes launched with `-EncodedCommand` parameters, correlate with authentication logs, and find no evidence of compromise.
+- **Answer:** Correct threat hunting process — hypothesis formed, hunt conducted, negative result documented, detection rule created to automate future monitoring.
+
+**Scenario 4:** Three weeks after recovering from a ransomware attack, the IR manager schedules a meeting to review what happened, identify what failed, and update the incident response plan.
+- **Answer:** Lessons learned phase. This is explicitly post-incident and typically occurs 1–2 weeks after recovery.
+
+**Scenario 5:** A company's IR team discusses what to do when ransomware is detected at 2 AM — but does not actually touch any systems. Afterward, they identify gaps in their notification procedures.
+- **Answer:** Tabletop exercise. Discussion-only, no systems touched, gaps in process identified.
+
+---
+
+### Mini quiz
+
+<details>
+<summary><strong>Question 1:</strong> Why must RAM be collected before a disk image during forensic response?</summary>
+
+**Answer:** RAM is volatile — its contents are lost when the system is powered off. Disk imaging can take hours, during which time the running malware process, active network connections, and encryption keys (which only exist in RAM) would be destroyed. Order of volatility requires collecting the most transient evidence first.
+</details>
+
+<details>
+<summary><strong>Question 2:</strong> What is the difference between containment and eradication?</summary>
+
+**Answer:** Containment stops the incident from spreading — it is immediate and may be temporary (e.g., isolate the affected host, block a malicious IP). Eradication permanently removes the threat — deleting malware, closing the exploited vulnerability, and revoking attacker access. Both steps are required; eradication cannot begin until containment is in place.
+</details>
+
+<details>
+<summary><strong>Question 3:</strong> What makes threat hunting different from automated detection?</summary>
+
+**Answer:** Threat hunting is a proactive, manual process driven by an analyst forming a hypothesis and searching for evidence of threats that have already evaded automated detection. Automated detection relies on predefined rules and signatures to generate alerts. Hunting finds the unknown; detection alerts on the known.
+</details>
+
+<details>
+<summary><strong>Question 4:</strong> What is the purpose of chain of custody?</summary>
+
+**Answer:** Chain of custody documents who collected evidence, when, how it was stored, and every individual who accessed it. It is required for legal proceedings to prove the evidence was not tampered with between collection and presentation.
+</details>
+
+<details>
+<summary><strong>Question 5:</strong> When does the lessons learned phase occur and what is its purpose?</summary>
+
+**Answer:** Lessons learned occurs after recovery — typically 1–2 weeks post-incident. Its purpose is to identify what worked, what failed, update the IR plan and playbooks, and implement changes to prevent recurrence. It is not conducted during the active incident.
+</details>
+
+### CompTIA-style practice questions
+
+<details>
+<summary><strong>Question 6:</strong> A security team has confirmed active ransomware on three servers. The malware is still running and communicating with an external IP. Which action should the team take FIRST?<br>A. Wipe and restore the servers from backup<br>B. Power off the servers to stop the ransomware<br>C. Isolate the servers from the network while preserving RAM<br>D. Run a root cause analysis to determine how ransomware entered</summary>
+
+**Correct Answer: C. Isolate the servers from the network while preserving RAM**
+
+Containment comes before eradication or recovery. Isolating the servers stops the spread and blocks C2 communication. RAM must be preserved before any power-off to capture forensic evidence including encryption keys and the running process.
+
+- A: Recovery comes after containment and eradication — wiping now destroys forensic evidence.
+- B: Powering off destroys volatile evidence in RAM (encryption keys, active connections) before it can be captured.
+- D: Root cause analysis occurs post-incident, not during active response.
+</details>
+
+<details>
+<summary><strong>Question 7:</strong> A forensic analyst is tasked with investigating a compromised workstation. After attaching a write blocker and creating a bit-by-bit image, the analyst calculates the MD5 hash of the image but not the original drive. What is the PRIMARY concern with this procedure?<br>A. The write blocker was unnecessary since imaging is read-only<br>B. MD5 is not approved for forensic use<br>C. Without hashing the original, there is no way to prove the image is an unmodified copy<br>D. Bit-by-bit imaging takes too long for forensic investigations</summary>
+
+**Correct Answer: C. Without hashing the original, there is no way to prove the image is an unmodified copy**
+
+Forensic integrity requires hashing **both** the original and the image, then comparing the two values. If only the image is hashed, there is no baseline to verify the copy is accurate — which undermines chain of custody and evidence admissibility.
+
+- A: The write blocker is essential regardless of read intent — it is a safeguard, not an optional accessory.
+- B: MD5 is widely accepted in forensics, though SHA-256 is preferred for stronger collision resistance.
+- D: Imaging speed is a practical consideration, not a procedural concern in this scenario.
+</details>
+
+<details>
+<summary><strong>Question 8:</strong> An organization's security team suspects an attacker may be using DNS queries to exfiltrate data slowly over several months. No SIEM alert has fired. An analyst forms a hypothesis and begins reviewing DNS logs for anomalously long query strings and unusual domain patterns. Which activity BEST describes this?<br>A. Vulnerability scanning<br>B. Automated threat detection<br>C. Incident analysis<br>D. Threat hunting</summary>
+
+**Correct Answer: D. Threat hunting**
+
+The analyst is conducting a proactive, manual investigation based on a hypothesis about a threat that has not triggered any automated alert. This is the defining characteristic of threat hunting — searching for the unknown rather than responding to a known alert.
+
+- A: Vulnerability scanning identifies weaknesses in systems, not active threat behavior.
+- B: Automated detection relies on rules/signatures that fire alerts; no alert fired here.
+- C: Incident analysis investigates a confirmed incident; no incident has been confirmed yet.
+</details>
+
+<details>
+<summary><strong>Question 9 (Multi-select):</strong> Following a ransomware incident, the IR manager is planning training to reduce future risk. Which TWO activities involve hands-on technical practice rather than discussion only? (Select TWO.)<br>A. Tabletop exercise with the executive team<br>B. Red team simulation in an isolated lab environment<br>C. Reviewing and updating the incident response playbook<br>D. Full interruption test that fails over to backup infrastructure<br>E. Reviewing SIEM alert logs from the incident</summary>
+
+**Correct Answers: B and D**
+
+Both simulations (B) and full interruption tests (D) involve actively exercising technical systems and procedures — not just talking through them.
+
+- A: A tabletop exercise is discussion-based only; no systems are touched.
+- C: Reviewing a playbook is documentation work, not hands-on practice.
+- E: Log review is analysis activity, not a training exercise.
+</details>
+
+---
+
+### Related objectives
+
+- [**4.3**]({{ '/secplus/objectives/4-3/' | relative_url }}) — Vulnerability management feeds directly into preparation and eradication phases of incident response.
+- [**4.4**]({{ '/secplus/objectives/4-4/' | relative_url }}) — Security alerting and monitoring tools (SIEM, EDR) are the primary detection and analysis instruments.
+- [**4.7**]({{ '/secplus/objectives/4-7/' | relative_url }}) — Automation and orchestration (SOAR) enables runbook execution and speeds containment during IR.
+- [**4.9**]({{ '/secplus/objectives/4-9/' | relative_url }}) — Data sources used during investigations directly support the analysis and threat hunting phases.
+- [**2.4**]({{ '/secplus/objectives/2-4/' | relative_url }}) — Indicators of malicious activity are what detection and analysis phases rely on to confirm and scope incidents.
 
 ---
 
