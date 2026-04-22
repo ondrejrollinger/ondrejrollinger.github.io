@@ -76,7 +76,7 @@ The goal of monitoring is to establish a baseline of normal activity and detect 
 | **Integrity hashing** | Detects after-the-fact tampering |
 | **Retention policy** | PCI-DSS requires 1 year; balance compliance vs. storage cost |
 
-> **Exam tip:** The primary reason to use centralized logging is that an attacker who compromises a host cannot delete evidence. Local logs can be wiped; centralized logs cannot.
+**Exam tip:** The primary reason to use centralized logging is that an attacker who compromises a host cannot delete evidence. Local logs can be wiped; centralized logs cannot.
 
 ---
 
@@ -136,7 +136,7 @@ SOAR automates and orchestrates responses to security events, reducing mean time
 
 **Example playbook — phishing response:** User reports suspicious email → SOAR searches all inboxes for the same message → deletes from all inboxes → blocks sender domain at email gateway → adds hash to threat intel feed → closes ticket automatically.
 
-> **Exam tip:** SIEM detects; SOAR responds. They are complementary: SIEM surfaces the alert, SOAR automates the reaction.
+**Exam tip:** SIEM detects; SOAR responds. They are complementary: SIEM surfaces the alert, SOAR automates the reaction.
 
 ---
 
@@ -150,7 +150,7 @@ SOAR automates and orchestrates responses to security events, reducing mean time
 | **MTTRecov** | Mean Time to Recover | How long until full restoration of normal operations |
 | **False positive rate** | — | % of alerts that are benign; high rate indicates poor tuning |
 
-> **Exam tip:** Lower MTTD and MTTR indicate a more mature and effective security operations program. Automation (SOAR) is the primary lever for reducing MTTR.
+**Exam tip:** Lower MTTD and MTTR indicate a more mature and effective security operations program. Automation (SOAR) is the primary lever for reducing MTTR.
 
 ---
 
