@@ -177,10 +177,10 @@ Responsible disclosure (also called coordinated disclosure) defines the process 
 ### Common exam traps
 
 **Trap: Thinking a vulnerability scan and a penetration test are the same thing.**
-Reality: A vulnerability scan is automated and non-exploitative — it identifies what *might* be exploitable. A pen test is manual, actively exploits confirmed vulnerabilities, and demonstrates real business impact.
+Reality: A vulnerability scan is automated and non-exploitative — it identifies what might be exploitable. A pen test is manual, actively exploits confirmed vulnerabilities, and demonstrates real business impact.
 
 **Trap: Confusing black box with "bad" and white box with "better."**
-Reality: Neither is universally better. Black box is more *realistic* (simulates an outside attacker); white box is more *thorough* (maximizes coverage). The right choice depends on the testing goal.
+Reality: Neither is universally better. Black box is more realistic (simulates an outside attacker); white box is more thorough (maximizes coverage). The right choice depends on the testing goal.
 
 **Trap: Assuming active reconnaissance is always part of a pen test.**
 Reality: In some engagements, only passive recon is authorized. Active recon is explicitly in-scope when the rules of engagement permit it.
@@ -189,7 +189,7 @@ Reality: In some engagements, only passive recon is authorized. Active recon is 
 Reality: Coordinated disclosure programs (like Google's 90-day window) give vendors a defined period to patch — after which researchers may publish regardless of whether the patch is ready.
 
 **Trap: Thinking internal audits are unreliable.**
-Reality: Internal audits have real value for continuous compliance monitoring. They are less *independent*, not less *valid*. Regulators typically require *both* internal and external audit activity.
+Reality: Internal audits have real value for continuous compliance monitoring. They are less independent, not less valid. Regulators typically require *both* internal and external audit activity.
 
 ---
 
