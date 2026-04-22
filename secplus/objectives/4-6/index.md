@@ -37,387 +37,377 @@ Resilience and recovery ensure business operations continue during and after dis
 
 ---
 
-## Backup Strategies
+### Backup Strategies
 
-**Backup types:**
+#### Backup types
 
-**Full backup:**
-- **Method:** Copy all data
-- **Restoration:** Single backup needed
-- **Time:** Longest (hours for TB of data)
-- **Storage:** Most space required
-- **Frequency:** Weekly or monthly
+| Backup type | What is copied | Restore requires | Backup speed | Storage use | Typical frequency |
+|---|---|---|---|---|---|
+| **Full** | All data | Single backup | Slowest | Most | Weekly / monthly |
+| **Incremental** | Data changed since last backup (any type) | Last full + all incrementals | Fastest | Least | Daily / multiple times per day |
+| **Differential** | Data changed since last **full** backup | Last full + last differential | Slower than incremental | More than incremental | Daily |
 
-**Incremental backup:**
-- **Method:** Copy only data changed since last backup (any type)
-- **Restoration:** Need last full + all incrementals
-- **Time:** Fastest backup
-- **Storage:** Least space
-- **Frequency:** Daily or multiple times per day
-- **Risk:** If one incremental lost, can't restore fully
+> **Exam tip:** Incremental = **fastest backup, slowest restore**. Differential = **slower backup, faster restore** than incremental. Full = **slowest backup, fastest restore**. If a question asks which restores fastest — full wins; if it asks which backs up fastest — incremental wins.
 
-**Differential backup:**
-- **Method:** Copy data changed since last FULL backup
-- **Restoration:** Need last full + last differential
-- **Time:** Slower than incremental (grows until next full)
-- **Storage:** More than incremental
-- **Frequency:** Daily
-- **Benefit:** Faster restoration than incremental
+**Backup schedule comparison:**
 
-**Backup schedule example:**
 ```
 Sunday: Full backup (all data)
-Monday: Differential (changes since Sunday)
-Tuesday: Differential (all changes since Sunday)
-Wednesday: Differential (all changes since Sunday)
-Thursday: Differential (all changes since Sunday)
-Friday: Differential (all changes since Sunday)
-Saturday: Differential (all changes since Sunday)
 
-Restoration on Friday:
-- Restore Sunday's full backup
-- Restore Friday's differential
-- Done! (2 backups needed)
+--- Differential schedule ---
+Mon–Sat: Differential (all changes since Sunday)
 
-VS Incremental schedule:
-Sunday: Full
-Monday-Saturday: Incremental (changes since previous day)
+Restore on Friday = Full (Sun) + Differential (Fri) = 2 backups
 
-Restoration on Friday:
-- Restore Sunday's full
-- Restore Monday's incremental
-- Restore Tuesday's incremental
-- Restore Wednesday's incremental
-- Restore Thursday's incremental
-- Restore Friday's incremental
-- Done (6 backups needed, longer restoration)
+--- Incremental schedule ---
+Mon–Sat: Incremental (changes since previous day)
+
+Restore on Friday = Full (Sun) + Mon + Tue + Wed + Thu + Fri = 6 backups
 ```
 
-**Backup locations:**
+#### Backup locations
 
-**On-site:**
-- **Storage:** Same building/datacenter
-- **Pro:** Fast backup and restoration
-- **Con:** Vulnerable to same disasters (fire, flood)
-- **Use:** Quick recovery for minor incidents
+| Location | Storage | Pros | Cons | Best use |
+|---|---|---|---|---|
+| **On-site** | Same building / datacenter | Fast backup and restore | Vulnerable to same disasters (fire, flood) | Quick recovery for minor incidents |
+| **Off-site** | Different geographic location | Protected from local disasters | Slower restore (transport or network transfer) | Disaster recovery |
+| **Cloud** | AWS S3, Azure Blob, Google Cloud | Scalable, distributed, cost-effective | Requires internet; ongoing subscription costs | Long-term retention, DR |
 
-**Off-site:**
-- **Storage:** Different geographic location
-- **Pro:** Protected from local disasters
-- **Con:** Slower restoration (physical transport or network transfer)
-- **Use:** Disaster recovery
+> **Exam tip:** The **3-2-1 rule** — **3** copies of data, on **2** different media types, with **1** stored off-site. This is the standard backup best practice and a frequent exam scenario anchor.
 
-**Cloud backup:**
-- **Storage:** AWS S3, Azure Blob, Google Cloud
-- **Pro:** Scalable, geographically distributed, cost-effective
-- **Con:** Requires internet, subscription costs
-- **Use:** Long-term retention, disaster recovery
+#### Backup media
 
-**3-2-1 backup rule:**
-- **3 copies** of data (production + 2 backups)
-- **2 different media types** (disk + tape, or disk + cloud)
-- **1 off-site** backup (protect against local disasters)
+| Media | Pros | Cons | Best use |
+|---|---|---|---|
+| **Disk (HDD / NAS / SAN)** | Fast backup and restore; random access | More expensive per GB than tape | Recent backups; quick recovery |
+| **Tape (LTO)** | Cheap per GB; durable (30+ year lifespan) | Sequential access (slow); requires tape drive | Long-term archival |
+| **Cloud storage** | No hardware to maintain; unlimited scale | Ongoing costs; egress fees | Off-site backup; disaster recovery |
 
-**Backup media:**
+#### Backup security and testing
 
-**Disk (hard drives, NAS, SAN):**
-- **Pro:** Fast backup/restoration, random access
-- **Con:** More expensive per GB than tape
-- **Use:** Recent backups, quick recovery
+- **Encryption:** Encrypt backups at rest and in transit.
+- **Access control:** Limit who can delete or modify backups.
+- **Immutability (WORM):** Write-once-read-many storage prevents ransomware from encrypting backup copies.
+- **Air gap:** Physically disconnect backup media from the network.
+- **Testing frequency:** At minimum quarterly — restore test data, verify integrity, and document actual recovery time vs. RTO target.
 
-**Tape (LTO - Linear Tape-Open):**
-- **Pro:** Cheap per GB, long-term durability (30+ years)
-- **Con:** Sequential access (slow), requires tape drive
-- **Use:** Long-term archival
-
-**Cloud storage:**
-- **Pro:** No hardware to maintain, unlimited scalability
-- **Con:** Ongoing costs, egress fees
-- **Use:** Off-site backup, disaster recovery
-
-**Backup testing:**
-- **Frequency:** Quarterly minimum
-- **Method:** Restore test data, verify integrity
-- **Document:** Recovery time actual vs RTO target
-- **Purpose:** Verify backups work (don't discover failures during actual disaster)
-
-**Backup security:**
-- **Encryption:** Encrypt backups (at rest and in transit)
-- **Access control:** Limit who can delete/modify backups
-- **Immutability:** Write-once-read-many (WORM) prevents ransomware from encrypting backups
-- **Air gap:** Physically disconnect backup media from network
+> **Exam tip:** Untested backups are not backups. A common exam trap is assuming backups work without testing. Test quarterly and document actual vs. target recovery times.
 
 ---
 
-## Disaster Recovery
+### Disaster Recovery
 
-**Disaster types:**
+#### Disaster types
+
 - **Natural:** Hurricane, earthquake, flood, fire
 - **Technical:** Hardware failure, power outage, network failure
 - **Human-caused:** Cyberattack, sabotage, terrorism
 - **Pandemic:** Workforce unavailable
 
-**Disaster Recovery Plan (DRP):**
+#### Recovery objectives
 
-**Components:**
-1. **Emergency contacts:** Who to call (IT, management, vendors)
-2. **Recovery procedures:** Step-by-step recovery instructions
-3. **System priorities:** Which systems restore first
-4. **Backup locations:** Where backups stored, how to access
-5. **Alternate sites:** Where to operate if primary site unavailable
+| Metric | Measures | Determined by | Example |
+|---|---|---|---|
+| **RPO** (Recovery Point Objective) | Maximum acceptable **data loss** (time) | Backup frequency | RPO = 4 h → must back up every ≤ 4 hours |
+| **RTO** (Recovery Time Objective) | Maximum acceptable **downtime** | Recovery strategy (hot/warm/cold site) | RTO = 8 h → must restore within 8 hours |
+| **MTBF** (Mean Time Between Failures) | Average operating time before a failure | Hardware reliability planning | MTBF = 100,000 h ≈ 11 years |
+| **MTTR** (Mean Time To Repair) | Average time to repair and restore after failure | Recovery efficiency measurement | MTTR = 4 hours |
 
-**Recovery objectives:**
+> **Exam tip:** RPO = **data loss** → drives backup frequency. RTO = **downtime** → drives recovery site choice. These are commonly swapped on the exam — commit the distinction to memory.
 
-**RPO (Recovery Point Objective):**
-- **Definition:** Maximum acceptable data loss (measured in time)
-- **Example:** RPO = 4 hours means max 4 hours of data loss acceptable
-- **Determines:** Backup frequency
-- **Calculation:** If RPO = 4 hours, must backup every 4 hours or less
-
-**RTO (Recovery Time Objective):**
-- **Definition:** Maximum acceptable downtime
-- **Example:** RTO = 8 hours means must restore within 8 hours
-- **Determines:** Recovery strategy (hot site vs cold site)
-- **Calculation:** Time from disaster to full operation
-
-**MTBF (Mean Time Between Failures):**
-- **Definition:** Average time system operates before failing
-- **Example:** MTBF = 100,000 hours = ~11 years
-- **Use:** Hardware reliability metric
-
-**MTTR (Mean Time To Repair):**
-- **Definition:** Average time to repair and restore
-- **Example:** MTTR = 4 hours
-- **Use:** Measure recovery efficiency
-
-**Example RPO/RTO calculation:**
+**RPO / RTO worked example:**
 ```
-Critical database server:
-- Business impact if down: $50k/hour revenue loss
-- Data sensitivity: High (customer orders)
-- Regulatory requirement: Financial data must be recoverable
+Critical database:
+- Revenue impact: $50k/hour
+- Data sensitivity: high (customer orders)
 
 Decision:
-- RPO = 1 hour (max 1 hour data loss acceptable)
-- RTO = 4 hours (max 4 hours downtime acceptable)
-
-Implementation:
-- Backup every 30 minutes (meets RPO)
-- Hot site with real-time replication (meets RTO)
+- RPO = 1 hour → back up every 30 minutes
+- RTO = 4 hours → hot site with real-time replication
 - Cost: $100k/year
-- Justification: 4-hour outage costs $200k, hot site prevents this
+- Justification: a 4-hour outage costs $200k; hot site prevents that loss
 ```
 
-**Recovery sites:**
+#### Recovery sites
 
-**Hot site:**
-- **Definition:** Fully equipped, operational duplicate datacenter
-- **Readiness:** Immediate (real-time replication)
-- **RTO:** Minutes to hours
-- **Cost:** Most expensive
-- **Use:** Mission-critical systems (can't tolerate downtime)
+| Site type | Readiness | RTO | Cost | Best use |
+|---|---|---|---|---|
+| **Hot site** | Immediate (real-time replication) | Minutes to hours | Highest | Mission-critical systems; zero-downtime tolerance |
+| **Warm site** | Hours (restore from backups) | Hours to days | Medium | Important but not mission-critical |
+| **Cold site** | Days to weeks (install hardware, restore data) | Days to weeks | Lowest | Non-critical systems; budget-constrained environments |
+| **Mobile site** | Hours to days (transport and setup) | Variable | Medium | Temporary recovery; remote locations |
 
-**Warm site:**
-- **Definition:** Partially equipped, hardware ready but data delayed
-- **Readiness:** Hours to restore (restore from backups)
-- **RTO:** Hours to days
-- **Cost:** Medium
-- **Use:** Important but not mission-critical
+> **Exam tip:** Match site type to RTO. If a scenario demands near-instant recovery → **hot site**. If cost is the primary constraint and long downtime is tolerable → **cold site**. Warm site sits in between.
 
-**Cold site:**
-- **Definition:** Empty facility with power/network (no equipment)
-- **Readiness:** Days to weeks (install hardware, restore data)
-- **RTO:** Days to weeks
-- **Cost:** Least expensive
-- **Use:** Non-critical systems, budget constraints
+#### Failover and replication
 
-**Mobile site:**
-- **Definition:** Portable datacenter (trailer/container)
-- **Readiness:** Hours to days (transport and setup)
-- **Use:** Temporary recovery, remote locations
-
-**Recovery strategies:**
-
-**Failover:**
-- **Definition:** Switch to backup system when primary fails
-- **Automatic:** System detects failure, switches automatically
-- **Manual:** IT admin initiates failover
-- **Example:** Primary database fails, failover to standby replica
-
-**Failback:**
-- **Definition:** Return to primary system after recovery
-- **Process:** Restore primary, sync data, switch back
-- **Timing:** After primary fully restored and tested
-
-**Replication:**
-- **Synchronous:** Real-time copy (zero data loss, slower)
-- **Asynchronous:** Delayed copy (minimal data loss, faster)
-- **Use:** Hot site, database high availability
+| Concept | Definition | Key detail |
+|---|---|---|
+| **Failover** | Switch to backup system when primary fails | Can be automatic (system-initiated) or manual (admin-initiated) |
+| **Failback** | Return to primary system after it is recovered | Requires primary to be fully restored and tested before switching back |
+| **Synchronous replication** | Real-time copy; zero data loss | Slower; requires low-latency link |
+| **Asynchronous replication** | Delayed copy; minimal data loss | Faster; tolerates higher latency |
 
 ---
 
-## High Availability and Redundancy
+### High Availability and Redundancy
 
-**High availability (HA):**
-- **Goal:** Minimize downtime
-- **Measure:** Uptime percentage (99.9% = 8.76 hours/year downtime)
-- **Methods:** Redundancy, clustering, load balancing
+#### Availability tiers
 
-**Availability tiers:**
-```
-99% = 3.65 days/year downtime
-99.9% (three nines) = 8.76 hours/year downtime
-99.99% (four nines) = 52.56 minutes/year downtime
-99.999% (five nines) = 5.26 minutes/year downtime
-```
+| Uptime % | Common name | Annual downtime |
+|---|---|---|
+| 99% | Two nines | 3.65 days |
+| 99.9% | Three nines | 8.76 hours |
+| 99.99% | Four nines | 52.56 minutes |
+| 99.999% | Five nines | 5.26 minutes |
 
-**Redundancy types:**
+> **Exam tip:** "Five nines" (99.999%) is the gold standard for mission-critical systems. Know that higher availability requires exponentially more investment in redundancy.
 
-**Hardware redundancy:**
-- **Redundant power supplies:** Two power supplies per server
-- **RAID:** Multiple drives (data survives drive failure)
-- **Redundant network interfaces:** Multiple NICs per server
-- **UPS:** Uninterruptible Power Supply (battery backup)
+#### Redundancy types
 
-**Geographic redundancy:**
-- **Multiple datacenters:** Different cities/regions
-- **Purpose:** Survive regional disasters
-- **Example:** AWS availability zones
+| Type | Examples |
+|---|---|
+| **Hardware redundancy** | Redundant power supplies; RAID arrays; redundant NICs; UPS (battery backup) |
+| **Geographic redundancy** | Multiple datacenters in different cities/regions (e.g., AWS availability zones) |
+| **Network redundancy** | Multiple ISPs; redundant switches and routers; diverse routing paths |
 
-**Network redundancy:**
-- **Multiple ISPs:** Diverse internet connections
-- **Redundant switches/routers:** Eliminate single points of failure
-- **Alternate paths:** Multiple network routes
+#### Clustering and load balancing
 
-**Clustering:**
-- **Definition:** Multiple servers working together as one
-- **Active-Active:** All nodes handle traffic (load balanced)
-- **Active-Passive:** One node active, others standby (failover)
-- **Use:** Database servers, web servers, applications
+| Concept | Definition | Detail |
+|---|---|---|
+| **Active-Active cluster** | All nodes handle traffic simultaneously | Load balanced; all nodes must be sized for full load |
+| **Active-Passive cluster** | One node active; others on standby | Automatic failover; standby nodes are idle during normal operation |
+| **Round-robin load balancing** | Rotate requests sequentially through servers | Simple; ignores server load |
+| **Least-connections load balancing** | Route to server with fewest active connections | More efficient than round-robin for variable workloads |
+| **Geographic load balancing** | Route users to nearest server | Reduces latency; provides regional redundancy |
 
-**Load balancing:**
-- **Definition:** Distribute traffic across multiple servers
-- **Methods:**
-  - **Round robin:** Rotate through servers sequentially
-  - **Least connections:** Send to server with fewest active connections
-  - **Geographic:** Route to nearest server
-- **Benefits:** Performance, redundancy (server fails, others continue)
-
-**Single Point of Failure (SPOF):**
-- **Definition:** Component whose failure stops entire system
-- **Examples:** Single power supply, single network link, single server
-- **Mitigation:** Redundancy (eliminate all SPOFs)
+> **Exam tip:** **Single Point of Failure (SPOF)** — any component whose failure stops the entire system. High availability design means eliminating all SPOFs through redundancy. Common SPOFs: single power supply, single ISP connection, single server.
 
 ---
 
-## Business Continuity
+### Business Continuity
 
-**Business Continuity Plan (BCP):**
+#### DRP vs. BCP
 
-**Difference from DRP:**
-- **DRP:** IT systems recovery (technology focus)
-- **BCP:** Entire business operations (people, processes, technology)
+| Plan | Focus | Scope |
+|---|---|---|
+| **DRP** (Disaster Recovery Plan) | IT systems recovery | Technology: servers, data, applications |
+| **BCP** (Business Continuity Plan) | Entire business operations | People, processes, and technology |
 
-**BCP components:**
+> **Exam tip:** BCP is the **broader** plan; DRP is a **subset** of BCP focused specifically on IT systems. If a scenario asks about keeping the whole organization running — BCP. If it asks about restoring IT systems — DRP.
 
-**Business Impact Analysis (BIA):**
-- **Purpose:** Identify critical business functions and impact of disruption
-- **Process:**
-  1. Identify critical functions (payroll, customer support, manufacturing)
-  2. Determine impact of downtime (revenue loss, reputation damage)
-  3. Calculate maximum tolerable downtime (MTD)
-  4. Prioritize recovery (most critical first)
+#### Business Impact Analysis (BIA)
 
-**Continuity of Operations Plan (COOP):**
-- **Purpose:** Continue operations during disruption
-- **Strategies:**
-  - **Work from home:** Remote work capabilities
-  - **Alternate work site:** Backup office location
-  - **Cross-training:** Employees can cover multiple roles
-  - **Succession planning:** Backup for key personnel
+The BIA is the foundation of any BCP. It identifies what matters most and how long the business can survive without it.
 
-**Crisis communication plan:**
-- **Internal:** Notify employees of situation
-- **External:** Communicate with customers, partners, media
-- **Templates:** Pre-written messages for different scenarios
+1. Identify critical business functions (payroll, customer support, manufacturing)
+2. Determine the impact of downtime (revenue loss, regulatory penalty, reputational damage)
+3. Calculate **MTD** (Maximum Tolerable Downtime) per function
+4. Prioritize recovery order (most critical functions first)
 
-**Testing BCP:**
+#### Continuity strategies
 
-**Tabletop exercise:**
-- **Method:** Discussion-based walkthrough
-- **Participants:** Key personnel discuss scenario
-- **Benefit:** Identifies plan gaps without disruption
-- **Frequency:** Quarterly
+| Strategy | Description |
+|---|---|
+| **Work from home** | Remote work capabilities for workforce continuity |
+| **Alternate work site** | Backup office location if primary is unavailable |
+| **Cross-training** | Employees capable of covering multiple roles |
+| **Succession planning** | Designated backups for key personnel |
 
-**Simulation:**
-- **Method:** Simulated disaster, team responds
-- **Scope:** Larger than tabletop, may involve technology
-- **Benefit:** More realistic than tabletop
-- **Frequency:** Annually
+#### BCP testing types
 
-**Full interruption test:**
-- **Method:** Actually fail over to backup systems
-- **Scope:** Complete DR test
-- **Benefit:** Proves plan works
-- **Frequency:** Rarely (disruptive and expensive)
+| Test type | Method | Scope | Frequency |
+|---|---|---|---|
+| **Tabletop exercise** | Discussion-based walkthrough; key personnel talk through a scenario | Low; no systems involved | Quarterly |
+| **Simulation** | Simulated disaster; team actively responds using procedures | Medium; may involve technology | Annually |
+| **Full interruption test** | Actual failover to backup systems | High; fully disruptive and expensive | Rarely |
+
+> **Exam tip:** Tabletop exercises are the **least disruptive** and most common. Full interruption tests are the **most realistic** but rare due to cost and risk. The exam may ask which test type is appropriate given operational constraints.
 
 ---
 
-## Key Distinctions
+### Key distinctions to know for the exam
 
-**RPO vs RTO:**
-- RPO: How much data loss acceptable (backup frequency)
-- RTO: How long downtime acceptable (recovery speed)
-
-**Hot Site vs Cold Site:**
-- Hot site: Fully ready, immediate failover (expensive)
-- Cold site: Empty facility, days to setup (cheap)
-
-**Full vs Incremental backup:**
-- Full: All data, long backup, fast restore
-- Incremental: Changed data, fast backup, slow restore
-
-**DRP vs BCP:**
-- DRP: IT disaster recovery (technology)
-- BCP: Business continuity (entire organization)
-
-**Failover vs Failback:**
-- Failover: Switch to backup system
-- Failback: Return to primary system
+| Comparison | Distinction |
+|---|---|
+| **RPO vs. RTO** | RPO = how much data loss is acceptable (drives backup frequency); RTO = how long downtime is acceptable (drives recovery site selection) |
+| **Hot site vs. cold site** | Hot site = fully ready, near-instant failover, most expensive; Cold site = empty facility, days to set up, cheapest |
+| **Full vs. incremental backup** | Full = all data, slowest backup, fastest restore; Incremental = changed data only, fastest backup, slowest restore |
+| **DRP vs. BCP** | DRP = IT systems recovery; BCP = entire organization continuity (broader) |
+| **Failover vs. failback** | Failover = switch to backup system; Failback = return to primary after recovery |
+| **Active-Active vs. Active-Passive** | Active-Active = all nodes serve traffic (load balanced); Active-Passive = one node active, others on standby |
+| **Synchronous vs. asynchronous replication** | Synchronous = real-time, zero data loss, slower; Asynchronous = delayed, minimal data loss, faster |
 
 ---
 
-## Common Exam Traps
+### Common exam traps
 
-1. **Trap:** Thinking RPO and RTO are the same
-   - **Reality:** RPO = data loss, RTO = downtime
+**Trap:** Thinking RPO and RTO measure the same thing.
+**Reality:** RPO measures acceptable **data loss** and determines backup frequency. RTO measures acceptable **downtime** and determines recovery strategy. They are independent variables.
 
-2. **Trap:** Believing backups guarantee recovery
-   - **Reality:** Must test backups (verify they work)
+**Trap:** Assuming that having backups guarantees successful recovery.
+**Reality:** Backups must be **tested regularly** (minimum quarterly). Organizations frequently discover backup failures only during an actual disaster when it is too late.
 
-3. **Trap:** Assuming on-site backup sufficient
-   - **Reality:** Need off-site for disaster recovery (3-2-1 rule)
+**Trap:** Believing on-site backup alone is sufficient.
+**Reality:** On-site backups are destroyed in the same disaster (fire, flood) as the primary system. The **3-2-1 rule** requires at least one off-site copy.
 
-4. **Trap:** Thinking full backup always best
-   - **Reality:** Incremental faster, uses less storage (trade-off with restore time)
+**Trap:** Assuming the incremental backup is always the best choice.
+**Reality:** Incremental backups have the fastest backup time and smallest storage footprint, but the **slowest restore time** — restoring requires the last full plus every subsequent incremental. The best choice depends on RPO and RTO requirements.
 
-5. **Trap:** Believing hot site is always required
-   - **Reality:** Choose based on RTO/RPO requirements and budget
+**Trap:** Thinking a hot site is always required for disaster recovery.
+**Reality:** Hot, warm, and cold sites are cost/RTO trade-offs. If an organization can tolerate days of downtime and has budget constraints, a cold site is entirely appropriate.
+
+**Trap:** Confusing DRP with BCP.
+**Reality:** DRP is focused on restoring IT systems. BCP covers the entire organization — people, processes, communications, and alternate operations — and is broader in scope.
 
 ---
 
-## Exam Tips
+### Exam tips
 
-1. **RPO = data loss** (time between backups)
-2. **RTO = downtime** (time to restore)
-3. **3-2-1 backup rule:** 3 copies, 2 media types, 1 off-site
-4. **Hot site = immediate** (real-time replication, expensive)
-5. **Cold site = days/weeks** (empty facility, cheap)
-6. **Full backup = all data** (slow backup, fast restore)
-7. **Incremental backup = changed data** (fast backup, slow restore)
-8. **Test backups quarterly** (verify they work before disaster)
-9. **BCP = entire business**, DRP = IT systems
-10. **High availability measured** in uptime percentage (99.9% = 8.76 hours downtime/year)
+1. **RPO = data loss** — determines how frequently you must back up
+2. **RTO = downtime** — determines which recovery site tier you need
+3. **3-2-1 rule:** 3 copies, 2 media types, 1 off-site
+4. **Hot site = immediate** failover (real-time replication; highest cost)
+5. **Cold site = days/weeks** to recover (empty facility; lowest cost)
+6. **Full backup** = slowest backup, fastest restore
+7. **Incremental backup** = fastest backup, slowest restore
+8. **Test backups quarterly** — verify before disaster, not during
+9. **BCP = entire business**; DRP = IT systems only
+10. **High availability** measured in uptime % — 99.999% (five nines) = 5.26 min/year downtime
+11. **WORM / immutable storage** is the key ransomware-resistant backup control
+12. **Tabletop** = lowest disruption test; **full interruption** = highest fidelity test
+
+---
+
+## Key terms
+
+- **Backup** — A copy of data stored separately from the primary system for recovery purposes.
+- **Full backup** — A complete copy of all data; slowest to create, fastest to restore.
+- **Incremental backup** — Copies only data changed since the last backup of any type; fastest to create, slowest to restore.
+- **Differential backup** — Copies all data changed since the last full backup; restoration requires only the last full + last differential.
+- **3-2-1 rule** — Best-practice backup strategy: 3 copies of data, on 2 different media types, with 1 stored off-site.
+- **WORM (Write-Once-Read-Many)** — Immutable storage that prevents modification or deletion; key control against ransomware targeting backups.
+- **RPO (Recovery Point Objective)** — The maximum acceptable amount of data loss measured in time; drives backup frequency.
+- **RTO (Recovery Time Objective)** — The maximum acceptable duration of downtime; drives recovery site and strategy selection.
+- **MTBF (Mean Time Between Failures)** — Average operating time between hardware failures; a reliability metric.
+- **MTTR (Mean Time To Repair)** — Average time to restore a system after failure; a recovery efficiency metric.
+- **Hot site** — A fully equipped, operational duplicate datacenter with real-time data replication; enables near-immediate failover.
+- **Warm site** — Partially equipped facility with hardware in place; requires hours to restore from backup before operations resume.
+- **Cold site** — An empty facility with power and network; requires days to weeks to install hardware and restore data.
+- **Failover** — The automatic or manual switch to a backup system when the primary fails.
+- **Failback** — The process of returning operations to the primary system after it has been restored and tested.
+- **High availability (HA)** — Design approach that minimizes downtime through redundancy, clustering, and load balancing.
+- **SPOF (Single Point of Failure)** — Any component whose failure halts the entire system; eliminated through redundancy.
+- **Active-Active cluster** — All cluster nodes serve traffic simultaneously; provides load balancing and redundancy.
+- **Active-Passive cluster** — One node handles all traffic; others remain on standby and activate only on failover.
+- **BCP (Business Continuity Plan)** — A comprehensive plan to maintain all business operations (people, processes, technology) during and after a disruption.
+- **DRP (Disaster Recovery Plan)** — A subset of the BCP focused specifically on restoring IT systems and data after a disaster.
+- **BIA (Business Impact Analysis)** — Analysis that identifies critical business functions, quantifies downtime impact, and establishes recovery priorities.
+- **MTD (Maximum Tolerable Downtime)** — The longest period a business function can be unavailable before causing irreversible harm.
+- **Tabletop exercise** — A discussion-based BCP/DRP test where participants walk through a simulated scenario without activating real systems.
+
+---
+
+## Examples / scenarios
+
+**Scenario 1:** A company's primary datacenter is destroyed by a fire on Friday at noon. Their last successful backup was taken Thursday at 11 PM. Their RPO is 4 hours and RTO is 8 hours. Was the RPO met?
+- **Answer:** No. The data loss is approximately 13 hours (11 PM Thursday to noon Friday), which exceeds the 4-hour RPO. The backup frequency was insufficient for the defined RPO.
+
+**Scenario 2:** An organization backs up every Sunday (full) and runs incremental backups Monday through Saturday. A ransomware attack destroys all data on Friday afternoon. What is required to restore?
+- **Answer:** The Sunday full backup plus every incremental from Monday through Friday — six backup sets in total. This is the primary drawback of incremental strategies: restore complexity grows throughout the week.
+
+**Scenario 3:** A hospital's electronic health record system must be restored within 2 hours of any outage and can tolerate no more than 15 minutes of data loss. Which recovery site type should they use?
+- **Answer:** Hot site with synchronous replication. A 15-minute RPO and 2-hour RTO demand real-time data replication and an immediately operational alternate site. Warm or cold sites cannot meet these targets.
+
+**Scenario 4:** A security auditor finds that a company keeps all backups on the same SAN as production data in the same building. What rule is being violated and what is the primary risk?
+- **Answer:** The 3-2-1 backup rule is violated — all copies are on the same media type and the same location. A single disaster (fire, flood, ransomware encrypting the SAN) would destroy both production data and all backups simultaneously.
+
+**Scenario 5:** An organization conducts quarterly meetings where IT leadership and department heads discuss what they would do if the headquarters building became inaccessible for a week. No systems are actually activated. What type of test is this?
+- **Answer:** Tabletop exercise. It is discussion-based, involves key stakeholders reviewing the scenario verbally, and does not disrupt live systems — the hallmark of a tabletop test.
+
+---
+
+## Mini quiz
+
+<details>
+<summary><strong>Question 1:</strong> What is the difference between RPO and RTO, and what does each determine in practice?</summary>
+
+**Answer:** RPO (Recovery Point Objective) is the maximum acceptable amount of **data loss** measured in time. It determines **backup frequency** — if your RPO is 1 hour, you must back up at least every hour. RTO (Recovery Time Objective) is the maximum acceptable duration of **downtime** after a disaster. It determines **recovery strategy** — a 2-hour RTO requires a hot site; a 2-week RTO may permit a cold site.
+</details>
+
+<details>
+<summary><strong>Question 2:</strong> A company runs a full backup every Sunday and incremental backups Monday–Saturday. Restoration is needed on Thursday. What is required?</summary>
+
+**Answer:** The Sunday full backup plus Monday's, Tuesday's, and Wednesday's incremental backups — four backup sets in total. Each incremental must be restored in sequence. This is why incremental backup restore is slower than differential: differentials only ever require the last full + the most recent differential (two sets), regardless of how many days have passed.
+</details>
+
+<details>
+<summary><strong>Question 3:</strong> Why is WORM (immutable) storage important for backups?</summary>
+
+**Answer:** Ransomware often targets and encrypts backup files in addition to production data. WORM storage prevents any modification or deletion of written data, meaning ransomware cannot overwrite or encrypt the backup copies. This preserves a clean recovery point even if the primary environment is fully compromised.
+</details>
+
+<details>
+<summary><strong>Question 4:</strong> What is the difference between a tabletop exercise and a full interruption test?</summary>
+
+**Answer:** A tabletop exercise is a discussion-based walkthrough — key personnel talk through a simulated scenario without activating any real systems. It is low-risk and conducted frequently (quarterly). A full interruption test actually fails over to the backup environment, proving the plan works end-to-end. It is the highest-fidelity test but is disruptive, expensive, and conducted rarely.
+</details>
+
+<details>
+<summary><strong>Question 5:</strong> What is a Single Point of Failure (SPOF) and how is it eliminated?</summary>
+
+**Answer:** A SPOF is any component whose failure would halt the entire system — for example, a single power supply, single ISP connection, or single database server. SPOFs are eliminated through redundancy: duplicate components, diverse network paths, clustered servers, and geographic distribution so no single failure can bring down the whole system.
+</details>
+
+### CompTIA-style practice questions
+
+<details>
+<summary><strong>Question 6:</strong> An organization's financial reporting system has a defined RPO of 1 hour and an RTO of 4 hours. A power surge destroys the primary server at 2:00 PM. The last backup completed at 12:45 PM. Which statement BEST describes the situation?<br>A. Both RPO and RTO have been violated because the system is not yet restored<br>B. The RPO has been met but the RTO is still being evaluated<br>C. The RPO has been violated; 75 minutes of data may be lost, exceeding the 1-hour limit<br>D. The RTO has been violated because the system has been down for more than 1 hour</summary>
+
+**Correct Answer: C. The RPO has been violated; 75 minutes of data may be lost, exceeding the 1-hour limit**
+
+The last backup was 75 minutes before the failure (12:45 PM to 2:00 PM). The RPO is 60 minutes, so up to 75 minutes of data could be lost — a violation. RTO measures downtime from failure to restoration; that clock is still running and has not yet been violated or confirmed. A and D misidentify which metric applies.
+
+- A: RTO cannot be assessed yet — it depends on when restoration completes, not when the failure occurred.
+- B: The RPO *has* been violated (75 min loss > 60 min RPO).
+- D: RTO is measured from failure to restoration; 4 hours have not elapsed yet.
+</details>
+
+<details>
+<summary><strong>Question 7:</strong> A company needs a disaster recovery site that can be operational within 2 hours of a declared disaster but wants to minimize ongoing costs. The existing production environment uses real-time database replication. Which recovery site type BEST meets these requirements?<br>A. Hot site<br>B. Warm site<br>C. Cold site<br>D. Mobile site</summary>
+
+**Correct Answer: B. Warm site**
+
+A warm site has hardware pre-installed and ready; restoration from backup typically takes hours — consistent with a 2-hour target in favorable conditions. It costs less than a hot site because it does not maintain real-time replication. Note: the question states the company *uses* real-time replication on production — that does not mean the DR site must replicate in real time. A hot site would also meet the RTO but is more expensive than required. Cold site and mobile site cannot meet a 2-hour RTO.
+
+- A: Hot site would meet the requirement but costs more; the question asks to minimize cost.
+- C: Cold site requires days to weeks to become operational.
+- D: Mobile sites require transport and setup time, typically hours to days.
+</details>
+
+<details>
+<summary><strong>Question 8 (Multi-select):</strong> A security team is reviewing a company's backup strategy after a ransomware incident destroyed both production data and all on-site backups. Which TWO controls, if implemented, would MOST directly have prevented total data loss? (Select TWO.)<br>A. Increasing the backup frequency from weekly to daily<br>B. Storing at least one backup copy off-site or in cloud storage<br>C. Implementing WORM (immutable) storage for backup copies<br>D. Switching from full backups to incremental backups<br>E. Conducting quarterly tabletop exercises</summary>
+
+**Correct Answers: B and C**
+
+Ransomware destroyed on-site backups alongside production — two controls directly address this:
+
+- B: Off-site or cloud storage ensures a copy exists outside the blast radius of a local attack or disaster, satisfying the "1 off-site" component of the 3-2-1 rule.
+- C: WORM/immutable storage prevents ransomware from overwriting or encrypting backup files, preserving a clean copy even if the backup server is compromised.
+
+- A: Daily backups reduce RPO but do not prevent ransomware from encrypting them.
+- D: Switching backup type does not affect ransomware resilience.
+- E: Tabletop exercises test response plans but do not protect backup data.
+</details>
+
+---
+
+## Related objectives
+
+- [**4.3**]({{ '/secplus/objectives/4-3/' | relative_url }}) — Vulnerability management feeds into understanding what risks drive RPO/RTO requirements.
+- [**4.8**]({{ '/secplus/objectives/4-8/' | relative_url }}) — Incident response relies on the backup and recovery capabilities defined here.
+- [**5.1**]({{ '/secplus/objectives/5-1/' | relative_url }}) — Risk management frameworks inform BIA and BCP prioritization decisions.
+- [**5.4**]({{ '/secplus/objectives/5-4/' | relative_url }}) — Data privacy regulations impose RPO/RTO-like requirements on certain data categories.
 
 ---
 
