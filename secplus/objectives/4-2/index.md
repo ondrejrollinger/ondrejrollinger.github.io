@@ -56,7 +56,7 @@ Asset management tracks organizational resources — hardware, software, and dat
 | **RFID** | Radio frequency identification; passive tracking without line-of-sight | Automated location tracking |
 | **Asset number** | Unique identifier linked to CMDB/inventory record | Database correlation |
 
-> **Exam tip:** Asset tagging enables more than just inventory — it supports **theft prevention**, **lifecycle tracking**, and **compliance audits**. Don't limit it to "just a label."
+**Exam tip:** Asset tagging enables more than just inventory — it supports **theft prevention**, **lifecycle tracking**, and **compliance audits**. Don't limit it to "just a label."
 
 **Acquisition process (lifecycle start):**
 
@@ -68,7 +68,7 @@ Asset management tracks organizational resources — hardware, software, and dat
 6. Configuration and hardening (apply security baseline)
 7. Assignment (link to user, location, department)
 
-> **Exam tip:** Security begins at **procurement** — supply chain attacks insert malicious components before the asset ever arrives. Verification on receipt is a security step, not just logistics.
+**Exam tip:** Security begins at **procurement** — supply chain attacks insert malicious components before the asset ever arrives. Verification on receipt is a security step, not just logistics.
 
 ---
 
@@ -100,7 +100,7 @@ Assets are classified to determine what security controls, monitoring intensity,
 | **Employee-owned (BYOD)** | Limited | Requires MDM/MAM; data separation via containerization |
 | **Leased / third-party** | Contractual | Guest network or NAC required; separate security policies |
 
-> **Exam tip:** Classification **determines the disposal method** — a low-sensitivity asset can be donated after a single-pass wipe; a high-sensitivity asset may require physical destruction.
+**Exam tip:** Classification **determines the disposal method** — a low-sensitivity asset can be donated after a single-pass wipe; a high-sensitivity asset may require physical destruction.
 
 ---
 
@@ -123,7 +123,7 @@ Assets are classified to determine what security controls, monitoring intensity,
 - Enables **impact analysis**: "If this server goes down, which services and users are affected?"
 - Change tracking: maintains configuration history for audit and incident investigation
 
-> **Exam tip:** The key CMDB differentiator is **relationships and dependencies** — a simple asset inventory lists assets; a CMDB maps how they connect and what they support.
+**Exam tip:** The key CMDB differentiator is **relationships and dependencies** — a simple asset inventory lists assets; a CMDB maps how they connect and what they support.
 
 **Enumeration vs. inventory:**
 - **Enumeration** = *discovery* (finding what assets exist, including unauthorized ones)
@@ -146,7 +146,7 @@ Disposal is the highest-risk lifecycle stage for data — improperly sanitized d
 | **Physical destruction** | Shredding, pulverizing, or incineration | Any | No | Most secure; data unrecoverable |
 | **Cryptographic erasure** | Deletes the encryption key; data remains but is unreadable | SSD, encrypted HDD | Yes | Fast; relies on strong prior encryption |
 
-> **Exam tip:** **Degaussing does not work on SSDs** — SSDs use flash memory, not magnetic platters. For SSD reuse: cryptographic erase. For SSD disposal: physical destruction.
+**Exam tip:** **Degaussing does not work on SSDs** — SSDs use flash memory, not magnetic platters. For SSD reuse: cryptographic erase. For SSD disposal: physical destruction.
 
 **Method selection by scenario:**
 
@@ -163,7 +163,7 @@ Disposal is the highest-risk lifecycle stage for data — improperly sanitized d
 - Required for **compliance audits** (HIPAA, PCI-DSS)
 - Includes: asset IDs, destruction method, date, witness signatures
 
-> **Exam tip:** If a scenario mentions regulated data (PHI, PII, cardholder data) and disposal, the answer will involve a **certificate of destruction** as the compliance evidence requirement.
+**Exam tip:** If a scenario mentions regulated data (PHI, PII, cardholder data) and disposal, the answer will involve a **certificate of destruction** as the compliance evidence requirement.
 
 **Decommissioning process:**
 

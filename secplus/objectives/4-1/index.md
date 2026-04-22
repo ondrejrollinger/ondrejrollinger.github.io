@@ -81,7 +81,7 @@ This objective covers implementing security on computing resources: hardening sy
 - Enable remote wipe capability
 - Prohibit jailbreaking/rooting via MDM policy
 
-> **Exam tip:** "Reduce attack surface" → **secure baseline / hardening**. The first action when deploying any new system should be applying a secure baseline before connecting it to the network.
+**Exam tip:** "Reduce attack surface" → **secure baseline / hardening**. The first action when deploying any new system should be applying a secure baseline before connecting it to the network.
 
 ---
 
@@ -105,7 +105,7 @@ This objective covers implementing security on computing resources: hardening sy
 - Forward secrecy — past traffic remains safe even if the password is later compromised
 - 192-bit encryption suite for Enterprise mode
 
-> **Exam tip:** Corporate networks should use **WPA2/WPA3-Enterprise** with a **RADIUS server** — never WPA2-Personal, which shares a single passphrase among all users.
+**Exam tip:** Corporate networks should use **WPA2/WPA3-Enterprise** with a **RADIUS server** — never WPA2-Personal, which shares a single passphrase among all users.
 
 **Enterprise wireless components (802.1X):**
 
@@ -124,7 +124,7 @@ This objective covers implementing security on computing resources: hardening sy
 | **PEAP** | Server only | Microsoft implementation; common in Windows environments |
 | **EAP-FAST** | None (PAC) | Cisco proprietary; faster deployment; uses Protected Access Credential |
 
-> **Exam tip:** "Most secure EAP method" → **EAP-TLS** (certificates on both sides). "Easiest to deploy" → **PEAP or EAP-TTLS** (only server needs a certificate).
+**Exam tip:** "Most secure EAP method" → **EAP-TLS** (certificates on both sides). "Easiest to deploy" → **PEAP or EAP-TTLS** (only server needs a certificate).
 
 **Common wireless attacks:**
 
@@ -169,7 +169,7 @@ This objective covers implementing security on computing resources: hardening sy
 | **COPE** (Corporate-Owned, Personally Enabled) | Company | Full control; employee permitted personal use |
 | **CYOD** (Choose Your Own Device) | Company | Employee selects from an approved list |
 
-> **Exam tip:** **BYOD** requires **containerization** to separate work and personal data — the organization can selectively wipe only the work container without touching personal data.
+**Exam tip:** **BYOD** requires **containerization** to separate work and personal data — the organization can selectively wipe only the work container without touching personal data.
 
 **Mobile security controls:**
 

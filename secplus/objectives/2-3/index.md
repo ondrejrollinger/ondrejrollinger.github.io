@@ -67,7 +67,7 @@ Vulnerabilities are weaknesses that can be exploited to compromise confidentiali
 | **Legacy systems** | Old systems still in production, no longer receiving updates | Industrial control systems, ATMs |
 | **BIOS/UEFI vulnerabilities** | Compromise at boot level, below the OS — allows rootkit persistence | Bootkits surviving OS reinstalls |
 
-> **Exam tip:** EOL and legacy systems require **compensating controls** (network segmentation, enhanced monitoring) since patching is not possible.
+**Exam tip:** EOL and legacy systems require **compensating controls** (network segmentation, enhanced monitoring) since patching is not possible.
 
 ---
 
@@ -78,7 +78,7 @@ Vulnerabilities are weaknesses that can be exploited to compromise confidentiali
 | **VM escape** | Attacker breaks out of a virtual machine and gains access to the hypervisor or other VMs on the same host |
 | **Resource reuse** | Sensitive data (memory, storage) from one VM is not properly cleared before being reused by another VM |
 
-> **Exam tip:** VM escape is the highest severity virtualization vulnerability — it compromises the hypervisor itself.
+**Exam tip:** VM escape is the highest severity virtualization vulnerability — it compromises the hypervisor itself.
 
 ---
 
@@ -104,7 +104,7 @@ The supply chain includes hardware manufacturers, software vendors, and managed 
 | **Software supply chain** | Malicious code injected into legitimate software during development or distribution | SolarWinds SUNBURST attack |
 | **Managed service provider (MSP)** | Attackers compromise an MSP to pivot into all of that MSP's clients | Kaseya VSA attack |
 
-> **Exam tip:** Supply chain attacks are especially dangerous because the attack arrives via **trusted** channels — software updates, legitimate hardware, trusted vendors.
+**Exam tip:** Supply chain attacks are especially dangerous because the attack arrives via **trusted** channels — software updates, legitimate hardware, trusted vendors.
 
 ---
 
@@ -127,7 +127,7 @@ The supply chain includes hardware manufacturers, software vendors, and managed 
 - **Missing patches:** Known vulnerabilities left unpatched.
 - **Insecure defaults:** Security features disabled by default (e.g., unencrypted protocols).
 
-> **Exam tip:** Misconfiguration is consistently one of the most common sources of real-world breaches. Always harden systems by removing defaults.
+**Exam tip:** Misconfiguration is consistently one of the most common sources of real-world breaches. Always harden systems by removing defaults.
 
 ---
 

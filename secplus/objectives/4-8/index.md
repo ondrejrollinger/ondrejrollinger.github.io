@@ -51,7 +51,7 @@ CompTIA uses a **7-step framework** for the exam (NIST condenses these into 4 ph
 | 6 | **Recovery** | Restore systems to normal operation; restore from backups, apply patches, monitor for reinfection |
 | 7 | **Lessons Learned** | Post-incident review (1–2 weeks after recovery); document what worked, update procedures |
 
-> **Exam tip:** The steps must be followed **in order** — you cannot eradicate before containing, and lessons learned always comes *after* recovery.
+**Exam tip:** The steps must be followed **in order** — you cannot eradicate before containing, and lessons learned always comes *after* recovery.
 
 **NIST vs. CompTIA:**
 
@@ -101,7 +101,7 @@ CompTIA uses a **7-step framework** for the exam (NIST condenses these into 4 ph
 | 7 | Remote logs & monitoring data | May be overwritten by rotation |
 | 8 | Archival media | Most persistent; collect last |
 
-> **Exam tip:** RAM must be captured **before** disk imaging. Disk imaging can take hours — during that time, running processes and network connections (which only exist in RAM) are lost.
+**Exam tip:** RAM must be captured **before** disk imaging. Disk imaging can take hours — during that time, running processes and network connections (which only exist in RAM) are lost.
 
 **Forensic imaging process:**
 1. Attach a **write blocker** (hardware device preventing any writes to the original)
@@ -149,7 +149,7 @@ CompTIA uses a **7-step framework** for the exam (NIST condenses these into 4 ph
 **Fishbone (Ishikawa) diagram** — organizes contributing factors into categories:
 - People, Process, Technology, Environment
 
-> **Exam tip:** Root cause analysis is distinct from incident analysis. Analysis asks *what happened*; root cause analysis asks *why it was possible*.
+**Exam tip:** Root cause analysis is distinct from incident analysis. Analysis asks *what happened*; root cause analysis asks *why it was possible*.
 
 ---
 

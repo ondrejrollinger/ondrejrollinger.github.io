@@ -70,7 +70,7 @@ Training must reach all employees at the right level of depth, delivered through
 | **Microlearning** | Short lessons (3–5 min) via email, Slack, intranet | Busy employees; continuous low-friction reinforcement |
 | **Gamification** | Points, badges, leaderboards | Increasing participation; phishing simulation engagement |
 
-> **Exam tip:** The exam may describe a scenario and ask you to choose the delivery method. CBT = scalable/trackable; instructor-led = interactive/costly; microlearning = brief/continuous; gamification = engaging/motivating.
+**Exam tip:** The exam may describe a scenario and ask you to choose the delivery method. CBT = scalable/trackable; instructor-led = interactive/costly; microlearning = brief/continuous; gamification = engaging/motivating.
 
 ---
 
@@ -108,7 +108,7 @@ Phishing simulations measure user susceptibility and deliver just-in-time traini
 | Q3 | 10% | 14% |
 | Q4 | 7% | 18% |
 
-> **Exam tip:** A high click rate on the *first* simulation is expected — it establishes a baseline. The programme is evaluated on *improvement over time*, not the initial number.
+**Exam tip:** A high click rate on the *first* simulation is expected — it establishes a baseline. The programme is evaluated on *improvement over time*, not the initial number.
 
 **Phishing reporting mechanisms:**
 
@@ -150,7 +150,7 @@ Training users to notice and report unusual activity is central to both insider 
 | Removable media use | Frequent USB activity; potential exfiltration |
 | Policy violations | Repeatedly bypassing security controls |
 
-> **Exam tip:** Employees should be trained to report insider threat concerns to HR or the security team — not to confront the individual directly.
+**Exam tip:** Employees should be trained to report insider threat concerns to HR or the security team — not to confront the individual directly.
 
 **Risky end-user behaviours to address in training:**
 

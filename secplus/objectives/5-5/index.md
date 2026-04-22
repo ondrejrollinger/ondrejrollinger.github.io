@@ -46,7 +46,7 @@ Attestation is the formal process of confirming or vouching for the accuracy of 
 | **Software Bill of Materials (SBOM)** | A formal inventory of all components, libraries, and dependencies in a software product | Supply chain transparency; identifies vulnerable third-party components |
 | **Attestation of findings** | A formal statement (signed by an auditor or responsible party) confirming the accuracy of an audit's results | Regulatory submissions, third-party audit reports |
 
-> **Exam tip:** An SBOM is used to understand *what is in* software — critical for supply chain risk management. If a zero-day hits an open-source library, the SBOM tells you immediately which of your products are affected.
+**Exam tip:** An SBOM is used to understand *what is in* software — critical for supply chain risk management. If a zero-day hits an open-source library, the SBOM tells you immediately which of your products are affected.
 
 ---
 
@@ -60,7 +60,7 @@ Internal audits are conducted by personnel within the organization — typically
 | **Audit committee** | A governance body (often board-level) that oversees audit activities, reviews findings, and ensures accountability |
 | **Self-assessment** | Teams evaluate their own controls against a standard or framework (e.g., NIST CSF self-assessment) |
 
-> **Exam tip:** Internal audits are less independent than external audits — they may be biased toward favorable results. Regulators often require external audits for this reason.
+**Exam tip:** Internal audits are less independent than external audits — they may be biased toward favorable results. Regulators often require external audits for this reason.
 
 ---
 
@@ -75,7 +75,7 @@ External audits are performed by independent parties outside the organization, p
 | **Assessment** | Broader evaluation of security posture, not necessarily tied to a specific regulation | SOC 2 Type II readiness assessment |
 | **Independent third-party audit** | Audit conducted by a qualified, neutral external firm with no affiliation to the organization | ISO 27001 certification audit |
 
-> **Exam tip:** A **SOC 2 Type II** report is a common external audit output — it covers security controls over a period of time (usually 6–12 months), not just a point-in-time snapshot.
+**Exam tip:** A **SOC 2 Type II** report is a common external audit output — it covers security controls over a period of time (usually 6–12 months), not just a point-in-time snapshot.
 
 ---
 
@@ -109,7 +109,7 @@ Reconnaissance is the first phase of a pen test — gathering information about 
 | **Passive reconnaissance** | Gathering information without directly interacting with the target | OSINT, WHOIS lookups, Google dorking, LinkedIn scraping |
 | **Active reconnaissance** | Directly probing the target system — detectable by IDS/IPS | Port scanning (Nmap), banner grabbing, ping sweeps |
 
-> **Exam tip:** Passive recon leaves **no footprint** on the target — it uses publicly available sources. Active recon *touches* the target and can trigger alerts. The question "Which method would not be detected by the target?" → **passive reconnaissance**.
+**Exam tip:** Passive recon leaves **no footprint** on the target — it uses publicly available sources. Active recon *touches* the target and can trigger alerts. The question "Which method would not be detected by the target?" → **passive reconnaissance**.
 
 ---
 
@@ -125,7 +125,7 @@ A vulnerability scan is an automated, non-exploitative assessment that identifie
 | **Frequency** | Continuous or scheduled (weekly/monthly) | Periodic (annually or after major changes) |
 | **Output** | List of CVEs and severity ratings | Narrative report with attack chains and business impact |
 
-> **Exam tip:** The key distinction the exam tests — a vulnerability scan **finds** weaknesses; a pen test **exploits** them to prove impact.
+**Exam tip:** The key distinction the exam tests — a vulnerability scan **finds** weaknesses; a pen test **exploits** them to prove impact.
 
 ---
 
@@ -141,7 +141,7 @@ A bug bounty program is a formalized program that rewards external researchers f
 | **Participants** | Independent security researchers (ethical hackers) |
 | **Examples** | HackerOne, Bugcrowd platforms; Google, Microsoft, Apple programs |
 
-> **Exam tip:** Bug bounty programs leverage the broader security community as an extension of internal testing — cost-effective and scalable, but require a mature vulnerability management process to handle incoming reports.
+**Exam tip:** Bug bounty programs leverage the broader security community as an extension of internal testing — cost-effective and scalable, but require a mature vulnerability management process to handle incoming reports.
 
 ---
 
@@ -156,7 +156,7 @@ Responsible disclosure (also called coordinated disclosure) defines the process 
 | **Full disclosure** | Researcher publishes vulnerability details immediately, with or without vendor patch — controversial |
 | **Disclosure window** | Typical window is 90 days (Google Project Zero standard); vendor must patch within this period |
 
-> **Exam tip:** Responsible disclosure protects users by giving vendors time to patch. Full disclosure pressures vendors but may expose users to risk before a patch is available.
+**Exam tip:** Responsible disclosure protects users by giving vendors time to patch. Full disclosure pressures vendors but may expose users to risk before a patch is available.
 
 ---
 
