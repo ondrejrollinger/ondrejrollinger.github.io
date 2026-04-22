@@ -243,16 +243,16 @@ The BIA is the foundation of any BCP. It identifies what matters most and how lo
 ### Common exam traps
 
 **Trap:** Thinking RPO and RTO measure the same thing.
-**Reality:** RPO measures acceptable **data loss** and determines backup frequency. RTO measures acceptable **downtime** and determines recovery strategy. They are independent variables.
+**Reality:** RPO measures acceptable data loss and determines backup frequency. RTO measures acceptable downtime and determines recovery strategy. They are independent variables.
 
 **Trap:** Assuming that having backups guarantees successful recovery.
-**Reality:** Backups must be **tested regularly** (minimum quarterly). Organizations frequently discover backup failures only during an actual disaster when it is too late.
+**Reality:** Backups must be tested regularly (minimum quarterly). Organizations frequently discover backup failures only during an actual disaster when it is too late.
 
 **Trap:** Believing on-site backup alone is sufficient.
-**Reality:** On-site backups are destroyed in the same disaster (fire, flood) as the primary system. The **3-2-1 rule** requires at least one off-site copy.
+**Reality:** On-site backups are destroyed in the same disaster (fire, flood) as the primary system. The 3-2-1 rule requires at least one off-site copy.
 
 **Trap:** Assuming the incremental backup is always the best choice.
-**Reality:** Incremental backups have the fastest backup time and smallest storage footprint, but the **slowest restore time** — restoring requires the last full plus every subsequent incremental. The best choice depends on RPO and RTO requirements.
+**Reality:** Incremental backups have the fastest backup time and smallest storage footprint, but the slowest restore time — restoring requires the last full plus every subsequent incremental. The best choice depends on RPO and RTO requirements.
 
 **Trap:** Thinking a hot site is always required for disaster recovery.
 **Reality:** Hot, warm, and cold sites are cost/RTO trade-offs. If an organization can tolerate days of downtime and has budget constraints, a cold site is entirely appropriate.
