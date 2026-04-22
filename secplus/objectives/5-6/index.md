@@ -217,19 +217,19 @@ Training users to notice and report unusual activity is central to both insider 
 ### Common exam traps
 
 **Trap:** Phishing simulations should result in disciplinary action for users who click.
-**Reality:** Simulations are training opportunities. Punishing users suppresses reporting and creates a culture of fear — the opposite of what the programme needs.
+Reality: Simulations are training opportunities. Punishing users suppresses reporting and creates a culture of fear — the opposite of what the programme needs.
 
 **Trap:** Annual training is sufficient to maintain a secure workforce.
-**Reality:** Annual training is required, but awareness must be continuous — phishing simulations, microlearning tips, and timely communications about new threats are all necessary.
+Reality: Annual training is required, but awareness must be continuous — phishing simulations, microlearning tips, and timely communications about new threats are all necessary.
 
 **Trap:** All training should be computer-based for consistency.
-**Reality:** Effective programmes mix delivery methods. CBT handles scale; instructor-led handles depth; microlearning handles continuous reinforcement; gamification handles engagement.
+Reality: Effective programmes mix delivery methods. CBT handles scale; instructor-led handles depth; microlearning handles continuous reinforcement; gamification handles engagement.
 
 **Trap:** A 25% phishing click rate means the programme has failed.
-**Reality:** The first simulation establishes a baseline. A downward trend over subsequent campaigns is the measure of success.
+Reality: The first simulation establishes a baseline. A downward trend over subsequent campaigns is the measure of success.
 
 **Trap:** Cybersecurity awareness is the IT department's responsibility.
-**Reality:** Security is a shared, organisation-wide responsibility. Awareness programmes exist precisely to distribute that responsibility to all employees.
+Reality: Security is a shared, organisation-wide responsibility. Awareness programmes exist precisely to distribute that responsibility to all employees.
 
 ---
 
