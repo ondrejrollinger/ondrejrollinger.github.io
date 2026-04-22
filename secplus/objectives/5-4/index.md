@@ -198,7 +198,7 @@ Reality: External audits by independent third parties are required for formal ce
 Reality: Attestation is a formal declaration of truth or compliance. Acknowledgement is simply confirming receipt or understanding of something.
 
 **Trap:** Believing due diligence alone is legally sufficient.
-Reality: Organizations must exercise *both* due diligence (knowing what to do) and due care (doing it). Either alone is insufficient — the absence of either constitutes negligence.
+Reality: Organizations must exercise both due diligence (knowing what to do) and due care (doing it). Either alone is insufficient — the absence of either constitutes negligence.
 
 **Trap:** Thinking all audit findings must be remediated immediately.
 Reality: Severity drives timeline. Only critical findings require immediate action; lower findings have defined remediation windows (30, 90, 180 days).
@@ -207,7 +207,7 @@ Reality: Severity drives timeline. Only critical findings require immediate acti
 Reality: Compliance is continuous — automated monitoring, periodic access reviews, annual audits, and ongoing evidence collection are all required.
 
 **Trap:** Confusing a SOC 2 Type I report with full compliance assurance.
-Reality: Type I only evaluates control *design* at a point in time. Type II — which covers a full operating period — provides stronger assurance and is what most enterprise customers require.
+Reality: Type I only evaluates control design at a point in time. Type II — which covers a full operating period — provides stronger assurance and is what most enterprise customers require.
 
 ---
 
