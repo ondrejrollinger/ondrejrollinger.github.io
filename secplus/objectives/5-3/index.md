@@ -214,7 +214,7 @@ MTD = 4 hrs → catastrophic if not live by 2:00 PM
 ### Common exam traps
 
 **Trap: Confusing RTO and RPO.**
-Reality: RTO measures *time to restore* (downtime tolerance); RPO measures *data loss* (how old the backup can be). They are independent metrics — a system can have a short RTO and a long RPO, or vice versa.
+Reality: RTO measures time to restore (downtime tolerance); RPO measures data loss (how old the backup can be). They are independent metrics — a system can have a short RTO and a long RPO, or vice versa.
 
 **Trap: Thinking risk transfer eliminates the risk.**
 Reality: Cyber insurance or outsourcing shifts the financial impact — the underlying threat and vulnerability still exist. The organization can still be breached.
