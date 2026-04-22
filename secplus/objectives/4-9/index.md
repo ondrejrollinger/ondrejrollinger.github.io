@@ -261,22 +261,22 @@ Sources: Nessus, OpenVAS, Qualys
 ### Common exam traps
 
 **Trap:** Assuming NetFlow captures full packet contents.
-**Reality:** NetFlow is metadata only — source/destination, ports, bytes, and duration. You need a full packet capture (PCAP) to recover payload content or credentials.
+Reality: NetFlow is metadata only — source/destination, ports, bytes, and duration. You need a full packet capture (PCAP) to recover payload content or credentials.
 
 **Trap:** Believing deleted files are unrecoverable.
-**Reality:** The Recycle Bin, NTFS USN Journal, volume shadow copies, and forensic tools can often recover deleted files unless they have been securely wiped.
+Reality: The Recycle Bin, NTFS USN Journal, volume shadow copies, and forensic tools can often recover deleted files unless they have been securely wiped.
 
 **Trap:** Treating all logs as trustworthy by default.
-**Reality:** Logs can be tampered with by an attacker who has compromised the system. Log integrity protection (write-once storage, SIEM forwarding in real time) is necessary to establish evidentiary value.
+Reality: Logs can be tampered with by an attacker who has compromised the system. Log integrity protection (write-once storage, SIEM forwarding in real time) is necessary to establish evidentiary value.
 
 **Trap:** Thinking threat intelligence feeds replace detection rules.
-**Reality:** Feeds provide IOCs for known threats. Novel or unknown attacks still require behavioral detection rules, anomaly detection, and human analysis.
+Reality: Feeds provide IOCs for known threats. Novel or unknown attacks still require behavioral detection rules, anomaly detection, and human analysis.
 
 **Trap:** Believing metadata is less important than file contents.
-**Reality:** Metadata frequently reveals more — a document's author field, a photo's GPS coordinates, or an email's routing headers can definitively identify origin, location, and timing.
+Reality: Metadata frequently reveals more — a document's author field, a photo's GPS coordinates, or an email's routing headers can definitively identify origin, location, and timing.
 
 **Trap:** Confusing MTTD and MTTR.
-**Reality:** MTTD measures how long it took to *find* the incident; MTTR measures how long it took to *fix* it. Both are key SOC performance metrics but measure different phases.
+Reality: MTTD measures how long it took to *find* the incident; MTTR measures how long it took to *fix* it. Both are key SOC performance metrics but measure different phases.
 
 ---
 
