@@ -197,7 +197,7 @@ Reality: Always work on a verified copy. The original is preserved with a write 
 Reality: RAM must be captured before disk. Disk imaging can take hours — running processes, network connections, and encryption keys only exist in RAM and disappear when power is cut.
 
 **Trap: Thinking lessons learned happens during the incident.**
-Reality: Lessons learned is a post-incident activity, conducted 1–2 weeks *after* recovery — not during the active response.
+Reality: Lessons learned is a post-incident activity, conducted 1–2 weeks after recovery — not during the active response.
 
 **Trap: Assuming all incidents require law enforcement notification.**
 Reality: Only specific incident types (financial fraud, major data breaches meeting legal thresholds) require law enforcement. Legal counsel determines this.
