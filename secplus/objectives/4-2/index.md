@@ -33,281 +33,318 @@ Explain the security implications of proper hardware, software, and data asset m
 
 ### Overview
 
-Asset management involves tracking, maintaining, and securing organizational resources throughout their lifecycle. This includes acquisition, deployment, maintenance, and disposal of hardware, software, and data assets.
+Asset management tracks organizational resources — hardware, software, and data — across their full lifecycle from procurement through disposal. Poor asset management creates exploitable gaps: untracked devices go unpatched, decommissioned drives leak sensitive data, and shadow IT bypasses security controls entirely. The exam tests both the *process* (lifecycle stages, tracking methods) and the *security implications* of getting it wrong.
 
 ---
 
-## Asset Acquisition and Assignment
+### Asset acquisition and assignment
 
 **Asset types:**
-- Hardware: Servers, workstations, network devices, mobile devices
-- Software: Applications, licenses, operating systems
-- Data: Databases, files, intellectual property
-- Virtual assets: Virtual machines, cloud instances
 
-**Acquisition process:**
-1. Request/approval (business justification)
-2. Procurement (vendor selection, purchase)
-3. Receiving (verify against order)
-4. Asset tagging (unique identifier)
-5. Inventory registration (add to asset database)
-6. Configuration (install, harden, baseline)
-7. Assignment (user/location assignment)
+| Type | Examples | Exam keyword |
+|---|---|---|
+| **Hardware** | Servers, workstations, network devices, mobile devices | Physical inventory, tagging |
+| **Software** | Applications, operating systems, licenses | License compliance, shadow IT |
+| **Data** | Databases, files, intellectual property | Classification, retention |
+| **Virtual** | VMs, cloud instances, containers | Cloud inventory, enumeration |
 
-**Asset tagging:**
-- **Barcode:** Machine-readable label
-- **RFID:** Radio frequency identification (passive tracking)
-- **Asset number:** Unique identifier in inventory system
-- **Purpose:** Track location, ownership, maintenance
+**Asset tagging methods:**
 
-**Assignment tracking:**
-- Who has the asset (user, department)
-- Where located (building, room, rack)
-- When assigned (date)
-- Configuration (specs, software installed)
+| Method | Description | Exam keyword |
+|---|---|---|
+| **Barcode** | Machine-readable printed label | Physical tracking, scan-based |
+| **RFID** | Radio frequency identification; passive tracking without line-of-sight | Automated location tracking |
+| **Asset number** | Unique identifier linked to CMDB/inventory record | Database correlation |
+
+> **Exam tip:** Asset tagging enables more than just inventory — it supports **theft prevention**, **lifecycle tracking**, and **compliance audits**. Don't limit it to "just a label."
+
+**Acquisition process (lifecycle start):**
+
+1. Request and approval (business justification)
+2. Procurement (vendor selection, purchase order)
+3. Receiving (verify against order, inspect for tampering)
+4. Asset tagging (assign unique identifier)
+5. Inventory registration (add to CMDB)
+6. Configuration and hardening (apply security baseline)
+7. Assignment (link to user, location, department)
+
+> **Exam tip:** Security begins at **procurement** — supply chain attacks insert malicious components before the asset ever arrives. Verification on receipt is a security step, not just logistics.
 
 ---
 
-## Classification
+### Asset classification
 
-**Asset classification criteria:**
+Assets are classified to determine what security controls, monitoring intensity, and disposal procedures apply.
 
 **By criticality:**
-- **Critical:** Failure causes major business impact (production database)
-- **Important:** Significant impact but not catastrophic (file server)
-- **Standard:** Minimal impact (individual workstation)
+
+| Level | Definition | Example |
+|---|---|---|
+| **Critical** | Failure causes major business impact | Production database, authentication server |
+| **Important** | Significant but not catastrophic impact | File server, backup system |
+| **Standard** | Minimal operational impact | Individual workstation |
 
 **By sensitivity:**
-- **High:** Contains confidential data (customer PII, trade secrets)
-- **Medium:** Internal use only (employee directory)
-- **Low:** Public information (marketing materials)
+
+| Level | Definition | Example |
+|---|---|---|
+| **High** | Contains confidential or regulated data | Customer PII, trade secrets, medical records |
+| **Medium** | Internal use only | Employee directory, internal reports |
+| **Low** | Public information | Marketing materials, public website content |
 
 **By ownership:**
-- **Company-owned:** Organization owns and controls
-- **Personal:** Employee-owned (BYOD devices)
-- **Leased:** Third-party owned (leased equipment)
 
-**Classification purpose:**
-- Determines security controls required
-- Influences backup/recovery priority
-- Guides disposal procedures
-- Affects monitoring intensity
+| Type | Control level | Security implication |
+|---|---|---|
+| **Company-owned** | Full | Can enforce all policies; company bears full responsibility |
+| **Employee-owned (BYOD)** | Limited | Requires MDM/MAM; data separation via containerization |
+| **Leased / third-party** | Contractual | Guest network or NAC required; separate security policies |
+
+> **Exam tip:** Classification **determines the disposal method** — a low-sensitivity asset can be donated after a single-pass wipe; a high-sensitivity asset may require physical destruction.
 
 ---
 
-## Asset Monitoring and Inventory
+### Asset monitoring and inventory
 
-**Inventory management:**
+**Inventory management approaches:**
 
-**Automated discovery:**
-- Network scanning (Nmap, vulnerability scanners)
-- Agent-based (installed software reports back)
-- SNMP polling (network devices)
-- Cloud API queries (AWS, Azure inventory)
+| Method | How it works | Exam keyword |
+|---|---|---|
+| **Automated discovery (active)** | Network scanning (Nmap, vulnerability scanners) probes for connected devices | Shadow IT detection |
+| **Agent-based** | Installed software reports asset details back to management platform | Software inventory, patch status |
+| **SNMP polling** | Queries network devices for status and configuration | Network device tracking |
+| **Cloud API queries** | AWS/Azure/GCP APIs enumerate cloud instances and services | Cloud asset inventory |
+| **Passive enumeration** | Monitors network traffic to infer devices without scanning | Stealthy discovery |
+| **Spreadsheets** | Manual tracking; low-tech option for small environments | Limited scalability |
 
 **Configuration Management Database (CMDB):**
-- Centralized repository of asset information
-- Tracks: Hardware specs, software versions, dependencies
-- Links assets to services (which systems support which business functions)
-- Change tracking (configuration history)
+- Centralized repository storing asset attributes *and relationships* (dependencies between systems)
+- Tracks: hardware specs, software versions, patch levels, network configuration, assigned user, location
+- Enables **impact analysis**: "If this server goes down, which services and users are affected?"
+- Change tracking: maintains configuration history for audit and incident investigation
 
-**Inventory attributes tracked:**
-- Asset ID and type
-- Location and user assignment
-- Hardware specifications (CPU, memory, storage)
-- Software installed (OS, applications, versions)
-- Network configuration (IP, MAC address)
-- Purchase date and cost
-- Warranty/support expiration
-- Last update/patch date
+> **Exam tip:** The key CMDB differentiator is **relationships and dependencies** — a simple asset inventory lists assets; a CMDB maps how they connect and what they support.
 
-**Enumeration:**
-- Active enumeration: Scanning network for devices
-- Passive enumeration: Monitoring network traffic
-- Purpose: Discover unauthorized assets (shadow IT)
+**Enumeration vs. inventory:**
+- **Enumeration** = *discovery* (finding what assets exist, including unauthorized ones)
+- **Inventory** = *tracking* (managing known assets over time)
 
-**Tracking methods:**
-
-**Asset management software:**
-- Examples: ServiceNow, BMC Asset Manager, Lansweeper
-- Capabilities: Automated discovery, license tracking, compliance reporting
-
-**Spreadsheets:**
-- Low-tech option for small organizations
-- Manual updates required
-- Limited scalability
-
-**Mobile Device Management (MDM):**
-- Tracks mobile devices (phones, tablets)
-- Enrollment status, OS version, installed apps
-- Location tracking
+Enumeration is used to detect **shadow IT** — unauthorized devices or software that employees introduce without IT approval, which bypass security controls and patching.
 
 ---
 
-## Ownership and Lifecycle Management
+### Asset disposal and decommissioning
 
-**Asset lifecycle stages:**
-
-### 1. Procurement
-- Vendor selection
-- Purchase order
-- Budget approval
-- Security requirements specified
-
-### 2. Deployment
-- Configuration and hardening
-- Asset tagging
-- User assignment
-- Training (if needed)
-
-### 3. Maintenance
-- Patching and updates
-- Hardware repairs
-- License renewals
-- Configuration changes
-
-### 4. Retirement
-- End of life (EOL) reached
-- Replaced by newer technology
-- No longer supported by vendor
-
-### 5. Disposal
-- Data sanitization
-- Physical destruction (if required)
-- Recycling or donation
-- Certificate of destruction
-
-**Ownership types:**
-
-**Company-owned:**
-- Full control over asset
-- Company responsible for security
-- Can enforce all policies
-
-**Employee-owned (BYOD):**
-- Limited control (MDM/MAM)
-- Employee privacy concerns
-- Data separation required (containerization)
-
-**Third-party (vendor/partner):**
-- Contractor equipment accessing network
-- Requires guest network or NAC
-- Separate security policies
-
----
-
-## Asset Disposal and Decommissioning
-
-**Disposal security concerns:**
-- Data remanence (residual data on drives)
-- Regulatory compliance (HIPAA, PCI-DSS require secure disposal)
-- Physical security (prevent dumpster diving)
+Disposal is the highest-risk lifecycle stage for data — improperly sanitized drives are a leading cause of data breaches.
 
 **Data sanitization methods:**
 
-**Overwriting:**
-- Write random data over existing data
-- Multiple passes (DoD 5220.22-M: 7 passes)
-- Verifiable (can confirm completion)
-- Time-consuming for large drives
+| Method | How it works | Media | Drive reusable? | Exam keyword |
+|---|---|---|---|---|
+| **Overwriting** | Writes random data over existing data (DoD 5220.22-M: 7 passes) | HDD | Yes | Multiple passes, verifiable |
+| **Degaussing** | Powerful magnetic field destroys magnetic storage | HDD, tape | No | Magnetic only; renders drive unusable |
+| **Physical destruction** | Shredding, pulverizing, or incineration | Any | No | Most secure; data unrecoverable |
+| **Cryptographic erasure** | Deletes the encryption key; data remains but is unreadable | SSD, encrypted HDD | Yes | Fast; relies on strong prior encryption |
 
-**Degaussing:**
-- Powerful magnetic field destroys data
-- Renders drive unusable (magnetic media only)
-- Fast for multiple drives
-- Not effective on SSDs (no magnetic storage)
+> **Exam tip:** **Degaussing does not work on SSDs** — SSDs use flash memory, not magnetic platters. For SSD reuse: cryptographic erase. For SSD disposal: physical destruction.
 
-**Physical destruction:**
-- Shredding (industrial shredder)
-- Pulverizing (crushing to small pieces)
-- Incineration (complete destruction)
-- Most secure (data unrecoverable)
-- Expensive, drive not reusable
+**Method selection by scenario:**
 
-**Cryptographic erasure:**
-- Delete encryption key
-- Data remains but unreadable without key
-- Fast (instant)
-- Relies on strong encryption (if encryption weak, data recoverable)
-
-**Method selection:**
-
-| Drive Type | Reuse? | Method |
-|------------|--------|--------|
+| Drive type | Reuse intended? | Recommended method |
+|---|---|---|
 | HDD | Yes | Overwriting (7 passes) |
 | HDD | No | Degaussing or shredding |
-| SSD | Yes | Cryptographic erase |
+| SSD | Yes | Cryptographic erasure |
 | SSD | No | Physical destruction |
 | Tape | No | Degaussing |
 
 **Certificate of destruction:**
-- Third-party destruction services provide certificate
-- Proves disposal completed
-- Required for compliance (audit evidence)
-- Includes: Asset IDs, destruction method, date, witness signatures
+- Document issued by a third-party destruction service proving disposal was completed
+- Required for **compliance audits** (HIPAA, PCI-DSS)
+- Includes: asset IDs, destruction method, date, witness signatures
+
+> **Exam tip:** If a scenario mentions regulated data (PHI, PII, cardholder data) and disposal, the answer will involve a **certificate of destruction** as the compliance evidence requirement.
 
 **Decommissioning process:**
-1. Remove from production
-2. Backup data (if needed for retention)
-3. Remove from inventory
-4. Data sanitization
-5. Physical disposal
-6. Update asset database (status: decommissioned)
-7. Obtain certificate of destruction
+
+1. Remove asset from production
+2. Backup data if retention policy requires it
+3. Remove from active network and access controls
+4. Perform data sanitization (method based on sensitivity and reuse)
+5. Update CMDB/inventory (status: decommissioned)
+6. Physical disposal (recycle, donate, or destroy)
+7. Obtain and file certificate of destruction
 
 ---
 
-## Key Distinctions
+### Key distinctions to know for the exam
 
-**Enumeration vs Inventory:**
-- Enumeration: Discovery process (finding assets)
-- Inventory: Tracking process (managing known assets)
-
-**Overwriting vs Degaussing:**
-- Overwriting: Writes data over existing (drive reusable)
-- Degaussing: Magnetic field destroys data (drive unusable)
-
-**Asset classification vs Data classification:**
-- Asset classification: Criticality/ownership of system
-- Data classification: Sensitivity of information stored
-
-**CMDB vs Asset inventory:**
-- CMDB: Includes relationships and dependencies
-- Asset inventory: Simple list of assets
+| Comparison | Distinction |
+|---|---|
+| **Enumeration vs. inventory** | Enumeration discovers assets (including unauthorized); inventory tracks known assets over time. |
+| **Overwriting vs. degaussing** | Overwriting writes over data (HDD reusable); degaussing uses magnetic field to destroy data (drive unusable, not effective on SSDs). |
+| **Degaussing vs. physical destruction** | Degaussing destroys data on magnetic media but leaves the physical drive; physical destruction eliminates both. |
+| **Asset classification vs. data classification** | Asset classification = criticality/ownership of the *system*; data classification = sensitivity of the *information* it holds. |
+| **CMDB vs. asset inventory** | CMDB maps relationships and dependencies between assets; an asset inventory is a flat list of assets. |
+| **Cryptographic erasure vs. overwriting** | Cryptographic erasure deletes the key (instant, relies on encryption strength); overwriting physically replaces data (time-consuming, verifiable). |
+| **Company-owned vs. BYOD** | Company-owned: full policy enforcement; BYOD: limited control, requires MDM and data containerization. |
 
 ---
 
-## Common Exam Traps
+### Common exam traps
 
-1. **Trap:** Thinking degaussing works on SSDs
-   - **Reality:** Degaussing only works on magnetic media (HDDs, tapes)
+**Trap: Assuming degaussing works on SSDs.**
+Reality: Degaussing only destroys *magnetic* media (HDDs, tapes). SSDs use NAND flash — a magnetic field has no effect. Use cryptographic erasure or physical destruction for SSDs.
 
-2. **Trap:** Believing simple deletion secures data
-   - **Reality:** Deleted files recoverable, need overwriting or destruction
+**Trap: Believing a single "delete" or format secures a drive.**
+Reality: Deleted files and formatted drives are trivially recoverable. Proper sanitization requires overwriting, degaussing, cryptographic erasure, or physical destruction.
 
-3. **Trap:** Assuming one overwrite pass is sufficient
-   - **Reality:** DoD standard requires 7 passes for sensitive data
+**Trap: Thinking one overwrite pass is enough for sensitive data.**
+Reality: The DoD 5220.22-M standard specifies 7 passes for sensitive data. A single pass may leave recoverable remnants.
 
-4. **Trap:** Thinking all assets need same disposal method
-   - **Reality:** Method depends on sensitivity, reuse plans, and media type
+**Trap: Treating CMDB and asset inventory as interchangeable.**
+Reality: A CMDB includes *relationships and dependencies* — which services depend on which systems. This enables impact analysis that a flat inventory cannot support.
 
-5. **Trap:** Believing asset tagging is only for inventory
-   - **Reality:** Also enables tracking, theft prevention, and lifecycle management
+**Trap: Assuming asset tagging is only for inventory purposes.**
+Reality: Asset tags also enable theft prevention, compliance auditing, lifecycle tracking, and rapid incident response (identifying affected systems).
+
+**Trap: Thinking BYOD means no security control is possible.**
+Reality: MDM (Mobile Device Management) and MAM (Mobile Application Management) enforce policies on BYOD devices — containerizing corporate data, enforcing encryption, and enabling remote wipe of corporate data only.
 
 ---
 
-## Exam Tips
+### Exam tips
 
-1. **Asset lifecycle:** Procurement → Deployment → Maintenance → Retirement → Disposal
-2. **Overwriting = multiple passes** of random data (HDD reusable)
-3. **Degaussing = magnetic field** (destroys HDD, not SSDs)
-4. **Physical destruction most secure** (data unrecoverable)
-5. **Cryptographic erase** = Delete encryption key (fast for encrypted drives)
-6. **Certificate of destruction** required for compliance audits
-7. **CMDB tracks relationships** between assets (dependencies)
-8. **Enumeration discovers** unauthorized assets (shadow IT)
-9. **Asset classification determines** security controls required
-10. **BYOD requires MDM/MAM** for asset management
+1. "Vendor stopped providing patches, system can't be replaced" → **EOL asset** → **compensating controls** (segmentation, monitoring).
+2. "Drive needs to be reused, contains sensitive data, it's an HDD" → **overwriting (7 passes)**.
+3. "Drive needs to be reused, contains sensitive data, it's an SSD" → **cryptographic erasure**.
+4. "Drive does not need to be reused" → **physical destruction** (most secure regardless of media type).
+5. "Regulated data (HIPAA, PCI) was disposed of" → **certificate of destruction** required.
+6. "Unauthorized devices found on the network" → **enumeration** detected **shadow IT**.
+7. "Which systems would be affected if this server fails?" → **CMDB** (tracks dependencies).
+8. "Employee uses personal phone for work email" → **BYOD** → requires **MDM/MAM**, data containerization.
+9. "Need to verify assets received match purchase order and weren't tampered with" → **receiving inspection** (supply chain security).
+10. "Asset no longer needed; high-sensitivity data on SSD" → **cryptographic erasure** (reuse) or **physical destruction** (no reuse).
+
+---
+
+## Key terms
+
+- **Asset management** — Tracking and securing organizational resources (hardware, software, data) across their full lifecycle from procurement to disposal.
+- **Asset tagging** — Assigning a unique physical or logical identifier (barcode, RFID, asset number) to enable tracking, ownership, and lifecycle management.
+- **CMDB (Configuration Management Database)** — Centralized repository tracking assets, their configurations, and their relationships/dependencies to other systems.
+- **Enumeration** — The discovery process of identifying assets on a network, including unauthorized (shadow IT) devices.
+- **Shadow IT** — Unauthorized hardware or software introduced by employees without IT approval, bypassing security controls and patch management.
+- **Data sanitization** — The process of irreversibly removing data from storage media prior to disposal or reuse.
+- **Overwriting** — Data sanitization method that writes random data over existing content; DoD 5220.22-M specifies 7 passes; drive is reusable.
+- **Degaussing** — Uses a powerful magnetic field to destroy data on magnetic media (HDD, tape); renders the drive unusable; ineffective on SSDs.
+- **Physical destruction** — Shredding, pulverizing, or incinerating storage media; most secure method; data is unrecoverable; drive cannot be reused.
+- **Cryptographic erasure** — Destroys access to encrypted data by deleting the encryption key; fast but relies on the strength of prior encryption.
+- **Certificate of destruction** — Document from a third-party disposal service proving secure destruction occurred; required for regulatory compliance audits.
+- **BYOD (Bring Your Own Device)** — Policy allowing employees to use personal devices for work; requires MDM/MAM and data containerization to enforce security.
+- **MDM (Mobile Device Management)** — Platform for managing and enforcing security policies on mobile devices, including enrollment tracking, remote wipe, and OS version enforcement.
+- **Asset classification** — Categorizing assets by criticality or sensitivity to determine appropriate security controls, monitoring, and disposal requirements.
+- **Data remanence** — Residual data that persists on storage media after deletion or formatting; mitigated by proper sanitization.
+
+---
+
+## Examples / scenarios
+
+**Scenario 1:** An IT team is retiring a batch of HDDs from servers that stored PII. The drives will be donated to a local school.
+- **Answer:** Overwriting (7-pass DoD standard). Drives need to be reused, contain sensitive data, and are HDDs — overwriting sanitizes the data while leaving the drive functional for donation.
+
+**Scenario 2:** A security engineer discovers 15 devices on the network that do not appear in the asset inventory.
+- **Answer:** Enumeration revealed shadow IT. The unauthorized devices bypass patch management and security policies. They should be investigated, inventoried, or removed.
+
+**Scenario 3:** A hospital needs to dispose of SSDs that held patient records. The drives will not be reused.
+- **Answer:** Physical destruction (shredding or pulverizing). SSDs cannot be degaussed; since reuse is not required, physical destruction guarantees data is unrecoverable and satisfies HIPAA disposal requirements. A certificate of destruction should be obtained.
+
+**Scenario 4:** A financial firm needs to quickly decommission 500 encrypted SSDs. The drives will be reused internally.
+- **Answer:** Cryptographic erasure. Deleting the encryption key instantly renders all data unreadable. This is the recommended method for encrypted SSDs when reuse is required — far faster than overwriting.
+
+**Scenario 5:** An organization's security team needs to determine which business services would be disrupted if a specific database server failed.
+- **Answer:** Query the CMDB. The CMDB maps asset relationships and dependencies — it can identify every service, application, and user population that depends on that server.
+
+---
+
+## Mini quiz
+
+<details>
+<summary><strong>Question 1:</strong> Why is degaussing ineffective on SSDs?</summary>
+
+**Answer:** Degaussing destroys data by applying a strong magnetic field, which only works on magnetic storage media (HDDs and tapes). SSDs use NAND flash memory, which is not magnetic — a magnetic field has no effect on the stored data. Use cryptographic erasure (for reuse) or physical destruction (for disposal) on SSDs.
+</details>
+
+<details>
+<summary><strong>Question 2:</strong> What is the difference between a CMDB and a standard asset inventory?</summary>
+
+**Answer:** A standard asset inventory is a flat list of assets with their attributes (type, owner, location, specs). A CMDB includes *relationships and dependencies* — it maps how assets connect to services and each other. This enables impact analysis (what breaks if this fails?) and change management that a simple inventory cannot support.
+</details>
+
+<details>
+<summary><strong>Question 3:</strong> A company disposes of old HDDs by deleting all files and reformatting the drives. Why is this insufficient?</summary>
+
+**Answer:** Deletion and formatting only remove file system pointers — the underlying data remains on the platters and is trivially recoverable with forensic tools. Proper sanitization requires overwriting (multiple passes), degaussing, or physical destruction to prevent data remanence.
+</details>
+
+<details>
+<summary><strong>Question 4:</strong> What is shadow IT and why is it a security concern?</summary>
+
+**Answer:** Shadow IT refers to unauthorized hardware or software introduced by employees without IT approval. It's dangerous because these assets are not tracked in the CMDB or inventory, meaning they receive no patches, bypass security controls, and may store sensitive data outside of approved systems — all without the security team's knowledge.
+</details>
+
+<details>
+<summary><strong>Question 5:</strong> When is a certificate of destruction required, and what does it contain?</summary>
+
+**Answer:** A certificate of destruction is required when disposing of assets containing regulated data (e.g., PHI under HIPAA, cardholder data under PCI-DSS) — it serves as audit evidence of compliant disposal. It includes asset IDs, the destruction method used, the date, and witness signatures, and is typically issued by a certified third-party destruction service.
+</details>
+
+### CompTIA-style practice questions
+
+<details>
+<summary><strong>Question 6:</strong> A security administrator needs to decommission 200 SSDs from a healthcare environment. The drives held patient records and will not be reused. Which data sanitization method BEST meets HIPAA requirements?<br>A. Degaussing<br>B. Single-pass overwriting<br>C. Physical destruction with a certificate of destruction<br>D. Deleting files and reformatting the drives</summary>
+
+**Correct Answer: C. Physical destruction with a certificate of destruction**
+
+SSDs cannot be degaussed (no magnetic storage), and destroying the drives ensures data is unrecoverable. The certificate of destruction provides the audit evidence required by HIPAA for compliant disposal.
+
+- A: Degaussing is ineffective on SSDs — they use flash memory, not magnetic platters.
+- B: Single-pass overwriting does not meet DoD standards for sensitive data, and overwriting on SSDs is unreliable due to wear-leveling and over-provisioning.
+- D: Deletion and reformatting leave data recoverable — this provides no meaningful protection.
+</details>
+
+<details>
+<summary><strong>Question 7:</strong> An IT team discovers 30 devices connected to the corporate network that are not recorded in any asset inventory. Which process identified these devices, and what do they represent?<br>A. Passive monitoring; known assets requiring reconfiguration<br>B. Network enumeration; shadow IT<br>C. CMDB querying; decommissioned assets<br>D. SNMP polling; authorized guest devices</summary>
+
+**Correct Answer: B. Network enumeration; shadow IT**
+
+Active or passive network enumeration discovers connected devices. Devices not in the asset inventory are unauthorized (shadow IT) — they bypass patch management, security controls, and monitoring.
+
+- A: passive monitoring may have detected them, but "known assets requiring reconfiguration" contradicts the fact they are not in inventory.
+- C: CMDB querying retrieves known, tracked assets — it won't reveal assets that were never recorded.
+- D: authorized guest devices would be known and tracked, even if on a separate VLAN.
+</details>
+
+<details>
+<summary><strong>Question 8 (Multi-select):</strong> A compliance officer is reviewing asset disposal procedures for drives containing regulated financial data. Which TWO actions are MOST important to satisfy audit requirements? (Select TWO.)<br>A. Perform a single-pass overwrite before disposal<br>B. Obtain a certificate of destruction from a certified disposal vendor<br>C. Ensure the asset is removed from the CMDB after disposal<br>D. Reformat the drives using the operating system's built-in tool<br>E. Document the asset IDs, destruction method, date, and witness in disposal records</summary>
+
+**Correct Answers: B and E**
+
+Regulated environments require *proof* of compliant disposal. A certificate of destruction from a certified vendor (B) and documented disposal records with asset IDs, method, date, and witness (E) together satisfy audit requirements for PCI-DSS and similar frameworks.
+
+- A: a single-pass overwrite does not meet the DoD 7-pass standard for sensitive data, and is insufficient for compliance.
+- C: removing the asset from the CMDB is good practice but is not an audit evidence requirement for destruction compliance.
+- D: OS-level reformatting leaves data fully recoverable — it is not an accepted sanitization method.
+</details>
+
+---
+
+## Related objectives
+
+- [**4.1**]({{ '/secplus/objectives/4-1/' | relative_url }}) — Security techniques applied to computing resources include hardening and configuration at deployment, which begins the asset lifecycle.
+- [**4.3**]({{ '/secplus/objectives/4-3/' | relative_url }}) — Vulnerability management depends on accurate asset inventory — you cannot patch what you don't know exists.
+- [**2.3**]({{ '/secplus/objectives/2-3/' | relative_url }}) — Vulnerability types include EOL and legacy systems, which are directly a product of poor asset lifecycle management.
+- [**5.1**]({{ '/secplus/objectives/5-1/' | relative_url }}) — Governance policies (data retention, acceptable use, BYOD) define the rules that asset management processes enforce.
 
 ---
 
