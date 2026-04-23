@@ -289,18 +289,23 @@ ACLs define which traffic is permitted or denied based on rules.
 ### Common exam traps
 
 **Trap: Thinking IDS and IPS are interchangeable.**
+
 Reality: IDS is passive and cannot block. IPS is inline and actively blocks. Deploying IDS when blocking is needed = wrong answer.
 
 **Trap: Assuming UTM is always better because it consolidates functions.**
+
 Reality: UTM is a single point of failure. If the UTM fails, all security functions fail. NGFW with integrated functions in a single engine is more resilient.
 
 **Trap: Believing split tunnel VPNs are insecure and should never be used.**
+
 Reality: Split tunnel trades some security for better performance. Acceptable when balanced with endpoint protection and for non-critical remote access.
 
 **Trap: Thinking Layer 7 firewalls are always better than Layer 4.**
+
 Reality: Layer 7 provides deeper inspection but at higher performance cost. Layer 4 is sufficient for basic traffic filtering and faster.
 
 **Trap: Assuming fail-closed is always the right choice.**
+
 Reality: For high-availability systems (e.g., hospital networks, financial trading), fail-open may be required to maintain critical operations during a device failure.
 
 ---
