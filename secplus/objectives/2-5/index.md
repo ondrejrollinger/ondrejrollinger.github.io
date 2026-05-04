@@ -119,9 +119,8 @@ The full cycle:
 
 **Compensating Controls** — alternative measures when the primary control cannot be applied (e.g., network segmentation for a legacy system that cannot be patched).
 
-**Exception vs. Exemption:** 
 
-Exception = temporary relaxation of a control for business needs (time-limited). Exemption = permanent waiver, often for legacy systems; requires risk acceptance documentation.
+**Exception vs. Exemption:** Exception = temporary relaxation of a control for business needs (time-limited). Exemption = permanent waiver, often for legacy systems; requires risk acceptance documentation.
 
 ---
 
