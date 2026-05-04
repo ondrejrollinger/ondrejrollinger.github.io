@@ -214,18 +214,23 @@ MTD = 4 hrs → catastrophic if not live by 2:00 PM
 ### Common exam traps
 
 **Trap: Confusing RTO and RPO.**
+
 Reality: RTO measures time to restore (downtime tolerance); RPO measures data loss (how old the backup can be). They are independent metrics — a system can have a short RTO and a long RPO, or vice versa.
 
 **Trap: Thinking risk transfer eliminates the risk.**
+
 Reality: Cyber insurance or outsourcing shifts the financial impact — the underlying threat and vulnerability still exist. The organization can still be breached.
 
 **Trap: Assuming residual risk should be zero.**
+
 Reality: Zero risk is impossible. The goal is to reduce residual risk to within the organization's risk appetite, not eliminate it entirely.
 
 **Trap: Believing qualitative analysis is always inferior to quantitative.**
+
 Reality: Each has appropriate use cases. Qualitative is faster and effective for initial prioritization when precise historical data is unavailable.
 
 **Trap: Assuming all risks must be mitigated.**
+
 Reality: Low-value risks where mitigation costs exceed potential loss are valid candidates for acceptance, not mitigation.
 
 ---

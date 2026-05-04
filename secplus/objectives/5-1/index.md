@@ -240,21 +240,27 @@ Governance elements provide structure and accountability for security programs. 
 ## Common exam traps
 
 **Trap: Thinking all standards are legally required.**
+
 Reality: ISO 27001, NIST CSF, and CIS Benchmarks are voluntary. Only regulations (GDPR, HIPAA, SOX) are legally mandated.
 
 **Trap: Believing GDPR only applies to EU-based companies.**
+
 Reality: GDPR applies to any organization anywhere in the world that processes personal data belonging to EU citizens.
 
 **Trap: Assuming PCI DSS is a government law.**
+
 Reality: PCI DSS is a contractual requirement enforced by card brands (Visa, Mastercard, etc.), not a government regulation. Penalties come from card brands, not government agencies.
 
 **Trap: Thinking benchmark deviations are always violations.**
+
 Reality: Deviations from CIS Benchmarks or DISA STIGs are permitted when documented with a valid business justification.
 
 **Trap: Believing one framework fits all industries.**
+
 Reality: Healthcare uses HIPAA/HITRUST; government uses FISMA/NIST 800-53; power grid uses NERC CIP. Industry context determines the applicable framework.
 
 **Trap: Confusing ISO 27001 and ISO 27002.**
+
 Reality: Only 27001 can be certified. 27002 is a supporting guidance document — an organization cannot "achieve ISO 27002 certification."
 
 ---

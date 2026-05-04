@@ -205,18 +205,23 @@ Beyond CVSS, prioritization considers:
 ### Common exam traps
 
 **Trap: Using CVSS score alone to determine patch priority.**
+
 Reality: CVSS base score is a starting point only. Asset criticality, exploit availability, and existing compensating controls all change the real-world priority.
 
 **Trap: Believing automated scanners find all vulnerabilities.**
+
 Reality: Scanners miss logic flaws, chained vulnerabilities, and novel attack paths. Manual testing and penetration testing are necessary for comprehensive coverage.
 
 **Trap: Thinking patches should be deployed to production immediately.**
+
 Reality: Patches must be tested in a staging environment first. Breaking a production system while patching can be as disruptive as the vulnerability itself.
 
 **Trap: Treating vulnerability management as a one-time project.**
+
 Reality: It is a continuous cycle — identify, prioritize, remediate, validate, repeat.
 
 **Trap: Treating false positives as harmless.**
+
 Reality: A high false positive rate erodes analyst trust, causing real vulnerabilities in future reports to be dismissed or deprioritized.
 
 ---

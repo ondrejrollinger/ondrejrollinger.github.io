@@ -233,18 +233,23 @@ DLP monitors data in use, in transit, and at rest to detect and prevent unauthor
 ### Common exam traps
 
 **Trap: Thinking masking and encryption are the same.**
+
 Reality: Masking is irreversible (XXX-XX-1234 cannot be unmasked to reveal full SSN). Encryption can be decrypted with the key. Masking is for display purposes; encryption is for confidentiality.
 
 **Trap: Assuming tokenization is the same as encryption.**
+
 Reality: Tokenization has no mathematical relationship between token and original — the vault lookup is required. Encryption uses an algorithm and key. Tokenization avoids storing sensitive data in primary systems (PCI DSS benefit).
 
 **Trap: Believing data classification is IT's responsibility.**
+
 Reality: The data **owner** (a business stakeholder) classifies data based on business value and sensitivity. IT serves as the **custodian** implementing the owner's protection requirements.
 
 **Trap: Thinking GDPR only applies to EU companies.**
+
 Reality: GDPR applies to **any** organization processing EU citizens' data, regardless of where the company is located. A US company with EU customers must comply with GDPR.
 
 **Trap: Assuming DLP can inspect all traffic.**
+
 Reality: DLP cannot inspect end-to-end encrypted traffic (e.g., TLS) unless it decrypts at the gateway (SSL inspection/break-and-inspect), which introduces privacy and performance concerns.
 
 ---

@@ -182,18 +182,23 @@ This is a **scenario-based** objective — the exam gives you observable symptom
 ### Common exam traps
 
 **Trap: Thinking a worm needs a user to open a file.**
+
 Reality: Worms self-propagate across networks with no user interaction — that's their defining characteristic.
 
 **Trap: Confusing a Trojan with a virus.**
+
 Reality: A Trojan disguises itself but does not self-replicate. A virus attaches to files and spreads by infecting them.
 
 **Trap: Assuming rootkits are detected by standard antivirus.**
+
 Reality: Rootkits operate at Ring 0 (kernel level) and can hide from the OS itself. You must boot from external media to detect them.
 
 **Trap: Thinking "impossible travel" alerts indicate a stolen credential immediately.**
+
 Reality: It's a strong indicator, but it could also indicate a VPN or proxy — context matters. It warrants immediate investigation.
 
 **Trap: Treating missing logs as a system failure.**
+
 Reality: Missing or cleared logs during an incident are a key indicator of attacker activity — specifically the concealment phase.
 
 ---

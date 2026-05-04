@@ -368,18 +368,23 @@ Uninterrupted power is critical for continuous operations.
 ### Common exam traps
 
 **Trap: Thinking hot sites eliminate the need for backups.**
+
 Reality: Hot sites provide site redundancy, but backups protect against logical corruption (ransomware, accidental deletion). Both are needed.
 
 **Trap: Confusing RPO with RTO.**
+
 Reality: RPO = data loss tolerance (time between backups). RTO = downtime tolerance (recovery speed). RPO drives backup frequency; RTO drives site selection.
 
 **Trap: Assuming snapshots replace full backups.**
+
 Reality: Snapshots are dependent on a base image. If the base is corrupted or lost, all snapshots are unusable. Snapshots complement backups but don’t replace them.
 
 **Trap: Believing clustering and load balancing are the same.**
+
 Reality: Load balancing optimizes performance by distributing requests. Clustering provides failover for availability. They serve different purposes and are often used together.
 
 **Trap: Thinking UPS provides long-term power.**
+
 Reality: UPS provides 10-60 minutes — enough to start a generator or gracefully shut down. For extended outages, generators are required.
 
 ---

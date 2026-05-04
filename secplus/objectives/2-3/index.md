@@ -169,15 +169,19 @@ The supply chain includes hardware manufacturers, software vendors, and managed 
 ### Common exam traps
 
 **Trap: Assuming "zero-day" means the attack just happened.**
+
 Reality: Zero-day refers to the vendor having zero days to fix it — the vulnerability is unknown to them. The attack timing is unrelated.
 
 **Trap: Thinking legacy systems can be fully protected by patching.**
+
 Reality: Legacy systems often *cannot* be patched — they need compensating controls like network segmentation and enhanced monitoring.
 
 **Trap: Confusing XSS and CSRF.**
+
 Reality: XSS injects malicious script into a webpage affecting *other users*. CSRF hijacks an *authenticated user's session* to make unauthorized requests on their behalf.
 
 **Trap: Treating supply chain attacks as simple malware.**
+
 Reality: Supply chain attacks exploit the *trust* in legitimate channels — the compromised component arrives via a trusted update or vendor, bypassing standard defenses.
 
 ---

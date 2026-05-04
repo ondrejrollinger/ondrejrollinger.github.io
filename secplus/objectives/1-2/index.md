@@ -310,20 +310,25 @@ Security tools designed to mislead, detect, or delay attackers.
 ### Common exam traps
 
 **Trap: Confusing integrity and confidentiality.**
+
 - Hashing DETECTS unauthorized changes (integrity), it does NOT prevent unauthorized access (confidentiality).
 - Confidentiality = can't SEE it (encryption). Integrity = can't CHANGE it (hashing).
 
 **Trap: Multi-factor misconceptions.**
+
 - Password + security question = NOT MFA (both "something you know" = single factor).
 - Count factor TYPES, not number of items.
 
 **Trap: Authentication vs. authorization order.**
+
 - You must prove WHO you are (authenticate) before determining WHAT you can do (authorize).
 
 **Trap: Zero Trust = zero access.**
+
 - Zero Trust does NOT mean no one gets access. It means verify everyone, no implicit trust. It's about VERIFICATION, not DENIAL.
 
 **Trap: Non-repudiation vs. authentication.**
+
 - Authentication proves identity at login; non-repudiation proves you cannot deny a past action.
 
 ---

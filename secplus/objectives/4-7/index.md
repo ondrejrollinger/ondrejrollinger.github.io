@@ -159,18 +159,23 @@ Not every task should be automated. The exam tests judgment about appropriate au
 ### Common exam traps
 
 **Trap: Automation eliminates the need for security analysts.**
+
 Reality: Automation handles repetitive tier-1 tasks. Complex investigations, ambiguous situations, and novel threats still require human judgment.
 
 **Trap: All security tasks should be automated.**
+
 Reality: High-risk actions (e.g., deleting production data, restoring from backup) and ambiguous situations require manual review. Automating these can cause more harm than the incident itself.
 
 **Trap: Playbook and runbook mean the same thing.**
+
 Reality: Playbook = human executes. Runbook = system executes. This distinction is explicitly tested.
 
 **Trap: SOAR only automates responses.**
+
 Reality: SOAR also orchestrates — it coordinates multiple disparate security tools through integrations. Both capabilities are part of the definition.
 
 **Trap: Webhook and REST API are interchangeable.**
+
 Reality: Webhooks push data in real time (event-driven). REST API polling pulls data on a schedule. The direction and timing differ fundamentally.
 
 ---

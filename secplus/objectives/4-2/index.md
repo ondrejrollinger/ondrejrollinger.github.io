@@ -194,21 +194,27 @@ Disposal is the highest-risk lifecycle stage for data — improperly sanitized d
 ### Common exam traps
 
 **Trap: Assuming degaussing works on SSDs.**
+
 Reality: Degaussing only destroys magnetic media (HDDs, tapes). SSDs use NAND flash — a magnetic field has no effect. Use cryptographic erasure or physical destruction for SSDs.
 
 **Trap: Believing a single "delete" or format secures a drive.**
+
 Reality: Deleted files and formatted drives are trivially recoverable. Proper sanitization requires overwriting, degaussing, cryptographic erasure, or physical destruction.
 
 **Trap: Thinking one overwrite pass is enough for sensitive data.**
+
 Reality: The DoD 5220.22-M standard specifies 7 passes for sensitive data. A single pass may leave recoverable remnants.
 
 **Trap: Treating CMDB and asset inventory as interchangeable.**
+
 Reality: A CMDB includes relationships and dependencies — which services depend on which systems. This enables impact analysis that a flat inventory cannot support.
 
 **Trap: Assuming asset tagging is only for inventory purposes.**
+
 Reality: Asset tags also enable theft prevention, compliance auditing, lifecycle tracking, and rapid incident response (identifying affected systems).
 
 **Trap: Thinking BYOD means no security control is possible.**
+
 Reality: MDM (Mobile Device Management) and MAM (Mobile Application Management) enforce policies on BYOD devices — containerizing corporate data, enforcing encryption, and enabling remote wipe of corporate data only.
 
 ---
