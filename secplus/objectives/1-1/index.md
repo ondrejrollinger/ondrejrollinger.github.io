@@ -115,15 +115,19 @@ The exam often asks you to identify which cell a specific control falls into. Co
 ### Common exam traps
 
 **Trap: Thinking a security guard is ONLY physical.**
+
 Reality: A security guard can be Physical (category) AND Preventive + Deterrent + Detective (types) simultaneously.
 
 **Trap: Assuming all managerial controls are directive.**
+
 Reality: Security policies are Managerial + Directive, but risk assessments are Managerial + Detective.
 
 **Trap: Confusing "compensating" with "corrective".**
+
 Reality: Compensating = used INSTEAD of primary control (proactive alternative). Corrective = used AFTER an incident (reactive fix).
 
 **Trap: Thinking training is only one category.**
+
 Reality: Training *program* = Managerial. Training *delivery* = Operational. Training *content* = Directive.
 
 ---

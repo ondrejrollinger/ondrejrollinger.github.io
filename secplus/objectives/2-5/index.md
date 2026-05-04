@@ -188,18 +188,23 @@ The full cycle:
 ### Common exam traps
 
 **Trap: Thinking IDS and IPS are interchangeable.**
+
 Reality: IDS is passive — it detects and alerts but takes no action. IPS is inline and actively blocks traffic matching signatures. Deploying an IDS when blocking is needed = wrong answer.
 
 **Trap: Assuming patching solves all vulnerability problems.**
+
 Reality: Patching only addresses *known, patchable* vulnerabilities. Zero-days, hardware flaws, and legacy systems that cannot be patched require compensating controls.
 
 **Trap: Treating a compensating control as equivalent to the primary control.**
+
 Reality: Compensating controls are *better than nothing* but do not fully replace the protection of the primary control. They are explicitly a risk-acceptance strategy.
 
 **Trap: Confusing data masking with encryption.**
+
 Reality: Masking replaces data with placeholders (irreversible); encryption transforms data (reversible with key). Masked data cannot be "unmasked" — encryption can be decrypted.
 
 **Trap: Thinking MFA alone prevents all account compromise.**
+
 Reality: MFA reduces account takeover risk significantly but does not stop session hijacking after authentication, SIM swapping attacks, or social engineering to bypass the second factor.
 
 ---

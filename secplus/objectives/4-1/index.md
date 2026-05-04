@@ -210,21 +210,27 @@ This objective covers implementing security on computing resources: hardening sy
 ### Common exam traps
 
 **Trap: WPA2-Personal is acceptable for a corporate environment.**
+
 Reality: WPA2-Personal shares a single passphrase among all users — if it leaks, everyone is compromised. Corporate environments require WPA2/WPA3-Enterprise with RADIUS for per-user authentication.
 
 **Trap: MAC filtering provides strong wireless security.**
+
 Reality: MAC addresses are trivially spoofed by an attacker who monitors traffic to learn a valid MAC. MAC filtering is a weak, easily bypassed control — use it only as part of defense-in-depth, never as a primary control.
 
 **Trap: Disabling SSID broadcast meaningfully improves security.**
+
 Reality: Hidden SSIDs are discovered in seconds by any wireless scanner. This is security through obscurity and provides negligible protection.
 
 **Trap: MDM only applies to company-owned devices.**
+
 Reality: MDM can manage BYOD devices with the user's consent. Containerization allows the organization to enforce policy on work data without full control of the personal device.
 
 **Trap: Jailbreaking/rooting a device is just a user preference.**
+
 Reality: Jailbreaking or rooting removes the OS security model entirely — MDM should detect this and block corporate access immediately.
 
 **Trap: WPS is fine if WPA2 is enabled.**
+
 Reality: WPS uses an 8-digit PIN that can be brute-forced regardless of WPA2 strength. Always disable WPS.
 
 ---

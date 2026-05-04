@@ -170,18 +170,23 @@ SOAR automates and orchestrates responses to security events, reducing mean time
 ### Common exam traps
 
 **Trap: Assuming SIEM automatically detects all threats.**
+
 Reality: SIEM requires correlation rules, continuous tuning, and skilled analysts. Out-of-the-box SIEM is not plug-and-play detection.
 
 **Trap: Believing more alerts equals better security.**
+
 Reality: Excessive alerts cause alert fatigue — analysts become desensitized and miss real threats. Quality and tuning matter more than volume.
 
 **Trap: Thinking SOAR replaces security analysts.**
+
 Reality: SOAR handles routine, repetitive tasks (triage, containment of known patterns). Complex investigations still require human judgment.
 
 **Trap: Assuming centralized logging is only about convenience.**
+
 Reality: The primary security benefit is tamper resistance — an attacker who compromises a host cannot delete centralized logs.
 
 **Trap: Treating signature detection as sufficient.**
+
 Reality: Signature detection misses novel attacks entirely. Anomaly-based detection is needed to catch zero-days and unknown TTPs.
 
 ---

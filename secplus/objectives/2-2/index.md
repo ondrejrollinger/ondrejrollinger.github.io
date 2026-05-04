@@ -161,15 +161,19 @@ Mitigation: train employees not to fill in missing information for callers — r
 ### Common exam traps
 
 **Trap: Confusing tailgating and piggybacking.**
+
 Reality: The difference is consent — tailgating is done without the authorized user's knowledge; piggybacking involves the authorized user being convinced to help.
 
 **Trap: Thinking whaling is separate from spear phishing.**
+
 Reality: Whaling *is* spear phishing — it's specifically aimed at high-value executive targets.
 
 **Trap: Confusing misinformation with disinformation.**
+
 Reality: Disinformation requires intent to deceive. Misinformation can be spread by someone who genuinely believes it's true.
 
 **Trap: Assuming BlueBorne requires the victim to pair a device or click something.**
+
 Reality: BlueBorne requires *no user interaction* — proximity to a vulnerable Bluetooth device is sufficient.
 
 ---

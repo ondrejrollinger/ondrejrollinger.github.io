@@ -188,21 +188,27 @@ CompTIA uses a **7-step framework** for the exam (NIST condenses these into 4 ph
 ### Common exam traps
 
 **Trap: Treating containment and eradication as the same step.**
+
 Reality: Containment is about stopping the spread quickly (isolate the host). Eradication is the thorough removal of the threat (delete malware, close the vulnerability). Both are required.
 
 **Trap: Thinking forensic analysis should be done on the original disk.**
+
 Reality: Always work on a verified copy. The original is preserved with a write blocker and maintained with chain of custody.
 
 **Trap: Ignoring order of volatility.**
+
 Reality: RAM must be captured before disk. Disk imaging can take hours — running processes, network connections, and encryption keys only exist in RAM and disappear when power is cut.
 
 **Trap: Thinking lessons learned happens during the incident.**
+
 Reality: Lessons learned is a post-incident activity, conducted 1–2 weeks after recovery — not during the active response.
 
 **Trap: Assuming all incidents require law enforcement notification.**
+
 Reality: Only specific incident types (financial fraud, major data breaches meeting legal thresholds) require law enforcement. Legal counsel determines this.
 
 **Trap: Confusing tabletop exercises with simulations.**
+
 Reality: A tabletop is a discussion — no systems are touched. A simulation involves hands-on technical activity in a lab environment.
 
 ---

@@ -276,18 +276,23 @@ Specialized computing components designed for dedicated functions within larger 
 ### Common exam traps
 
 **Trap: Thinking serverless is more secure because there are no servers to manage.**
+
 Reality: Serverless shifts responsibility to the provider for infrastructure but introduces new risks — limited visibility, vendor lock-in, and function-level vulnerabilities still exist.
 
 **Trap: Assuming containers provide the same isolation as VMs.**
+
 Reality: Containers share the host kernel — a kernel exploit can affect all containers. VMs have full OS isolation via the hypervisor.
 
 **Trap: Believing cloud is always less secure than on-premise.**
+
 Reality: Major cloud providers have enterprise-grade security that most organizations cannot match on-premise. Security is about how you configure and manage the environment, not the deployment model itself.
 
 **Trap: Treating IaC as inherently secure because it's automated.**
+
 Reality: IaC can codify insecure configurations and expose secrets if not properly managed. Automation amplifies both good and bad security practices.
 
 **Trap: Thinking centralized is always worse than decentralized for security.**
+
 Reality: Centralized offers better control and consistency; decentralized offers resilience. Each has trade-offs — the "right" choice depends on threat model and requirements.
 
 ---

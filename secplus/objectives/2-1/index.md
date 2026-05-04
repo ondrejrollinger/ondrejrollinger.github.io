@@ -108,18 +108,23 @@ Threat actors are the people or groups behind cyberattacks. The exam tests your 
 ### Common exam traps
 
 **Trap: Assuming all insider threats are malicious.**
+
 Reality: Many insider incidents are caused by negligence or poor security awareness — no harmful intent required.
 
 **Trap: Treating APT and nation-state as identical.**
+
 Reality: APT is a *technique* (long-term persistence and stealth). Nation-states are the most common sponsors, but organized crime can also execute APT-style campaigns.
 
 **Trap: Thinking script kiddies can't cause real damage.**
+
 Reality: Even low-skill actors using off-the-shelf DDoS tools can take down services. Low skill ≠ low impact.
 
 **Trap: Classifying shadow IT as an external threat.**
+
 Reality: Shadow IT originates inside the organization — it is an internal threat, even when there is no malicious intent.
 
 **Trap: Assuming hacktivists are completely resource-starved.**
+
 Reality: Groups like Anonymous have coordinated large-scale attacks. Resources are *limited*, not zero.
 
 ---
