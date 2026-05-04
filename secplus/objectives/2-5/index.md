@@ -33,7 +33,7 @@ Explain the purpose of mitigation techniques used to secure the enterprise.
 
 ### Overview
 
-Mitigation techniques are the defensive controls and processes used to reduce the likelihood or impact of threats and vulnerability exploitation. This objective ties directly back to 2.3 (vulnerabilities) and 2.4 (malicious activity): for each type of threat, there is a corresponding mitigation. The exam tests whether you can select the **right** mitigation for the given scenario — not just list defences generically.
+Mitigation techniques are the defensive controls and processes used to reduce the likelihood or impact of threats and vulnerability exploitation. This objective ties directly back to 2.3 (vulnerabilities) and 2.4 (malicious activity): for each type of threat, there is a corresponding mitigation. The exam tests whether you can select the right mitigation for the given scenario — not just list defences generically.
 
 ---
 
@@ -47,7 +47,7 @@ Mitigation techniques are the defensive controls and processes used to reduce th
 | **Disable Unnecessary Services** | Every open port and running service is a potential entry point — eliminate what is not needed |
 | **Remove Default Credentials** | Default usernames/passwords are public knowledge; change them immediately on deployment |
 
-> **Exam Tip:** Patching addresses *known* vulnerabilities with existing CVEs. It cannot address zero-days.
+**Exam Tip:** Patching addresses known vulnerabilities with existing CVEs. It cannot address zero-days.
 
 ---
 
@@ -89,7 +89,7 @@ Mitigation techniques are the defensive controls and processes used to reduce th
 | **Sandboxing** | Isolate and execute untrusted code in a contained environment; observe behaviour without risk |
 | **Code Signing** | Cryptographic signature verifies software authenticity and integrity |
 
-> **Whitelist vs. Blacklist:** Whitelist = secure by default (deny all, permit exceptions). Blacklist = permit by default (allow all, deny known-bad). Whitelist is more secure; blacklist is easier to manage.
+**Whitelist vs. Blacklist:** Whitelist = secure by default (deny all, permit exceptions). Blacklist = permit by default (allow all, deny known-bad). Whitelist is more secure; blacklist is easier to manage.
 
 ---
 
@@ -120,8 +120,10 @@ The full cycle:
 **Compensating Controls** — alternative measures when the primary control cannot be applied (e.g., network segmentation for a legacy system that cannot be patched).
 
 **Exception vs. Exemption:**
-- **Exception** — temporary relaxation of a control for business needs (time-limited).
-- **Exemption** — permanent waiver, often for legacy systems; requires risk acceptance documentation.
+
+Exception — temporary relaxation of a control for business needs (time-limited).
+
+Exemption — permanent waiver, often for legacy systems; requires risk acceptance documentation.
 
 ---
 
