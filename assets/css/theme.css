@@ -1316,6 +1316,30 @@ details summary:hover { color: var(--cyber); }
   color: var(--embedded);
 }
 
+/* ── Embedded section: TOC + list lead-in fixes ──────────
+   .toc__item a (rendered by _includes/toc.html) resolves through
+   the global --link-color bridge variable (= var(--cyber)) defined
+   in :root — it's outside .post-content entirely, so no prior
+   .post-content override ever reached it. Also adding the :hover
+   state, which was missed previously.
+
+   .post-content li > strong:first-child colors the bold lead-in
+   word/phrase at the start of a list item (used throughout the
+   IoT series for roadmap items, incident summaries, etc.) — also
+   hardcoded to var(--cyber) with no amber counterpart. ─────────── */
+
+.section-embedded .toc__item a {
+  color: var(--embedded);
+}
+
+.section-embedded .toc__item a:hover {
+  color: var(--embedded);
+}
+
+.section-embedded .post-content li > strong:first-child {
+  color: var(--embedded);
+}
+
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .post-list-item {
