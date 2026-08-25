@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Teaching Agents Test-Driven Development — and Watching Them Enforce It on Each Other"
-date: 2026-08-26
+date: 2026-08-21
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, ai-agents, tdd, testing]

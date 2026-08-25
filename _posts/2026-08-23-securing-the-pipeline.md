@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building Up Security One Layer at a Time: CRC, Sequence Numbers, Replay Detection, and TLS"
-date: 2026-08-28
+date: 2026-08-23
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, security, mqtt, tls, encryption]

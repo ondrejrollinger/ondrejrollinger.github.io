@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Parts of Running an AI Pipeline That Have Nothing to Do With AI"
-date: 2026-08-29
+date: 2026-08-24
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, ai-agents, process, lessons-learned]

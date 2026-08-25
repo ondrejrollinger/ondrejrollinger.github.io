@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "I Let Four Claude Agents Build IoT Firmware for Me"
-date: 2026-08-24
+date: 2026-08-19
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, ai-agents, esp32, overview]

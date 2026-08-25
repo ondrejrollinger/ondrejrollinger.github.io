@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Boring Part First: Isolating the Network Before Writing Firmware"
-date: 2026-08-25
+date: 2026-08-20
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, lab, networking, vlan, esp32]

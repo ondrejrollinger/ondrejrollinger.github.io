@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Retrospective: What Held Up, What I'd Change, and What's Next"
-date: 2026-08-30
+date: 2026-08-25
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, retrospective, roadmap]

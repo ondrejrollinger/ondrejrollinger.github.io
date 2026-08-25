@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "When the Hardware Lies to You"
-date: 2026-08-27
+date: 2026-08-22
 toc: true
 permalink: /iot/blog/:year/:month/:day/:title/
 tags: [iot, esp32, i2c, hardware, debugging]
