@@ -1,0 +1,32 @@
+---
+layout: default
+title: IoT Blog
+permalink: /iot/blog/
+---
+
+<div class="page-header">
+  <h1 class="page-title">IoT Blog</h1>
+</div>
+<p class="page-description">Building an AI agent pipeline that develops real ESP32-S3 firmware — write-ups published phase by phase, with real hardware evidence.</p>
+
+<div class="post-list">
+  {% assign iot_posts = site.posts | where_exp: "post", "post.tags contains 'iot'" %}
+  {% for post in iot_posts %}
+  <div class="post-list-item">
+    <span class="post-list-date">
+      <span class="date-day">{{ post.date | date: "%d" }}</span>
+      <span class="date-month">{{ post.date | date: "%b %Y" }}</span>
+    </span>
+    <div class="post-list-body">
+      <a class="post-list-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% if post.tags.size > 0 %}
+      <div class="post-tags">
+        {% for tag in post.tags %}
+        <a class="post-tag" href="/tag-{{ tag | slugify }}/">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>

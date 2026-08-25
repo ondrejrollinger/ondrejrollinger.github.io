@@ -29,8 +29,8 @@
         {% if path contains '/iot' %}
           <span class="nav-section-badge">IoT</span>
           <a href="/iot/"{% if path == '/iot/' %} class="active"{% endif %}>Home</a>
-          <a href="/iot/projects/"{% if path contains '/projects' %} class="active"{% endif %}>Projects</a>
-          <a href="/iot/notes/"{% if path contains '/notes' %} class="active"{% endif %}>Notes</a>
+          <a href="/iot/blog/"{% if path contains '/iot/blog' %} class="active"{% endif %}>Blog</a>
+          <a href="/iot/tags/"{% if path contains '/iot/tags' %} class="active"{% endif %}>Tags</a>
         {% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
           <span class="nav-section-badge">Security</span>
           <a href="/cybersec/"{% if path == '/cybersec/' %} class="active"{% endif %}>Home</a>
