@@ -1296,6 +1296,26 @@ details summary:hover { color: var(--cyber); }
   color: var(--embedded);
 }
 
+/* ── Embedded section: post-list overrides ───────────────
+   /iot/blog/ reuses the same .post-list markup as the cybersec
+   /blog/ page. .post-list, .post-list-item:hover, and — most
+   visibly — .post-list-title are hardcoded to var(--cyber) in
+   their base rules, with no amber counterpart, so every IoT post
+   title renders cyber-green even though the surrounding nav badge
+   and tag hovers are already amber. ───────────────────────── */
+
+.section-embedded .post-list {
+  border-top-color: var(--embedded);
+}
+
+.section-embedded .post-list-item:hover {
+  border-left-color: var(--embedded);
+}
+
+.section-embedded .post-list-title {
+  color: var(--embedded);
+}
+
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .post-list-item {
