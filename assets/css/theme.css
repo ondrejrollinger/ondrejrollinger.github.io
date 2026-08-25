@@ -1238,6 +1238,64 @@ details summary:hover { color: var(--cyber); }
   border-left-color: rgba(245, 158, 11, 0.4);
 }
 
+/* ── Embedded section: amber overrides continued ─────────
+   The IoT pages reuse terminal-listing, terminal-prompt, and
+   tag-list markup from the cybersec section. Those classes are
+   hardcoded to var(--cyber) in their base rules above, so without
+   these overrides the amber theme only applies to nav/prose links
+   and headers while terminal rows and tag links stay cyber-green —
+   this block closes that gap. ───────────────────────────── */
+
+.section-embedded .terminal-prompt {
+  color: var(--embedded);
+}
+
+.section-embedded .terminal-prompt--dim {
+  color: rgba(245, 158, 11, 0.5);
+}
+
+.section-embedded .tl-status-active {
+  color: var(--embedded);
+}
+
+.section-embedded .tl-row:hover {
+  background: var(--surface-2);
+  border-left-color: var(--embedded);
+}
+
+.section-embedded .tl-name a {
+  color: var(--embedded);
+}
+
+.section-embedded .tl-desc a {
+  color: var(--embedded);
+}
+
+.section-embedded .tag-list-item:hover {
+  background: var(--surface);
+  border-left-color: var(--embedded);
+}
+
+.section-embedded .tag-list-item a:hover {
+  color: var(--embedded);
+}
+
+.section-embedded .tag-list-item:hover .tag-count {
+  color: var(--embedded);
+}
+
+.section-embedded .glossary-list li:hover {
+  border-left-color: var(--embedded);
+}
+
+.section-embedded .glossary-list a:hover {
+  color: var(--embedded);
+}
+
+.section-embedded .site-footer a:hover {
+  color: var(--embedded);
+}
+
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .post-list-item {
