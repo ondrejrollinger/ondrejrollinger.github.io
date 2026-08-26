@@ -11,7 +11,15 @@
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
 </head>
 {% assign path = page.url %}
-{% if path contains '/iot' %}
+{% assign is_iot_tag = false %}
+{% if page.tag %}
+  {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
+  {% assign iot_tagged = tagged_posts | where_exp: "p", "p.tags contains 'iot'" %}
+  {% if iot_tagged.size > 0 %}
+    {% assign is_iot_tag = true %}
+  {% endif %}
+{% endif %}
+{% if path contains '/iot' or is_iot_tag %}
 <body class="section-embedded">
 {% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
 <body class="section-cyber">
@@ -20,17 +28,17 @@
 {% endif %}
   <header class="site-header">
     <div class="site-header-inner">
-      {% if path contains '/iot' %}
+      {% if path contains '/iot' or is_iot_tag %}
       <a class="site-logo" href="/">OR<span class="title-accent title-accent--embedded">_</span></a>
       {% else %}
       <a class="site-logo" href="/">OR<span class="title-accent">_</span></a>
       {% endif %}
       <nav class="site-nav" aria-label="Primary navigation">
-        {% if path contains '/iot' %}
+        {% if path contains '/iot' or is_iot_tag %}
           <span class="nav-section-badge">IoT</span>
           <a href="/iot/"{% if path == '/iot/' %} class="active"{% endif %}>Home</a>
           <a href="/iot/blog/"{% if path contains '/iot/blog' %} class="active"{% endif %}>Blog</a>
-          <a href="/iot/tags/"{% if path contains '/iot/tags' %} class="active"{% endif %}>Tags</a>
+          <a href="/iot/tags/"{% if path contains '/iot/tags' or is_iot_tag %} class="active"{% endif %}>Tags</a>
           <a href="/iot/evidence/"{% if path contains '/iot/evidence' %} class="active"{% endif %}>Transcript</a>
         {% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
           <span class="nav-section-badge">Security</span>

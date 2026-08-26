@@ -2,11 +2,16 @@
 layout: default
 ---
 
+{% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
+{% assign iot_tagged = tagged_posts | where_exp: "p", "p.tags contains 'iot'" %}
+{% if iot_tagged.size > 0 %}
+<a class="back-link" href="{{ '/iot/tags/' | relative_url }}">← All tags</a>
+{% else %}
 <a class="back-link" href="{{ '/tags/' | relative_url }}">← All tags</a>
+{% endif %}
 
 <div class="page-header">
   <h1 class="page-title">#{{ page.tag }}</h1>
-  {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
   <p class="page-description">{{ tagged_posts | size }} post{% if tagged_posts.size != 1 %}s{% endif %}</p>
 </div>
 
