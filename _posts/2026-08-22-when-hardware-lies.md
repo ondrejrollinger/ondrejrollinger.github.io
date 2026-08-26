@@ -24,15 +24,15 @@ Task: read lux from a BH1750 light sensor over the board's I2C connector. Should
 
 Except the bus was completely empty. Not "wrong sensor," not "bad address" — the I2C scanner reported `"found":[]`. Nothing at all.
 
-The instinct here is to suspect the sensor, the cable, or the power rail — and that's exactly what got checked first. The sensor got moved to the other board. Same result, empty bus. 3.3V was confirmed present at the connector with a meter. Everything *should* have worked.
+The instinct here is to suspect the sensor, the cable, or the power rail — and that's exactly what got checked first. The sensor got moved to the other board. Same result, empty bus. 3.3V was confirmed present at the connector with a meter. Everything *should* have worked. ([source exchange](/iot/evidence/#msg-200))
 
 The actual answer was sitting in the manufacturer's own example code, which used `Wire.begin(8, 10)` — explicit pin numbers. The board's I2C connector isn't wired to the ESP32's default I2C pins (GPIO21/22, what `Wire.begin()` assumes with no arguments). It's wired to GPIO42 (SDA) and GPIO2 (SCL). Calling `Wire.begin()` with no arguments doesn't fail loudly — it just quietly initializes a bus that has nothing connected to it, and every downstream operation reports back accurately that there's nothing there. The firmware wasn't broken. It was talking to the wrong two pins with total confidence.
 
-Once `Wire.begin(42, 2)` was in place, the sensor was found at `0x23` immediately, and lux readings tracked exactly as expected — 41 lux in a dim room, 566 lux well-lit.
+Once `Wire.begin(42, 2)` was in place, the sensor was found at `0x23` immediately, and lux readings tracked exactly as expected — 41 lux in a dim room, 566 lux well-lit. ([source exchange](/iot/evidence/#msg-207))
 
 ## Incident two: the sensor that moved its own address
 
-The BMP280 pressure/temperature sensor is documented at I2C address `0x76`. Ours answered at `0x77`. The datasheet explanation is mundane once you know it — the SDO pin on this particular module is pulled high, which flips the address by one bit — but it meant the first attempt to read the sensor got a clean "device not found" from an address that, on paper, should have been correct. The fix was adding a fallback: try `0x76`, then `0x77`. Not a firmware bug, just an assumption about a part number that turned out to have a jumper-configurable detail nobody had checked.
+The BMP280 pressure/temperature sensor is documented at I2C address `0x76`. Ours answered at `0x77`. ([source exchange](/iot/evidence/#msg-234)) The datasheet explanation is mundane once you know it — the SDO pin on this particular module is pulled high, which flips the address by one bit — but it meant the first attempt to read the sensor got a clean "device not found" from an address that, on paper, should have been correct. The fix was adding a fallback: try `0x76`, then `0x77`. Not a firmware bug, just an assumption about a part number that turned out to have a jumper-configurable detail nobody had checked.
 
 ## Incident three: init reported success, and the screen stayed black
 
@@ -40,7 +40,7 @@ This is the one that actually changed how I think about testing AI-written firmw
 
 It took physically looking at the second screen — not reading a log — to even know there was a problem, because nothing in the firmware's own reporting suggested anything was wrong.
 
-The actual issue: the 1.3-inch OLED module uses an **SH1106** controller, not SSD1306. They're similar enough — same resolution, similar command set — that an SSD1306 driver will often *partially* work, or work on one instance of a part and not another, depending on manufacturing tolerances and exactly how forgiving that particular chip's silicon is about being talked to with the wrong protocol. Switching to the `Adafruit_SH110X` library fixed it — mostly. A second, related issue turned up right behind it: `Wire`'s default 100kHz I2C clock speed was unreliable for the SH1106G controller specifically when the OLED was the *only* device on the bus. An explicit `TwoWire` instance running at 400kHz resolved that too.
+The actual issue: the 1.3-inch OLED module uses an **SH1106** controller, not SSD1306. ([source exchange](/iot/evidence/#msg-281)) They're similar enough — same resolution, similar command set — that an SSD1306 driver will often *partially* work, or work on one instance of a part and not another, depending on manufacturing tolerances and exactly how forgiving that particular chip's silicon is about being talked to with the wrong protocol. Switching to the `Adafruit_SH110X` library fixed it — mostly. A second, related issue turned up right behind it: `Wire`'s default 100kHz I2C clock speed was unreliable for the SH1106G controller specifically when the OLED was the *only* device on the bus. An explicit `TwoWire` instance running at 400kHz resolved that too.
 
 ## The actual lesson
 

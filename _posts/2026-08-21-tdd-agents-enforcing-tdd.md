@@ -29,7 +29,7 @@ The Reviewer checklist that gets posted on every pull request has two fields ded
 
 ## Proving the Reviewer actually rejects things
 
-At the end of Phase 1, before I'd trust this pipeline with anything real, I asked it to test itself: submit three deliberately broken firmware variants through the full pipeline and see what got caught, and by which agent.
+At the end of Phase 1, before I'd trust this pipeline with anything real, I asked it to test itself: submit three deliberately broken firmware variants through the full pipeline and see what got caught, and by which agent. ([source exchange](/iot/evidence/#msg-72))
 
 | Variant | What was wrong | Compiles clean? | Caught by |
 |---|---|---|---|
@@ -47,7 +47,7 @@ Rather than shrug and move on, the Tester caught its own logic error: the spec h
 
 ## The bug that revealed why board identity needed a third layer
 
-Phase 2.1 shipped structured error/warn logging — 13/13 tests passing on both boards, PR merged. Then, running the same suite against node2, both boards were found to be announcing themselves as `esp-node1` in their boot logs.
+Phase 2.1 shipped structured error/warn logging — 13/13 tests passing on both boards, PR merged. Then, running the same suite against node2, both boards were found to be announcing themselves as `esp-node1` in their boot logs. ([source exchange](/iot/evidence/#msg-111))
 
 The existing test only asserted that *some* board name was present in the boot event — not that it matched the board actually under test. That's a real gap: a firmware image built for the wrong board could pass every test and get flagged green.
 
