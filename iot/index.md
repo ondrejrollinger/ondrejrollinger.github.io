@@ -63,7 +63,6 @@ permalink: /iot/
 <div class="terminal-listing">
   <div class="tl-row"><span class="tl-type">dir</span><span class="tl-name"><a href="/iot/blog/">Blog</a></span><span class="tl-desc">The full write-up series, phase by phase</span></div>
   <div class="tl-row"><span class="tl-type">dir</span><span class="tl-name"><a href="/iot/tags/">Tags</a></span><span class="tl-desc">Browse IoT posts by topic</span></div>
-  <div class="tl-row"><span class="tl-type">dir</span><span class="tl-name"><a href="/iot/evidence/">Evidence</a></span><span class="tl-desc">Full Telegram transcript — every claim in the series, sourced</span></div>
   <div class="tl-row"><span class="tl-type">dir</span><span class="tl-name"><a href="https://github.com/ondrejrollinger">GitHub</a></span><span class="tl-desc">Firmware repo, pull requests, decisions.md</span></div>
 </div>
 

@@ -31,6 +31,7 @@
           <a href="/iot/"{% if path == '/iot/' %} class="active"{% endif %}>Home</a>
           <a href="/iot/blog/"{% if path contains '/iot/blog' %} class="active"{% endif %}>Blog</a>
           <a href="/iot/tags/"{% if path contains '/iot/tags' %} class="active"{% endif %}>Tags</a>
+          <a href="/iot/evidence/"{% if path contains '/iot/evidence' %} class="active"{% endif %}>Transcript</a>
         {% elsif path contains '/blog' or path contains '/secplus' or path contains '/glossary' or path contains '/lab-tracker' or path contains '/cybersec' or path contains '/tag' or path contains '/tags' or path contains '/search' %}
           <span class="nav-section-badge">Security</span>
           <a href="/cybersec/"{% if path == '/cybersec/' %} class="active"{% endif %}>Home</a>
