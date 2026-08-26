@@ -30,7 +30,7 @@ The Reviewer checklist that gets posted on every pull request has two fields ded
 
 ## Proving the Reviewer actually rejects things
 
-At the end of Phase 1, before I'd trust this pipeline with anything real, I asked it to test itself: submit three deliberately broken firmware variants through the full pipeline and see what got caught, and by which agent. ([source exchange](/iot/evidence/#msg-72))
+At the end of Phase 1, before I'd trust this pipeline with anything real, I asked it to test itself: submit three deliberately broken firmware variants through the full pipeline and see what got caught, and by which agent. ([transcript link](/iot/evidence/#msg-72))
 
 | Variant | What was wrong | Compiles clean? | Caught by |
 |---|---|---|---|
@@ -42,13 +42,13 @@ The third one is the one that mattered most. The hardcoded IP was declared but u
 
 ## Red confirmation when you're extending, not starting from nothing
 
-Phase 2.3 added automated test reports with a `--suite-results` argument. Because this phase extended existing functionality rather than starting a new sub-project from scratch, the red-confirmation run against the empty stub showed the 9 pre-existing tests from earlier phases correctly continuing to pass, while the 2 new tests written for `--suite-results` correctly failed. ([source exchange](/iot/evidence/#msg-152))
+Phase 2.3 added automated test reports with a `--suite-results` argument. Because this phase extended existing functionality rather than starting a new sub-project from scratch, the red-confirmation run against the empty stub showed the 9 pre-existing tests from earlier phases correctly continuing to pass, while the 2 new tests written for `--suite-results` correctly failed. ([transcript link](/iot/evidence/#msg-152))
 
 That split result is exactly what red confirmation is supposed to show when the spec is layered on top of working code: it isn't proof of a broken stub or a self-correcting agent, just the mechanism doing its job — confirming that only the genuinely new assertions have nothing yet to satisfy them, while everything already built stays green.
 
 ## The bug that revealed why board identity needed a third layer
 
-Phase 2.1 shipped structured error/warn logging — 13/13 tests passing on both boards, PR merged. Then, running the same suite against node2, both boards were found to be announcing themselves as `esp-node1` in their boot logs. ([source exchange](/iot/evidence/#msg-111))
+Phase 2.1 shipped structured error/warn logging — 13/13 tests passing on both boards, PR merged. Then, running the same suite against node2, both boards were found to be announcing themselves as `esp-node1` in their boot logs. ([transcript link](/iot/evidence/#msg-111))
 
 The existing test only asserted that *some* board name was present in the boot event — not that it matched the board actually under test. That's a real gap: a firmware image built for the wrong board could pass every test and get flagged green.
 

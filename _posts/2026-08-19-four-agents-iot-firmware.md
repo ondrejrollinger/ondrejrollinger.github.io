@@ -41,7 +41,7 @@ Three things make that possible here, and none of them are exotic:
 
 ## The moment that convinced me it was actually working
 
-Early on, at the end of Phase 1, I asked the pipeline to test itself: submit three deliberately broken firmware variants and see if the Reviewer would actually catch them. ([source exchange](/iot/evidence/#msg-72))
+Early on, at the end of Phase 1, I asked the pipeline to test itself: submit three deliberately broken firmware variants and see if the Reviewer would actually catch them. ([transcript link](/iot/evidence/#msg-72))
 
 | Variant | Violation | Caught by |
 |---|---|---|

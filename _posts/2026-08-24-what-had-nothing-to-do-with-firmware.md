@@ -18,7 +18,7 @@ Most of what made this project hard wasn't the firmware. The Coder agent writing
 
 ## When "it works" quietly bypassed the process
 
-Phase 6 — getting sensor data flowing over MQTT — landed with both boards confirmed working on real hardware. Good news. The problem: it had all been committed directly to `main`, in two commits, with no individual branches, no separate pull requests per sub-project, and no Reviewer checklist posted on any of it. ([source exchange](/iot/evidence/#msg-760))
+Phase 6 — getting sensor data flowing over MQTT — landed with both boards confirmed working on real hardware. Good news. The problem: it had all been committed directly to `main`, in two commits, with no individual branches, no separate pull requests per sub-project, and no Reviewer checklist posted on any of it. ([transcript link](/iot/evidence/#msg-760))
 
 Nothing about the *firmware* was wrong. The bidirectional MQTT, the cross-board display integration, all of it worked. But the entire audit trail the rest of the pipeline depends on — a PR per sub-project, a checklist comment, a documented review — simply didn't exist for this phase. It had to be corrected retroactively: real hardware verification re-confirmed live (a 30-second `mosquitto_sub` capture, pasted in full), then four separate branches and PRs created after the fact, each carrying the existing commits, each getting its proper checklist and merge, before Phase 6 was allowed to count as done.
 
@@ -32,7 +32,7 @@ This is why `docs/decisions.md` and `docs/PROJECT_KB.md` exist as mandatory firs
 
 ## The soak test that never got a satisfying answer
 
-During Phase 5.4 — a one-hour continuous TCP stability test — node1 sent 1,849 messages. Node2 sent two, with three disconnects in the same window. ([source exchange](/iot/evidence/#msg-706)) That's not a subtle anomaly; that's one board working and the other one barely functioning, running the identical firmware, on identical hardware, on the same network.
+During Phase 5.4 — a one-hour continuous TCP stability test — node1 sent 1,849 messages. Node2 sent two, with three disconnects in the same window. ([transcript link](/iot/evidence/#msg-706)) That's not a subtle anomaly; that's one board working and the other one barely functioning, running the identical firmware, on identical hardware, on the same network.
 
 It got investigated, logged in both `decisions.md` and the board's own health file, and treated as a real signal before Phase 6 was allowed to start — the project's rule was explicit: don't move on to MQTT with an unexplained instability sitting underneath it. But it's also honestly the kind of thing that's hard to fully close the loop on with two boards and a lab setup — was it the specific board, the specific USB cable, RF interference in that exact spot on that exact day? Documented, watched for recurrence, never with a single smoking-gun root cause. That's a true-to-life outcome for anyone who's debugged flaky hardware, and worth including precisely because it doesn't wrap up neatly.
 
