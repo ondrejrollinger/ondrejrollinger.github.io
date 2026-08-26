@@ -1367,6 +1367,8 @@ details summary:hover { color: var(--cyber); }
   color: var(--embedded);
 }
 
+.section-embedded .back-link:hover { color: var(--embedded); }
+
 .section-embedded .tag-list-item:hover .tag-count {
   color: var(--embedded);
 }
