@@ -20,76 +20,93 @@ permalink: /iot/
 
 <p class="terminal-prompt">pi@iot-lab:~$ cat ./current_focus</p>
 
-<div class="terminal-listing">
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 0 — Network isolation</span>
-    <span class="tl-desc">VLAN-isolated lab network, static DHCP by MAC, exit-gate verification before any firmware work began</span>
+<div class="phase-grid">
+  <div class="phase-grid-head">
+    <div>status</div><div>#</div><div>phase</div><div>summary</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 1 — Pipeline bootstrap</span>
-    <span class="tl-desc">Orchestrator/Coder/Reviewer/Tester roles, TDD enforcement, the adversarial test proving the Reviewer actually rejects bad code</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">00</div>
+    <div class="phase-title">Network isolation</div>
+    <div class="phase-desc">VLAN-isolated lab network, static DHCP by MAC, exit-gate verification before any firmware work began</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 2 — Structured logging &amp; reporting</span>
-    <span class="tl-desc">Event logging conventions, automated test reports, the board-identity assertion gap found and closed</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">01</div>
+    <div class="phase-title">Pipeline bootstrap</div>
+    <div class="phase-desc">Orchestrator/Coder/Reviewer/Tester roles, TDD enforcement, the adversarial test proving the Reviewer actually rejects bad code</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 3 — Sensors</span>
-    <span class="tl-desc">BH1750 light, BMP280 pressure/temp, SH1106 OLED display — on both boards</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">02</div>
+    <div class="phase-title">Structured logging</div>
+    <div class="phase-desc">Event logging conventions, automated test reports, the board-identity assertion gap found and closed</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 4 — WiFi &amp; UDP telemetry</span>
-    <span class="tl-desc">WiFi connect reliability, UDP broadcast, AP/DHCP infrastructure fixes</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">03</div>
+    <div class="phase-title">Sensors</div>
+    <div class="phase-desc">BH1750 light, BMP280 pressure/temp, SH1106 OLED display on both boards</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 5 — Reliable WiFi</span>
-    <span class="tl-desc">Connection stability hardening, TCP soak testing across both boards</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">04</div>
+    <div class="phase-title">WiFi &amp; UDP telemetry</div>
+    <div class="phase-desc">WiFi connect reliability, UDP broadcast, AP/DHCP infrastructure fixes</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 6 — MQTT</span>
-    <span class="tl-desc">Bidirectional sensor data over MQTT, cross-board OLED integration</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">05</div>
+    <div class="phase-title">Reliable WiFi</div>
+    <div class="phase-desc">Connection stability hardening, TCP soak testing across both boards</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 7 — Power &amp; sleep</span>
-    <span class="tl-desc">Deep sleep power management on both boards</span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">06</div>
+    <div class="phase-title">MQTT</div>
+    <div class="phase-desc">Bidirectional sensor data over MQTT, cross-board OLED integration</div>
   </div>
-  <div class="tl-row tl-active">
-    <span class="tl-type tl-status-active">done</span>
-    <span class="tl-name">Phase 8 — Message integrity &amp; encryption</span>
-    <span class="tl-desc">CRC-32, sequence numbers, cross-board replay detection, TLS over MQTT, battery-optimized operation. Merged. → <a href="/iot/blog/">Blog</a></span>
+  <div class="phase-row">
+    <div class="phase-status">done</div>
+    <div class="phase-num">07</div>
+    <div class="phase-title">Power &amp; sleep</div>
+    <div class="phase-desc">Deep sleep power management on both boards</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type">next</span>
-    <span class="tl-name">Phase 9 — Auth &amp; identity</span>
-    <span class="tl-desc">PSK setup, HMAC-SHA256 signing, device identity tokens, key rotation</span>
+  <div class="phase-row phase-row--active">
+    <div class="phase-status">done</div>
+    <div class="phase-num">08</div>
+    <div class="phase-title">Message integrity &amp; encryption</div>
+    <div class="phase-desc">CRC-32, sequence numbers, cross-board replay detection, TLS over MQTT, battery-optimized operation. Merged. → <a href="/iot/blog/">Blog</a></div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type">ahead</span>
-    <span class="tl-name">Phase 10 — Cert management</span>
-    <span class="tl-desc">Expiry monitoring, automated rotation, revocation</span>
+  <div class="phase-row phase-row--next">
+    <div class="phase-status">next</div>
+    <div class="phase-num">09</div>
+    <div class="phase-title">Auth &amp; identity</div>
+    <div class="phase-desc">PSK setup, HMAC-SHA256 signing, device identity tokens, key rotation</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type">ahead</span>
-    <span class="tl-name">Phase 11 — OTA updates</span>
-    <span class="tl-desc">Signed binaries, rollback on boot failure, multi-device rollout</span>
+  <div class="phase-row">
+    <div class="phase-status">ahead</div>
+    <div class="phase-num">10</div>
+    <div class="phase-title">Cert management</div>
+    <div class="phase-desc">Expiry monitoring, automated rotation, revocation</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type">ahead</span>
-    <span class="tl-name">Phase 12 — Resilience</span>
-    <span class="tl-desc">Watchdog hardening, crash dumps, brownout detection, autonomous recovery</span>
+  <div class="phase-row">
+    <div class="phase-status">ahead</div>
+    <div class="phase-num">11</div>
+    <div class="phase-title">OTA updates</div>
+    <div class="phase-desc">Signed binaries, rollback on boot failure, multi-device rollout</div>
   </div>
-  <div class="tl-row">
-    <span class="tl-type">ahead</span>
-    <span class="tl-name">Phase 13 — Standalone deployment</span>
-    <span class="tl-desc">Factory-flashable image, WiFi/cert provisioning, OLED-based status reporting</span>
+  <div class="phase-row">
+    <div class="phase-status">ahead</div>
+    <div class="phase-num">12</div>
+    <div class="phase-title">Resilience</div>
+    <div class="phase-desc">Watchdog hardening, crash dumps, brownout detection, autonomous recovery</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-status">ahead</div>
+    <div class="phase-num">13</div>
+    <div class="phase-title">Standalone deployment</div>
+    <div class="phase-desc">Factory-flashable image, WiFi/cert provisioning, OLED-based status reporting</div>
   </div>
 </div>
 

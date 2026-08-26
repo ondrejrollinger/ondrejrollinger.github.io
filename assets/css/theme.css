@@ -765,6 +765,85 @@ input[type="search"]:focus {
   border-left: 2px solid var(--border-2);
 }
 
+/* ── Phase grid (current_focus) ──────────────────────────── */
+.phase-grid { margin-top: 0.5rem; }
+
+.phase-grid-head {
+  display: grid;
+  grid-template-columns: 56px 40px 190px 1fr;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 2px;
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 56px 40px 190px 1fr;
+  gap: 8px;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border);
+  min-height: 3.2rem;
+  align-items: start;
+}
+.phase-row:last-child { border-bottom: none; }
+
+.phase-row--active { background: var(--surface-2); }
+
+.phase-status {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding-top: 2px;
+}
+.phase-row--active .phase-status,
+.phase-row--next .phase-status { color: var(--embedded); }
+
+.phase-num {
+  font-family: var(--font-mono);
+  color: var(--dim);
+  padding-top: 2px;
+}
+
+.phase-title {
+  color: var(--text-bright);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.phase-desc {
+  color: var(--muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.phase-desc a { color: var(--embedded); }
+
+@media (max-width: 600px) {
+  .phase-grid-head { display: none; }
+  .phase-row {
+    grid-template-columns: 44px 30px 1fr;
+  }
+  .phase-title, .phase-desc {
+    grid-column: 3;
+  }
+  .phase-title { padding-top: 0; }
+  .phase-desc {
+    grid-column: 1 / -1;
+    -webkit-line-clamp: 3;
+    margin-top: 2px;
+  }
+}
+
 /* ── Glossary list ──────────────────────────────────────── */
 .glossary-section {
   margin: 2rem 0 1rem;
