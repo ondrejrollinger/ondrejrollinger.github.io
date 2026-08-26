@@ -24,55 +24,55 @@ permalink: /iot/
   <div class="phase-grid-head">
     <div>status</div><div>#</div><div>phase</div><div>summary</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">00</div>
     <div class="phase-title">Network isolation</div>
     <div class="phase-desc">VLAN-isolated lab network, static DHCP by MAC, exit-gate verification before any firmware work began</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">01</div>
     <div class="phase-title">Pipeline bootstrap</div>
     <div class="phase-desc">Orchestrator/Coder/Reviewer/Tester roles, TDD enforcement, Reviewer actually rejects bad code</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">02</div>
     <div class="phase-title">Structured logging</div>
     <div class="phase-desc">Event logging conventions, automated test reports, the board-identity assertion gap found and closed</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">03</div>
     <div class="phase-title">Sensors</div>
     <div class="phase-desc">BH1750 light, BMP280 pressure/temp, SH1106 OLED display on both boards</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">04</div>
     <div class="phase-title">WiFi &amp; UDP telemetry</div>
     <div class="phase-desc">WiFi connect reliability, UDP broadcast, AP/DHCP infrastructure fixes</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">05</div>
     <div class="phase-title">Reliable WiFi</div>
     <div class="phase-desc">Connection stability hardening, TCP soak testing across both boards</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">06</div>
     <div class="phase-title">MQTT</div>
     <div class="phase-desc">Bidirectional sensor data over MQTT, cross-board OLED integration</div>
   </div>
-  <div class="phase-row">
+  <div class="phase-row phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">07</div>
     <div class="phase-title">Power &amp; sleep</div>
     <div class="phase-desc">Deep sleep power management on both boards</div>
   </div>
-  <div class="phase-row phase-row--active">
+  <div class="phase-row phase-row--active phase-row--done">
     <div class="phase-status">done</div>
     <div class="phase-num">08</div>
     <div class="phase-title">Message integrity &amp; encryption</div>
