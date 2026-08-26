@@ -20,7 +20,7 @@ permalink: /iot/
 
 <p class="terminal-prompt">pi@iot-lab:~$ cat ./current_focus</p>
 
-<div class="phase-grid">
+<div class="phase-grid-wrap">
   <div class="phase-grid-head">
     <div>status</div><div>#</div><div>phase</div><div>summary</div>
   </div>
@@ -34,7 +34,7 @@ permalink: /iot/
     <div class="phase-status">done</div>
     <div class="phase-num">01</div>
     <div class="phase-title">Pipeline bootstrap</div>
-    <div class="phase-desc">Orchestrator/Coder/Reviewer/Tester roles, TDD enforcement, the adversarial test proving the Reviewer actually rejects bad code</div>
+    <div class="phase-desc">Orchestrator/Coder/Reviewer/Tester roles, TDD enforcement, Reviewer actually rejects bad code</div>
   </div>
   <div class="phase-row">
     <div class="phase-status">done</div>
@@ -76,7 +76,7 @@ permalink: /iot/
     <div class="phase-status">done</div>
     <div class="phase-num">08</div>
     <div class="phase-title">Message integrity &amp; encryption</div>
-    <div class="phase-desc">CRC-32, sequence numbers, cross-board replay detection, TLS over MQTT, battery-optimized operation. Merged. → <a href="/iot/blog/">Blog</a></div>
+    <div class="phase-desc">CRC-32, sequence numbers, replay detection, TLS over MQTT, battery-optimized. Merged. → <a href="/iot/blog/">Blog</a></div>
   </div>
   <div class="phase-row phase-row--next">
     <div class="phase-status">next</div>
