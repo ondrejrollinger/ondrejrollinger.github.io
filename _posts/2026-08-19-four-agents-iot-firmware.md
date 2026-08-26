@@ -67,7 +67,7 @@ This is not a story about a system that worked flawlessly. A few things are wort
 
 - **The hardware lied more than once.** The I2C bus that "should" have worked on default pins didn't — the board's connector was wired to different GPIOs than the ESP32 defaults, and it took a scanner returning an empty bus before anyone thought to check the schematic.
 - **Process discipline slipped at least once.** An entire sub-phase got committed directly to `main` — no branch, no PR, no Reviewer checklist — and had to be caught and retroactively corrected before I'd accept it as "done."
-- **A new agent session started completely cold, more than once.** No memory of what phase the project was in or what was still in flight — which is exactly why the repo, not the chat history, had to become the real source of truth.
+- **A new agent session started completely cold, more than once.** No memory of what phase the project was in or what was still in flight — which is exactly why the repo, not the chat history, had to become the real source of truth. ([transcript link](/iot/evidence/#msg-967))
 
 None of that is a failure of the concept. If anything, it's the most honest part of the story — the parts where a team of AI agents runs into the same mundane friction any engineering team does, and you get to watch how it handles it.
 

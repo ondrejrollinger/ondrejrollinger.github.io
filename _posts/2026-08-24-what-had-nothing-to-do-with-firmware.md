@@ -26,7 +26,7 @@ The lesson isn't "the agent cut corners." It's that momentum is its own failure 
 
 ## Session amnesia is a real constraint, not a metaphor
 
-More than once, a new agent session started completely cold — no memory of what phase the project was in, what the last commit was, or what was still in flight. One session, asked to generate a diagram of "the current Phase 8.3 firmware," searched the repository, found nothing resembling Phase 8.3, and reported back — correctly — that it appeared to be looking at the wrong repository entirely. It was right. A prior session had drifted into a different working directory, and starting fresh actually surfaced the mistake rather than compounding it.
+More than once, a new agent session started completely cold — no memory of what phase the project was in, what the last commit was, or what was still in flight. One session, asked to generate a diagram of "the current Phase 8.3 firmware," searched the repository, found nothing resembling Phase 8.3, and reported back — correctly — that it appeared to be looking at the wrong repository entirely. ([transcript link](/iot/evidence/#msg-967)) It was right. A prior session had drifted into a different working directory, and starting fresh actually surfaced the mistake rather than compounding it.
 
 This is why `docs/decisions.md` and `docs/PROJECT_KB.md` exist as mandatory first reads for every session, independent of chat history: the rule became "load these before doing anything," specifically because relying on conversational continuity across sessions turned out to be exactly as fragile as it sounds. A file committed to the repo survives a context reset. A remembered conversation doesn't.
 

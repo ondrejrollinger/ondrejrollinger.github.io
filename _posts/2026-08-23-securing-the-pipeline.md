@@ -51,7 +51,7 @@ That contrast — one readable, one not, from the exact same firmware family wit
 
 ## 8.6: making all of that cheap enough to run on a battery
 
-The final piece folded battery efficiency into the TLS baseline: CPU underclocked to 80MHz, WiFi modem sleep enabled, comms window cut from ten seconds to three (connect, publish, disconnect — no idle waiting), and a minimal publish payload stripped down to just board name, sequence number, CRC, and battery voltage. An RGB LED gives a physical green/red readout of battery state without needing to check a display or a log at all — green above 3.5V, red below, off before the board sleeps.
+The final piece folded battery efficiency into the TLS baseline: CPU underclocked to 80MHz, WiFi modem sleep enabled, comms window cut from ten seconds to three (connect, publish, disconnect — no idle waiting), and a minimal publish payload stripped down to just board name, sequence number, CRC, and battery voltage. ([transcript link](/iot/evidence/#msg-1204)) An RGB LED gives a physical green/red readout of battery state without needing to check a display or a log at all — green above 3.5V, red below, off before the board sleeps.
 
 ## What this arc actually proves
 

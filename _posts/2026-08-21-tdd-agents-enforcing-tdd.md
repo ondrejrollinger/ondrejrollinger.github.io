@@ -60,8 +60,8 @@ Worth noting: this fix involved editing Phase 1's test files retroactively — w
 
 A few conventions got locked in here that held for the rest of the project:
 
-- **No auto-merge.** The pipeline reports PASS and stops. A human merges. Every time.
-- **The Reviewer checklist must be posted as a GitHub PR comment, not just reported over Telegram.** This was added directly because a Telegram-only checklist has no permanent, independently auditable record — a PR comment does.
+- **No auto-merge.** The pipeline reports PASS and stops. A human merges. Every time. ([transcript link](/iot/evidence/#msg-29))
+- **The Reviewer checklist must be posted as a GitHub PR comment, not just reported over Telegram.** This was added directly because a Telegram-only checklist has no permanent, independently auditable record — a PR comment does. ([transcript link](/iot/evidence/#msg-399))
 - **Both boards must be tested before PASS is reported**, not just one representative board.
 
 None of these rules exist because I anticipated them in advance. Every one of them exists because something surfaced during Phase 1–2 that made the gap obvious, and got closed before it could cause a real problem later.

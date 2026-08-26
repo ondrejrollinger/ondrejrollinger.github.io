@@ -44,7 +44,7 @@ What's specific to this project, and probably shouldn't be assumed to transfer, 
 
 Phase 8's completion — CRC, sequence numbers, cross-board replay detection, LWT-based recovery, TLS, and battery-optimized operation — closes out the message-integrity arc. ([transcript link](/iot/evidence/#msg-1206)) What's still ahead:
 
-- **Phase 9 — Auth & identity.** PSK setup, HMAC-SHA256 message signing, device identity tokens, key rotation. Mosquitto is still running with `allow_anonymous true`, flagged as temporary back in Phase 3 specifically pending this phase.
+- **Phase 9 — Auth & identity.** PSK setup, HMAC-SHA256 message signing, device identity tokens, key rotation. Mosquitto is still running with `allow_anonymous true`, flagged as temporary back in Phase 3 specifically pending this phase. ([transcript link](/iot/evidence/#msg-228))
 - **Phase 10 — Cert management.** Expiry monitoring, automated rotation, revocation — building on the TLS foundation from 8.5.
 - **Phase 11 — OTA updates.** Signed binaries, rollback on boot failure, multi-device rollout.
 - **Phase 12 — Resilience.** Watchdog hardening, crash dumps, brownout detection, autonomous recovery.
