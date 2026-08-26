@@ -10,8 +10,9 @@ summary: >
   before any firmware exists, a Coder agent barred from touching test files,
   and a Reviewer checklist with real hard-reject authority. Covers the
   adversarial test that revealed a hardcoded IP was a Reviewer-only catch,
-  a Tester agent catching its own broken red-confirmation logic, and the
-  board-identity bug that added a third layer of hardware verification.
+  what red confirmation looks like when extending existing functionality
+  instead of starting from nothing, and the board-identity bug that added
+  a third layer of hardware verification.
 ---
 
 The rule sounds simple written down: tests get written before firmware, and the Coder agent is never, under any circumstances, allowed to modify a test file. In practice, holding four AI agents to that rule for months surfaced some of the most interesting moments in the whole project — including a few where the agents caught problems I hadn't thought to ask about.
@@ -39,11 +40,11 @@ At the end of Phase 1, before I'd trust this pipeline with anything real, I aske
 
 The third one is the one that mattered most. The hardcoded IP was declared but unused anywhere in the actual code path — meaning the Tester's serial-log assertions on real hardware would never trip. It would have flashed clean, run clean, and passed every hardware test in the suite. The Reviewer catching it wasn't a redundant safety net; it was the *only* net. That single result is why `no_hardcoded_ip` became its own dedicated checklist field, separate from the general `no_hardcoded_credentials` check — a distinction added specifically because this test revealed the general check wasn't specific enough.
 
-## The bug that revealed the Tester was actually reasoning, not pattern-matching
+## Red confirmation when you're extending, not starting from nothing
 
-Phase 2.3 added automated test reports with a `--suite-results` argument. On the first run, the Tester's own red confirmation came back with 9 tests already passing against the empty stub — which should be impossible; nothing exists yet to satisfy any assertion.
+Phase 2.3 added automated test reports with a `--suite-results` argument. Because this phase extended existing functionality rather than starting a new sub-project from scratch, the red-confirmation run against the empty stub showed the 9 pre-existing tests from earlier phases correctly continuing to pass, while the 2 new tests written for `--suite-results` correctly failed. ([source exchange](/iot/evidence/#msg-152))
 
-Rather than shrug and move on, the Tester caught its own logic error: the spec had been written loosely enough that several assertions were trivially satisfiable by *absence* of output, not presence of correct output. It corrected the spec so only the two genuinely new `--suite-results` assertions failed against the stub, then re-ran. That's a small moment, but it's the difference between an agent following a checklist item ("run red confirmation") and an agent understanding *why* red confirmation exists in the first place.
+That split result is exactly what red confirmation is supposed to show when the spec is layered on top of working code: it isn't proof of a broken stub or a self-correcting agent, just the mechanism doing its job — confirming that only the genuinely new assertions have nothing yet to satisfy them, while everything already built stays green.
 
 ## The bug that revealed why board identity needed a third layer
 
