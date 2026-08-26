@@ -812,7 +812,6 @@ input[type="search"]:focus {
   color: var(--dim);
   padding-top: 0.1rem;
 }
-.phase-row--active .phase-status,
 .phase-row--next .phase-status { color: var(--embedded); }
 
 .phase-num {
