@@ -10,7 +10,7 @@ permalink: /iot/blog/
 <p class="page-description">Building an AI agent pipeline that develops real ESP32-S3 firmware — write-ups published phase by phase, with real hardware evidence.</p>
 
 <div class="post-list">
-  {% assign iot_posts = site.posts | where_exp: "post", "post.tags contains 'iot'" %}
+  {% assign iot_posts = site.posts | where_exp: "post", "post.tags contains 'iot'" | reverse %}
   {% for post in iot_posts %}
   <div class="post-list-item">
     <span class="post-list-date">
