@@ -34,6 +34,8 @@ Internet → Mikrotik router
 
 Two VLANs, one Raspberry Pi bridging them deliberately (as the MQTT broker and mDNS host), and the ESP32 boards living entirely inside the isolated segment with no path outward except through services I control.
 
+Worth being upfront about: this diagram is the topology as it ended up, not as it started. The Pi itself was originally meant to run the access point — no dedicated hardware needed, one less box on the shelf. That plan didn't survive Phase 4 contact with the ESP boards' cold-boot behavior, for reasons that turned out to have nothing to do with firmware. More on that in the hardware-debugging post.
+
 ## The exit gate
 
 Before Phase 1 could start, four checks had to pass, and pass in the *expected* direction — including two that were supposed to fail:
